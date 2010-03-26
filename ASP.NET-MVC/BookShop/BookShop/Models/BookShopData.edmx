@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="BookShopModelStoreContainer">
+          <EntitySet Name="Books" EntityType="BookShopModel.Store.Books" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LineItem" EntityType="BookShopModel.Store.LineItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Orders" EntityType="BookShopModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_LineItem_Books" Association="BookShopModel.Store.FK_LineItem_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="LineItem" EntitySet="LineItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineItem_Orders" Association="BookShopModel.Store.FK_LineItem_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="LineItem" EntitySet="LineItem" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Author" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Price" Type="numeric" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="LineItem">
+          <Key>
+            <PropertyRef Name="Book_id" />
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Book_id" Type="int" Nullable="false" />
+          <Property Name="Order_id" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="numeric" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Status" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_LineItem_Books">
+          <End Role="Books" Type="BookShopModel.Store.Books" Multiplicity="1" />
+          <End Role="LineItem" Type="BookShopModel.Store.LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineItem_Orders">
+          <End Role="Orders" Type="BookShopModel.Store.Orders" Multiplicity="1" />
+          <End Role="LineItem" Type="BookShopModel.Store.LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="Order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookShopModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="BookShopEntities">
+          <EntitySet Name="BookSet" EntityType="BookShopModel.Book" />
+          <EntitySet Name="LineItem" EntityType="BookShopModel.LineItem" />
+          <EntitySet Name="OrderSet" EntityType="BookShopModel.Order" />
+          <AssociationSet Name="FK_LineItem_Books" Association="BookShopModel.FK_LineItem_Books">
+            <End Role="Book" EntitySet="BookSet" />
+            <End Role="LineItem" EntitySet="LineItem" /></AssociationSet>
+          <AssociationSet Name="FK_LineItem_Orders" Association="BookShopModel.FK_LineItem_Orders">
+            <End Role="Orders" EntitySet="OrderSet" />
+            <End Role="LineItem" EntitySet="LineItem" /></AssociationSet></EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="LineItem" Relationship="BookShopModel.FK_LineItem_Books" FromRole="Book" ToRole="LineItem" />
+          <Property Name="Price" Type="Decimal" Nullable="false" /></EntityType>
+        <EntityType Name="LineItem">
+          <Key>
+            <PropertyRef Name="Book_id" />
+            <PropertyRef Name="Order_id" /></Key>
+          <Property Name="Book_id" Type="Int32" Nullable="false" />
+          <Property Name="Order_id" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="BookShopModel.FK_LineItem_Books" FromRole="LineItem" ToRole="Book" />
+          <NavigationProperty Name="Order" Relationship="BookShopModel.FK_LineItem_Orders" FromRole="LineItem" ToRole="Orders" /></EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <NavigationProperty Name="LineItems" Relationship="BookShopModel.FK_LineItem_Orders" FromRole="Orders" ToRole="LineItem" /></EntityType>
+        <Association Name="FK_LineItem_Books">
+          <End Type="BookShopModel.Book" Role="Book" Multiplicity="1" />
+          <End Type="BookShopModel.LineItem" Role="LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="Book_id" /></Dependent></ReferentialConstraint></Association>
+        <Association Name="FK_LineItem_Orders">
+          <End Type="BookShopModel.Order" Role="Orders" Multiplicity="1" />
+          <End Type="BookShopModel.LineItem" Role="LineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="LineItem">
+              <PropertyRef Name="Order_id" /></Dependent></ReferentialConstraint></Association></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="BookShopModelStoreContainer" CdmEntityContainer="BookShopEntities">
+          <EntitySetMapping Name="BookSet">
+            <EntityTypeMapping TypeName="IsTypeOf(BookShopModel.Book)">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineItem">
+            <EntityTypeMapping TypeName="IsTypeOf(BookShopModel.LineItem)">
+              <MappingFragment StoreEntitySet="LineItem">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrderSet">
+            <EntityTypeMapping TypeName="IsTypeOf(BookShopModel.Order)">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_LineItem_Books" TypeName="BookShopModel.FK_LineItem_Books" StoreEntitySet="LineItem">
+            <EndProperty Name="LineItem">
+              <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+              <ScalarProperty Name="Book_id" ColumnName="Book_id" /></EndProperty>
+            <EndProperty Name="Book">
+              <ScalarProperty Name="Id" ColumnName="Book_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="FK_LineItem_Orders" TypeName="BookShopModel.FK_LineItem_Orders" StoreEntitySet="LineItem">
+            <EndProperty Name="LineItem">
+              <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+              <ScalarProperty Name="Book_id" ColumnName="Book_id" /></EndProperty>
+            <EndProperty Name="Orders">
+              <ScalarProperty Name="Id" ColumnName="Order_id" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="BookShopData">
+        <EntityTypeShape EntityType="BookShopModel.Book" Width="1.5" PointX="0.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.LineItem" Width="1.5" PointX="3.5" PointY="0.625" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="BookShopModel.Order" Width="1.5" PointX="6.25" PointY="0.75" Height="1.7879850260416668" />
+        <AssociationConnector Association="BookShopModel.FK_LineItem_Books" >
+          <ConnectorPoint PointX="2.25" PointY="1.6439925130208335" />
+          <ConnectorPoint PointX="3.5" PointY="1.6439925130208335" /></AssociationConnector>
+        <AssociationConnector Association="BookShopModel.FK_LineItem_Orders" >
+          <ConnectorPoint PointX="6.25" PointY="1.6439925130208333" />
+          <ConnectorPoint PointX="5" PointY="1.6439925130208333" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
