@@ -3,6 +3,7 @@
 *.vssscc
 *.user
 *.suo
+*.resharper
 Thumbs.db
 obj/
 [Bb]in/
