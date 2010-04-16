@@ -55,7 +55,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             var book = BookSteps.ReferenceBooks.GetById(bookId);
 
             var controller = GetShoppingCartController();
-            controller.Edit(book.Id, quantity);
+            controller.Edit(new ShoppingCartController.EditArguments{BookId = book.Id, Quantity = quantity});
         }
 
         [Then(@"my shopping cart should contain ([\d]+) items?")]

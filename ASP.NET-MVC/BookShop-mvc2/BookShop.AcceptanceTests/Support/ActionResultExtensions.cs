@@ -13,8 +13,8 @@ namespace BookShop.AcceptanceTests.Support
         {
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             ViewResult viewResult = (ViewResult)result;
-            Assert.IsNotNull(viewResult.ViewData.Model);
-            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(TModel));
+            Assert.IsNotNull(viewResult.ViewData.Model, "The action result does not contain a model");
+            Assert.IsInstanceOfType(viewResult.ViewData.Model, typeof(TModel), "The model in the action result is not of the right type");
             return (TModel) viewResult.ViewData.Model;
         }
     }

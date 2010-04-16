@@ -14,19 +14,19 @@ namespace BookShop.AcceptanceTests
     
     
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class US02_ShoppingCartFeature
+    public partial class US03_ShoppingCartFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "US02_ShopingCart.feature"
+#line 1 "US03_ShopingCart.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US02 - Shopping cart", "As a potential customer\r\nI want to place books into my shopping basket\r\nSo that I" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US03 - Shopping cart", "As a potential customer\r\nI want to place books into my shopping basket\r\nSo that I" +
                     " can order several books at once.", ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -53,7 +53,7 @@ namespace BookShop.AcceptanceTests
         public virtual void FeatureBackground()
         {
 #line 6
-  #line hidden
+#line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Author",
@@ -62,18 +62,23 @@ namespace BookShop.AcceptanceTests
             table1.AddRow(new string[] {
                         "Book1",
                         "Martin Fowler",
-                        "Patterns of Enterprise Architecture",
-                        "10,05"});
+                        "Analysis Patterns",
+                        "50,20"});
             table1.AddRow(new string[] {
                         "Book2",
                         "Eric Evans",
                         "Domain Driven Design",
-                        "15,10"});
+                        "46,34"});
             table1.AddRow(new string[] {
                         "Book3",
                         "Ted Pattison",
                         "Inside Windows SharePoint Services",
-                        "9,75"});
+                        "31,49"});
+            table1.AddRow(new string[] {
+                        "Book4",
+                        "Gojko Adzic",
+                        "Bridging the Communication Gap",
+                        "24,75"});
 #line 7
  testRunner.Given("the following books", ((string)(null)), table1);
 #line hidden
@@ -81,21 +86,21 @@ namespace BookShop.AcceptanceTests
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Books should be placed into basket")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Shopping cart")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Shopping cart")]
         public virtual void BooksShouldBePlacedIntoBasket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Books should be placed into basket", ((string[])(null)));
-#line 13
-  this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I have a basket with: Book1");
+this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.When("I place Book2 into the basket");
+ testRunner.Given("I have a basket with: Book1");
 #line 16
- testRunner.Then("my shopping cart should contain 2 items");
+ testRunner.When("I place Book2 into the basket");
 #line 17
- testRunner.And("my basket should contain exactly 1 Book1");
+ testRunner.Then("my shopping cart should contain 2 items");
 #line 18
+ testRunner.And("my basket should contain exactly 1 Book1");
+#line 19
  testRunner.And("my basket should contain exactly 1 Book2");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -103,33 +108,33 @@ namespace BookShop.AcceptanceTests
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Basket should initially be empty")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Shopping cart")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Shopping cart")]
         public virtual void BasketShouldInitiallyBeEmpty()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Basket should initially be empty", ((string[])(null)));
-#line 20
-  this.ScenarioSetup(scenarioInfo);
 #line 21
-    testRunner.When("I enter the shop");
+this.ScenarioSetup(scenarioInfo);
 #line 22
-    testRunner.Then("my shopping cart should contain 0 items");
+ testRunner.When("I enter the shop");
+#line 23
+ testRunner.Then("my shopping cart should contain 0 items");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Removing a line item from the shopping cart")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Shopping cart")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Shopping cart")]
         public virtual void RemovingALineItemFromTheShoppingCart()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Removing a line item from the shopping cart", ((string[])(null)));
-#line 24
-  this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.Given("I have a basket with: Book1");
+this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.When("I delete Book1 from the basket");
+ testRunner.Given("I have a basket with: Book1");
 #line 27
+ testRunner.When("I delete Book1 from the basket");
+#line 28
  testRunner.Then("my shopping cart should contain 0 item");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -137,19 +142,19 @@ namespace BookShop.AcceptanceTests
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Buying one more increases quantity")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Shopping cart")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Shopping cart")]
         public virtual void BuyingOneMoreIncreasesQuantity()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Buying one more increases quantity", ((string[])(null)));
-#line 29
-  this.ScenarioSetup(scenarioInfo);
 #line 30
- testRunner.Given("I have a basket with: Book1");
+this.ScenarioSetup(scenarioInfo);
 #line 31
- testRunner.When("I place Book1 into the basket");
+ testRunner.Given("I have a basket with: Book1");
 #line 32
- testRunner.Then("my shopping cart should contain 1 items");
+ testRunner.When("I place Book1 into the basket");
 #line 33
+ testRunner.Then("my shopping cart should contain 1 items");
+#line 34
  testRunner.And("my basket should contain exactly 2 Book1");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -157,19 +162,19 @@ namespace BookShop.AcceptanceTests
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Increasing the quantity of a book")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Shopping cart")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Shopping cart")]
         public virtual void IncreasingTheQuantityOfABook()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Increasing the quantity of a book", ((string[])(null)));
-#line 35
-  this.ScenarioSetup(scenarioInfo);
 #line 36
- testRunner.Given("I have a basket with: Book1");
+this.ScenarioSetup(scenarioInfo);
 #line 37
- testRunner.When("change the quantity of Book1 to 3");
+ testRunner.Given("I have a basket with: Book1");
 #line 38
- testRunner.Then("my shopping cart should contain 1 items");
+ testRunner.When("change the quantity of Book1 to 3");
 #line 39
+ testRunner.Then("my shopping cart should contain 1 items");
+#line 40
  testRunner.And("my basket should contain exactly 3 Book1");
 #line hidden
             testRunner.CollectScenarioErrors();

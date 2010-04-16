@@ -14,19 +14,19 @@ namespace BookShop.AcceptanceTests
     
     
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class US03_BookDetailsFeature
+    public partial class US04_BookDetailsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "US03_BookDetails.feature"
+#line 1 "US04_BookDetails.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US03 - Book details", "As a potential customer\r\nI want to see the details of a book\r\nSo that I can bette" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US04 - Book details", "As a potential customer\r\nI want to see the details of a book\r\nSo that I can bette" +
                     "r decide to buy it.", ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -53,7 +53,7 @@ namespace BookShop.AcceptanceTests
         public virtual void FeatureBackground()
         {
 #line 6
-  #line hidden
+#line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Id",
                         "Author",
@@ -62,18 +62,23 @@ namespace BookShop.AcceptanceTests
             table1.AddRow(new string[] {
                         "Book1",
                         "Martin Fowler",
-                        "Patterns of Enterprise Architecture",
-                        "10,05"});
+                        "Analysis Patterns",
+                        "50,20"});
             table1.AddRow(new string[] {
                         "Book2",
                         "Eric Evans",
                         "Domain Driven Design",
-                        "15,10"});
+                        "46,34"});
             table1.AddRow(new string[] {
                         "Book3",
                         "Ted Pattison",
                         "Inside Windows SharePoint Services",
-                        "9,75"});
+                        "31,49"});
+            table1.AddRow(new string[] {
+                        "Book4",
+                        "Gojko Adzic",
+                        "Bridging the Communication Gap",
+                        "24,75"});
 #line 7
  testRunner.Given("the following books", ((string)(null)), table1);
 #line hidden
@@ -81,13 +86,13 @@ namespace BookShop.AcceptanceTests
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("The author, the title and the price of a book can be seen")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US03 - Book details")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US04 - Book details")]
         public virtual void TheAuthorTheTitleAndThePriceOfABookCanBeSeen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The author, the title and the price of a book can be seen", ((string[])(null)));
-#line 13
-  this.ScenarioSetup(scenarioInfo);
 #line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
  testRunner.When("I open the details of Book1");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -96,9 +101,9 @@ namespace BookShop.AcceptanceTests
                         "Price"});
             table2.AddRow(new string[] {
                         "Martin Fowler",
-                        "Patterns of Enterprise Architecture",
-                        "10,05"});
-#line 15
+                        "Analysis Patterns",
+                        "50,20"});
+#line 16
  testRunner.Then("the book details shows", ((string)(null)), table2);
 #line hidden
             testRunner.CollectScenarioErrors();

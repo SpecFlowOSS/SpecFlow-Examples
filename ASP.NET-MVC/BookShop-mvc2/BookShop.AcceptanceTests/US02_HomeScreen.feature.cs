@@ -14,20 +14,20 @@ namespace BookShop.AcceptanceTests
     
     
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class US01_BookSearchFeature
+    public partial class US02_HomeScreenFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "US01_BookSearch.feature"
+#line 1 "US02_HomeScreen.feature"
 #line hidden
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US01 - Book Search", "As a potential customer\r\nI want to search for books by a simple string\r\nSo that I" +
-                    " can easily allocate books by something I remember from them.", ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US02 - Home Screen", "As a potential customer\r\nI want to see the books with the best price\r\nSo that I c" +
+                    "an save money on buying discounted books.", ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,66 +80,67 @@ namespace BookShop.AcceptanceTests
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Title should be matched")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US01 - Book Search")]
-        public virtual void TitleShouldBeMatched()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cheapest books on the home screen")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Home Screen")]
+        public virtual void CheapestBooksOnTheHomeScreen()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest books on the home screen", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.When("I perform a simple search on \'Domain\'");
+ testRunner.When("I enter the shop");
 #line 16
- testRunner.Then("the book list should exactly contain book \'Domain Driven Design\'");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Space should be treated as multiple OR search")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US01 - Book Search")]
-        public virtual void SpaceShouldBeTreatedAsMultipleORSearch()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", ((string[])(null)));
+ testRunner.Then("the home page shows book \'Bridging the Communication Gap\'");
+#line 17
+ testRunner.Then("the home page shows book \'Inside Windows SharePoint Services\'");
 #line 18
-this.ScenarioSetup(scenarioInfo);
-#line 19
- testRunner.When("I perform a simple search on \'Windows Communication\'");
-#line 20
- testRunner.Then("the book list should exactly contain books \'Inside Windows SharePoint Services\', " +
-                    "\'Bridging the Communication Gap\'");
+ testRunner.Then("the home page shows book \'Domain Driven Design\'");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void SimpleSearchScenarioOutlineSyntax(string searchPhrase, string books)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cheapest books on the home screen (list syntax)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Home Screen")]
+        public virtual void CheapestBooksOnTheHomeScreenListSyntax()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple search (scenario outline syntax)", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest books on the home screen (list syntax)", new string[] {
                         "alternative_syntax"});
-#line 23
+#line 21
 this.ScenarioSetup(scenarioInfo);
-#line 24
- testRunner.When(string.Format("I perform a simple search on \'{0}\'", searchPhrase));
-#line 25
- testRunner.Then(string.Format("the book list should exactly contain books {0}", books));
+#line 22
+ testRunner.When("I enter the shop");
+#line 23
+ testRunner.Then("the home page shows books \'Bridging the Communication Gap\', \'Inside Windows Share" +
+                    "Point Services\', \'Domain Driven Design\'");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simple search (scenario outline syntax)")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US01 - Book Search")]
-        public virtual void SimpleSearchScenarioOutlineSyntax_Domain()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cheapest books on the home screen (table syntax)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Home Screen")]
+        public virtual void CheapestBooksOnTheHomeScreenTableSyntax()
         {
-            this.SimpleSearchScenarioOutlineSyntax("Domain", "\'Domain Driven Design\'");
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Simple search (scenario outline syntax)")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US01 - Book Search")]
-        public virtual void SimpleSearchScenarioOutlineSyntax_WindowsCommunication()
-        {
-            this.SimpleSearchScenarioOutlineSyntax("Windows Communication", "\'Inside Windows SharePoint Services\', \'Bridging the Communication Gap\'");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest books on the home screen (table syntax)", new string[] {
+                        "alternative_syntax"});
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.When("I enter the shop");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title"});
+            table2.AddRow(new string[] {
+                        "Bridging the Communication Gap"});
+            table2.AddRow(new string[] {
+                        "Inside Windows SharePoint Services"});
+            table2.AddRow(new string[] {
+                        "Domain Driven Design"});
+#line 28
+ testRunner.Then("the home page shows books", ((string)(null)), table2);
+#line hidden
+            testRunner.CollectScenarioErrors();
         }
     }
 }

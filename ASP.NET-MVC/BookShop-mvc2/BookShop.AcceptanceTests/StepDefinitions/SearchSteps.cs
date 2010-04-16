@@ -26,10 +26,12 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [Then(@"the book list should exactly contain book '(.*)'")]
         public void ThenTheBookListShouldExactlyContainBook(string title)
         {
+            // stand-alone implementation
+            // var books = actionResult.Model<List<Book>>();
+            // CustomAssert.Any(books, b => b.Title == title);
+            // Assert.AreEqual(1, books.Count, "The list contains other books too");
+
             ThenTheBookListShouldExactlyContainBooks(title);
-//            var books = actionResult.Model<List<Book>>();
-//            CustomAssert.Any(books, b => b.Title == title);
-//            Assert.AreEqual(1, books.Count, "The list contains other books too");
         }
 
         [Then(@"the book list should exactly contain books (.*)")]

@@ -61,10 +61,15 @@
     <Compile Include="StepDefinitions\ShoppingCartSteps.cs" />
     <Compile Include="Support\HttpContextStub.cs" />
     <Compile Include="Support\ReferenceBookList.cs" />
-    <Compile Include="US02_ShopingCart.feature.cs">
+    <Compile Include="US02_HomeScreen.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>US02_ShopingCart.feature</DependentUpon>
+      <DependentUpon>US02_HomeScreen.feature</DependentUpon>
+    </Compile>
+    <Compile Include="US03_ShopingCart.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>US03_ShopingCart.feature</DependentUpon>
     </Compile>
     <Compile Include="StepDefinitions\BookSteps.cs" />
     <Compile Include="StepDefinitions\SearchSteps.cs" />
@@ -77,25 +82,29 @@
       <DependentUpon>US01_BookSearch.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="US03_BookDetails.feature.cs">
+    <Compile Include="US04_BookDetails.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>US03_BookDetails.feature</DependentUpon>
+      <DependentUpon>US04_BookDetails.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="US02_ShopingCart.feature">
+    <None Include="US02_HomeScreen.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>US02_ShopingCart.feature.cs</LastGenOutput>
+      <LastGenOutput>US02_HomeScreen.feature.cs</LastGenOutput>
+    </None>
+    <None Include="US03_ShopingCart.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>US03_ShopingCart.feature.cs</LastGenOutput>
     </None>
     <None Include="US01_BookSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US01_BookSearch.feature.cs</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="US03_BookDetails.feature">
+    <None Include="US04_BookDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>US03_BookDetails.feature.cs</LastGenOutput>
+      <LastGenOutput>US04_BookDetails.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
