@@ -14,7 +14,7 @@ namespace Bookshop.Controllers
         {
             BookShopEntities db = new BookShopEntities();
 
-//            List<Book> books = db.BookSet.Where(b => b.Title.Contains(searchTerm)).ToList();
+            //List<Book> books = db.Books.Where(b => b.Title.Contains(searchTerm)).ToList();
 
             var terms = searchTerm.Split(' ');
             var predicate = PredicateBuilder.False<Book>();
