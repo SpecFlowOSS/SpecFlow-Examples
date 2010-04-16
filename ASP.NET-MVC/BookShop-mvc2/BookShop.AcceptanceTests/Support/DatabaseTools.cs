@@ -12,20 +12,19 @@ namespace BookShop.AcceptanceTests.Support
         public void CleanDatabase()
         {
             var db = new BookShopEntities();
-            //            foreach (var lineItem in db.LineItem)
-            //            {
-            //                db.DeleteObject(lineItem);
-            //            }
-            //            foreach (var order in db.OrderSet)
-            //            {
-            //                db.DeleteObject(order);
-            //            }
+            foreach (var lineItem in db.OrderLines)
+            {
+                db.DeleteObject(lineItem);
+            }
+            foreach (var order in db.Orders)
+            {
+                db.DeleteObject(order);
+            }
             foreach (var book in db.Books)
             {
                 db.DeleteObject(book);
             }
             db.SaveChanges();
-
         }
     }
 }
