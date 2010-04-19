@@ -29,7 +29,7 @@
                 <% using (Html.BeginForm("Search", "Catalog", FormMethod.Get))
                    {%>
                 <%= Html.TextBox("searchTerm") %>
-                <input type="submit" value="Search" />
+                <input type="submit" value="Search" id="searchButton" />
                 <% } %>
             </div>
         </div>
