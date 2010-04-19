@@ -38,7 +38,8 @@ namespace BookShop.AcceptanceTests.Selenium.StepDefinitions
 
             var itemCount = selenium.GetXpathCount("//table/tbody/tr");
             var books = new List<Book>();
-            for (int i = 1; i <= itemCount; i++)
+            const int headerCount = 1;
+            for (int i = headerCount + 1; i <= itemCount; i++)
             {
                 string title = selenium.GetText("//table/tbody/tr[" + i + "]/td[@class='title']");
                 string author = selenium.GetText("//table/tbody/tr[" + i + "]/td[@class='author']");

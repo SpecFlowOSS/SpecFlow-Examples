@@ -82,14 +82,16 @@ namespace BookShop.AcceptanceTests.Selenium
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Title should be matched")]
+        [NUnit.Framework.CategoryAttribute("web")]
         public virtual void TitleShouldBeMatched()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", new string[] {
+                        "web"});
 #line 15
- testRunner.When("I perform a simple search on \'Domain\'");
+this.ScenarioSetup(scenarioInfo);
 #line 16
+ testRunner.When("I perform a simple search on \'Domain\'");
+#line 17
  testRunner.Then("the book list should exactly contain book \'Domain Driven Design\'");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -97,14 +99,16 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Space should be treated as multiple OR search")]
+        [NUnit.Framework.CategoryAttribute("web")]
         public virtual void SpaceShouldBeTreatedAsMultipleORSearch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
-#line 19
- testRunner.When("I perform a simple search on \'Windows Communication\'");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", new string[] {
+                        "web"});
 #line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+ testRunner.When("I perform a simple search on \'Windows Communication\'");
+#line 22
  testRunner.Then("the book list should exactly contain books \'Inside Windows SharePoint Services\', " +
                     "\'Bridging the Communication Gap\'");
 #line hidden
@@ -114,12 +118,13 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void SimpleSearchScenarioOutlineSyntax(string searchPhrase, string books)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Simple search (scenario outline syntax)", new string[] {
+                        "web",
                         "alternative_syntax"});
-#line 23
+#line 26
 this.ScenarioSetup(scenarioInfo);
-#line 24
+#line 27
  testRunner.When(string.Format("I perform a simple search on \'{0}\'", searchPhrase));
-#line 25
+#line 28
  testRunner.Then(string.Format("the book list should exactly contain books {0}", books));
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -127,6 +132,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Simple search (scenario outline syntax)")]
+        [NUnit.Framework.CategoryAttribute("web")]
         [NUnit.Framework.CategoryAttribute("alternative_syntax")]
         public virtual void SimpleSearchScenarioOutlineSyntax_Domain()
         {
@@ -135,6 +141,7 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Simple search (scenario outline syntax)")]
+        [NUnit.Framework.CategoryAttribute("web")]
         [NUnit.Framework.CategoryAttribute("alternative_syntax")]
         public virtual void SimpleSearchScenarioOutlineSyntax_WindowsCommunication()
         {
