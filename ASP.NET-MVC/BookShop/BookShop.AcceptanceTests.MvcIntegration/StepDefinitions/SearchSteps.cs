@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,7 @@ namespace BookShop.AcceptanceTests.MvcIntegration.StepDefinitions
     [Binding]
     public class SearchSteps 
     {
-        private static readonly string mvcAppPath =
-            Path.GetFullPath(@"C:\git\SpecFlow-Examples\ASP.NET-MVC\BookShop-mvc2\Bookshop");
-        //AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\..\\BookShop");
+        private static readonly string mvcAppPath = ConfigurationManager.AppSettings["AppFolder"];
         private readonly AppHost appHost = new AppHost(mvcAppPath);
 
         private HostedViewResult<List<Book>> actionResult;
