@@ -44,10 +44,10 @@ namespace Bookshop.Controllers
         }
 
         [HttpDelete]
-        public void DeleteItem(int bookId)
+        public void DeleteItem(int id)
         {
             var shoppingCart = GetShoppingCart();
-            shoppingCart.RemoveLineItem(bookId);
+            shoppingCart.RemoveLineItem(id);
 
             // return void, since this is an AJAX call
         }

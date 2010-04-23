@@ -20,7 +20,7 @@
                     <li>
                         <%= Html.ActionLink("Home", "Index", "Home")%></li>
                     <li>
-                        <%= Html.ActionLink("Shppoing Cart", "Index", "ShoppingCart")%></li>
+                        <%= Html.ActionLink("Shopping Cart", "Index", "ShoppingCart")%></li>
                 </ul>
             </div>
             <div class="clear">
