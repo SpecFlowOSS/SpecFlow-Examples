@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshop.UnitTests", "Books
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5A5D023-ED56-400E-83C8-D59F94C59E12}"
 	ProjectSection(SolutionItems) = preProject
-		BookShop-mvc2.vsmdi = BookShop-mvc2.vsmdi
+		BookShop.vsmdi = BookShop.vsmdi
 		create_db.sql = create_db.sql
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Se
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = BookShop-mvc2.vsmdi
+		CategoryFile = BookShop.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
