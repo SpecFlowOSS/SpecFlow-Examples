@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="TechTalk.SpecFlow, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>$(ProgramFiles)\TechTalk\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
     <Reference Include="ThoughtWorks.Selenium.Core, Version=0.0.0.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>

@@ -36,9 +36,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="TechTalk.SpecFlow, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TechTalk.SpecFlow, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\TechTalk\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>$(ProgramFiles)\TechTalk\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
