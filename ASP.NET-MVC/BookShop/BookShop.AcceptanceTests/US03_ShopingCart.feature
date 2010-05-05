@@ -6,10 +6,10 @@
 Background:
 	Given the following books
 		|Id		|Author			|Title								|Price	|
-		|Book1	|Martin Fowler	|Analysis Patterns					|50,20	|
-		|Book2	|Eric Evans		|Domain Driven Design				|46,34	|
-		|Book3	|Ted Pattison	|Inside Windows SharePoint Services	|31,49	|
-		|Book4	|Gojko Adzic	|Bridging the Communication Gap		|24,75	|
+		|Book1	|Martin Fowler	|Analysis Patterns					|50.20	|
+		|Book2	|Eric Evans		|Domain Driven Design				|46.34	|
+		|Book3	|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
+		|Book4	|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
 Scenario: Books should be placed into basket
 	Given I have a basket with: Book1
