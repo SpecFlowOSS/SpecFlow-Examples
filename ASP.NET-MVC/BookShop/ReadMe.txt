@@ -9,9 +9,7 @@ You can find more information about SpecFlow at http://www.specflow.org/.
 Prerequisites to run the application
 ====================================
 
-- Visual Studio 2008 or Visual Studio 2010
-- ASP.NET MVC2 RTM (only for Visual Studio 2008)
-  (http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=c9ba1fe1-3ba8-439a-9e21-def90a8615a9)
+- Visual Studio 2010
 - Microsoft SQL Server 2005 or higher (any editions)
 - SpecFlow 1.3 or higher (http://www.specflow.org/)
 - Optionally: cuke4vs - syntax coloring and intellisense for SpecFlow files
@@ -33,19 +31,6 @@ Setup Application
     Data Source=.; -> Data Source=.\SQLEXPRESS;
 - Set the "BookShop" project as startup project and run the application. You 
   should see some books on the start page of the app. 
-
-Upgrade Solution to VS2010
-==========================
-
-The solution can be upgraded to VS2010 with a few steps:
-- Open solution in VS2010 and let Visual Studio upgrade the solution.
-  Let the wizard upgrade all projects to .NET 4.0 (choose "yes").
-- Upgrade the projects in the "Alternative Integrations" folder to .NET 4.0
-  manually (change target framework in project properties). The upgrade wizard 
-  in VS2010 RTM skips these projects unfortunately.
-- Select the feature files in solution explorer and invoke "Run Custom Tool"
-  command from the context menu (you can select multiple files within a 
-  project).
 
 There will be two warnings still in the BookShop.edmx file, but those can be 
 ignored.
