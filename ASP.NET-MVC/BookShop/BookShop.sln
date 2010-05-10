@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Mv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Selenium", "BookShop.AcceptanceTests.Selenium\BookShop.AcceptanceTests.Selenium.csproj", "{BC2AAA51-4C6F-4799-A036-340587F6C04F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.WatiN", "BookShop.AcceptanceTests.WatiN\BookShop.AcceptanceTests.WatiN.csproj", "{5D9AA484-8DC0-4333-8C11-B949C38E00B1}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = BookShop.vsmdi
@@ -62,6 +64,10 @@ Global
 		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D9AA484-8DC0-4333-8C11-B949C38E00B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9AA484-8DC0-4333-8C11-B949C38E00B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9AA484-8DC0-4333-8C11-B949C38E00B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9AA484-8DC0-4333-8C11-B949C38E00B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
 		{44120E8D-0743-43EC-9942-48AF623AE22D} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
 		{BC2AAA51-4C6F-4799-A036-340587F6C04F} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
+		{5D9AA484-8DC0-4333-8C11-B949C38E00B1} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
 	EndGlobalSection
 EndGlobal
