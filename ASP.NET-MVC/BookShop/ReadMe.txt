@@ -29,6 +29,8 @@ Setup Application
   update all connection string is to perform a solution-wide search and replace, 
   e.g.:
     Data Source=.; -> Data Source=.\SQLEXPRESS;
+  (You might want to restrict the replacements to the *.config files only 
+  otherwise it will also replace it in this readme.txt file... :)
 - Set the "BookShop" project as startup project and run the application. You 
   should see some books on the start page of the app. 
 
