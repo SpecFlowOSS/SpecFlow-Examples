@@ -39,8 +39,8 @@ namespace BookShop.AcceptanceTests.WatiN.StepDefinitions
             for (int i = headerCount; i < itemCount; i++)
             {
                 var tableRow = table.TableRows[i];
-                string title = tableRow.TableCells.First(Find.ByClass("title")).Text;
-                string author = tableRow.TableCells.First(Find.ByClass("author")).Text;
+                string title = tableRow.TableCells.First(Find.ByClass("title")).Text.Trim();
+				string author = tableRow.TableCells.First(Find.ByClass("author")).Text.Trim();
                 books.Add(new Book { Title = title, Author = author });
             }
 
