@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="StepDefinitions\HomeSteps.cs" />
     <Compile Include="StepDefinitions\ShoppingCartSteps.cs" />
+    <Compile Include="Support\CatalogContext.cs" />
     <Compile Include="Support\HttpContextStub.cs" />
     <Compile Include="Support\ReferenceBookList.cs" />
     <Compile Include="US02_HomeScreen.feature.cs">
