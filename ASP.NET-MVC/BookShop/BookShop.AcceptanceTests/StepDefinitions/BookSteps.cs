@@ -14,12 +14,11 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class BookSteps
     {
-        public static readonly ReferenceBookList ReferenceBooks = new ReferenceBookList();
+        private readonly CatalogContext _catalogContext;
 
-        [BeforeScenario]
-        public void CleanReferenceBooks()
+        public BookSteps(CatalogContext catalogContext)
         {
-            ReferenceBooks.Clear();
+            _catalogContext = catalogContext;
         }
 
         [Given(@"the following books")]
@@ -30,7 +29,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             {
                 Book book = new Book { Author = row["Author"], Title = row["Title"], Price = Convert.ToDecimal(row["Price"]) };
                 if (table.Header.Contains("Id"))
-                    ReferenceBooks.Add(row["Id"], book);
+                    _catalogContext.ReferenceBooks.Add(row["Id"], book);
                 db.AddToBooks(book);
             }
             db.SaveChanges();
@@ -41,7 +40,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [When(@"I open the details of (.*)")]
         public void WhenIOpenTheDetailsOfBook(string bookId)
         {
-            var book = ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
             var controller = new CatalogController();
             actionResult = controller.Details(book.Id);
