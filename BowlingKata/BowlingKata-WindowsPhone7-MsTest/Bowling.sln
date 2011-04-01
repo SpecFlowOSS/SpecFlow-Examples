@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.csproj", "{0BA96CED-139C-4B59-9061-373705EAE449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Specflow", "Bowling.Specflow\Bowling.Specflow.csproj", "{B42C4E11-B768-44B9-BADF-EAF142CED85C}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Bowling.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BA96CED-139C-4B59-9061-373705EAE449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA96CED-139C-4B59-9061-373705EAE449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA96CED-139C-4B59-9061-373705EAE449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA96CED-139C-4B59-9061-373705EAE449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B42C4E11-B768-44B9-BADF-EAF142CED85C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
