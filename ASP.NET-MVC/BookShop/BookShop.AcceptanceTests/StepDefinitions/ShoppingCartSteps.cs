@@ -14,6 +14,13 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class ShoppingCartSteps
     {
+        private readonly CatalogContext _catalogContext;
+
+        public ShoppingCartSteps(CatalogContext catalogContext)
+        {
+            _catalogContext = catalogContext;
+        }
+
         private ShoppingCartController GetShoppingCartController()
         {
             var controller = new ShoppingCartController();
@@ -34,7 +41,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [When(@"I place (.*) into the basket")]
         public void PlaceBookIntoShoppingCart(string bookId)
         {
-            var book = BookSteps.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
             var controller = GetShoppingCartController();
             controller.Add(book.Id);
@@ -43,7 +50,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [When(@"I delete (.*) from the basket")]
         public void WhenIDeleteBook1FromTheBasket(string bookId)
         {
-            var book = BookSteps.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
             var controller = GetShoppingCartController();
             controller.DeleteItem(book.Id);
@@ -52,7 +59,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [When(@"change the quantity of (.*) to ([\d]+)")]
         public void WhenChangeTheQuantityOfABookTo(string bookId, int quantity)
         {
-            var book = BookSteps.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
             var controller = GetShoppingCartController();
             controller.Edit(new ShoppingCartController.EditArguments{BookId = book.Id, Quantity = quantity});
@@ -70,7 +77,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [Then(@"my basket should contain exactly (\d+) (.*)")]
         public void ThenMyShoppingCartShouldContainBook(int count, string bookId)
         {
-            var book = BookSteps.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
             var controller = GetShoppingCartController();
             var actionResult = controller.Index();
