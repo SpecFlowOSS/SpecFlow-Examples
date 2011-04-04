@@ -1,7 +1,7 @@
 ﻿Feature: Score Calculation 
-  In order to know my performance
   As a player
   I want the system to calculate my total score
+  So that I know my performance
   
 Scenario: Gutter game
   Given a new bowling game
