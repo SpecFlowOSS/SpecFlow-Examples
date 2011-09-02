@@ -31,8 +31,7 @@ namespace BookShop.AcceptanceTests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US01 - Book Search", "As a potential customer\r\nI want to search for books by a simple string\r\nSo that I" +
-                    " can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, new string[] {
-                        "web"});
+                    " can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

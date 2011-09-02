@@ -1,4 +1,4 @@
-﻿@web
+﻿#add @web tag to run the search tests with web UI automation
 Feature: US01 - Book Search
 	As a potential customer
 	I want to search for books by a simple string
