@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Bookshop.Models;
+using BookShop.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BookShop.AcceptanceTests.Support

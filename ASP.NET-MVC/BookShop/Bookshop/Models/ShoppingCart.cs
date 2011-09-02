@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
-using Bookshop.Models;
+using BookShop.Models;
 
 namespace BookShop.Models
 {

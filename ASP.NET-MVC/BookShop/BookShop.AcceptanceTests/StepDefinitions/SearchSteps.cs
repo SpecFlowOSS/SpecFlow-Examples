@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using BookShop.AcceptanceTests.Support;
-using Bookshop.Controllers;
-using Bookshop.Models;
+using BookShop.Controllers;
+using BookShop.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 

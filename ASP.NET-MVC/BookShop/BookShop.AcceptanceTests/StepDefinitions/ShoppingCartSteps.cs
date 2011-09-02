@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using BookShop.AcceptanceTests.Support;
-using Bookshop.Controllers;
+using BookShop.Controllers;
 using BookShop.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;

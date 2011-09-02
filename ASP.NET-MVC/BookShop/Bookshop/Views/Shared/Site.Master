@@ -26,7 +26,7 @@
             <div class="clear">
             </div>
             <div id="searchcontainer">
-                <% using (Html.BeginForm("Search", "Catalog", FormMethod.Get))
+                <% using (Html.BeginForm("Search", "Catalog", FormMethod.Get, new { Id = "searchForm" }))
                    {%>
                 <%= Html.TextBox("searchTerm") %>
                 <input type="submit" value="Search" id="searchButton" />

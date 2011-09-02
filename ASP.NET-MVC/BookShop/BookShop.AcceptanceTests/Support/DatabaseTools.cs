@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Bookshop.Models;
+using BookShop.Models;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Support

@@ -54,9 +54,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Moq.dll</HintPath>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -72,9 +71,8 @@
     </Reference>
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(ProgramFiles)\TechTalk\SpecFlow\TechTalk.SpecFlow.dll</HintPath>
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.7.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +109,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="US02_HomeScreen.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US02_HomeScreen.feature.cs</LastGenOutput>
@@ -130,9 +129,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bookshop\Bookshop.csproj">
+    <ProjectReference Include="..\BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj">
+      <Project>{076B2B3F-B40C-4445-B73B-8847C15E9623}</Project>
+      <Name>BookShop.WebTests.Selenium</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookshop\BookShop.csproj">
       <Project>{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}</Project>
-      <Name>Bookshop</Name>
+      <Name>BookShop</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

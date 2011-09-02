@@ -8,8 +8,8 @@
     <ProjectGuid>{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bookshop.UnitTests</RootNamespace>
-    <AssemblyName>Bookshop.UnitTests</AssemblyName>
+    <RootNamespace>BookShop.UnitTests</RootNamespace>
+    <AssemblyName>BookShop.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,10 +53,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LinqKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\LinqKit.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -107,9 +103,9 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bookshop\Bookshop.csproj">
+    <ProjectReference Include="..\Bookshop\BookShop.csproj">
       <Project>{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}</Project>
-      <Name>Bookshop</Name>
+      <Name>BookShop</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

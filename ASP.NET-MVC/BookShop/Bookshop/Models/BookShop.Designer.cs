@@ -18,12 +18,12 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Books", "Book", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bookshop.Models.Book), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bookshop.Models.OrderLine), true)]
-[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Orders", "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Bookshop.Models.Order), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Bookshop.Models.OrderLine), true)]
+[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Books", "Book", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BookShop.Models.Book), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
+[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Orders", "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BookShop.Models.Order), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
 
 #endregion
 
-namespace Bookshop.Models
+namespace BookShop.Models
 {
     #region Contexts
     

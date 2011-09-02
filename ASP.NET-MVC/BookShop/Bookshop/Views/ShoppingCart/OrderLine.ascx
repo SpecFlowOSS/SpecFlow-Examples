@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Bookshop.Models.OrderLine>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<BookShop.Models.OrderLine>" %>
 
     <fieldset>
         <legend>Book</legend>

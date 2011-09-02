@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Bookshop.UnitTests
+namespace BookShop.UnitTests
 {
     /// <summary>
     ///This is a test class for HomeControllerTest and is intended

@@ -1,15 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Bookshop.Models.Book>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<BookShop.Models.Book>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Book List
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table>
+    <table id="searchResultTable">
+        <thead>
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th colspan="2"></th>
         </tr>
+        </thead>
+        <tbody>
         <% foreach (var m in ViewData.Model)
            { %>
         <tr>
@@ -26,11 +29,12 @@
                 <td>
                     <% using (Html.BeginForm("Add", "ShoppingCart", new { bookId = m.Id }))
                        { %>
-                           <a onclick='$(this).closest("form").submit()' href="JavaScript:void(0)">Add to cart</a>
+                           <a class="submitLink" href="#">Add to cart</a>
                     <% } %>
                 </td>
             </div>
         </tr>
         <% } %>
+        </tbody>
     </table>
 </asp:Content>

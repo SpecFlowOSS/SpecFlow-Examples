@@ -9,21 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alternative Integrations", "Alternative Integrations", "{91B607B0-51DF-4C46-8862-8229F01DD8D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop", "Bookshop\BookShop.csproj", "{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshop", "Bookshop\Bookshop.csproj", "{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshop.UnitTests", "Bookshop.UnitTests\Bookshop.UnitTests.csproj", "{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.UnitTests", "Bookshop.UnitTests\BookShop.UnitTests.csproj", "{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests", "BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj", "{0906D17A-01F0-4761-9ECD-BE5023387943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcIntegrationTestFramework", "lib\MvcIntegrationTestFramework\MvcIntegrationTestFramework.csproj", "{4036AFF9-698B-463D-BE26-05D2CE3E2ABD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Manual", "BookShop.AcceptanceTests.Manual\BookShop.AcceptanceTests.Manual.csproj", "{0BD54FC7-4161-467A-BD95-D3A13F2DED5B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.MvcIntegration", "BookShop.AcceptanceTests.MvcIntegration\BookShop.AcceptanceTests.MvcIntegration.csproj", "{44120E8D-0743-43EC-9942-48AF623AE22D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Selenium", "BookShop.AcceptanceTests.Selenium\BookShop.AcceptanceTests.Selenium.csproj", "{BC2AAA51-4C6F-4799-A036-340587F6C04F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -46,30 +38,12 @@ Global
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4036AFF9-698B-463D-BE26-05D2CE3E2ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4036AFF9-698B-463D-BE26-05D2CE3E2ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4036AFF9-698B-463D-BE26-05D2CE3E2ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4036AFF9-698B-463D-BE26-05D2CE3E2ABD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44120E8D-0743-43EC-9942-48AF623AE22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44120E8D-0743-43EC-9942-48AF623AE22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44120E8D-0743-43EC-9942-48AF623AE22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44120E8D-0743-43EC-9942-48AF623AE22D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC2AAA51-4C6F-4799-A036-340587F6C04F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{4036AFF9-698B-463D-BE26-05D2CE3E2ABD} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
-		{0BD54FC7-4161-467A-BD95-D3A13F2DED5B} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
-		{44120E8D-0743-43EC-9942-48AF623AE22D} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
-		{BC2AAA51-4C6F-4799-A036-340587F6C04F} = {91B607B0-51DF-4C46-8862-8229F01DD8D1}
 	EndGlobalSection
 EndGlobal

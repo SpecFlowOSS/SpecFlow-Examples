@@ -1,4 +1,5 @@
-﻿Feature: US01 - Book Search
+﻿@web
+Feature: US01 - Book Search
 	As a potential customer
 	I want to search for books by a simple string
 	So that I can easily allocate books by something I remember from them.
