@@ -1,11 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<BookShop.Models.ShoppingCart>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
+    Inherits="System.Web.Mvc.ViewPage<BookShop.Models.ShoppingCart>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Shopping Cart
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script src="../../Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+    <script src="http://ajax.microsoft.com/ajax/beta/0909/MicrosoftAjax.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 

@@ -15,8 +15,7 @@ namespace BookShop.Controllers
 
             List<Book> cheapBooks = db.Books.OrderBy(b => b.Price).Take(3).ToList();
 
-            ViewData.Model = cheapBooks;
-            return View();
+            return View(cheapBooks);
         }
     }
 }

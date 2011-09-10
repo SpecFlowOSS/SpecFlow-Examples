@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<BookShop.Models.Book>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" 
+    Inherits="System.Web.Mvc.ViewPage<IList<BookShop.Models.Book>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Home
@@ -11,8 +12,7 @@
             <th>Book</th>
             <th>Price</th>
         </tr>
-        <% foreach (var m in ViewData.Model)
-           { %>
+        <% foreach (var m in ViewData.Model  ) { %>
         <tr>
             <div class="item">
                 <td class="title">
