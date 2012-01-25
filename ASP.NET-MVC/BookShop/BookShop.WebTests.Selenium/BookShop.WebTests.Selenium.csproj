@@ -70,17 +70,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResultSteps.cs" />
     <Compile Include="SearchSteps.cs" />
+    <Compile Include="Support\CatalogContext.cs" />
+    <Compile Include="Support\CustomAssert.cs" />
+    <Compile Include="Support\DatabaseTools.cs" />
+    <Compile Include="Support\ReferenceBookList.cs" />
     <Compile Include="Support\SeleniumController.cs" />
     <Compile Include="Support\SeleniumStepsBase.cs" />
     <Compile Include="Support\SeleniumSupport.cs" />
     <Compile Include="Support\WebDriverExtensions.cs" />
+    <Compile Include="US01_BookSearch.feature.cs">
+      <DependentUpon>US01_BookSearch.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="US01_BookSearch.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>US01_BookSearch.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bookshop\BookShop.csproj">
