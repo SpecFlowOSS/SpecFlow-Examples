@@ -13,6 +13,12 @@ namespace BookShop.Controllers
             return View("Index");
         }
 
+        [HttpGet]
+        public ActionResult AddLink(int bookId)
+        {
+            return Add(bookId);
+        }
+
         [HttpPost]
         public ActionResult Add(int bookId)
         {
@@ -38,13 +44,14 @@ namespace BookShop.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpDelete]
-        public void DeleteItem(int id)
+        [HttpGet]
+        public ActionResult DeleteItem(int id)
         {
             var shoppingCart = GetShoppingCart();
             shoppingCart.RemoveLineItem(id);
 
-            // return void, since this is an AJAX call
+            ViewData.Model = shoppingCart;
+            return RedirectToAction("Index");
         }
 
         public class EditArguments
@@ -62,8 +69,16 @@ namespace BookShop.Controllers
                 return Index();
 
             var shoppingCart = GetShoppingCart();
-            var existingLine = shoppingCart.Lines.Single(l => l.Book.Id == editArgs.BookId);
-            existingLine.Quantity = editArgs.Quantity;
+            int bookId = editArgs.BookId;
+            int quantity = editArgs.Quantity;
+
+            if (quantity > 0)
+            {
+                var existingLine = shoppingCart.Lines.Single(l => l.Book.Id == bookId);
+                existingLine.Quantity = quantity;
+            }
+            else
+                shoppingCart.RemoveLineItem(bookId);
 
             return RedirectToAction("Index");
         }

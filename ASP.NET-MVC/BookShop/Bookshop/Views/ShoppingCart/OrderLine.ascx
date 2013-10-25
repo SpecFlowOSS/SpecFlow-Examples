@@ -18,7 +18,8 @@
             </div>
         <% } %>
         
-        <a onclick="deleteRecord(<%= Model.Book.Id %>)" href="JavaScript:void(0)">Remove</a>
+         <%= Html.ActionLink("Remove", "DeleteItem", "ShoppingCart", new { Model.Book.Id }, null)%>
+        
         
     </fieldset>
 

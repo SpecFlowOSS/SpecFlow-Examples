@@ -150,18 +150,7 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="FK_OrderLines_Books" TypeName="BookShopModel.FK_OrderLines_Books" StoreEntitySet="OrderLines">
-            <EndProperty Name="OrderLines">
-              <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-              <ScalarProperty Name="BookId" ColumnName="BookId" /></EndProperty>
-            <EndProperty Name="Book">
-              <ScalarProperty Name="Id" ColumnName="BookId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="FK_OrderLines_Orders" TypeName="BookShopModel.FK_OrderLines_Orders" StoreEntitySet="OrderLines">
-            <EndProperty Name="OrderLines">
-              <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-              <ScalarProperty Name="BookId" ColumnName="BookId" /></EndProperty>
-            <EndProperty Name="Orders">
-              <ScalarProperty Name="Id" ColumnName="OrderId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

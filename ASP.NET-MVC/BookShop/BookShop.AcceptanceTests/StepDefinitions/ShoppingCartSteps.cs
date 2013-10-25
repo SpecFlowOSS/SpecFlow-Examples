@@ -28,18 +28,19 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             return controller;
         }
 
-        [Given(@"I have a basket with: (.*)")]
-        public void PrepareBasket(string bookIdList)
+        [Given(@"I have a shopping cart with: '(.*)'")]
+        public void GivenIHaveAShoppingCartWith(string bookIdList)
         {
-            var bookIds = bookIdList.Split(',');
+            var bookIds = bookIdList.Split(',').Select(t => t.Trim().Trim('\''));
+
             foreach (string bookId in bookIds)
             {
-                PlaceBookIntoShoppingCart(bookId);
+                WhenIPlaceIntoTheShoppingCart(bookId);
             }
         }
 
-        [When(@"I place (.*) into the basket")]
-        public void PlaceBookIntoShoppingCart(string bookId)
+        [When(@"I place '(.*)' into the shopping cart")]
+        public void WhenIPlaceIntoTheShoppingCart(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
@@ -47,8 +48,8 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             controller.Add(book.Id);
         }
 
-        [When(@"I delete (.*) from the basket")]
-        public void WhenIDeleteBook1FromTheBasket(string bookId)
+        [When(@"I delete '(.*)' from the shopping cart")]
+        public void WhenIDeleteFromTheShoppingCart(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
@@ -56,8 +57,8 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             controller.DeleteItem(book.Id);
         }
 
-        [When(@"change the quantity of (.*) to ([\d]+)")]
-        public void WhenChangeTheQuantityOfABookTo(string bookId, int quantity)
+        [When(@"I change the quantity of '(.*)' to (\d+)")]
+        public void WhenIChangeTheQuantityOfTo(string bookId, int quantity)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
 
@@ -65,26 +66,58 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             controller.Edit(new ShoppingCartController.EditArguments{BookId = book.Id, Quantity = quantity});
         }
 
-        [Then(@"my shopping cart should contain ([\d]+) items?")]
-        public void ThenMyShoppingCartShouldContainLineItems(int count)
+        [Then(@"my shopping cart should be empty")]
+        public void ThenMyShoppingCartShouldBeEmpty()
+        {
+            ThenMyShoppingCartShouldContainTypesOfItems(0);
+        }
+
+        [Then(@"my shopping cart should contain (\d+) types? of items?")]
+        public void ThenMyShoppingCartShouldContainTypesOfItems(int expectedItemTypeCount)
+        {
+            var controller = GetShoppingCartController();
+            var actionResult = controller.Index();
+            var foundItemTypeCount = actionResult.Model<ShoppingCart>().Lines.Count();
+
+            Assert.AreEqual(expectedItemTypeCount, foundItemTypeCount, 
+                "The shopping cart does not contain the expected number of item types.");
+        }
+
+        [Then(@"my shopping cart should contain (\d+) cop(?:y|ies) of '(.*)'")]
+        public void ThenMyShoppingCartShouldContainCopiesOf(int expectedQuantity, string expectedBookId)
+        {
+            var expectedBook = _catalogContext.ReferenceBooks.GetById(expectedBookId);
+
+            var controller = GetShoppingCartController();
+            var actionResult = controller.Index();
+
+            var line = actionResult.Model<ShoppingCart>().Lines.FirstOrDefault(l => l.Book.Id == expectedBook.Id);
+            Assert.IsNotNull(line, "The shopping cart does not contain the expected book.");
+            Assert.AreEqual(expectedQuantity, line.Quantity, "The shopping cart does not contain the expected quantity of the book.");
+        }
+
+        [Then(@"my shopping cart should contain (\d+) items in total")]
+        public void ThenMyShoppingCartShouldContainItemsInTotal(int expectedQuantity)
+        { 
+            var controller = GetShoppingCartController();
+            var actionResult = controller.Index();
+
+            var shownQuantity = actionResult.Model<ShoppingCart>().Count;
+
+            Assert.AreEqual(expectedQuantity, shownQuantity, "The shopping cart does not contain the expected total quantity of books.");
+        }
+
+
+        [Then(@"my shopping cart should show a total price of (.*)")]
+        public void ThenMyShoppingCartShouldShowATotalPriceOf(decimal expectedTotalPrice)
         {
             var controller = GetShoppingCartController();
             var actionResult = controller.Index();
 
-            Assert.AreEqual(count, actionResult.Model<ShoppingCart>().Lines.Count(), "Item count in shopping cart is not correct!");
+            var shownTotalPrice = actionResult.Model<ShoppingCart>().Price;
+
+            Assert.AreEqual(expectedTotalPrice, shownTotalPrice, "The shopping cart does not contain the expected total price of books.");            
         }
 
-        [Then(@"my basket should contain exactly (\d+) (.*)")]
-        public void ThenMyShoppingCartShouldContainBook(int count, string bookId)
-        {
-            var book = _catalogContext.ReferenceBooks.GetById(bookId);
-
-            var controller = GetShoppingCartController();
-            var actionResult = controller.Index();
-
-            var line = actionResult.Model<ShoppingCart>().Lines.FirstOrDefault(l => l.Book.Id == book.Id);
-            Assert.IsNotNull(line, "The book is not in the basket");
-            Assert.AreEqual(count, line.Quantity, "The quantity is not correct!");
-        }
     }
 }

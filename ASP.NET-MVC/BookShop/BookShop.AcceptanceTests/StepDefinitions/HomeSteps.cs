@@ -8,6 +8,7 @@ using BookShop.Controllers;
 using BookShop.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
+using BookShop.AcceptanceTests.Common;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
 {
@@ -23,36 +24,31 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             actionResult = controller.Index();
         }
 
-        [Then(@"the home page shows book '(.*)'")]
-        public void ThenTheHomePageShowsBook(string title)
+        [Then(@"the home screen should show the book '(.*)'")]
+        public void ThenTheHomeScreenShouldShowTheBook(string expectedTitle)
         {
-            var books = actionResult.Model<List<Book>>();
+            var shownBooks = actionResult.Model<List<Book>>();
 
-            CustomAssert.Any(books, b => b.Title == title);
+            BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitle);
         }
 
-        // this is a helper step for the alternative list-syntax scenario
-        [Then(@"the home page shows books (.*)")]
-        public void ThenTheHomePageShowsBooks(string titleList)
+        [Then(@"the home screen should show the books (.*)")]
+        public void ThenTheHomeScreenShouldShowTheBooks(string expectedTitleList)
         {
-            var books = actionResult.Model<List<Book>>();
+            var shownBooks = actionResult.Model<List<Book>>();
+            var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
 
-            var titles = titleList.Split(',').Select(t => t.Trim().Trim('\''));
-            foreach (var title in titles)
-                CustomAssert.Any(books, b => b.Title == title);
-            Assert.AreEqual(titles.Count(), books.Count, "The list contains other books too");
+            BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
         }
 
-        // this is a helper step for the alternative table-syntax scenario
-        [Then(@"the home page shows books")]
-        public void ThenTheHomePageShowsBooks(Table table)
+        [Then(@"the home screen should show the following books")]
+        public void ThenTheHomeScreenShouldShowTheFollowingBooks(Table expectedBooks)
         {
-            var books = actionResult.Model<List<Book>>();
+            var shownBooks = actionResult.Model<List<Book>>();
+            var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
 
-            var titles = table.Rows.Select(r => r["Title"]);
-            foreach (var title in titles)
-                CustomAssert.Any(books, b => b.Title == title);
-            Assert.AreEqual(titles.Count(), books.Count, "The list contains other books too");
-        }
+            BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
+         }
+
     }
 }

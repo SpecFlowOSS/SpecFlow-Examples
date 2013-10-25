@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Diagnostics;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 
 namespace BookShop.WebTests.Selenium.Support
 {
@@ -27,6 +28,7 @@ namespace BookShop.WebTests.Selenium.Support
             var appUrl = ConfigurationManager.AppSettings["AppUrl"];
 
             Selenium = new FirefoxDriver();
+            // Selenium = new InternetExplorerDriver();
             Selenium.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
 
 //            Selenium = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);

@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -117,6 +118,7 @@ namespace BookShop.Models
         private ObjectSet<Order> _Orders;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -144,11 +146,11 @@ namespace BookShop.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -179,6 +181,7 @@ namespace BookShop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -281,6 +284,7 @@ namespace BookShop.Models
         partial void OnPriceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -307,6 +311,7 @@ namespace BookShop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -335,6 +340,7 @@ namespace BookShop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -413,6 +419,7 @@ namespace BookShop.Models
         partial void OnStatusChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -439,6 +446,7 @@ namespace BookShop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -467,6 +475,7 @@ namespace BookShop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -548,6 +557,7 @@ namespace BookShop.Models
         partial void OnQuantityChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -628,8 +638,10 @@ namespace BookShop.Models
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

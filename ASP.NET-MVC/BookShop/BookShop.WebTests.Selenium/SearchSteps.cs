@@ -5,42 +5,54 @@ using BookShop.WebTests.Selenium.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using BookShop.AcceptanceTests.Common;
 
 namespace BookShop.WebTests.Selenium
 {
-    [Binding, StepScope(Tag = "web")]
+    [Binding, Scope(Tag = "web")]
     public class SearchSteps : SeleniumStepsBase
     {
-        [When(@"I perform a simple search on '(.*)'")]
-        [Given(@"I perform a simple search on '(.*)'")]
-        public void PerformSimpleSearch(string title)
+
+        [When(@"I search for books by the phrase '(.*)'")]
+        public void WhenISearchForBooksByThePhrase(string searchTerm)
         {
             selenium.NavigateTo("Home");
 
-            selenium.SetTextBoxValue("searchTerm", title);
+            selenium.SetTextBoxValue("searchTerm", searchTerm);
             selenium.SubmitForm("searchForm");
         }
 
-        [Then(@"the book list should exactly contain book '(.*)'")]
-        public void ThenTheBookListShouldExactlyContainBook(string title)
-        {
-            ThenTheBookListShouldExactlyContainBooks(title);
-        }
 
-        [Then(@"the book list should exactly contain books (.*)")]
-        public void ThenTheBookListShouldExactlyContainBooks(string titleList)
+        [Then(@"the list of found books should contain only: '(.*)'")]
+        public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
-            var titles = titleList.Split(',').Select(t => t.Trim().Trim('\''));
 
-            var books = selenium.FindElements(By.XPath("//table/tbody/tr"))
+            var foundBooks = selenium.FindElements(By.XPath("//table/tbody/tr"))
                 .Select(row => new Book()
                 {
                     Title = row.FindElement(By.ClassName("title")).Text,
                     Author = row.FindElement(By.ClassName("author")).Text,
                 }).ToList();
 
-            
-            CollectionAssert.AreEquivalent(titles.ToList(), books.Select(b => b.Title).ToList(), "Search result is different from expected");
+            var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
+
+            BookAssertions.FoundBooksShouldMatchTitles(foundBooks, expectedTitles);
         }
+
+        [Then(@"the list of found books should be:")]
+        public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
+        {
+            var foundBooks = selenium.FindElements(By.XPath("//table/tbody/tr"))
+                .Select(row => new Book()
+                {
+                    Title = row.FindElement(By.ClassName("title")).Text,
+                    Author = row.FindElement(By.ClassName("author")).Text,
+                }).ToList();
+
+            var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
+
+            BookAssertions.FoundBooksShouldMatchTitlesInOrder(foundBooks, expectedTitles);
+        }
+
     }
 }

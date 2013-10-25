@@ -14,6 +14,8 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class BookSteps
     {
+        private const decimal _bookDefaultPrice = 10;
+
         private readonly CatalogContext _catalogContext;
 
         public BookSteps(CatalogContext catalogContext)
@@ -22,14 +24,20 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         }
 
         [Given(@"the following books")]
-        public void GivenTheFollowingBooks(Table table)
+        public void GivenTheFollowingBooks(Table givenBooks)
         {
             var db = new BookShopEntities();
-            foreach (var row in table.Rows)
+            foreach (var row in givenBooks.Rows)
             {
-                Book book = new Book { Author = row["Author"], Title = row["Title"], Price = Convert.ToDecimal(row["Price"]) };
-                if (table.Header.Contains("Id"))
+                Book book = new Book { Author = row["Author"], Title = row["Title"] };
+                if (givenBooks.Header.Contains("Price"))
+                    book.Price = Convert.ToDecimal(row["Price"]);
+                else
+                    book.Price = _bookDefaultPrice;
+                if (givenBooks.Header.Contains("Id"))
                     _catalogContext.ReferenceBooks.Add(row["Id"], book);
+                else
+                    _catalogContext.ReferenceBooks.Add(book.Title, book);
                 db.AddToBooks(book);
             }
             db.SaveChanges();
@@ -37,7 +45,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
 
         private ActionResult actionResult;
 
-        [When(@"I open the details of (.*)")]
+        [When(@"I open the details of '(.*)'")]
         public void WhenIOpenTheDetailsOfBook(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
@@ -46,15 +54,15 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             actionResult = controller.Details(book.Id);
         }
 
-        [Then(@"the book details shows")]
-        public void ThenTheBookDetailsShows(Table table)
+        [Then(@"the book details should show")]
+        public void ThenTheBookDetailsShouldShow(Table expectedBookDetails)
         {
-            var book = actionResult.Model<Book>();
+            var shownBookDetails = actionResult.Model<Book>();
 
-            var row = table.Rows.Single();
-            Assert.AreEqual(row["Author"], book.Author);
-            Assert.AreEqual(row["Title"], book.Title);
-            Assert.AreEqual(Convert.ToDecimal(row["Price"]), book.Price);
+            var row = expectedBookDetails.Rows.Single();
+            Assert.AreEqual(row["Author"], shownBookDetails.Author, "Book details don't show expected author.");
+            Assert.AreEqual(row["Title"], shownBookDetails.Title, "Book details don't show expected title.");
+            Assert.AreEqual(Convert.ToDecimal(row["Price"]), shownBookDetails.Price, "Book details don't show expected price.");
         }
     }
 }

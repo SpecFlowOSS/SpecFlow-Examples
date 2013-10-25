@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SpecRun.Runner</id>
+    <version>1.2.0</version>
+    <title>SpecRun Runner</title>
+    <authors>TechTalk</authors>
+    <owners>TechTalk</owners>
+    <projectUrl>http://www.specrun.com/</projectUrl>
+    <iconUrl>http://www.specrun.com/specrun_nuget_icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SpecRun runner - supports SpecRun.SpecFlow and SpecRun.NUnit packages.</description>
+    <summary>SpecRun runner - supports SpecRun.SpecFlow and SpecRun.NUnit packages.</summary>
+    <language>en-US</language>
+    <tags>specrun runner</tags>
+    <references />
+  </metadata>
+</package>

@@ -27,10 +27,7 @@
                     <%= Html.ActionLink("Details", "Details", new { id = m.Id })%>
                 </td>
                 <td>
-                    <% using (Html.BeginForm("Add", "ShoppingCart", new { bookId = m.Id }))
-                       { %>
-                           <a class="submitLink" href="#">Add to cart</a>
-                    <% } %>
+                    <%= Html.ActionLink("Add", "AddLink", "ShoppingCart", new { bookId = m.Id }, null)%>
                 </td>
             </div>
         </tr>

@@ -1,3 +1,4 @@
+
 SpecFlow BookShop Sample
 ========================
 
@@ -9,96 +10,180 @@ You can find more information about SpecFlow at http://www.specflow.org/.
 Prerequisites to run the application
 ====================================
 
-- Visual Studio 2010
-- Microsoft SQL Server 2005 or higher (any editions)
-- SpecFlow 1.3 or higher (http://www.specflow.org/)
-- Optionally: cuke4vs - syntax coloring and intellisense for SpecFlow files
-  (http://github.com/henritersteeg/cuke4vs/downloads)
+- Visual Studio 2010 or Visual Studio 2012
+- Microsoft SQL Server 2005 or higher (any editions) or localdb
+- SpecFlow 1.9.1 or higher (http://www.specflow.org/)
+
 
 Setup Application
 =================
 
-- Create a database and initialize table structure by executing "create_db.sql" 
-  script on your database server. (This scrip will create and setup a database 
-  called "BookShop" in your database server.)
-- Update connection string in the web.config file and all app.config files of 
-  the different test projects. The default setting is 
-  "Data Source=.;Initial Catalog=BookShop;Integrated Security=True;MultipleActiveResultSets=True", 
-  you might need to change the data source if you use a database server not 
-  running as a default instance of your local machine. The easiest way to 
-  update all connection string is to perform a solution-wide search and replace, 
-  e.g.:
-    Data Source=.; -> Data Source=.\SQLEXPRESS;
-  (You might want to restrict the replacements to the *.config files only 
-  otherwise it will also replace it in this readme.txt file... :)
+- Create a database and initialize the table structure by executing "create_db.sql" 
+  (This script will create and setup a database called "BookShop")
+- Update the connection string in 
+  web.config (project BookShop) and app.config (project BookShop.AcceptanceTests)
+  in the <add name="BookShopEntities"/> element:
+  The default setting points to a (localdb) instance:
+  connectionString="metadata=res://*/Models.BookShop.csdl|res://*/Models.BookShop.ssdl|res://*/Models.BookShop.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=(localdb)\v11.0;Initial Catalog=BookShop;Integrated Security=True;MultipleActiveResultSets=True&quot;"
+  You might need to change the data source property, if you're not runnning localdb, 
+  which can be easily done with a solution wide search and replace, eg.:
+    Data Source=(localdb)\v11.0; -> Data Source=.\SQLEXPRESS;
 - Set the "BookShop" project as startup project and run the application. You 
   should see some books on the start page of the app. 
 
-There will be two warnings still in the BookShop.edmx file, but those can be 
-ignored.
 
-Execute Acceptance Tests
-========================
+Automated SpecFlow Acceptance Tests
+===================================
 
 With SpecFlow you can define the acceptance criteria in .feature files, that 
-can be executed. The "BookShop.AcceptanceTests" contains the feature files for
-this application. 
-SpecFlow generated executable unit tests from the defined acceptance criteria 
-(called scenarios), these generated unit tests are in the generated sub-items
-if the feature files (e.g. US01_BookSearch.feature.cs).
+can be automatically validated through acceptance tests. 
+The "BookShop.AcceptanceTests" project contains the feature files for this application,
+which describe the implemented behaviour as acceptance criteria (SpecFlow scenarios with examples).
+Step definitions (folder StepDefinitions) define, how individual scenario steps
+should be automated.
+SpecFlow generated executable unit tests from the defined acceptance criteria scenarios
+in the feature files and the step definitions, that you need to define and implement.
+The generated unit tests are shown as sub-items of each feature file (e.g. US01_BookSearch.feature.cs).
 
-The execution of the tests depends on the unit test provider used by SpecFlow 
-(currently NUnit, MsTest and xUnit is supported). The unit test provider can
-be configured in the app.config file of the test project:
-  <specFlow>
-    <unitTestProvider name="MsTest" />
-  </specFlow>
-  
-The current sample used "MsTest" for the acceptance criteria in the 
-"BookShop.AcceptanceTests" project. Therefore to execute the tests, you have to
-perform the following steps:
+When you build the solution and open the Visual Studio Test Explorer, you should
+see all the tests generated from the feature files.
 
-- Select the project "BookShop.AcceptanceTests" in solution explorer.
-- Select command from the main menu: Test / Run / Tests in Current Context 
-  (Ctrl R,T)
+In Visual Studio 2010 you'll see the individual feature file scenario titles
+as test method name (Pascal case with blanks in the title removed).
+In Visual Studio 2012 (which provides better test runner integration), you'll directly
+see the scenario title names as written in the feature files.
 
-If you have configured the application properly, all tests should pass.
+Unit tests are always generated by SpecFlow from the feature files -
+when working with the solution from the IDE the generation is triggered when you save a feature file,
+when building the solution on a build server, SpecFlow automatically updates the unit tests
+as an msbuild task.
+You should never manually modify the generated unit tests. They are just an artifact
+generated by the build!
 
 
-Alternative Acceptance Test Integrations
-========================================
+Executing SpecFlow Acceptance Tests
+===================================
 
-Under the solution folder "Alternative Integrations" you will find other
-alternatives how acceptance criteria can be automated. (The 
-"BookShop.AcceptanceTests" automates the controller layer of the application.)
+In the Visual Studio Test Explorer select "Run All" tests.
 
-These alternative integrations are only implemented for a few selected 
-scenarios so they do not provide full coverage of the application features.
+If you've configured the database connection correctly, all tests
+should pass (green).
 
-BookShop.AcceptanceTests.Manual 
--------------------------------
+A test execution report is generated automatically. Open the Visual Studio "Output" window
+and select "Show output from: Tests". A hyperlink to an HTML execution report should be
+shown there, which gives an overall test result as well as a break down of each individual
+scenario execution.
 
-This project shows how manual test can be included in the test execution. With 
-the provided helper class, whenever a test step is annotated with "(manual)" 
-suffix a popup window is shown to instruct the tester and capture the result.
+As SpecFlow is not a unit test runner on its own, it can generate unit tests
+for a number of third party unit test runners like MsTest, NUnit, XUnit and SpecRun.
+(check the SpecFlow documentation for an up-to-date list of supported unit test runners)
 
-The popup can be disabled (e.g. in build servers) by setting the environment
-variable "DisableSpecFlowPopup" to "true".
+The sample project is configured to generate unit tests for SpecRun, which is a
+unit test runner provided by TechTalk which is specialized for running acceptance/integration tests
+(like written in SpecFlow but also without SpecFlow).
+SpecRun is provided as a free evaluation version with this example. The only
+limitation of the evaluation is, that your tests will be delayed by an arbitrary 
+time span before being executed.
+To find out more about SpecRun and its further benefits for automated acceptance testing
+please visit http://www.specrun.com.
 
-BookShop.AcceptanceTests.Selenium
----------------------------------
+You can easily switch the sample project to use MsTest instead of SpecRun:
+Make the following modifications in "App.config" of the "BookShop.AcceptanceTests" project:
+	- Comment (or remove) the following line:
+	<unitTestProvider name="SpecRun" />
+	- Uncomment (or add) the following line instead:
+	<unitTestProvider name="MsTest" />
+	- You can also comment (or remove) the SpecRun plugin from the <plugins/> element
 
-This project shows how to automate acceptance criteria using a UI automation 
-tool (in this case Selenium, http://seleniumhq.org/). 
+After saving these changes to app.config, SpecFlow will re-generate the unit tests
+of all feature files for MsTest instead of SpecRun. When you re-run all tests from
+Test Explorer, the tests will be executed by MsTest.
 
-To run these tests, you need to have a selenium remote control server running. 
-Learn more about selenium remote control server here: 
-http://seleniumhq.org/projects/remote-control/.
+Similarly, you can switch to other unit test providers (such as NUnit, XUnit, etc.).
+Please refer to the SpecFlow documentation to find out more about supported configuration options.
 
-BookShop.AcceptanceTests.MvcIntegration
----------------------------------------
+If you do not use SpecRun, you can also remove the SpecRun NuGet package from the
+"BookShop.AcceptanceTests" project. 
 
-This project shows how to automate acceptance criteria using a self-hosted 
-ASP.NET runtime.
 
-See http://blog.stevensanderson.com/2009/06/ for more details.
+Using SpecFlow for UI automation
+================================
+
+SpecFlow is completely independent of what automation interface is used.
+
+This example automates the tests directly through the Controller of the
+MVC web application (this is also sometimes called "automation below the skin").
+
+Automating below the skin provides several benefits:
+less brittle tests, less efforts for automation, better performance of the test suite
+
+However, sometimes behaviour that should be validated cannot be observed
+on the controller level, but just on the UI. In that case, some kind of
+UI automation has to be implemented.
+
+To demonstrate this, the sample implements an alternative automation for all the
+"US01_BookSearch.feature" scenarios using Selenium.
+
+To enable the Selenium UI automation, you need to add (uncomment) the
+@web tag on the US01_Booksearch feature file.
+
+You also need to have the correct version of FireFox installed, that can be
+driven by the Selenium version used in this example. It might be necessary
+to update FireFox or the Selenium version used in this sample, to make
+the UI automation work.
+
+As the UI automation relies on a running instance of the application,
+you need to first run the web application, before you run the SpecFlow tests
+(e.g. start the web project using Ctrl-F5 and validate the web application is working).
+
+After that, if you have enabled the @web tag, and run all the SpecFlow scenarios,
+the scenarios of "US01_BookSearch.feature" will be automated through the UI
+with Selenium, while the other scenarios are still automated through the controller.
+
+Notice that the phrasing of the scenarios didn't have to be changed, in order
+to automate on a different layer. This is a good practices, as SpecFlow scenarios
+shouldn't express technical details of the automation, but the intention and
+behaviour to be validated.
+
+The different automation is implemented in a separate step-definition assembly,
+which is located in the "BookShop.WebTests.Selenium" project.
+This project provides alternative step-definitions that use Selenium for automation,
+and which are scoped to scenarios having the @web tag ([Binding, Scope(Tag = "web")]).
+
+Additional step definition assemblies can be registered in the app.config of the
+SpecFlow project (BookShop.AcceptanceTests) using the <stepAssemblies/> element, e.g.:
+<stepAssembly assembly="BookShop.WebTests.Selenium" />
+
+
+Generating living documentation
+===============================
+
+Properly written SpecFlow scenarios are a valuable asset even after implementing
+a feature, as they provide an always up-to-date (validated) description of detail
+behaviour for your implementation.
+
+However, many stakeholders who might be interested in that documentation will not
+(have) access to source control, and if you have a lot of scenarios, you also need
+to develop a higher level structure of your feature files.
+
+The sample contains a "BookShop.html" file, that can be easily browsed by external
+stakeholders, and that links SpecFlow feature files with a higher level story map 
+structure that was modeled in SpecLog (the Html was also generated with SpecLog).
+This Html file can be also used to link your SpecFlow feature files with other
+documentation repositories (e.g. a Wiki or user documentation).
+
+You can find the linked SpecFlow feature files in "BookShop.Html" when you expand
+the "User Story Roots" node and select the according user story linked with 
+the feature file (e.g. US1 - search for books). The Html also expands scenario
+outlines with individual example rows, which makes them better comprehendible:
+e.g. when you click individual "Preview" rows in the 
+"Simple search (scenario outline syntax)" scenario, you'll see the scenario
+outline filled in with the values from that row.
+
+"BookShop.speclog" contains the story map modeled for this example in SpecLog, 
+which links the feature files from source code to the map, so that you
+can generate the feature file Html "BookShop.html".
+
+SpecLog is a tool that supports agile requirements methods such as
+Specification-By-Example, Story Mapping and Impact Mapping.
+You can download a free evaluation of SpecLog at http://www.speclog.net/

@@ -20,7 +20,7 @@ namespace BookShop.Models
 
         public int Count
         {
-            get { return orderLines.Count; }
+            get { return orderLines.Sum(li => li.Quantity); }
         }
 
         public IEnumerable<OrderLine> Lines

@@ -1,12 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5A5D023-ED56-400E-83C8-D59F94C59E12}"
 	ProjectSection(SolutionItems) = preProject
 		BookShop.vsmdi = BookShop.vsmdi
-		create_db.sql = create_db.sql
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		ReadMe.txt = ReadMe.txt
+		create_db.sql = create_db.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop", "Bookshop\BookShop.csproj", "{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}"
@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.CodedUI", "BookShop.WebTests.CodedUI\BookShop.WebTests.CodedUI.csproj", "{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Common", "BookShop.AcceptanceTests.Common\BookShop.AcceptanceTests.Common.csproj", "{FDC3F86D-A2E8-443F-8665-6A71DA702123}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = BookShop.vsmdi
@@ -26,6 +30,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -34,14 +50,10 @@ Global
 		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

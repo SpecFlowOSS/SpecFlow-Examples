@@ -14,16 +14,16 @@ namespace BookShop.Controllers
         {
             BookShopEntities db = new BookShopEntities();
 
-            //List<Book> books = db.Books.Where(b => b.Title.Contains(searchTerm)).ToList();
-
             var terms = searchTerm.Split(' ');
             var predicate = PredicateBuilder.False<Book>();
             foreach (string term in terms)
             {
                 string temp = term;
                 predicate = predicate.Or(p => p.Title.Contains(temp));
+                predicate = predicate.Or(p => p.Author.Contains(temp));
             }
-            List<Book> books = db.Books.AsExpandable().Where(predicate).ToList();
+
+            List<Book> books = db.Books.AsExpandable().Where(predicate).OrderBy(b => b.Title).ToList();
 
             ViewData.Model = books;
 

@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 
 namespace BookShop.WebTests.Selenium
 {
-    [Binding, StepScope(Tag = "web")]
+    [Binding, Scope(Tag = "web")]
     public class SearchResultSteps : SeleniumStepsBase
     {
         [When(@"I sort the search result table by Author")]
