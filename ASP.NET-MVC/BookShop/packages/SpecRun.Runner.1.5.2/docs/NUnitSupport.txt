@@ -1,0 +1,35 @@
+﻿SpecRun NUnit Support
+=====================
+
+SpecRun supports executing pure NUnit tests. With this feature, you can take 
+the advantages of SpecRun (e.g. parallel execution, report) even for your 
+regular unit tests.
+
+To enable NUnit test execution, you just have to list your NUnit test assembly 
+in the <TestAssemblyPaths> section of your SpecRun profiles (the .srprofile 
+files). E.g.:
+
+  <TestAssemblyPaths>
+    <TestAssemblyPath>MyProject.UnitTests.dll</TestAssemblyPath>
+  </TestAssemblyPaths>
+
+You can even include multiple test assemblies into a profile. With the <Filter> 
+setting, you can specify a filter expression for the unit tests to be included. 
+The following example includes the unit tests in category “important”, but only 
+if they are not in the “slow” category:
+
+  <Filter>important & !slow</Filter>
+
+
+Notes:
+- The current implementation was tested with NUnit 2.6.
+- If a test is both marked with NUnit and SpecFlow/SpecRun attributes, it will 
+  be included only once, as a SpecFlow/SpecRun test.
+- Supported NUnit attributes: [TestFixture], [TestFixtureSetUp], 
+  [TestFixtureTearDown], [Category], [Ignore], [Description], [Test], 
+  [TestCase], [SetUp], [TearDown], [ExpectedException], [SetCulture]
+- Test fixture attributes are not supported.
+- Using custom expected exception handlers (Handler property) are not supported
+- Explicit test execution (test is executed only if explicitly selected) is not 
+  supported.
+- The unsupported NUnit attributes are ignored. 
