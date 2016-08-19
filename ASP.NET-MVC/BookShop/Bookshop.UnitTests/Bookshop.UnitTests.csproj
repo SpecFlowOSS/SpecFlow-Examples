@@ -103,9 +103,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Bookshop\BookShop.csproj">
       <Project>{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}</Project>
       <Name>BookShop</Name>
