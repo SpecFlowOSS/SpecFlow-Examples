@@ -1,0 +1,174 @@
+1.5.2 2016-07-07
+Bug fixes:
+- Links to custom files in reports
+- VS 2013 Debugger asks for source files of SpecFlow+Runner at stepping through bindings
+
+
+1.5.0 2016-06-15
+New features:
+- Generate multiple reports from a single test run
+- Formatting fixes in report output
+
+
+1.4.1 - 2016-05-30
+
+Bug fixes:
+- Bugfix for error when using SpecRun+MsTest/SpecRun+NUnit Unit test provider and running the tests with MsTest/NUnit.
+
+
+1.4.0 - 2016-05-24
+
+New features:
+- Support for SpecFlow V2's Shared AppDomain parallelization 
+- Output additional license info (expiry date, upgrade until date) when running from the console
+
+Bug fixes:
+- Under certain conditions, failed tests are not retried
+- In Visual Studio 2015 Update 2 not all tags where displayed as traits
+
+
+1.3.0 - 2016-01-27
+
+New features:
+- Visual Studio 2015 support
+- VB.Net support
+- Support for project licenses
+- Added completion state to console title
+- Default report template included (ReportTemplate.cshtml)
+- API for stopping the test run
+- TechTalk.SpecRun.dll is now signed
+- Error message if filter syntax is incorrect
+- Add new setting to copy the report to the base folder (<Report copyAlsoToBaseFolder="true"/>)
+
+
+Bug fixes:
+- Escape '<' and '>' correctly in Visual Studio Test discovery
+- Fixed an occurance of locking an assembly
+- Fixed an issue with adaptive test scheduling and tests with a long history
+- Enabled useLegacyV2RuntimeActivationPolicy="true" on test executor to support multi-mode assemblies by default 
+- Use more than 64 threads for test run
+
+
+1.2.0 - 2013-8-16
+
+New features:
+- Visual Studio test explorer integration - SpecRun test can be executed directly from Visual Studio 2012 without 
+  any additional configuration (the NuGet package contains all necessary integration infrastructure). See US49 in the documentation for 
+  details ("docs" folder of the NuGet package).
+- TFS integration - SpecRun tests can be executed by Team Foundation Server builds without additional configuration. 
+  See US51 for details.
+- Test Targets: allow running tests multiple times with different environment or configuration settings
+  See US17 for details.
+- Service wrapper to run SpecRun server as a Windows service (SpecRun.Server.Service.exe).
+- Regex-based tag filtering - use the expression tagmatch:some-regex to filter for tags in any test filtering expression. 
+  E.g. tagmatch:bug\d+ matches for tags like @bug1234 or @bug456
+- Allow execution of test assemblies with .NET 3.5 environment (.NET 2.0 CLR), configurable in the profile
+- Allow execution of test assemblies with x86 and x64 platform, configurable in the profile
+- Support for process-level isolation (each test thread runs in a separate process)
+- Tool integrations (e.g. VS2010, TeamCity) will use the tool-specific profile if they exist (e.g. VS1010.srprofile)
+- Allow wildcard filtering (*) for testpath filter, e.g. "testpath:Feature:*interface*"
+- Adaptive test scheduler is not blocking until the test statistics are received from the server but start working on tests (in random order)
+
+Bug fixes:
+- Tests might be skipped when using parallel execution and test thread affinity
+- Invalid test thread affinity configuration causes skipped tests
+- When the unit test provider is configured to SpecRun+NUnit or SpecRun+MsTest, the Gherkin steps are not displayed properly in the report
+- SpecRun+MsTest specflow unit test provider needs additional listener configuration for proper report output
+- Failing tests might not reported in TeamCity
+- Tests might not be scheduled properly for multuple threads when affinity is specified
+
+1.1.0 - 2012-08-06
+
+New features:
+- Support for SpecFlow 1.9.0
+- Easier setup through SpecFlow plugin infrastructure (no assembly copy is required):
+  <specFlow>
+    <unitTestProvider name="SpecRun" />
+    <plugins>
+      <add name="SpecRun" />
+    </plugins>
+  </specFlow>
+- Easier configuration for executing the tests both with SpecRun and MsTest/NUnit: 
+  use use SpecRun+NUnit or SpecRun+MsTest unit test provider name:
+  <specFlow>
+    <unitTestProvider name="SpecRun+NUnit" />
+    <plugins>
+      <add name="SpecRun" />
+    </plugins>
+  </specFlow>
+
+Bug fixes:
+- License is checked during registration
+- System.Web.Razor assembly is missing from the NuGet package
+
+
+1.0.0 - 2012/05/31
+
+New features:
+- Licensing: to use SpecRun in commercial projects, you have to purchase seat 
+  licenses for each team member (not for the build server). 
+  See more details at http://www.specrun.com.
+- Evaluation mode: SpecRun can be used for evaluation without a license. In 
+  this case the execution of the entire test suite is delayed by a few seconds 
+  and an evaluation message is displayed.
+- Feature and scenario description is included in the report
+- Support for running NUnit tests. See NUnitSupport.txt for details.
+
+Bug fixes:
+- Tests cannot be executed from Visual Studio if the feature or scenario title contains parenthesis
+
+
+0.14.0 - 2012/04/20
+
+- Extended beta expiration until 30/05/2012
+
+New features:
+- Recognize file references in test output (starting with file://) and 
+  converting them to relative links in the report.
+- Support for STA/MTA apartment state through the execution settings of the 
+  profile: <Execution apartmentState="STA" />
+
+Bug fixes:
+- Better control for IIS express (default changed to useShellExecute=false, 
+  providing faster automation)
+- The current directory is set to the base folder
+- File logger creates the directory for the expected log file
+- Report generator creates the directory for the expected report file
+- Output discarded if tests are executed through an other test runner (e.g. R#)
+- Report link is broken in Visual Studio if path contains space
+- Generated testrun.cmd does not work on 32-bit machines
+
+
+0.13.0 - 2012/01/23
+
+- Extended beta expiration until 30/04/2012
+
+
+0.12.0 - 2011/11/25
+
+Bug fixes:
+- TeamCity: skipped tests are reported as ignored
+- TeamCity: better handling of special quotes in scenario titles
+- TeamCity: report test steps and trace for failing tests
+- Report: success rate is calculated improperly when there were skipped or 
+  ignored tests
+- Report: javascript error for empty tests
+
+
+0.11.0 - 2011/10/26
+
+New features:
+- Updated for SpecFlow 1.8.1
+
+Bug fixes:
+- runtests.cmd does not work on x86 machines
+- cancelling execution hangs
+- console tracer fails with System.ArgumentOutOfRangeException
+
+
+0.10.0 - 2011/10/11
+
+Bug fixes:
+- Performance problem when running many small tests
+- Tagged examples may not generated properly
+- NUnit/MsTest compatibility mode does not support categories and ignore

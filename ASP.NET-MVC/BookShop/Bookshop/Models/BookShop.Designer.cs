@@ -182,7 +182,7 @@ namespace BookShop.Models
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -201,7 +201,7 @@ namespace BookShop.Models
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -226,7 +226,7 @@ namespace BookShop.Models
             {
                 OnAuthorChanging(value);
                 ReportPropertyChanging("Author");
-                _Author = StructuralObject.SetValidValue(value, false);
+                _Author = StructuralObject.SetValidValue(value, false, "Author");
                 ReportPropertyChanged("Author");
                 OnAuthorChanged();
             }
@@ -250,7 +250,7 @@ namespace BookShop.Models
             {
                 OnTitleChanging(value);
                 ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, false);
+                _Title = StructuralObject.SetValidValue(value, false, "Title");
                 ReportPropertyChanged("Title");
                 OnTitleChanged();
             }
@@ -274,7 +274,7 @@ namespace BookShop.Models
             {
                 OnPriceChanging(value);
                 ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
+                _Price = StructuralObject.SetValidValue(value, "Price");
                 ReportPropertyChanged("Price");
                 OnPriceChanged();
             }
@@ -285,7 +285,6 @@ namespace BookShop.Models
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -341,7 +340,7 @@ namespace BookShop.Models
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -360,7 +359,7 @@ namespace BookShop.Models
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -385,7 +384,7 @@ namespace BookShop.Models
             {
                 OnPriceChanging(value);
                 ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
+                _Price = StructuralObject.SetValidValue(value, "Price");
                 ReportPropertyChanged("Price");
                 OnPriceChanged();
             }
@@ -409,7 +408,7 @@ namespace BookShop.Models
             {
                 OnStatusChanging(value);
                 ReportPropertyChanging("Status");
-                _Status = StructuralObject.SetValidValue(value, false);
+                _Status = StructuralObject.SetValidValue(value, false, "Status");
                 ReportPropertyChanged("Status");
                 OnStatusChanged();
             }
@@ -420,7 +419,6 @@ namespace BookShop.Models
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -476,7 +474,7 @@ namespace BookShop.Models
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -495,7 +493,7 @@ namespace BookShop.Models
                 {
                     OnBookIdChanging(value);
                     ReportPropertyChanging("BookId");
-                    _BookId = StructuralObject.SetValidValue(value);
+                    _BookId = StructuralObject.SetValidValue(value, "BookId");
                     ReportPropertyChanged("BookId");
                     OnBookIdChanged();
                 }
@@ -522,7 +520,7 @@ namespace BookShop.Models
                 {
                     OnOrderIdChanging(value);
                     ReportPropertyChanging("OrderId");
-                    _OrderId = StructuralObject.SetValidValue(value);
+                    _OrderId = StructuralObject.SetValidValue(value, "OrderId");
                     ReportPropertyChanged("OrderId");
                     OnOrderIdChanged();
                 }
@@ -547,7 +545,7 @@ namespace BookShop.Models
             {
                 OnQuantityChanging(value);
                 ReportPropertyChanging("Quantity");
-                _Quantity = StructuralObject.SetValidValue(value);
+                _Quantity = StructuralObject.SetValidValue(value, "Quantity");
                 ReportPropertyChanged("Quantity");
                 OnQuantityChanged();
             }
@@ -558,7 +556,6 @@ namespace BookShop.Models
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -643,5 +640,4 @@ namespace BookShop.Models
 
     #endregion
 
-    
 }

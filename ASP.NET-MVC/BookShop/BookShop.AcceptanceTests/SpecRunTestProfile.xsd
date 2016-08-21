@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="SpecRunTestProfile"
-    targetNamespace="http://www.specrun.com/schemas/2011/09/TestProfile"
+    targetNamespace="http://www.specflow.org/schemas/plus/TestProfile/1.5"
     elementFormDefault="qualified"
-    xmlns="http://www.specrun.com/schemas/2011/09/TestProfile"
+    xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="TestProfile" type="TestProfile" />
@@ -14,6 +14,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="Execution" type="ExecutionSettings" />
       <xs:element minOccurs="0" maxOccurs="1" name="Environment" type="EnvironmentSettings" />
       <xs:element minOccurs="0" maxOccurs="1" name="TestAssemblyPaths" type="TestAssemblyPaths" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Report" type="ReportSettings" />
       <xs:element minOccurs="0" maxOccurs="1" name="Filter" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="1" name="Targets" type="Targets" />
       <xs:element minOccurs="0" maxOccurs="1" name="DeploymentTransformation" type="DeploymentTransformation" />
@@ -24,6 +25,7 @@
   <xs:complexType name="TestProfileSettings">
     <xs:attribute name="name" type="xs:string" use="optional" />
     <xs:attribute name="projectName" type="xs:string" use="required" />
+    <xs:attribute name="licenseKey" type="xs:string" use="optional" />
     <xs:attribute name="baseFolder" type="xs:string" use="optional" />
     <xs:attribute name="outputFolder" type="xs:string" use="optional" />
     <xs:attribute name="reportTemplate" type="xs:string" use="optional" />
@@ -55,6 +57,21 @@
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TestAssemblyPath" type="xs:string" />
     </xs:sequence>
+  </xs:complexType>
+
+  <!-- Report settings -->
+  <xs:complexType name="Template">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="outputName" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="ReportSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Template" type="Template" />
+    </xs:sequence>
+
+    <xs:attribute name="copyAlsoToBaseFolder" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="disable" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
   
   <!-- test targets -->
@@ -103,6 +120,7 @@
       <xs:element minOccurs="1" maxOccurs="1" name="RelocateConfigurationFile" type="RelocateConfigurationFile" />
       <xs:element minOccurs="1" maxOccurs="1" name="Custom" type="CustomStep" />
       <xs:element minOccurs="1" maxOccurs="1" name="IISExpress" type="IISExpressStep" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CopyFile" type="CopyFile" />
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="CopyFolder">
@@ -132,6 +150,12 @@
     <xs:attribute name="iisExpressPath" type="xs:string" use="optional" />
     <xs:attribute name="port" type="xs:string" use="optional" default="8080" />
     <xs:attribute name="useShellExecute" type="xs:boolean" use="optional" default="true" />
+  </xs:complexType>
+  <xs:complexType name="CopyFile">
+    <xs:attribute name="source" type="xs:string" use="required" />
+    <xs:attribute name="target" type="xs:string" use="optional" />
+    <xs:attribute name="targetFolder" type="xs:string" use="optional" />
+    <xs:attribute name="deleteOnRestore" type="xs:boolean" use="optional" default="true" />
   </xs:complexType>
 
   <!-- simple types-->
@@ -185,7 +209,7 @@
   
   <xs:simpleType name="TestThreadIsolation">
     <xs:restriction base="xs:string">
-      <!--<xs:enumeration value="None" /> not supported yet -->
+      <xs:enumeration value="SharedAppDomain" />
       <xs:enumeration value="AppDomain" />
       <xs:enumeration value="Process" />
     </xs:restriction>
