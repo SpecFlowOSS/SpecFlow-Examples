@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="SpecRunTestProfile"
-    targetNamespace="http://www.specrun.com/schemas/2011/09/TestProfile"
+    targetNamespace="http://www.specflow.org/schemas/plus/TestProfile/1.5"
     elementFormDefault="qualified"
-    xmlns="http://www.specrun.com/schemas/2011/09/TestProfile"
+    xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5"
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="TestProfile" type="TestProfile" />
@@ -44,6 +44,7 @@
     <xs:attribute name="retryFor" type="RetryMode" use="optional" default="Failing" />
     <xs:attribute name="retryCount" type="xs:int" use="optional" default="2"  />
     <xs:attribute name="apartmentState" type="ApartmentState" use="optional" default="Unknown" />
+    <xs:attribute name="isDryRun" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
 
   <xs:complexType name="EnvironmentSettings">
@@ -63,6 +64,7 @@
   <xs:complexType name="Template">
     <xs:attribute name="name" type="xs:string" use="required" />
     <xs:attribute name="outputName" type="xs:string" use="optional" />
+    <xs:attribute name="outputCulture" type="xs:string" use="optional" />
   </xs:complexType>
 
   <xs:complexType name="ReportSettings">
@@ -128,6 +130,7 @@
     <xs:attribute name="source" type="xs:string" use="required" />
     <xs:attribute name="target" type="xs:string" use="required" />
     <xs:attribute name="deleteFolderOnRestore" type="xs:boolean" use="optional" default="true" />
+    <xs:attribute name="deleteFolderOnApply" type="xs:boolean" use="optional" default="true" />
   </xs:complexType>
   <xs:complexType name="Relocate">
     <xs:attribute name="targetFolder" type="xs:string" use="required" />

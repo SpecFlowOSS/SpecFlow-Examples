@@ -44,6 +44,7 @@
     <xs:attribute name="retryFor" type="RetryMode" use="optional" default="Failing" />
     <xs:attribute name="retryCount" type="xs:int" use="optional" default="2"  />
     <xs:attribute name="apartmentState" type="ApartmentState" use="optional" default="Unknown" />
+    <xs:attribute name="isDryRun" type="xs:boolean" use="optional" default="false" />
   </xs:complexType>
 
   <xs:complexType name="EnvironmentSettings">
@@ -63,6 +64,7 @@
   <xs:complexType name="Template">
     <xs:attribute name="name" type="xs:string" use="required" />
     <xs:attribute name="outputName" type="xs:string" use="optional" />
+    <xs:attribute name="outputCulture" type="xs:string" use="optional" />
   </xs:complexType>
 
   <xs:complexType name="ReportSettings">
@@ -72,6 +74,7 @@
 
     <xs:attribute name="copyAlsoToBaseFolder" type="xs:boolean" use="optional" default="false" />
     <xs:attribute name="disable" type="xs:boolean" use="optional" default="false" />
+    <xs:attribute name="existingFileHandlingStrategy" type="ExistingFileHandlingStrategy" use="optional" default="Default" />
   </xs:complexType>
   
   <!-- test targets -->
@@ -127,6 +130,7 @@
     <xs:attribute name="source" type="xs:string" use="required" />
     <xs:attribute name="target" type="xs:string" use="required" />
     <xs:attribute name="deleteFolderOnRestore" type="xs:boolean" use="optional" default="true" />
+    <xs:attribute name="deleteFolderOnApply" type="xs:boolean" use="optional" default="true" />
   </xs:complexType>
   <xs:complexType name="Relocate">
     <xs:attribute name="targetFolder" type="xs:string" use="required" />
@@ -212,6 +216,14 @@
       <xs:enumeration value="SharedAppDomain" />
       <xs:enumeration value="AppDomain" />
       <xs:enumeration value="Process" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ExistingFileHandlingStrategy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Default"/>
+      <xs:enumeration value="Overwrite"/>
+      <xs:enumeration value="IncrementFilename"/>
     </xs:restriction>
   </xs:simpleType>
   

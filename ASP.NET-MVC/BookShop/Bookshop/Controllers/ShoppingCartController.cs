@@ -1,89 +1,89 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web.Mvc;
-using BookShop.Models;
-
-namespace BookShop.Controllers
+﻿namespace BookShop.Controllers
 {
-    public class ShoppingCartController : Controller
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web.Mvc;
+    using BookShop.Models;
+
+    public class ShoppingCartController
+        : Controller
     {
+        public const string CART_SESSION_KEY = "CART";
+
         public ActionResult Index()
         {
-            ViewData.Model = GetShoppingCart();
-            return View("Index");
+            this.ViewData.Model = this.GetShoppingCart();
+            return this.View("Index");
         }
 
         [HttpGet]
-        public ActionResult AddLink(int bookId)
-        {
-            return Add(bookId);
-        }
+        public ActionResult AddLink(int bookId) => this.Add(bookId);
 
         [HttpPost]
         public ActionResult Add(int bookId)
         {
-            BookShopEntities db = new BookShopEntities();
-            var shoppingCart = GetShoppingCart();
-
-            var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
-            if (existingLine != null)
+            using (var db = new BookShopEntities())
             {
-                existingLine.Quantity++;
-            }
-            else
-            {
-                var book = db.Books.First(b => b.Id == bookId);
+                var shoppingCart = this.GetShoppingCart();
 
-                OrderLine newOrderLine = new OrderLine();
-                newOrderLine.Book = book;
-                newOrderLine.Quantity = 1;
-                shoppingCart.AddLineItem(newOrderLine);
-            }
+                var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
+                if (existingLine != null)
+                {
+                    existingLine.Quantity++;
+                }
+                else
+                {
+                    var book = db.Books.First(b => b.Id == bookId);
 
-            ViewData.Model = shoppingCart;
-            return RedirectToAction("Index");
+                    OrderLine newOrderLine = new OrderLine();
+                    newOrderLine.Book = book;
+                    newOrderLine.Quantity = 1;
+                    shoppingCart.AddLineItem(newOrderLine);
+                }
+
+                this.ViewData.Model = shoppingCart;
+                return this.RedirectToAction("Index");
+            }
         }
 
         [HttpGet]
         public ActionResult DeleteItem(int id)
         {
-            var shoppingCart = GetShoppingCart();
+            var shoppingCart = this.GetShoppingCart();
             shoppingCart.RemoveLineItem(id);
 
-            ViewData.Model = shoppingCart;
-            return RedirectToAction("Index");
-        }
-
-        public class EditArguments
-        {
-            public int BookId { get; set; }
-            [Range(0, 10)]
-            public int Quantity { get; set; }
+            this.ViewData.Model = shoppingCart;
+            return this.RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateInput(true)]
         public ActionResult Edit(EditArguments editArgs)
         {
-            if (!ModelState.IsValid)
-                return Index();
-
-            var shoppingCart = GetShoppingCart();
-            int bookId = editArgs.BookId;
-            int quantity = editArgs.Quantity;
-
-            if (quantity > 0)
+            if (this.ModelState.IsValid)
             {
-                var existingLine = shoppingCart.Lines.Single(l => l.Book.Id == bookId);
-                existingLine.Quantity = quantity;
+                var shoppingCart = this.GetShoppingCart();
+                int bookId = editArgs.BookId;
+                int quantity = editArgs.Quantity;
+
+                if (quantity > 0)
+                {
+                    var existingLine = shoppingCart.Lines.Single(l => l.Book.Id == bookId);
+                    existingLine.Quantity = quantity;
+                }
+                else
+                {
+                    shoppingCart.RemoveLineItem(bookId);
+                }
+
+                return this.RedirectToAction("Index");
             }
             else
-                shoppingCart.RemoveLineItem(bookId);
-
-            return RedirectToAction("Index");
+            {
+                return this.Index();
+            }
         }
 
-        public const string CART_SESSION_KEY = "CART";
         private ShoppingCart GetShoppingCart()
         {
             var shoppingCart = (ShoppingCart)HttpContext.Session[CART_SESSION_KEY];
@@ -96,5 +96,12 @@ namespace BookShop.Controllers
             return shoppingCart;
         }
 
+        public class EditArguments
+        {
+            public int BookId { get; set; }
+
+            [Range(0, 10)]
+            public int Quantity { get; set; }
+        }
     }
 }
