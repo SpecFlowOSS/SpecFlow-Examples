@@ -9,9 +9,10 @@
 
 using System;
 using System.ComponentModel;
-using System.Data.EntityClient;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
@@ -19,8 +20,8 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Books", "Book", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BookShop.Models.Book), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
-[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Orders", "Orders", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(BookShop.Models.Order), "OrderLines", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
+[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Books", "Book", RelationshipMultiplicity.One, typeof(BookShop.Models.Book), "OrderLines", RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
+[assembly: EdmRelationshipAttribute("BookShopModel", "FK_OrderLines_Orders", "Orders", RelationshipMultiplicity.One, typeof(BookShop.Models.Order), "OrderLines", RelationshipMultiplicity.Many, typeof(BookShop.Models.OrderLine), true)]
 
 #endregion
 

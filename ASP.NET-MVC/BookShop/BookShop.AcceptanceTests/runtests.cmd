@@ -1,6 +1,6 @@
 @pushd %~dp0
 
-%windir%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe "BookShop.AcceptanceTests.csproj"
+%windir%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ""
 
 @if ERRORLEVEL 1 goto end
 

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
-using BookShop.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TechTalk.SpecFlow;
-
-namespace BookShop.AcceptanceTests.StepDefinitions
+﻿namespace BookShop.AcceptanceTests.StepDefinitions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using BookShop.AcceptanceTests.Support;
+    using BookShop.Controllers;
+    using BookShop.Models;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using TechTalk.SpecFlow;
+    using System.Web.Mvc;
+
     [Binding]
     public class BookSteps
     {
@@ -18,32 +18,35 @@ namespace BookShop.AcceptanceTests.StepDefinitions
 
         private readonly CatalogContext _catalogContext;
 
+        private ActionResult actionResult;
+
         public BookSteps(CatalogContext catalogContext)
         {
-            _catalogContext = catalogContext;
+            this._catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }
 
         [Given(@"the following books")]
         public void GivenTheFollowingBooks(Table givenBooks)
         {
-            var db = new BookShopEntities();
-            foreach (var row in givenBooks.Rows)
+            using (var db = new BookShopEntities())
             {
-                Book book = new Book { Author = row["Author"], Title = row["Title"] };
-                if (givenBooks.Header.Contains("Price"))
-                    book.Price = Convert.ToDecimal(row["Price"]);
-                else
-                    book.Price = _bookDefaultPrice;
-                if (givenBooks.Header.Contains("Id"))
-                    _catalogContext.ReferenceBooks.Add(row["Id"], book);
-                else
-                    _catalogContext.ReferenceBooks.Add(book.Title, book);
-                db.AddToBooks(book);
-            }
-            db.SaveChanges();
-        }
+                foreach (var row in givenBooks.Rows)
+                {
+                    Book book = new Book { Author = row["Author"], Title = row["Title"] };
+                    book.Price = givenBooks.Header.Contains("Price")
+                               ? Convert.ToDecimal(row["Price"])
+                               : _bookDefaultPrice;
 
-        private ActionResult actionResult;
+                    this._catalogContext.ReferenceBooks.Add(
+                        givenBooks.Header.Contains("Id") ? row["Id"] : book.Title,
+                        book);
+
+                    db.AddToBooks(book);
+                }
+
+                db.SaveChanges();
+            }
+        }
 
         [When(@"I open the details of '(.*)'")]
         public void WhenIOpenTheDetailsOfBook(string bookId)

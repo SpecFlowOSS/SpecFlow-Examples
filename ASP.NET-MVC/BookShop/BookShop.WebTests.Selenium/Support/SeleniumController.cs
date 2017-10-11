@@ -1,59 +1,55 @@
-﻿using System;
-using System.Configuration;
-using System.Diagnostics;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-
-namespace BookShop.WebTests.Selenium.Support
+﻿namespace BookShop.WebTests.Selenium.Support
 {
+    using System;
+    using System.Configuration;
+    using System.Diagnostics;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Firefox;
+    using OpenQA.Selenium.IE;
+
+
     public class SeleniumController
     {
+        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
         public static SeleniumController Instance = new SeleniumController();
 
         public IWebDriver Selenium { get; private set; }
 
-        private void Trace(string message)
-        {
-            Console.WriteLine("-> {0}", message);
-        }
-
-        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
-
         public void Start()
         {
-            if (Selenium != null)
-                return;
+            if (this.Selenium is null)
+            {
+                var appUrl = ConfigurationManager.AppSettings["AppUrl"];
 
-            var appUrl = ConfigurationManager.AppSettings["AppUrl"];
+                this.Selenium = new FirefoxDriver();
+                //// this.Selenium = new InternetExplorerDriver();
+                this.Selenium.Manage().Timeouts().ImplicitWait = DefaultTimeout;
 
-            Selenium = new FirefoxDriver();
-            // Selenium = new InternetExplorerDriver();
-            Selenium.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
-
-//            Selenium = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);
-//            Selenium.Start();
-            Trace("Selenium started");
+                ////Selenium = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);
+                ////Selenium.Start();
+                this.Trace("Selenium started");
+            }
         }
 
         public void Stop()
         {
-            if (Selenium == null)
-                return;
-
-            try
+            if (!(this.Selenium is null))
             {
-                Selenium.Quit();
-                Selenium.Dispose();
+                try
+                {
+                    this.Selenium.Quit();
+                    this.Selenium.Dispose();
+                }
+                catch (Exception exc)
+                {
+                    Debug.WriteLine(exc, "Selenium stop error");
+                }
 
-                //Selenium.Stop();
+                this.Selenium = null;
+                this.Trace("Selenium stopped");
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex, "Selenium stop error");
-            }
-            Selenium = null;
-            Trace("Selenium stopped");
         }
+
+        private void Trace(string message) => Console.WriteLine("-> {0}", message);
     }
 }
