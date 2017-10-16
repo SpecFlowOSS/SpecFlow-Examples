@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bowling", "Bowling\Bowling.vbproj", "{2D20C525-197E-43CA-9301-D2DA66DC9442}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Specs", "Specs\Specs.vbproj", "{EE1AF00F-FEFF-4F71-B432-B1CBE0F99E24}"
@@ -22,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48E95F14-D7F5-455A-B2B7-9BEFE2EC5276}
 	EndGlobalSection
 EndGlobal

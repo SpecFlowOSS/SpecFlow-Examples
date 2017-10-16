@@ -1,10 +1,10 @@
-﻿using Xunit;
-using TechTalk.SpecFlow;
-
-namespace Bowling.Specflow
+﻿namespace Bowling.Specflow
 {
+    using TechTalk.SpecFlow;
+    using Xunit;
+
     [Binding]
-    public class BowlingSteps
+    public class ScoreCalculationAlternativeFormsSteps
     {
         private Game _game;
 
@@ -51,15 +51,15 @@ namespace Bowling.Specflow
             _game.Roll(pins2);
         }
 
-//        [When(@"(\d+) times I roll (\d+) and (\d+)")]
-//        public void WhenIRollSeveralTimes(int rollCount, int pins1, int pins2)
-//        {
-//            for (int i = 0; i < rollCount; i++)
-//            {
-//                _game.Roll(pins1);
-//                _game.Roll(pins2);
-//            }
-//        }
+        //        [When(@"(\d+) times I roll (\d+) and (\d+)")]
+        //        public void WhenIRollSeveralTimes(int rollCount, int pins1, int pins2)
+        //        {
+        //            for (int i = 0; i < rollCount; i++)
+        //            {
+        //                _game.Roll(pins1);
+        //                _game.Roll(pins2);
+        //            }
+        //        }
 
         [When(@"I roll (\d+) times (\d+) and (\d+)")]
         public void WhenIRollSeveralTimes2(int rollCount, int pins1, int pins2)
@@ -90,3 +90,4 @@ namespace Bowling.Specflow
         }
     }
 }
+
