@@ -1,5 +1,4 @@
-﻿
-using Xunit;
+﻿using Xunit;
 using TechTalk.SpecFlow;
 
 namespace Bowling.Specflow
