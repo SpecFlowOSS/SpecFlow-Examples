@@ -4,5 +4,5 @@
 	I want to have an option to plug in custom conversions
 
 Scenario: Use english as feature language but numbers and dates have Austrian format
-	Given I have entered 1.050,1 into the system
+	Given I have entered 1050,1 into the system
 	And the date is 22.12.2010

@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Examples.StepArgumentTransformation", "SpecFlow.Examples.StepArgumentTransformation.csproj", "{10F05D58-2CE4-40EA-BFAF-92F8F6D1F14C}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Examples.StepArgumentTransformation", "SpecFlow.Examples.StepArgumentTransformation\SpecFlow.Examples.StepArgumentTransformation.csproj", "{10F05D58-2CE4-40EA-BFAF-92F8F6D1F14C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E455D33A-DD04-4EB8-BA28-301ADE3F55D5}
 	EndGlobalSection
 EndGlobal
