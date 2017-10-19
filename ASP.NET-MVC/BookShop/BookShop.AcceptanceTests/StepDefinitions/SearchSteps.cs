@@ -11,26 +11,26 @@ namespace BookShop.AcceptanceTests.StepDefinitions
 
         public SearchSteps(SearchDriver searchDriver, SearchResultDriver searchResultDriver)
         {
-            this._searchDriver = searchDriver;
-            this._searchResultDriver = searchResultDriver;
+            _searchDriver = searchDriver;
+            _searchResultDriver = searchResultDriver;
         }
 
         [When(@"I search for books by the phrase '(.*)'")]
         public void WhenISearchForBooksByThePhrase(string searchTerm)
         {
-            this._searchDriver.Search(searchTerm);
+            _searchDriver.Search(searchTerm);
         }
 
         [Then(@"the list of found books should contain only: (.*)")]
         public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
-            this._searchResultDriver.ShowsBooks(expectedTitleList);    
+            _searchResultDriver.ShowsBooks(expectedTitleList);    
         }
 
         [Then(@"the list of found books should be:")]
         public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
         {
-            this._searchResultDriver.ShowsBooks(expectedBooks);
+            _searchResultDriver.ShowsBooks(expectedBooks);
         }
 
     }

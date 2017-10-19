@@ -17,26 +17,26 @@ namespace BookShop.AcceptanceTests.Drivers.Home
         {
             using (var controller = new HomeController())
             {
-                this._result = controller.Index();
+                _result = controller.Index();
             }
         }
 
         public void ShowsBook(string expectedTitle)
         {
-            var shownBooks = this._result.Model<List<Book>>();
+            var shownBooks = _result.Model<List<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitle);
         }
 
         public void ShowsBooks(string expectedTitles)
-            => this.ShowsBooks(from t in expectedTitles.Split(',')
+            => ShowsBooks(from t in expectedTitles.Split(',')
                                select t.Trim().Trim('\''));
 
         public void ShowsBooks(Table expectedBooks)
-            => this.ShowsBooks(expectedBooks.Rows.Select(r => r["Title"]));
+            => ShowsBooks(expectedBooks.Rows.Select(r => r["Title"]));
 
         public void ShowsBooks(IEnumerable<string> expectedTitles)
         {
-            var shownBooks = this._result.Model<List<Book>>();
+            var shownBooks = _result.Model<List<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
         }
     }

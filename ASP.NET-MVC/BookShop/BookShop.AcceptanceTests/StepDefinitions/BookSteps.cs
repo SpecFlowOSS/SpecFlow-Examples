@@ -10,25 +10,25 @@ namespace BookShop.AcceptanceTests.StepDefinitions
 
         public BookSteps(BookDetailsDriver driver)
         {
-            this._driver = driver;
+            _driver = driver;
         }
 
         [Given(@"the following books")]
         public void GivenTheFollowingBooks(Table givenBooks)
         {
-            this._driver.AddToDatabase(givenBooks);
+            _driver.AddToDatabase(givenBooks);
         }
 
         [When(@"I open the details of '(.*)'")]
         public void WhenIOpenTheDetailsOfBook(string bookId)
         {
-            this._driver.OpenBookDetails(bookId);
+            _driver.OpenBookDetails(bookId);
         }
 
         [Then(@"the book details should show")]
         public void ThenTheBookDetailsShouldShow(Table expectedBookDetails)
         {
-            this._driver.ShowsBookDetails(expectedBookDetails);
+            _driver.ShowsBookDetails(expectedBookDetails);
         }
     }
 }

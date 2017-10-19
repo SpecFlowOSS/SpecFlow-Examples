@@ -12,7 +12,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public ShoppingCartDriver(CatalogContext catalogContext)
         {
-            this._catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
+            _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
         }
 
         public void SetShoppingCart(string bookIds)
@@ -20,7 +20,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             foreach (var bookId in from i in bookIds.Split(',')
                                    select i.Trim().Trim('\''))
             {
-                this.Place(bookId);
+                Place(bookId);
             }
         }
 
@@ -44,7 +44,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public void SetQuantity(string bookId, int quantity)
         {
-            var book = this._catalogContext.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
             using (var controller = GetShoppingCartController())
             {
                 controller.Edit(new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity });

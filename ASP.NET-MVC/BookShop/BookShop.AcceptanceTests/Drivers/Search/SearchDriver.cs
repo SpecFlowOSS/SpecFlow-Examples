@@ -8,13 +8,13 @@ namespace BookShop.AcceptanceTests.Drivers.Search
 
         public SearchDriver(SearchResultState state)
         {
-            this._state = state;
+            _state = state;
         }
 
         public void Search(string term)
         {
             var controller = new CatalogController();
-            this._state.ActionResult = controller.Search(term);
+            _state.ActionResult = controller.Search(term);
         }
     }
 }

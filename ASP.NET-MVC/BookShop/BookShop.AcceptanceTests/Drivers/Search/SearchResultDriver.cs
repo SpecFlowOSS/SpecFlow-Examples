@@ -13,12 +13,12 @@ namespace BookShop.AcceptanceTests.Drivers.Search
 
         public SearchResultDriver(SearchResultState state)
         {
-            this._state = state;
+            _state = state;
         }
 
         public void ShowsBooks(string expectedTitlesString)
         {
-            var shownBooks = this._state.ActionResult.Model<List<Book>>();
+            var shownBooks = _state.ActionResult.Model<List<Book>>();
             var expectedTitles = from t in expectedTitlesString.Split(',')
                                  select t.Trim().Trim('\'');
 
@@ -27,7 +27,7 @@ namespace BookShop.AcceptanceTests.Drivers.Search
 
         public void ShowsBooks(Table expectedBooks)
         {
-            var foundBooks = this._state.ActionResult.Model<List<Book>>();
+            var foundBooks = _state.ActionResult.Model<List<Book>>();
             var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
             BookAssertions.FoundBooksShouldMatchTitlesInOrder(foundBooks, expectedTitles);
         }

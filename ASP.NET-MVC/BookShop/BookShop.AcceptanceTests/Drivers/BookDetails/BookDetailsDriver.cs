@@ -18,7 +18,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
 
         public BookDetailsDriver(CatalogContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public void AddToDatabase(Table books)
@@ -36,7 +36,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
                             : BookDefaultPrice
                     };
 
-                    this._context.ReferenceBooks.Add(
+                    _context.ReferenceBooks.Add(
                         books.Header.Contains("Id") ? row["Id"] : book.Title,
                         book);
 
@@ -49,16 +49,16 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
 
         public void OpenBookDetails(string bookId)
         {
-            var book = this._context.ReferenceBooks.GetById(bookId);
+            var book = _context.ReferenceBooks.GetById(bookId);
             using (var controller = new CatalogController())
             {
-                this._result = controller.Details(book.Id);
+                _result = controller.Details(book.Id);
             }
         }
 
         public void ShowsBookDetails(Table expectedBookDetails)
         {
-            var shownBookDetails = this._result.Model<Book>();
+            var shownBookDetails = _result.Model<Book>();
 
             var row = expectedBookDetails.Rows.Single();
             Assert.AreEqual(row["Author"], shownBookDetails.Author, "Book details don't show expected author.");

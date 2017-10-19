@@ -11,31 +11,31 @@ namespace BookShop.AcceptanceTests.StepDefinitions
 
         public HomeSteps(HomeDriver driver)
         {
-            this._homeDriver = driver ?? throw new ArgumentNullException(nameof(driver));
+            _homeDriver = driver ?? throw new ArgumentNullException(nameof(driver));
         }
 
         [When(@"I enter the shop")]
         public void WhenIEnterTheShop()
         {
-            this._homeDriver.Navigate();
+            _homeDriver.Navigate();
         }
 
         [Then(@"the home screen should show the book '(.*)'")]
         public void ThenTheHomeScreenShouldShowTheBook(string expectedTitle)
         {
-            this._homeDriver.ShowsBook(expectedTitle);
+            _homeDriver.ShowsBook(expectedTitle);
         }
 
         [Then(@"the home screen should show the books (.*)")]
         public void ThenTheHomeScreenShouldShowTheBooks(string expectedTitleList)
         {
-            this._homeDriver.ShowsBooks(expectedTitleList);
+            _homeDriver.ShowsBooks(expectedTitleList);
         }
 
         [Then(@"the home screen should show the following books")]
         public void ThenTheHomeScreenShouldShowTheFollowingBooks(Table expectedBooks)
         {
-            this._homeDriver.ShowsBooks(expectedBooks);
+            _homeDriver.ShowsBooks(expectedBooks);
          }
 
     }
