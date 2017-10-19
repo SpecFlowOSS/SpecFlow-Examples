@@ -124,7 +124,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrepareBookCatalog.feature.cs">
+    <Compile Include="Drivers\BookDetails\BookDetailsDriver.cs" />
+    <Compile Include="Drivers\Home\HomeDriver.cs" />
+    <Compile Include="Drivers\Search\SearchDriver.cs" />
+    <Compile Include="Drivers\Search\SearchResultDriver.cs" />
+    <Compile Include="Drivers\Search\SearchResultState.cs" />
+    <Compile Include="Drivers\ShoppingCart\ShoppingCartDriver.cs" />
+    <Compile Include="Features\PrepareBookCatalog.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PrepareBookCatalog.feature</DependentUpon>
@@ -134,12 +140,12 @@
     <Compile Include="Support\CatalogContext.cs" />
     <Compile Include="Support\HttpContextStub.cs" />
     <Compile Include="Support\ReferenceBookList.cs" />
-    <Compile Include="US02_HomeScreen.feature.cs">
+    <Compile Include="Features\US02_HomeScreen.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>US02_HomeScreen.feature</DependentUpon>
     </Compile>
-    <Compile Include="US03_ShopingCart.feature.cs">
+    <Compile Include="Features\US03_ShopingCart.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>US03_ShopingCart.feature</DependentUpon>
@@ -148,13 +154,13 @@
     <Compile Include="StepDefinitions\SearchSteps.cs" />
     <Compile Include="Support\ActionResultExtensions.cs" />
     <Compile Include="Support\DatabaseTools.cs" />
-    <Compile Include="US01_BookSearch.feature.cs">
+    <Compile Include="Features\US01_BookSearch.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>US01_BookSearch.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="US04_BookDetails.feature.cs">
+    <Compile Include="Features\US04_BookDetails.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>US04_BookDetails.feature</DependentUpon>
@@ -165,7 +171,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="PrepareBookCatalog.feature">
+    <None Include="Features\PrepareBookCatalog.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PrepareBookCatalog.feature.cs</LastGenOutput>
     </None>
@@ -176,22 +182,22 @@
     <None Include="SpecRunTestProfile_2011_09.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="US02_HomeScreen.feature">
+    <None Include="Features\US02_HomeScreen.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US02_HomeScreen.feature.cs</LastGenOutput>
     </None>
-    <None Include="US03_ShopingCart.feature">
+    <None Include="Features\US03_ShopingCart.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US03_ShopingCart.feature.cs</LastGenOutput>
     </None>
-    <None Include="US01_BookSearch.feature">
+    <None Include="Features\US01_BookSearch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US01_BookSearch.feature.cs</LastGenOutput>
     </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="US04_BookDetails.feature">
+    <None Include="Features\US04_BookDetails.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>US04_BookDetails.feature.cs</LastGenOutput>
     </None>
@@ -232,6 +238,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.Firefox.WebDriver.0.19.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\packages\Selenium.Firefox.WebDriver.0.19.0\build\Selenium.Firefox.WebDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,52 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BookShop.AcceptanceTests.Drivers.Search;
 using TechTalk.SpecFlow;
-
-using BookShop.AcceptanceTests.Common;
-using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
-using BookShop.Models;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
 {
     [Binding]
     public class SearchSteps
     {
-        private ActionResult actionResult;
+        private readonly SearchDriver _searchDriver;
+        private readonly SearchResultDriver _searchResultDriver;
 
-        [When(@"A step definition without usage")]
-        public void AStepDefinitionWithoutUsage()
-        { 
+        public SearchSteps(SearchDriver searchDriver, SearchResultDriver searchResultDriver)
+        {
+            this._searchDriver = searchDriver;
+            this._searchResultDriver = searchResultDriver;
         }
 
         [When(@"I search for books by the phrase '(.*)'")]
         public void WhenISearchForBooksByThePhrase(string searchTerm)
         {
-            var controller = new CatalogController();
-            actionResult = controller.Search(searchTerm);
+            this._searchDriver.Search(searchTerm);
         }
 
         [Then(@"the list of found books should contain only: (.*)")]
         public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
-            var foundBooks = actionResult.Model<List<Book>>();
-
-            var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
-
-            BookAssertions.FoundBooksShouldMatchTitles(foundBooks, expectedTitles);       
+            this._searchResultDriver.ShowsBooks(expectedTitleList);    
         }
 
         [Then(@"the list of found books should be:")]
         public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
         {
-            var foundBooks = actionResult.Model<List<Book>>();
-
-            var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
-
-            BookAssertions.FoundBooksShouldMatchTitlesInOrder(foundBooks, expectedTitles);
+            this._searchResultDriver.ShowsBooks(expectedBooks);
         }
 
     }
