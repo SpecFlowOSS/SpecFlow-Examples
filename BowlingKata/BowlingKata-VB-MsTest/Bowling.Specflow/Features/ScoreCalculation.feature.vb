@@ -12,50 +12,68 @@
 '#pragma warning disable
 Imports TechTalk.SpecFlow
 
-Namespace Global.Specs
+Namespace Global.Bowling.Specflow.Features
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0"),  _
      System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     TechTalk.SpecRun.FeatureAttribute("Score Calculation", Description:="  In order to know my performance"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  As a player"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  I want the system to calculat"& _ 
-        "e my total score", SourceFile:="ScoreCalculation.feature", SourceLine:=0)>  _
+     Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()>  _
     Partial Public Class ScoreCalculationFeature
         
-        Private testRunner As TechTalk.SpecFlow.ITestRunner
+        Private Shared testRunner As TechTalk.SpecFlow.ITestRunner
+        
+        Private _testContext As Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
         
 #ExternalSource("ScoreCalculation.feature",1)
 #End ExternalSource
         
-        <TechTalk.SpecRun.FeatureInitialize()>  _
-        Public Overridable Sub FeatureSetup()
-            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner
+        Public Overridable Property TestContext() As Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+            Get
+                Return Me._testContext
+            End Get
+            Set
+                Me._testContext = value
+            End Set
+        End Property
+        
+        <Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()>  _
+        Public Shared Sub FeatureSetup(ByVal testContext As Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+            testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(Nothing, 0)
             Dim featureInfo As TechTalk.SpecFlow.FeatureInfo = New TechTalk.SpecFlow.FeatureInfo(New System.Globalization.CultureInfo("en-US"), "Score Calculation", "  In order to know my performance"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  As a player"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  I want the system to calculat"& _ 
                     "e my total score", ProgrammingLanguage.VB, CType(Nothing,String()))
             testRunner.OnFeatureStart(featureInfo)
         End Sub
         
-        <TechTalk.SpecRun.FeatureCleanup()>  _
-        Public Overridable Sub FeatureTearDown()
+        <Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute()>  _
+        Public Shared Sub FeatureTearDown()
             testRunner.OnFeatureEnd
             testRunner = Nothing
         End Sub
         
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute()>  _
         Public Overridable Sub TestInitialize()
+            If ((Not (testRunner.FeatureContext) Is Nothing)  _
+                        AndAlso (testRunner.FeatureContext.FeatureInfo.Title <> "Score Calculation")) Then
+                Global.Bowling.Specflow.Features.ScoreCalculationFeature.FeatureSetup(Nothing)
+            End If
         End Sub
         
-        <TechTalk.SpecRun.ScenarioCleanup()>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute()>  _
         Public Overridable Sub ScenarioTearDown()
             testRunner.OnScenarioEnd
         End Sub
         
         Public Overridable Sub ScenarioSetup(ByVal scenarioInfo As TechTalk.SpecFlow.ScenarioInfo)
             testRunner.OnScenarioStart(scenarioInfo)
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs(Of Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)(TestContext)
         End Sub
         
         Public Overridable Sub ScenarioCleanup()
             testRunner.CollectScenarioErrors
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("Gutter game", SourceLine:=5)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Gutter game"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub GutterGame()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("Gutter game", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",6)
@@ -73,7 +91,9 @@ Me.ScenarioSetup(scenarioInfo)
             Me.ScenarioCleanup
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("Beginners game", SourceLine:=10)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Beginners game"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub BeginnersGame()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("Beginners game", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",11)
@@ -97,7 +117,9 @@ Me.ScenarioSetup(scenarioInfo)
             Me.ScenarioCleanup
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("Another beginners game", SourceLine:=17)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Another beginners game"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub AnotherBeginnersGame()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("Another beginners game", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",18)
@@ -115,7 +137,9 @@ Me.ScenarioSetup(scenarioInfo)
             Me.ScenarioCleanup
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("All Strikes", SourceLine:=22)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("All Strikes"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub AllStrikes()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("All Strikes", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",23)
@@ -133,7 +157,9 @@ Me.ScenarioSetup(scenarioInfo)
             Me.ScenarioCleanup
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("One single spare", SourceLine:=27)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("One single spare"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub OneSingleSpare()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("One single spare", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",28)
@@ -151,7 +177,9 @@ Me.ScenarioSetup(scenarioInfo)
             Me.ScenarioCleanup
         End Sub
         
-        <TechTalk.SpecRun.ScenarioAttribute("All spares", SourceLine:=32)>  _
+        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("All spares"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Score Calculation")>  _
         Public Overridable Sub AllSpares()
             Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("All spares", CType(Nothing,String()))
 #ExternalSource("ScoreCalculation.feature",33)
@@ -170,11 +198,6 @@ Me.ScenarioSetup(scenarioInfo)
   testRunner.Then("my total score should be 110", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Then ")
 #End ExternalSource
             Me.ScenarioCleanup
-        End Sub
-        
-        <TechTalk.SpecRun.TestRunCleanup()>  _
-        Public Overridable Sub TestRunCleanup()
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner.OnTestRunEnd
         End Sub
     End Class
 End Namespace

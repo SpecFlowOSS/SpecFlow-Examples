@@ -1,92 +1,70 @@
-﻿using Xunit;
+﻿using Bowling.Specflow.Drivers;
 using TechTalk.SpecFlow;
 
-namespace Bowling.Specflow
+namespace Bowling.Specflow.StepDefinitions
 {
     [Binding]
     public class BowlingSteps
     {
-        private Game _game;
+        private readonly BowlingDriver _driver;
+
+        public BowlingSteps(BowlingDriver driver)
+        {
+            _driver = driver;
+        }
 
         [Given(@"a new bowling game")]
         public void GivenANewBowlingGame()
         {
-            _game = new Game();
+            _driver.NewGame();
         }
 
         [When(@"all of my balls are landing in the gutter")]
         public void WhenAllOfMyBallsAreLandingInTheGutter()
         {
-            for (int i = 0; i < 20; i++)
-            {
-                _game.Roll(0);
-            }
+            _driver.Roll(0, 20);
         }
 
         [When(@"all of my rolls are strikes")]
         public void WhenAllOfMyRollsAreStrikes()
         {
-            for (int i = 0; i < 12; i++)
-            {
-                _game.Roll(10);
-            }
+            _driver.Roll(10, 12);
         }
 
         [Then(@"my total score should be (\d+)")]
         public void ThenMyTotalScoreShouldBe(int score)
         {
-            Assert.Equal(score, _game.Score);
+            _driver.CheckScore(score);
         }
 
         [When(@"I roll (\d+)")]
         public void WhenIRoll(int pins)
         {
-            _game.Roll(pins);
+            _driver.Roll(pins, 1);
         }
 
         [When(@"I roll (\d+) and (\d+)")]
         public void WhenIRoll(int pins1, int pins2)
         {
-            _game.Roll(pins1);
-            _game.Roll(pins2);
+            _driver.Roll(pins1, pins2, 1);
         }
-
-//        [When(@"(\d+) times I roll (\d+) and (\d+)")]
-//        public void WhenIRollSeveralTimes(int rollCount, int pins1, int pins2)
-//        {
-//            for (int i = 0; i < rollCount; i++)
-//            {
-//                _game.Roll(pins1);
-//                _game.Roll(pins2);
-//            }
-//        }
 
         [When(@"I roll (\d+) times (\d+) and (\d+)")]
         public void WhenIRollSeveralTimes2(int rollCount, int pins1, int pins2)
         {
-            for (int i = 0; i < rollCount; i++)
-            {
-                _game.Roll(pins1);
-                _game.Roll(pins2);
-            }
+            _driver.Roll(pins1, pins2, rollCount);
         }
 
         [When(@"I roll the following series:(.*)")]
         public void WhenIRollTheFollowingSeries(string series)
         {
-            foreach (var roll in series.Trim().Split(','))
-            {
-                _game.Roll(int.Parse(roll));
-            }
+            _driver.RollSeries(series);
         }
 
         [When(@"I roll")]
         public void WhenIRoll(Table rolls)
         {
-            foreach (var row in rolls.Rows)
-            {
-                _game.Roll(int.Parse(row["Pins"]));
-            }
+            _driver.RollSeries(rolls);
         }
     }
 }

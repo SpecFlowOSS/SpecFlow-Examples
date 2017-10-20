@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Bowling.Specflow
+namespace Bowling.Specflow.Features
 {
     using TechTalk.SpecFlow;
     
