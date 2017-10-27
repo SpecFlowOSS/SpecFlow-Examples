@@ -40,4 +40,4 @@ Scenario: Yet another beginners game
   |	1		|
   |	1		|
   Then my total score should be 43
-  
+                                             

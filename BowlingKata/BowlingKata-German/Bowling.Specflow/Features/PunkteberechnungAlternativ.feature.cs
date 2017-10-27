@@ -10,45 +10,44 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Bowling.Specflow
+namespace Bowling.Specflow.Features
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Score Calculation (alternative forms)")]
-    public partial class ScoreCalculationAlternativeFormsFeature
+    [TechTalk.SpecRun.FeatureAttribute("Punkteberechnung (mit alternativen Definitionen)", Description="    Als Spieler\r\n    Will ich, dass das System meine Punktezahl berechnet\r\n    Da" +
+        "mit ich weiss wie gut ich bin", SourceFile="Features\\PunkteberechnungAlternativ.feature", SourceLine=2)]
+    public partial class PunkteberechnungMitAlternativenDefinitionenFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ScoreCalculationAlternatives.feature"
+#line 1 "PunkteberechnungAlternativ.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
+        [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Score Calculation (alternative forms)", "  In order to know my performance\r\n  As a player\r\n  I want the system to calculat" +
-                    "e my total score", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("de"), "Punkteberechnung (mit alternativen Definitionen)", "    Als Spieler\r\n    Will ich, dass das System meine Punktezahl berechnet\r\n    Da" +
+                    "mit ich weiss wie gut ich bin", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
+        [TechTalk.SpecRun.FeatureCleanup()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
+        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -64,51 +63,48 @@ namespace Bowling.Specflow
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("One single spare")]
-        public virtual void OneSingleSpare()
+        [TechTalk.SpecRun.ScenarioAttribute("Ein einziger Spare", SourceLine=7)]
+        public virtual void EinEinzigerSpare()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One single spare", ((string[])(null)));
-#line 7
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ein einziger Spare", ((string[])(null)));
 #line 8
-  testRunner.Given("a new bowling game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
-  testRunner.When("I roll the following series:\t3,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Given("eine neue Bowling-Partie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Gegeben sei ");
 #line 10
-  testRunner.Then("my total score should be 29", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When("ich folgende Serie werfe: 3,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Wenn ");
+#line 11
+    testRunner.Then("soll meine Punktzahl 29 sein", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dann ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("All spares")]
-        public virtual void AllSpares()
+        [TechTalk.SpecRun.ScenarioAttribute("Nur Spares", SourceLine=12)]
+        public virtual void NurSpares()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("All spares", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Nur Spares", ((string[])(null)));
 #line 13
-  testRunner.Given("a new bowling game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 14
-  testRunner.When("I roll 10 times 1 and 9", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Given("eine neue Bowling-Partie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Gegeben sei ");
 #line 15
-  testRunner.And("I roll 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.When("ich 10 mal 1 und 9 werfe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Wenn ");
 #line 16
-  testRunner.Then("my total score should be 110", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("ich 1 werfe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Und ");
+#line 17
+    testRunner.Then("soll meine Punktzahl 110 sein", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dann ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Yet another beginners game")]
-        public virtual void YetAnotherBeginnersGame()
+        [TechTalk.SpecRun.ScenarioAttribute("Noch ein weiteres Anfänger-Spiel", SourceLine=18)]
+        public virtual void NochEinWeiteresAnfanger_Spiel()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Yet another beginners game", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Noch ein weiteres Anfänger-Spiel", ((string[])(null)));
 #line 19
-  testRunner.Given("a new bowling game", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
+#line 20
+    testRunner.Given("eine neue Bowling-Partie", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Gegeben sei ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Pins"});
@@ -152,12 +148,18 @@ this.ScenarioSetup(scenarioInfo);
                         "1"});
             table1.AddRow(new string[] {
                         "1"});
-#line 20
-  testRunner.When("I roll", ((string)(null)), table1, "When ");
-#line 42
-  testRunner.Then("my total score should be 43", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+    testRunner.When("ich werfe", ((string)(null)), table1, "Wenn ");
+#line 43
+    testRunner.Then("soll meine Punktzahl 43 sein", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Dann ");
 #line hidden
             this.ScenarioCleanup();
+        }
+        
+        [TechTalk.SpecRun.TestRunCleanup()]
+        public virtual void TestRunCleanup()
+        {
+            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
         }
     }
 }
