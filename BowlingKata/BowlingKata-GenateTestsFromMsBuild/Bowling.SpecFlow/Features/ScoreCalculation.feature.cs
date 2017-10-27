@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Bowling.SpecFlow
+namespace Bowling.SpecFlow.Features
 {
     using TechTalk.SpecFlow;
     
@@ -62,7 +62,7 @@ namespace Bowling.SpecFlow
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Score Calculation")))
             {
-                global::Bowling.SpecFlow.ScoreCalculationFeature.FeatureSetup(null);
+                global::Bowling.SpecFlow.Features.ScoreCalculationFeature.FeatureSetup(null);
             }
         }
         

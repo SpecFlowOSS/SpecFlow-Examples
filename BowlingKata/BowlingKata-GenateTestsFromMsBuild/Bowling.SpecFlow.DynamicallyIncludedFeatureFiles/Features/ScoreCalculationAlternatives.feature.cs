@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Bowling.SpecFlow.DynamicallyIncludedFeatureFiles.FeatureFiles
+namespace Bowling.SpecFlow.DynamicallyIncludedFeatureFiles.Features
 {
     using TechTalk.SpecFlow;
     
@@ -62,7 +62,7 @@ namespace Bowling.SpecFlow.DynamicallyIncludedFeatureFiles.FeatureFiles
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "Score Calculation (alternative forms)")))
             {
-                global::Bowling.SpecFlow.DynamicallyIncludedFeatureFiles.FeatureFiles.ScoreCalculationAlternativeFormsFeature.FeatureSetup(null);
+                global::Bowling.SpecFlow.DynamicallyIncludedFeatureFiles.Features.ScoreCalculationAlternativeFormsFeature.FeatureSetup(null);
             }
         }
         
