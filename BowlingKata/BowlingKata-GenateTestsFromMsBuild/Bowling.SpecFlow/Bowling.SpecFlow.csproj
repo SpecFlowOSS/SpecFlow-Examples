@@ -62,29 +62,35 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BowlingSteps.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreCalculation.feature.cs">
+    <Compile Include="Drivers\BowlingDriver.cs" />
+    <Compile Include="Features\ScoreCalculation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculation.feature</DependentUpon>
     </Compile>
-    <Compile Include="ScoreCalculationAlternatives.feature.cs">
+    <Compile Include="Features\ScoreCalculationAlternatives.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculationAlternatives.feature</DependentUpon>
     </Compile>
+    <Compile Include="StepDefinitions\BowlingSteps.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Target Name="AfterUpdateFeatureFilesInProject">
+    <ItemGroup>
+      <None Include="Features\*.feature" />
+    </ItemGroup>
+  </Target>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="ScoreCalculation.feature">
+    <None Include="Features\ScoreCalculation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculation.feature.cs</LastGenOutput>
     </None>
-    <None Include="ScoreCalculationAlternatives.feature">
+    <None Include="Features\ScoreCalculationAlternatives.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculationAlternatives.feature.cs</LastGenOutput>
     </None>
@@ -95,6 +101,7 @@
       <Name>Bowling</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VerboseOutput>true</VerboseOutput>
@@ -107,7 +114,7 @@
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets')" />
-  <!--<Import Project="..\packages\SpecFlow.1.5.0\Tools\TechTalk.SpecFlow.targets" />-->
+  <Import Project="..\packages\SpecFlow.2.2.0\tools\TechTalk.SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.2.2.0\tools\TechTalk.SpecFlow.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

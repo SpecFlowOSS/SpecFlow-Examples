@@ -62,13 +62,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BowlingSteps.cs" />
-    <Compile Include="FeatureFiles\ScoreCalculation.feature.cs">
+    <Compile Include="Drivers\BowlingDriver.cs" />
+    <Compile Include="StepDefinitions\BowlingSteps.cs" />
+    <Compile Include="Features\ScoreCalculation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculation.feature</DependentUpon>
     </Compile>
-    <Compile Include="FeatureFiles\ScoreCalculationAlternatives.feature.cs">
+    <Compile Include="Features\ScoreCalculationAlternatives.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculationAlternatives.feature</DependentUpon>
@@ -76,11 +77,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FeatureFiles\ScoreCalculationAlternatives.feature">
+    <None Include="Features\ScoreCalculationAlternatives.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculationAlternatives.feature.cs</LastGenOutput>
     </None>
-    <None Include="FeatureFiles\ScoreCalculation.feature">
+    <None Include="Features\ScoreCalculation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculation.feature.cs</LastGenOutput>
     </None>
@@ -95,6 +96,7 @@
       <Name>Bowling</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VerboseOutput>true</VerboseOutput>

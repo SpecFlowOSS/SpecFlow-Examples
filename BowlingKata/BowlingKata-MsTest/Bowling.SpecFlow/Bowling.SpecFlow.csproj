@@ -48,21 +48,12 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SpecRun.SpecFlowPlugin, Version=1.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecRun.SpecFlow.2-2-0.1.6.3\lib\net45\SpecRun.SpecFlowPlugin.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="TechTalk.SpecFlow, Version=2.2.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.2.2.1\lib\net45\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="TechTalk.SpecRun, Version=1.6.3.0, Culture=neutral, PublicKeyToken=d0fc5cc18b3b389b, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecRun.SpecFlow.2-2-0.1.6.3\lib\net45\TechTalk.SpecRun.dll</HintPath>
-    </Reference>
-    <Reference Include="TechTalk.SpecRun.Common, Version=1.6.3.0, Culture=neutral, PublicKeyToken=d0fc5cc18b3b389b, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecRun.SpecFlow.2-2-0.1.6.3\lib\net45\TechTalk.SpecRun.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -71,14 +62,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BowlingSteps.cs" />
+    <Compile Include="Drivers\BowlingDriver.cs" />
+    <Compile Include="StepDefinitions\BowlingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoreCalculation.feature.cs">
+    <Compile Include="Features\ScoreCalculation.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculation.feature</DependentUpon>
     </Compile>
-    <Compile Include="ScoreCalculationAlternatives.feature.cs">
+    <Compile Include="Features\ScoreCalculationAlternatives.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScoreCalculationAlternatives.feature</DependentUpon>
@@ -88,24 +80,14 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Default.srprofile">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
-    <None Include="runtests.cmd" />
-    <None Include="ScoreCalculation.feature">
+    <None Include="Features\ScoreCalculation.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculation.feature.cs</LastGenOutput>
     </None>
-    <None Include="ScoreCalculationAlternatives.feature">
+    <None Include="Features\ScoreCalculationAlternatives.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ScoreCalculationAlternatives.feature.cs</LastGenOutput>
-    </None>
-    <None Include="SpecRunTestProfile.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SpecRunTestProfile_2011_09.xsd">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
