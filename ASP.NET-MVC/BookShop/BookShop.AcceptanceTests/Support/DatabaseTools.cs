@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using BookShop.Models;
+﻿using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Support
@@ -11,20 +9,13 @@ namespace BookShop.AcceptanceTests.Support
         [BeforeScenario]
         public void CleanDatabase()
         {
-            var db = new BookShopEntities();
-            foreach (var lineItem in db.OrderLines)
+            using (var db = new DatabaseContext())
             {
-                db.DeleteObject(lineItem);
+                db.OrderLines.RemoveRange(db.OrderLines);
+                db.Orders.RemoveRange(db.Orders);
+                db.Books.RemoveRange(db.Books);
+                db.SaveChanges();
             }
-            foreach (var order in db.Orders)
-            {
-                db.DeleteObject(order);
-            }
-            foreach (var book in db.Books)
-            {
-                db.DeleteObject(book);
-            }
-            db.SaveChanges();
         }
     }
 }

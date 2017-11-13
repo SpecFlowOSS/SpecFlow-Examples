@@ -70,11 +70,11 @@
     <Reference Include="TechTalk.SpecRun.Common, Version=1.6.3.0, Culture=neutral, PublicKeyToken=d0fc5cc18b3b389b, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecRun.SpecFlow.2-2-0.1.6.3\lib\net45\TechTalk.SpecRun.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.6.0\lib\net45\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.7.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.3.6.0\lib\net45\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.7.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +107,9 @@
       <Project>{FDC3F86D-A2E8-443F-8665-6A71DA702123}</Project>
       <Name>BookShop.AcceptanceTests.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bookshop\BookShop.csproj">
-      <Project>{B75CFB7F-0D21-4C39-8550-F1C7BDEEDC50}</Project>
-      <Name>BookShop</Name>
+    <ProjectReference Include="..\BookShop.Mvc\BookShop.Mvc.csproj">
+      <Project>{17c90fe6-7e80-4e6c-9d1b-eadee71e98b6}</Project>
+      <Name>BookShop.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

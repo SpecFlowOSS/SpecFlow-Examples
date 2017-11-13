@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
-using BookShop.Models;
+using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 
@@ -23,7 +23,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
 
         public void AddToDatabase(Table books)
         {
-            using (var db = new BookShopEntities())
+            using (var db = new DatabaseContext())
             {
                 foreach (var row in books.Rows)
                 {
@@ -40,7 +40,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
                         books.Header.Contains("Id") ? row["Id"] : book.Title,
                         book);
 
-                    db.AddToBooks(book);
+                    db.Books.Add(book);
                 }
 
                 db.SaveChanges();

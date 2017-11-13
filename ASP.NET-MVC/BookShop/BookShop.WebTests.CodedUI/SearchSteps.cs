@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BookShop.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
-using BookShop.WebTests.CodedUI.SearchMapClasses;
 using BookShop.WebTests.CodedUI.Support;
-using System;
 using BookShop.AcceptanceTests.Common;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 

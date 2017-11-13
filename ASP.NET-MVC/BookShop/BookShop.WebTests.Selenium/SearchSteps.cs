@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BookShop.Models;
+using BookShop.Mvc.Models;
 using BookShop.WebTests.Selenium.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;

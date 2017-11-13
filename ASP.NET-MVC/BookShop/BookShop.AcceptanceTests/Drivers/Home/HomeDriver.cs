@@ -3,8 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
-using BookShop.Models;
+using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Home

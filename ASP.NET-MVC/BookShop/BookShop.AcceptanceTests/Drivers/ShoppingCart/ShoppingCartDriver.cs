@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
+using BookShop.Mvc.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
@@ -56,7 +56,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var foundItemTypeCount = actionResult.Model<Models.ShoppingCart>().Lines.Count();
+                var foundItemTypeCount = actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Count();
 
                 Assert.AreEqual(
                     expectedAmount,
@@ -70,7 +70,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var shownQuantity = actionResult.Model<Models.ShoppingCart>().Count;
+                int shownQuantity = actionResult.Model<Mvc.Models.ShoppingCart>().Count;
 
                 Assert.AreEqual(
                     expectedQuantity,
@@ -84,7 +84,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var shownTotalPrice = actionResult.Model<Models.ShoppingCart>().Price;
+                var shownTotalPrice = actionResult.Model<Mvc.Models.ShoppingCart>().Price;
 
                 Assert.AreEqual(
                     expectedTotalPrice,
@@ -100,7 +100,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var line = actionResult.Model<Models.ShoppingCart>()
+                var line = actionResult.Model<Mvc.Models.ShoppingCart>()
                                        .Lines
                                        .FirstOrDefault(l => l.Book.Id == expectedBook.Id);
 

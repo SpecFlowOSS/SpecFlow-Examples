@@ -2,7 +2,7 @@
 using System.Linq;
 using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
-using BookShop.Models;
+using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Search

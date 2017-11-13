@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using BookShop.Models;
+using BookShop.Mvc.Models;
 using BookShop.WebTests.Selenium.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -32,14 +30,14 @@ namespace BookShop.WebTests.Selenium
 
             foreach (var tableRow in table.Rows)
             {
-                var author = tableRow["Author"];
-                var title = tableRow["Title"];
+                string author = tableRow["Author"];
+                string title = tableRow["Title"];
 
                 var book = new Book { Author = author, Title = title };
                 expectedBookList.Add(book);
             }
 
-            var itemCount = selenium.FindElements(By.XPath("//table[@id='searchResultTable']/tbody/tr")).Count();
+            int itemCount = selenium.FindElements(By.XPath("//table[@id='searchResultTable']/tbody/tr")).Count;
             var resultBookList = new List<Book>();
             const int headerCount = 0;
             for (int i = headerCount + 1; i <= itemCount; i++)
