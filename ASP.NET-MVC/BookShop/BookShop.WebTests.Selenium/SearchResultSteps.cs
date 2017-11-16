@@ -2,7 +2,7 @@
 using System.Linq;
 using BookShop.Mvc.Models;
 using BookShop.WebTests.Selenium.Support;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
@@ -26,16 +26,10 @@ namespace BookShop.WebTests.Selenium
         [Then(@"the search result list should display the books in the following order")]
         public void ThenTheSearchResultListShouldDisplayTheBooksInTheFollowingOrder(Table table)
         {
-            var expectedBookList = new List<Book>();
-
-            foreach (var tableRow in table.Rows)
-            {
-                string author = tableRow["Author"];
-                string title = tableRow["Title"];
-
-                var book = new Book { Author = author, Title = title };
-                expectedBookList.Add(book);
-            }
+            var expectedBookList = (from tableRow in table.Rows
+                                    let author = tableRow["Author"]
+                                    let title = tableRow["Title"]
+                                    select new Book {Author = author, Title = title}).ToList();
 
             int itemCount = selenium.FindElements(By.XPath("//table[@id='searchResultTable']/tbody/tr")).Count;
             var resultBookList = new List<Book>();
@@ -47,10 +41,7 @@ namespace BookShop.WebTests.Selenium
                 resultBookList.Add(new Book { Title = title, Author = author });
             }
 
-            var expextedTitleList = expectedBookList.Select(ebl => ebl.Title).ToList();
-            var resultTitleList = resultBookList.Select(ral => ral.Title).ToList();
-
-            CollectionAssert.AreEqual(expextedTitleList, resultTitleList);
+            expectedBookList.Select(b => b.Title).Should().Equal(resultBookList.Select(b => b.Title));
         }
     }
 }

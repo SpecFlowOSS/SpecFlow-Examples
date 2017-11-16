@@ -23,7 +23,7 @@ namespace BookShop.AcceptanceTests.Drivers.Home
 
         public void ShowsBook(string expectedTitle)
         {
-            var shownBooks = _result.Model<List<Book>>();
+            var shownBooks = _result.Model<IEnumerable<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitle);
         }
 
@@ -36,7 +36,7 @@ namespace BookShop.AcceptanceTests.Drivers.Home
 
         public void ShowsBooks(IEnumerable<string> expectedTitles)
         {
-            var shownBooks = _result.Model<List<Book>>();
+            var shownBooks = _result.Model<IEnumerable<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
         }
     }

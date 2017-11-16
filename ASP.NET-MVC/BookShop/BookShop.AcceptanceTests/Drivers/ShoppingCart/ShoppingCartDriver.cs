@@ -2,7 +2,7 @@
 using System.Linq;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 
 namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 {
@@ -17,8 +17,8 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public void SetShoppingCart(string bookIds)
         {
-            foreach (var bookId in from i in bookIds.Split(',')
-                                   select i.Trim().Trim('\''))
+            foreach (string bookId in from i in bookIds.Split(',')
+                                      select i.Trim().Trim('\''))
             {
                 Place(bookId);
             }
@@ -56,12 +56,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var foundItemTypeCount = actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Count();
-
-                Assert.AreEqual(
-                    expectedAmount,
-                    foundItemTypeCount,
-                    "The shopping cart does not contain the expected number of item types.");
+                actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Should().HaveCount(expectedAmount);
             }
         }
 
@@ -70,12 +65,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                int shownQuantity = actionResult.Model<Mvc.Models.ShoppingCart>().Count;
-
-                Assert.AreEqual(
-                    expectedQuantity,
-                    shownQuantity,
-                    "The shopping cart does not contain the expected total quantity of books.");
+                actionResult.Model<Mvc.Models.ShoppingCart>().Count.Should().Be(expectedQuantity);
             }
         }
 
@@ -84,12 +74,8 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var shownTotalPrice = actionResult.Model<Mvc.Models.ShoppingCart>().Price;
 
-                Assert.AreEqual(
-                    expectedTotalPrice,
-                    shownTotalPrice,
-                    "The shopping cart does not contain the expected total price of books.");
+                actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
             }
         }
 
@@ -100,15 +86,10 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-                var line = actionResult.Model<Mvc.Models.ShoppingCart>()
-                                       .Lines
-                                       .FirstOrDefault(l => l.Book.Id == expectedBook.Id);
 
-                Assert.IsNotNull(line, "The shopping cart does not contain the expected book.");
-                Assert.AreEqual(
-                    expectedQuantity,
-                    line.Quantity,
-                    "The shopping cart does not contain the expected quantity of the book.");
+                actionResult.Model<Mvc.Models.ShoppingCart>().Lines
+                            .Should().ContainSingle(ol => ol.Book.Id == expectedBook.Id)
+                            .Which.Quantity.Should().Be(expectedQuantity);
             }
         }
 

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.BookDetails
@@ -59,11 +59,12 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
         public void ShowsBookDetails(Table expectedBookDetails)
         {
             var shownBookDetails = _result.Model<Book>();
-
             var row = expectedBookDetails.Rows.Single();
-            Assert.AreEqual(row["Author"], shownBookDetails.Author, "Book details don't show expected author.");
-            Assert.AreEqual(row["Title"], shownBookDetails.Title, "Book details don't show expected title.");
-            Assert.AreEqual(Convert.ToDecimal(row["Price"]), shownBookDetails.Price, "Book details don't show expected price.");
+            
+            shownBookDetails.Should().Match<Book>(
+                b => b.Title == row["Title"]
+                && b.Author == row["Author"]
+                && b.Price == decimal.Parse(row["Price"]));
         }
     }
 }

@@ -8,23 +8,22 @@ namespace BookShop.WebTests.CodedUI.Support
 {
     public class CodedUIController
     {
+        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
+
         public static CodedUIController Instance = new CodedUIController();
 
         public SearchMap Map { get; private set; }
 
-        private void Trace(string message)
+        private static void Trace(string message)
         {
             Console.WriteLine("-> {0}", message);
         }
 
-        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
-
         public void Start()
         {
-            if (Map != null)
-                return;
+            if (Map != null) return;
 
-            var appUrl = ConfigurationManager.AppSettings["AppUrl"];
+            string appUrl = ConfigurationManager.AppSettings["AppUrl"];
 
             if(!Playback.IsInitialized)
                 Playback.Initialize();
@@ -35,8 +34,7 @@ namespace BookShop.WebTests.CodedUI.Support
 
         public void Stop()
         {
-            if (Map == null)
-                return;
+            if (Map == null) return;
 
             try
             {
@@ -46,6 +44,7 @@ namespace BookShop.WebTests.CodedUI.Support
             {
                 Debug.WriteLine(ex, "CodedUI stop error");
             }
+
             Map = null;
             Trace("CodedUI stopped");
         }

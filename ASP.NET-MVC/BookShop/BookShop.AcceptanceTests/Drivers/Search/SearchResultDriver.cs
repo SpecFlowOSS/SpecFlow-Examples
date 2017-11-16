@@ -18,7 +18,7 @@ namespace BookShop.AcceptanceTests.Drivers.Search
 
         public void ShowsBooks(string expectedTitlesString)
         {
-            var shownBooks = _state.ActionResult.Model<List<Book>>();
+            var shownBooks = _state.ActionResult.Model<IEnumerable<Book>>();
             var expectedTitles = from t in expectedTitlesString.Split(',')
                                  select t.Trim().Trim('\'');
 
@@ -27,7 +27,7 @@ namespace BookShop.AcceptanceTests.Drivers.Search
 
         public void ShowsBooks(Table expectedBooks)
         {
-            var foundBooks = _state.ActionResult.Model<List<Book>>();
+            var foundBooks = _state.ActionResult.Model<IEnumerable<Book>>();
             var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
             BookAssertions.FoundBooksShouldMatchTitlesInOrder(foundBooks, expectedTitles);
         }
