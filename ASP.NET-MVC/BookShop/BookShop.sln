@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F5A5D023-ED56-400E-83C8-D59F94C59E12}"
 	ProjectSection(SolutionItems) = preProject
 		BookShop.vsmdi = BookShop.vsmdi
 		create_db.sql = create_db.sql
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
-		ReadMe.txt = ReadMe.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.UnitTests", "Bookshop.UnitTests\BookShop.UnitTests.csproj", "{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}"
