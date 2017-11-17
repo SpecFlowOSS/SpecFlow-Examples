@@ -1,4 +1,4 @@
-﻿using BookShop.Controllers;
+﻿using BookShop.Mvc.Controllers;
 
 namespace BookShop.AcceptanceTests.Drivers.Search
 {

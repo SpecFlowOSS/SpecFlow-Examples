@@ -10,7 +10,7 @@ namespace BookShop.WebTests.Selenium.Support
     {
         public static string GetTextBoxValue(this IWebDriver browser, string field)
         {
-            IWebElement control = GetFieldControl(browser, field);
+            var control = GetFieldControl(browser, field);
 
             return control.GetAttribute("value");
         }
@@ -19,10 +19,10 @@ namespace BookShop.WebTests.Selenium.Support
         {
             var control = GetFieldControl(browser, field);
             var wait = new WebDriverWait(browser, SeleniumController.DefaultTimeout);
-            if (!String.IsNullOrEmpty(control.GetAttribute("value")))
+            if (!string.IsNullOrEmpty(control.GetAttribute("value")))
             {
                 control.Clear();
-                wait.Until(_ => String.IsNullOrEmpty(control.GetAttribute("value")));
+                wait.Until(_ => string.IsNullOrEmpty(control.GetAttribute("value")));
             }
             
             control.SendKeys(value);
@@ -70,11 +70,11 @@ namespace BookShop.WebTests.Selenium.Support
 
         public class DropDown
         {
-            private readonly IWebElement dropDown;
+            private readonly IWebElement _dropDown;
 
             public DropDown(IWebElement dropDown)
             {
-                this.dropDown = dropDown;
+                this._dropDown = dropDown;
 
                 if (dropDown.TagName != "select")
                     throw new ArgumentException("Invalid web element type");
@@ -84,16 +84,14 @@ namespace BookShop.WebTests.Selenium.Support
             {
                 get
                 {
-                    var selectedOption = dropDown.FindElements(By.TagName("option")).Where(e => e.Selected).FirstOrDefault();
-                    if (selectedOption == null)
-                        return null;
+                    var selectedOption = _dropDown.FindElements(By.TagName("option")).FirstOrDefault(e => e.Selected);
 
-                    return selectedOption.GetAttribute("value");
+                    return selectedOption?.GetAttribute("value");
 
                 }
                 set
                 {
-                    new SelectElement(dropDown).SelectByValue(value);
+                    new SelectElement(_dropDown).SelectByValue(value);
                 }
             }
         }

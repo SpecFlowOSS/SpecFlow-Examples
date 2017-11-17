@@ -2,14 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using BookShop.AcceptanceTests.Support;
-using BookShop.Controllers;
-using BookShop.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Models;
+using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.BookDetails
 {
-
     public class BookDetailsDriver
     {
         private const decimal BookDefaultPrice = 10;
@@ -23,7 +22,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
 
         public void AddToDatabase(Table books)
         {
-            using (var db = new BookShopEntities())
+            using (var db = new DatabaseContext())
             {
                 foreach (var row in books.Rows)
                 {
@@ -40,7 +39,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
                         books.Header.Contains("Id") ? row["Id"] : book.Title,
                         book);
 
-                    db.AddToBooks(book);
+                    db.Books.Add(book);
                 }
 
                 db.SaveChanges();
@@ -59,11 +58,12 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
         public void ShowsBookDetails(Table expectedBookDetails)
         {
             var shownBookDetails = _result.Model<Book>();
-
             var row = expectedBookDetails.Rows.Single();
-            Assert.AreEqual(row["Author"], shownBookDetails.Author, "Book details don't show expected author.");
-            Assert.AreEqual(row["Title"], shownBookDetails.Title, "Book details don't show expected title.");
-            Assert.AreEqual(Convert.ToDecimal(row["Price"]), shownBookDetails.Price, "Book details don't show expected price.");
+            
+            shownBookDetails.Should().Match<Book>(
+                b => b.Title == row["Title"]
+                && b.Author == row["Author"]
+                && b.Price == decimal.Parse(row["Price"]));
         }
     }
 }

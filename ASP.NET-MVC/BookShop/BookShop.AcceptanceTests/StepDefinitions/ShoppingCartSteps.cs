@@ -61,7 +61,6 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _driver.ContainsTotalItems(expectedQuantity);
         }
 
-
         [Then(@"my shopping cart should show a total price of (.*)")]
         public void ThenMyShoppingCartShouldShowATotalPriceOf(decimal expectedTotalPrice)
         {

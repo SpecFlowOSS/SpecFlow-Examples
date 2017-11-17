@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BookShop.Models;
+﻿using System.Linq;
+using BookShop.Mvc.Models;
 using BookShop.WebTests.Selenium.Support;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using BookShop.AcceptanceTests.Common;
@@ -26,15 +24,11 @@ namespace BookShop.WebTests.Selenium
         [Then(@"the list of found books should contain only: '(.*)'")]
         public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
-
-            var foundBooks = selenium.FindElements(By.XPath("//table/tbody/tr"))
-                .Select(row => new Book()
-                {
-                    Title = row.FindElement(By.ClassName("title")).Text,
-                    Author = row.FindElement(By.ClassName("author")).Text,
-                }).ToList();
-
             var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
+            var foundBooks = from row in selenium.FindElements(By.XPath("//table/tbody/tr"))
+                             let title = row.FindElement(By.ClassName("title")).Text
+                             let author = row.FindElement(By.ClassName("author")).Text
+                             select new Book { Title = title, Author = author };
 
             BookAssertions.FoundBooksShouldMatchTitles(foundBooks, expectedTitles);
         }
@@ -42,14 +36,11 @@ namespace BookShop.WebTests.Selenium
         [Then(@"the list of found books should be:")]
         public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
         {
-            var foundBooks = selenium.FindElements(By.XPath("//table/tbody/tr"))
-                .Select(row => new Book()
-                {
-                    Title = row.FindElement(By.ClassName("title")).Text,
-                    Author = row.FindElement(By.ClassName("author")).Text,
-                }).ToList();
-
             var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
+            var foundBooks = from row in selenium.FindElements(By.XPath("//table/tbody/tr"))
+                             let title = row.FindElement(By.ClassName("title")).Text
+                             let author = row.FindElement(By.ClassName("author")).Text
+                             select new Book { Title = title, Author = author };
 
             BookAssertions.FoundBooksShouldMatchTitlesInOrder(foundBooks, expectedTitles);
         }

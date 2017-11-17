@@ -1,7 +1,6 @@
 ﻿using System.Configuration;
 using System.Text;
 using TechTalk.SpecFlow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BookShop.WebTests.Selenium.Support
 {
