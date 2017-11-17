@@ -9,7 +9,6 @@ using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.BookDetails
 {
-
     public class BookDetailsDriver
     {
         private const decimal BookDefaultPrice = 10;

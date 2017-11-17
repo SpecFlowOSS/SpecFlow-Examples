@@ -29,7 +29,7 @@ namespace BookShop.AcceptanceTests.Drivers.Home
 
         public void ShowsBooks(string expectedTitles)
             => ShowsBooks(from t in expectedTitles.Split(',')
-                               select t.Trim().Trim('\''));
+                          select t.Trim().Trim('\''));
 
         public void ShowsBooks(Table expectedBooks)
             => ShowsBooks(expectedBooks.Rows.Select(r => r["Title"]));

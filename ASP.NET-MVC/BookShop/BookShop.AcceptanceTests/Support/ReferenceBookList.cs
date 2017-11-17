@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using BookShop.Mvc.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 
 namespace BookShop.AcceptanceTests.Support
 {
@@ -11,9 +8,8 @@ namespace BookShop.AcceptanceTests.Support
     {
         public Book GetById(string bookId)
         {
-            var result = this[bookId.Trim()];
-            Assert.IsNotNull(result, "no reference book with id: " + bookId);
-            return result;
+            return this[bookId.Trim()].Should().NotBeNull()
+                                      .And.Subject.Should().BeOfType<Book>().Which;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace BookShop.AcceptanceTests.Common
 {
     public class BookAssertions
     {
-
         public static void FoundBooksShouldMatchTitles(IEnumerable<Book> foundBooks, IEnumerable<string> expectedTitles)
         {
             foundBooks.Select(b => b.Title).Should().BeEquivalentTo(expectedTitles);
@@ -26,7 +25,6 @@ namespace BookShop.AcceptanceTests.Common
         public static void HomeScreenShouldShow(IEnumerable<Book> shownBooks, IEnumerable<string> expectedTitles)
         {
             shownBooks.Select(b => b.Title).Should().BeEquivalentTo(expectedTitles);
-
         }
 
         public static void HomeScreenShouldShowInOrder(List<Book> shownBooks, IEnumerable<string> expectedTitles)

@@ -74,7 +74,6 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-
                 actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
             }
         }
@@ -86,7 +85,6 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             using (var controller = GetShoppingCartController())
             {
                 var actionResult = controller.Index();
-
                 actionResult.Model<Mvc.Models.ShoppingCart>().Lines
                             .Should().ContainSingle(ol => ol.Book.Id == expectedBook.Id)
                             .Which.Quantity.Should().Be(expectedQuantity);

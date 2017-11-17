@@ -12,15 +12,16 @@ namespace BookShop.Mvc.Controllers
             using (var db = new DatabaseContext())
             {
                 var terms = searchTerm?.Split(' ') ?? new string[0];
-                var predicate = PredicateBuilder.New<Book>(searchTerm is null);
-                foreach (string term in terms)
-                {
-                    string temp = term;
-                    predicate = predicate.Or(p => p.Title.Contains(temp));
-                    predicate = predicate.Or(p => p.Author.Contains(temp));
-                }
+                var predicate = terms.Aggregate(
+                    PredicateBuilder.New<Book>(string.IsNullOrEmpty(searchTerm)),
+                    (acc, term) => acc.Or(b => b.Title.Contains(term))
+                                      .Or(b => b.Author.Contains(term)));
 
-                var books = db.Books.AsExpandable().Where(predicate).OrderBy(b => b.Title).ToArray();
+                var books = db.Books.AsExpandable()
+                                    .Where(predicate)
+                                    .OrderBy(b => b.Title)
+                                    .ToArray();
+
                 return View("List", books);
             }
         }
@@ -29,7 +30,6 @@ namespace BookShop.Mvc.Controllers
         {
             using (var db = new DatabaseContext())
             {
-
                 var book = db.Books.First(b => b.Id == id);
                 return View(book);
             }
