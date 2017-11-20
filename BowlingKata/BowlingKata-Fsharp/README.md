@@ -2,6 +2,8 @@
 
 This example demonstrates using [SpecFlow](http://specflow.org) 2.2.x within F#.
 
+Please read the [SpecFlow documentation page](http://specflow.org/documentation/FSharp-Support/) for a general description of how to create SpecFlow tests with F#.
+
 Maybe you have wondered why you should use a functional-first language for SpecFlow-tests (or unit tests in general).
 Besides giving an example of how to work with F# and SpecFlow, this question should also be answered.
 
