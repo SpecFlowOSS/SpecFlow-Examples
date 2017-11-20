@@ -1,7 +1,14 @@
 # BowlingKata-Fsharp example
 
-This example demonstrates using [SpecFlow](http://specflow.org) 2.2.x from within F#.
-As this is not simply a port of the other *BowlingKata* examples using C# or VB, the code is not identical.
+This example demonstrates using [SpecFlow](http://specflow.org) 2.2.x within F#.
+
+Maybe you have wondered why you should use a functional-first language for SpecFlow-tests (or unit tests in general).
+Besides giving an example of how to work with F# and SpecFlow, this question should also be answered.
+
+As this is not simply a port of the other *BowlingKata* examples using C# or VB, the program flow is different.
+For example, the `Game` module is written in a rather functional style.
+All methods (besides object constructors) in the `Game` module are pure functions.
+Further, the step definitions are written using some syntactic sugar provided by F#.
 
 In difference to the other BowlingKata example solutions in this repo, this example needs three projects:
 

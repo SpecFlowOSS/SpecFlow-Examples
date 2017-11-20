@@ -53,8 +53,12 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Game.fs" />
     <Content Include="packages.config" />
+    <Compile Include="Extensions\RollListExtensions.fs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core">
       <Name>FSharp.Core</Name>
