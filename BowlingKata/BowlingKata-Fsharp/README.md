@@ -8,9 +8,8 @@ Maybe you have wondered why you should use a functional-first language for SpecF
 Besides giving an example of how to work with F# and SpecFlow, this question should also be answered.
 
 As this is not simply a port of the other *BowlingKata* examples using C# or VB, the program flow is different.
-For example, the `Game` module is written in a rather functional style.
-All methods (besides object constructors) in the `Game` module are pure functions.
-Further, the step definitions are written using some syntactic sugar provided by F#.
+For example, the `Bowling` library is written nearly entirely in a functional style.
+The step definitions in the `Bowling.SpecFlow` library use some syntactic sugar provided by F# to improve readability.
 
 In difference to the other BowlingKata example solutions in this repo, this example needs three projects:
 
@@ -18,20 +17,29 @@ In difference to the other BowlingKata example solutions in this repo, this exam
 * Bowling.SpecFlow
 * Bowling.SpecFlow.Bindings
 
-
 ## Bowling
 
 This project provides the game logic.
 It is written entirely in F#.
 
 The code behind the game is strongly F#-flavored.
-The `Game` object itself is immutable.
-Additionally, it is not a class in senses of C# or VB.
-Instead, it is an option type that holds different data for each game state.
-To get to the next round, the `Roll()` method of `NewGameState` or `InGameState` must be invoked.
-In difference to the other implementations in C# or VB, this method returns the new game state.
+The `Game` type is not a class in an object-oriented sense.
+No mutable data is stored in the game state and no member methods are defined.
+Instead, the `Game` type is an union type that holds different data for each situation of the game.
+The only way to create a new game state is by using data from the old one and/or adding new data, like a new roll score.
 This ensures data consistency and immutability.
+Additionally, it makes it easier to implement tracing and backtracking logic.
 
+In contrast to other code parts in this library, the `RoundListExtensions` type is a static class.
+It defines the `GetScore : Round list -> int` extension method.
+That means, that you can invoke this method like a member, and the compiler rewrites it automatically to a direct invocation of the static method.
+Of course, you can still invoke the original static method, but if you do so, you need to pass the value as an argument to the method.
+
+The concept of *Extension methods* is possibly already familiar to you if you write a lot of C# code.
+For example, most classes in the `System.Linq` namespace define extension methods for the `IEnumerable<T>` interface.
+
+As described above, this is a more object-oriented approach rather than a functional one.
+The reason for preferring this code construct over F# type extensions is, that it it the only way to define an extension for a generic type (like `'a list`) with a defined type parameter (like `int list`) in the current F# version.
 
 ## Bowling.SpecFlow
 

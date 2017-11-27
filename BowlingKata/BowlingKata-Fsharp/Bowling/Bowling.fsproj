@@ -53,7 +53,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Game.fs" />
     <Content Include="packages.config" />
-    <Compile Include="Extensions\RollListExtensions.fs" />
+    <Compile Include="Extensions\RoundListExtensions.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations">
