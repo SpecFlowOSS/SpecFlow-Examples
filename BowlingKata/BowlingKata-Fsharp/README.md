@@ -17,7 +17,7 @@ Unlike the other BowlingKata example solutions in this repo, this example requir
 
 ## Bowling
 
-This project provides the game logic, and  written entirely in F#.
+This project provides the game logic, and is written entirely in F#.
 
 The code behind the game is strongly F#-flavored. The `Game` type is not a class in an object-oriented sense. No mutable data is stored in the game state and no member methods are defined. Instead, the `Game` type is a union type that holds different data for each state of the game. The only way to create a new game state is by using data from the old one and/or adding new data, like a new roll score. This ensures data consistency and immutability. Additionally, it makes it easier to implement tracing and backtracking logic.
 
