@@ -2,7 +2,7 @@
 
 ## Background
 
-SpecFlow supports using async methods as step definitions since version 2.3.
+SpecFlow supports using async methods as step definitions since version 2.2.
 Features requiring asynchronous execution can now be written in a more C#-ish style.
 
 ```csharp
