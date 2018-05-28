@@ -19,6 +19,7 @@
       <xs:element minOccurs="0" maxOccurs="1" name="Targets" type="Targets" />
       <xs:element minOccurs="0" maxOccurs="1" name="DeploymentTransformation" type="DeploymentTransformation" />
       <xs:element minOccurs="0" maxOccurs="1" name="TestThreads" type="TestThreads" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VSTest" type="VSTest" />
     </xs:choice>
   </xs:complexType>
 
@@ -40,7 +41,7 @@
   <xs:complexType name="ExecutionSettings">
     <xs:attribute name="stopAfterFailures" type="xs:int" use="optional" default="10" />
     <xs:attribute name="testSchedulingMode" type="TestSchedulingMode" use="optional" default="Sequential" />
-    <xs:attribute name="testThreadCount" type="xs:int" use="optional" default="1" />
+    <xs:attribute name="testThreadCount" type="TestThreadCount" use="optional" default="1" />
     <xs:attribute name="retryFor" type="RetryMode" use="optional" default="Failing" />
     <xs:attribute name="retryCount" type="xs:int" use="optional" default="2"  />
     <xs:attribute name="apartmentState" type="ApartmentState" use="optional" default="Unknown" />
@@ -161,8 +162,54 @@
     <xs:attribute name="targetFolder" type="xs:string" use="optional" />
     <xs:attribute name="deleteOnRestore" type="xs:boolean" use="optional" default="true" />
   </xs:complexType>
+  
+  <!-- VSTest -->
+
+  <xs:complexType name="VSTest">
+    <xs:attribute name="testRetryResults" type="TestRetryResultsMode" use="optional" default="Separate" />
+    <xs:attribute name="passRateRelative" type="RelativePassRate" use="optional" default="1"/>
+    <xs:attribute name="passRateAbsolute" type="xs:int" use="optional"/>
+  </xs:complexType>
+
+
 
   <!-- simple types-->
+
+
+  <xs:simpleType name="RelativePassRate">
+    <xs:union memberTypes="floatPassRate percentagePassRate" />
+  </xs:simpleType>
+
+  <xs:simpleType name="floatPassRate">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="percentagePassRate">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(100(\.0*)?|[0-9][0-9](\.\d*)?)%" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestThreadCount">
+    <xs:union memberTypes="testThreadCountName testThreadCountNumber" />
+  </xs:simpleType>
+
+
+  <xs:simpleType name="testThreadCountNumber">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="testThreadCountName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Max" />
+    </xs:restriction>
+  </xs:simpleType>
   
   <xs:simpleType name="TestSchedulingMode">
     <xs:restriction base="xs:string">
@@ -224,6 +271,13 @@
       <xs:enumeration value="Default"/>
       <xs:enumeration value="Overwrite"/>
       <xs:enumeration value="IncrementFilename"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TestRetryResultsMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Separate" />
+      <xs:enumeration value="Unified" />
     </xs:restriction>
   </xs:simpleType>
   
