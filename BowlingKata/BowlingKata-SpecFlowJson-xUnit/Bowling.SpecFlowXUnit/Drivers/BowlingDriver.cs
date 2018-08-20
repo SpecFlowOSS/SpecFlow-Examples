@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using TechTalk.SpecFlow;
 
-namespace Bowling.SpecFlow.xUnit.Drivers
+namespace Bowling.SpecFlowXUnit.Drivers
 {
     public class BowlingDriver
     {

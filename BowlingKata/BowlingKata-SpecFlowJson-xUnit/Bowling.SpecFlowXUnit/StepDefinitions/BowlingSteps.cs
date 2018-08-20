@@ -1,8 +1,8 @@
 ﻿using System;
-using Bowling.SpecFlow.xUnit.Drivers;
+using Bowling.SpecFlowXUnit.Drivers;
 using TechTalk.SpecFlow;
 
-namespace Bowling.SpecFlow.xUnit.StepDefinitions
+namespace Bowling.SpecFlowXUnit.StepDefinitions
 {
     [Binding]
     public class BowlingSteps
