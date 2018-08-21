@@ -2,7 +2,7 @@
 using System.Globalization;
 using TechTalk.SpecFlow;
 
-namespace SpecFlow.Example.StepArgumentTransformation
+namespace SpecFlow.Example.StepArgumentTransformation.Transformations
 {
     [Binding]
     public class AustrianLocalizationTransformer
