@@ -1,6 +1,13 @@
 @pushd %~dp0
 
-%windir%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ""
+@where /q msbuild
+
+@IF ERRORLEVEL 1 (
+	echo "MSBuild is not in your PATH. Please use a developer command prompt!"
+	goto :end
+) ELSE (
+	MSBuild.exe "SpecFlow.Examples.StepArgumentTransformation.csproj"
+)
 
 @if ERRORLEVEL 1 goto end
 

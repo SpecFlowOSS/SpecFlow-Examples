@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
 using TechTalk.SpecFlow;
 
 namespace Bowling.Specflow.Drivers
@@ -47,7 +47,7 @@ namespace Bowling.Specflow.Drivers
 
         public void CheckScore(int expected)
         {
-            Assert.AreEqual(expected, _game.Score);
+            _game.Score.Should().Be(expected);
         }
     }
 }
