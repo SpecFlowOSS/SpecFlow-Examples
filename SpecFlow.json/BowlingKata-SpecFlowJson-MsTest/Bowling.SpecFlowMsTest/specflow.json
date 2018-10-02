@@ -1,9 +1,6 @@
 ﻿{
-    "specflow":
+    "language":
     {
-        "language":
-        {
-            "feature": "de-AT"
-        }
+        "feature": "de-AT"
     }
 }

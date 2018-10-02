@@ -1,6 +1,4 @@
-﻿#language:de
-
-Funktionalität: Punkteberechnung    
+﻿Funktionalität: Punkteberechnung    
     Als Spieler
     Will ich, dass das System meine Punktezahl berechnet
     Damit ich weiss wie gut ich bin
