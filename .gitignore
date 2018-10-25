@@ -303,3 +303,9 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+
+# SpecFlow .feature.cs files in specific projects
+BowlingKata/BowlingKata-SpecFlowJson-*/**/*.feature.cs
+
+# VS Code cache files
+.vscode/
