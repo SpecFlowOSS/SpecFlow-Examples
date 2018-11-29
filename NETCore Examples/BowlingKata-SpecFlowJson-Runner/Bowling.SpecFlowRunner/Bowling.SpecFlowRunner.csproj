@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bowling\Bowling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpecFlow" Version="3.0.132-beta" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.132-beta" />
+    <PackageReference Include="FluentAssertions" Version="5.4.2" />
+    <PackageReference Include="BoDi" Version="1.4.0-alpha1" />
+    <PackageReference Include="SpecRun.Runner" Version="3.0.21-beta" />
+    <PackageReference Include="SpecRun.SpecFlow" Version="3.0.21-beta" />
+    <PackageReference Include="SpecRun.SpecFlow.3-0-0" Version="3.0.21-beta" />
+  </ItemGroup>
+
+</Project>
