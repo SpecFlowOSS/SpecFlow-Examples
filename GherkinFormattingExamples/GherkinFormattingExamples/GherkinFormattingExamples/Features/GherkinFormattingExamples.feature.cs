@@ -109,7 +109,8 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Description", "Discernible Given-When-Then Blocks with Tables")]
         public virtual void DiscernibleGiven_When_ThenBlocksWithTables()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discernible Given-When-Then Blocks with Tables", "\tUsing tables this convention might make it uneasy for the eye", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discernible Given-When-Then Blocks with Tables", "\tIn order to quickly spot where one block ends and another one begins, \r\n\tyou can" +
+                    " indent the steps starting with “And”", ((string[])(null)));
 #line 24
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -120,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
             table1.AddRow(new string[] {
                         "necessary",
                         "data"});
-#line 27
+#line 28
  testRunner.Given("I need to prepare the following data for my scenario:", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -129,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
             table2.AddRow(new string[] {
                         "more",
                         "data"});
-#line 31
+#line 32
   testRunner.And("this is more complex so I need a second step with a table:", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -138,64 +139,16 @@ this.ScenarioInitialize(scenarioInfo);
             table3.AddRow(new string[] {
                         "more",
                         "data"});
-#line 35
+#line 36
   testRunner.And("this is more complex so I need a third step with a table:", ((string)(null)), table3, "And ");
-#line 39
+#line 40
  testRunner.When("I trigger some action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 41
+#line 42
  testRunner.Then("I can see the expected outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 43
+#line 44
   testRunner.And("this outcome also has a second step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 46
   testRunner.And("this outcome also has a third step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.FactAttribute(DisplayName="Discernible Given-When-Then Blocks with Tables - Alternative")]
-        [Xunit.TraitAttribute("FeatureTitle", "GherkinFormattingExamples")]
-        [Xunit.TraitAttribute("Description", "Discernible Given-When-Then Blocks with Tables - Alternative")]
-        public virtual void DiscernibleGiven_When_ThenBlocksWithTables_Alternative()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discernible Given-When-Then Blocks with Tables - Alternative", "\tbe aware that newlines tend to elongate your scenario ", ((string[])(null)));
-#line 49
-this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
-#line hidden
-            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "column 1",
-                        "column 2"});
-            table4.AddRow(new string[] {
-                        "necessary",
-                        "data"});
-#line 52
- testRunner.Given("I need to prepare the following data for my scenario:", ((string)(null)), table4, "Given ");
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "column x",
-                        "column y"});
-            table5.AddRow(new string[] {
-                        "more",
-                        "data"});
-#line 56
- testRunner.And("this is more complex so I need a second step with a table:", ((string)(null)), table5, "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "column z",
-                        "column c"});
-            table6.AddRow(new string[] {
-                        "more",
-                        "data"});
-#line 60
- testRunner.And("this is more complex so I need a third step with a table:", ((string)(null)), table6, "And ");
-#line 65
- testRunner.When("I trigger some action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 68
- testRunner.Then("I can see the expected outcome", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 70
- testRunner.And("this outcome also has a second step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 72
- testRunner.And("this outcome also has a third step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
