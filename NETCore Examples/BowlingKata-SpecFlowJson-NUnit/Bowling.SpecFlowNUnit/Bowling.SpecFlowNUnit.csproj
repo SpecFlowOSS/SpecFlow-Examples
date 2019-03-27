@@ -8,14 +8,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="NUnit" Version="3.11.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
-    <PackageReference Include="SpecFlow" Version="3.0.167-beta" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.167-beta" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.0.167-beta" />
-    <PackageReference Include="FluentAssertions" Version="5.4.2" />
-    <PackageReference Include="BoDi" Version="1.4.0-alpha1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="SpecFlow" Version="3.0.187-beta" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.187-beta" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.0.187-beta" />
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="specflow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
