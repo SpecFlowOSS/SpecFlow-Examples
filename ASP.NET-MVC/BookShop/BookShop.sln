@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.CodedUI", "BookShop.WebTests.CodedUI\BookShop.WebTests.CodedUI.csproj", "{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Common", "BookShop.AcceptanceTests.Common\BookShop.AcceptanceTests.Common.csproj", "{FDC3F86D-A2E8-443F-8665-6A71DA702123}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.Mvc", "BookShop.Mvc\BookShop.Mvc.csproj", "{17C90FE6-7E80-4E6C-9D1B-EADEE71E98B6}"
@@ -41,10 +39,6 @@ Global
 		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076B2B3F-B40C-4445-B73B-8847C15E9623}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DD879F7-E05B-41D6-8D7F-5DF09F7C858A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDC3F86D-A2E8-443F-8665-6A71DA702123}.Release|Any CPU.ActiveCfg = Release|Any CPU
