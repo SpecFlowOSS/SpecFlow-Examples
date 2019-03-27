@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.UnitTests", "Bookshop.UnitTests\BookShop.UnitTests.csproj", "{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests", "BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj", "{0906D17A-01F0-4761-9ECD-BE5023387943}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB34E21B-F86B-462D-86B3-BE3C9A213DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0906D17A-01F0-4761-9ECD-BE5023387943}.Release|Any CPU.ActiveCfg = Release|Any CPU
