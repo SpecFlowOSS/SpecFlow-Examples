@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.props')" />
+  <Import Project="..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.props" Condition="Exists('..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.props')" />
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.props')" />
   <Import Project="..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.props" Condition="Exists('..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.props')" />
   <Import Project="..\packages\xunit.core.2.4.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -84,10 +84,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="TechTalk.SpecFlow, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.3.0.187-beta\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.3.0.188\lib\net45\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
     <Reference Include="TechTalk.SpecFlow.xUnit.SpecFlowPlugin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.xUnit.3.0.187-beta\lib\net45\TechTalk.SpecFlow.xUnit.SpecFlowPlugin.dll</HintPath>
+      <HintPath>..\packages\SpecFlow.xUnit.3.0.188\lib\net45\TechTalk.SpecFlow.xUnit.SpecFlowPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
       <HintPath>..\packages\Utf8Json.1.3.7\lib\net45\Utf8Json.dll</HintPath>
@@ -137,15 +137,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.props'))" />
     <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.targets'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.targets'))" />
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
-    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.props'))" />
+    <Error Condition="!Exists('..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.targets'))" />
   </Target>
   <Import Project="..\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
-  <Import Project="..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.targets" Condition="Exists('..\packages\SpecFlow.xUnit.3.0.187-beta\build\SpecFlow.xUnit.targets')" />
-  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.187-beta\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <!--<Import Project="C:\Program Files (x86)\TechTalk\SpecFlow\TechTalk.SpecFlow.targets" />-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -154,10 +152,12 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\packages\SpecFlow.Tools.MsBuild.Generation.3.0.188\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
+  <Import Project="..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.targets" Condition="Exists('..\packages\SpecFlow.xUnit.3.0.188\build\SpecFlow.xUnit.targets')" />
   <Target Name="AfterUpdateFeatureFilesInProject">
     <!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
     <ItemGroup>
-        <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+      <Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
     </ItemGroup>
-</Target>
+  </Target>
 </Project>
