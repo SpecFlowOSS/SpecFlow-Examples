@@ -17,8 +17,7 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("US01 - Book Search", new string[] {
-            "web"}, Description="\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
+    [TechTalk.SpecRun.FeatureAttribute("US01 - Book Search", Description="\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
         "t I can easily allocate books by something I remember from them.", SourceFile="Features\\US01_BookSearch.feature", SourceLine=3)]
     public partial class US01_BookSearchFeature
     {
@@ -33,8 +32,7 @@ namespace BookShop.AcceptanceTests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US01 - Book Search", "\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
-                    "t I can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, new string[] {
-                        "web"});
+                    "t I can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
