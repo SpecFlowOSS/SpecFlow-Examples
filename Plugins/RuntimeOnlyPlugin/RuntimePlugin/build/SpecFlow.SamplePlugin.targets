@@ -1,0 +1,8 @@
+﻿<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <_SampleRuntimePluginFramework Condition=" '$(TargetFrameworkIdentifier)' == '.NETCoreApp' ">netstandard2.0</_SampleRuntimePluginFramework>
+    <_SampleRuntimePluginFramework Condition=" '$(TargetFrameworkIdentifier)' == '.NETFramework' ">net45</_SampleRuntimePluginFramework>
+    <_SampleRuntimePluginPath>$(MSBuildThisFileDirectory)\..\lib\$(_SampleRuntimePluginFramework)\SampleRuntimePlugin.SpecFlowPlugin.dll</_SampleRuntimePluginPath>
+  </PropertyGroup>
+</Project>
