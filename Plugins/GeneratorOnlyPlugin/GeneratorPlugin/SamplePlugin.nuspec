@@ -1,0 +1,29 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>SpecFlow.SamplePlugin</id>
+    <version>1.0.0</version>
+    <title>SpecFlow.SamplePlugin</title>
+    <authors>TechTalk</authors>
+    <owners>TechTalk</owners>
+    <description>This is a sample Plugin for SpecFlow 3</description>
+    <summary></summary>
+    <language>en-US</language>
+    
+    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>specflow</tags>
+    <dependencies>
+      <dependency id="SpecFlow" version="3.0"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="build\**\*" target="build"/>
+
+    
+    <file src="bin\$config$\net471\SampleGeneratorPlugin.SpecFlowPlugin.*" target="build\net471"/>
+    <file src="bin\$config$\netstandard2.0\SampleGeneratorPlugin.SpecFlowPlugin.dll" target="build\netstandard2.0"/>
+    <file src="bin\$config$\netstandard2.0\SampleGeneratorPlugin.SpecFlowPlugin.pdb" target="build\netstandard2.0"/>
+
+
+  </files>
+</package>
