@@ -23,30 +23,6 @@ namespace GherkinFormattingExamples.StepDefinitions
         {
             ScenarioContext.Current.Pending();
         }
-        
-        [When(@"I trigger some action")]
-        public void WhenITriggerTheAction()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"I can see the expected outcome")]
-        public void ThenICanSeeTheExpectedOutcome()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"this outcome also has a second step")]
-        public void ThenThisOutcomeAlsoHasASecondStep()
-        {
-            ScenarioContext.Current.Pending();
-        }
-        
-        [Then(@"this outcome also has a third step")]
-        public void ThenThisOutcomeAlsoHasAThirdStep()
-        {
-            ScenarioContext.Current.Pending();
-        }
 
         [Given(@"I need to prepare the following data for my scenario:")]
         public void GivenINeedToPrepareTheFollowingDataForMyScenario(Table table)
@@ -65,6 +41,55 @@ namespace GherkinFormattingExamples.StepDefinitions
         {
             ScenarioContext.Current.Pending();
         }
+
+        [Given(@"I add a new person")]
+        public void GivenIAddANewPerson()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"this person has the birthdate '(.*)'")]
+        public void GivenThisPersonHasTheBirthdate(string p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I trigger some action")]
+        public void WhenITriggerTheAction()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I try to save this person")]
+        public void WhenITryToSaveThisPerson()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"I can see the expected outcome")]
+        public void ThenICanSeeTheExpectedOutcome()
+        {
+            ScenarioContext.Current.Pending();
+        }
+        
+        [Then(@"this outcome also has a second step")]
+        public void ThenThisOutcomeAlsoHasASecondStep()
+        {
+            ScenarioContext.Current.Pending();
+        }
+        
+        [Then(@"this outcome also has a third step")]
+        public void ThenThisOutcomeAlsoHasAThirdStep()
+        {
+            ScenarioContext.Current.Pending();
+        }      
+
+        [Then(@"I receive the error message for '(.*)'")]
+        public void ThenIReceiveTheErrorMessageFor(string p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
     }
 }
