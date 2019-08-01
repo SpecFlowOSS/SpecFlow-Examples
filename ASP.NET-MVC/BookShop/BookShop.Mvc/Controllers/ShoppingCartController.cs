@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web.Mvc;
 using BookShop.Mvc.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Mvc.Controllers
 {
@@ -56,7 +57,7 @@ namespace BookShop.Mvc.Controllers
         }
 
         [HttpPost]
-        [ValidateInput(true)]
+        //[ValidateInput(true)]
         public ActionResult Edit(EditArguments editArgs)
         {
             if (!ModelState.IsValid)
@@ -83,14 +84,16 @@ namespace BookShop.Mvc.Controllers
 
         private ShoppingCart GetShoppingCart()
         {
-            if (HttpContext.Session[CartSessionKey] is ShoppingCart sc)
-            {
-                return sc;
-            }
+            throw new NotImplementedException();
 
-            var cart = new ShoppingCart();
-            HttpContext.Session[CartSessionKey] = cart;
-            return cart;
+            //if (HttpContext.Session[CartSessionKey] is ShoppingCart sc)
+            //{
+            //    return sc;
+            //}
+
+            //var cart = new ShoppingCart();
+            //HttpContext.Session[CartSessionKey] = cart;
+            //return cart;
         }
 
         public class EditArguments

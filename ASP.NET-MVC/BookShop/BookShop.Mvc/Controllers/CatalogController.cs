@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using System.Web.Mvc;
 using BookShop.Mvc.Models;
 using LinqKit;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Mvc.Controllers
 {
