@@ -309,3 +309,5 @@ BowlingKata/BowlingKata-SpecFlowJson-*/**/*.feature.cs
 
 # VS Code cache files
 .vscode/
+
+*.db
