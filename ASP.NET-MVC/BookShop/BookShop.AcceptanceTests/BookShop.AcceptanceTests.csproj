@@ -193,10 +193,6 @@
       <Project>{FDC3F86D-A2E8-443F-8665-6A71DA702123}</Project>
       <Name>BookShop.AcceptanceTests.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookShop.Mvc\BookShop.Mvc.csproj">
-      <Project>{17c90fe6-7e80-4e6c-9d1b-eadee71e98b6}</Project>
-      <Name>BookShop.Mvc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj">
       <Project>{076B2B3F-B40C-4445-B73B-8847C15E9623}</Project>
       <Name>BookShop.WebTests.Selenium</Name>

@@ -1,5 +1,4 @@
-﻿//using System.Data.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Data.Entity;
 
 namespace BookShop.Mvc.Models
 {

@@ -69,12 +69,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookShop.Mvc\BookShop.Mvc.csproj">
-      <Project>{17c90fe6-7e80-4e6c-9d1b-eadee71e98b6}</Project>
-      <Name>BookShop.Mvc</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

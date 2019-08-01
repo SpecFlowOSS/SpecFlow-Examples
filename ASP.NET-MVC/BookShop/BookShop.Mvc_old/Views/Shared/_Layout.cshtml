@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Bookshop</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+<div class="container body-content">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="fas fa-bars"></span>
+                <span>Menu</span>
+            </button>
+            @Html.ActionLink("Bookshop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { @class = "nav-link" })</li>
+                </ul>
+                @using (Html.BeginForm("Search", "Catalog", FormMethod.Get, new { Id = "searchForm", @class = "form-inline" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("searchTerm", "Search", new { @class = "sr-only" })
+                        @Html.TextBox("searchTerm", "", new { @class = "form-control", placeholder = "Enter your search...", type = "search" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-primary form-control">
+                            <span class="fas fa-search"></span>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+    <hr/>
+    <footer>
+
+        <p>&copy; @DateTime.Now.Year - TechTalk</p>
+        <p><a href="http://www.specflow.org" target="_blank">SpecFlow</a> - Pragmatic BDD for .NET</p>
+    </footer>
+</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
