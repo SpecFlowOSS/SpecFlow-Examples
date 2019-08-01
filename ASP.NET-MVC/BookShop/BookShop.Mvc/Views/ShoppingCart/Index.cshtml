@@ -1,4 +1,6 @@
-﻿@using BookShop.Mvc.Models;
+﻿@using BookShop.Mvc.Controllers
+@using BookShop.Mvc.Models;
+@using Microsoft.AspNetCore.Routing
 
 @model ShoppingCart
 
@@ -16,6 +18,7 @@
             <th><em>Author</em></th>
             <th><em>Quantity</em></th>
             <th><em>Price</em></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +29,12 @@
                 <td>@orderLine.Book.Author</td>
                 <td>@orderLine.Quantity</td>
                 <td>&euro; @orderLine.Price.ToString("0.00")</td>
+                <td>
+                    @Html.ActionLink("+", "Add", "ShoppingCart", new { bookId = orderLine.Book.Id }, new { @class = "btn btn-success" })
+                    
+                    @Html.ActionLink("-", "Edit", "ShoppingCart", 
+                        new ShoppingCartController.EditArguments(){BookId = orderLine.Book.Id, Quantity = orderLine.Quantity - 1}, new { @class = "btn btn-danger" })
+                </td>
             </tr>
         }
         </tbody>

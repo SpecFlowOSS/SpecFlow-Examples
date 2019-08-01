@@ -44,6 +44,7 @@ namespace BookShop.Mvc.Controllers
                 }
 
                 ViewData.Model = shoppingCart;
+                HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -55,6 +56,7 @@ namespace BookShop.Mvc.Controllers
             shoppingCart.RemoveLineItem(id);
 
             ViewData.Model = shoppingCart;
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
             return RedirectToAction("Index");
         }
 
@@ -80,6 +82,8 @@ namespace BookShop.Mvc.Controllers
             {
                 shoppingCart.RemoveLineItem(bookId);
             }
+
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
 
             return RedirectToAction("Index");
         }
