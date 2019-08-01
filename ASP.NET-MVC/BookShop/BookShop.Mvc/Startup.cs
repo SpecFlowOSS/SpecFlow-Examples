@@ -18,6 +18,11 @@ namespace BookShop.Mvc
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            using (var client = new DatabaseContext())
+            {
+                client.Database.EnsureCreated();
+            }
         }
 
         public IConfiguration Configuration { get; }
@@ -25,9 +30,6 @@ namespace BookShop.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=(localdb)\v11.0;Database=BookShop.Mvc.Models;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<DatabaseContext>(
-                options => options.UseSqlite(connection));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
