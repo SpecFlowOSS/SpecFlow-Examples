@@ -18,5 +18,10 @@ namespace BookShop.Mvc.Controllers
                 return View(cheapBooks);
             }
         }
+
+        public ActionResult Privacy()
+        {
+            return View();
+        }
     }
 }
