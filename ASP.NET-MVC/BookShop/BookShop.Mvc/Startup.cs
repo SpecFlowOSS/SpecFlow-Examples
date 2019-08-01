@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace BookShop.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -38,6 +40,8 @@ namespace BookShop.Mvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using BookShop.Mvc.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BookShop.Mvc.Controllers
 {
@@ -84,16 +86,15 @@ namespace BookShop.Mvc.Controllers
 
         private ShoppingCart GetShoppingCart()
         {
-            throw new NotImplementedException();
+            var sc = HttpContext.Session.GetString(CartSessionKey);
+            if (!string.IsNullOrEmpty(sc))
+            {
+                return JsonConvert.DeserializeObject<ShoppingCart>(sc);
+            }
 
-            //if (HttpContext.Session[CartSessionKey] is ShoppingCart sc)
-            //{
-            //    return sc;
-            //}
-
-            //var cart = new ShoppingCart();
-            //HttpContext.Session[CartSessionKey] = cart;
-            //return cart;
+            var cart = new ShoppingCart();
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(cart));
+            return cart;
         }
 
         public class EditArguments
