@@ -1,6 +1,9 @@
-﻿@using BookShop.Mvc.Controllers
+﻿@using System.Linq
+@using BookShop.Mvc.Controllers
 @using BookShop.Mvc.Models;
 @using Microsoft.AspNetCore.Routing
+@using Microsoft.EntityFrameworkCore.Internal
+@using Microsoft.Extensions.Configuration.CommandLine
 
 @model ShoppingCart
 
@@ -27,13 +30,19 @@
             <tr>
                 <td><h4>@Html.ActionLink(orderLine.Book.Title, "Details", "Catalog", new { id = orderLine.Book.Id }, new { })</h4></td>
                 <td>@orderLine.Book.Author</td>
-                <td>@orderLine.Quantity</td>
+                <td>
+                    @using (Html.BeginForm("Edit", "ShoppingCart", FormMethod.Post))
+                    {
+
+                        @Html.Hidden("BookId", orderLine.BookId, new { })
+                        <input name="Quantity" type="number" value="@orderLine.Quantity" min="1" max="@int.MaxValue" required/>
+
+                        <button type="submit" class="btn btn-success">&#10003;</button>
+                    }
+                </td>
                 <td>&euro; @orderLine.Price.ToString("0.00")</td>
                 <td>
-                    @Html.ActionLink("+", "Add", "ShoppingCart", new { bookId = orderLine.Book.Id }, new { @class = "btn btn-success" })
-                    
-                    @Html.ActionLink("-", "Edit", "ShoppingCart", 
-                        new ShoppingCartController.EditArguments(){BookId = orderLine.Book.Id, Quantity = orderLine.Quantity - 1}, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("X", "DeleteItem", "ShoppingCart", new { id = orderLine.Book.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

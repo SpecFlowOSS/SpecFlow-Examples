@@ -37,6 +37,7 @@ namespace BookShop.Mvc.Controllers
                     var newOrderLine = new OrderLine
                     {
                         Book = book,
+                        BookId = bookId,
                         Quantity = 1
                     };
 
@@ -105,7 +106,7 @@ namespace BookShop.Mvc.Controllers
         {
             public int BookId { get; set; }
 
-            [Range(0, 10)]
+            [Range(1, int.MaxValue)]
             public int Quantity { get; set; }
         }
     }
