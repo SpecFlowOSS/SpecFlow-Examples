@@ -17,19 +17,24 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("US03 - Shopping cart", new string[] {
-            "automated"}, Description="\tAs a potential customer\r\n\tI want to collect books in a shopping cart\r\n\tSo that I" +
-        " can order several books at once.", SourceFile="Features\\US03_ShopingCart.feature", SourceLine=1)]
-    public partial class US03_ShoppingCartFeature
+    [Xunit.TraitAttribute("Category", "automated")]
+    public partial class US03_ShoppingCartFeature : Xunit.IClassFixture<US03_ShoppingCartFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "US03_ShopingCart.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
-        public virtual void FeatureSetup()
+        public US03_ShoppingCartFeature(US03_ShoppingCartFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US03 - Shopping cart", "\tAs a potential customer\r\n\tI want to collect books in a shopping cart\r\n\tSo that I" +
@@ -38,8 +43,7 @@ namespace BookShop.AcceptanceTests.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
@@ -49,7 +53,6 @@ namespace BookShop.AcceptanceTests.Features
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +61,7 @@ namespace BookShop.AcceptanceTests.Features
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioStart()
@@ -99,7 +103,14 @@ namespace BookShop.AcceptanceTests.Features
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Books can be placed into shopping cart", SourceLine=15)]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Books can be placed into shopping cart")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "Books can be placed into shopping cart")]
         public virtual void BooksCanBePlacedIntoShoppingCart()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Books can be placed into shopping cart", null, ((string[])(null)));
@@ -122,7 +133,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Shopping cart should show total number of items and total price", SourceLine=23)]
+        [Xunit.FactAttribute(DisplayName="Shopping cart should show total number of items and total price")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "Shopping cart should show total number of items and total price")]
         public virtual void ShoppingCartShouldShowTotalNumberOfItemsAndTotalPrice()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Shopping cart should show total number of items and total price", null, ((string[])(null)));
@@ -145,7 +158,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("The shopping cart should be initially empty", SourceLine=31)]
+        [Xunit.FactAttribute(DisplayName="The shopping cart should be initially empty")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "The shopping cart should be initially empty")]
         public virtual void TheShoppingCartShouldBeInitiallyEmpty()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The shopping cart should be initially empty", null, ((string[])(null)));
@@ -162,7 +177,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("A type of book can be entirely removed from the shopping cart", SourceLine=36)]
+        [Xunit.FactAttribute(DisplayName="A type of book can be entirely removed from the shopping cart")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "A type of book can be entirely removed from the shopping cart")]
         public virtual void ATypeOfBookCanBeEntirelyRemovedFromTheShoppingCart()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A type of book can be entirely removed from the shopping cart", null, ((string[])(null)));
@@ -181,7 +198,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Adding the same book to shopping cart again should increase quantity", SourceLine=42)]
+        [Xunit.FactAttribute(DisplayName="Adding the same book to shopping cart again should increase quantity")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "Adding the same book to shopping cart again should increase quantity")]
         public virtual void AddingTheSameBookToShoppingCartAgainShouldIncreaseQuantity()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding the same book to shopping cart again should increase quantity", null, ((string[])(null)));
@@ -202,7 +221,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Quantity of a book can be changed", SourceLine=49)]
+        [Xunit.FactAttribute(DisplayName="Quantity of a book can be changed")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "Quantity of a book can be changed")]
         public virtual void QuantityOfABookCanBeChanged()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Quantity of a book can be changed", null, ((string[])(null)));
@@ -223,7 +244,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Changing quantity of book to 0 should remove book from shopping cart", SourceLine=56)]
+        [Xunit.FactAttribute(DisplayName="Changing quantity of book to 0 should remove book from shopping cart")]
+        [Xunit.TraitAttribute("FeatureTitle", "US03 - Shopping cart")]
+        [Xunit.TraitAttribute("Description", "Changing quantity of book to 0 should remove book from shopping cart")]
         public virtual void ChangingQuantityOfBookTo0ShouldRemoveBookFromShoppingCart()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Changing quantity of book to 0 should remove book from shopping cart", null, ((string[])(null)));
@@ -242,10 +265,20 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
         {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
+            
+            public FixtureData()
+            {
+                US03_ShoppingCartFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                US03_ShoppingCartFeature.FeatureTearDown();
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Models;
 using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.BookDetails

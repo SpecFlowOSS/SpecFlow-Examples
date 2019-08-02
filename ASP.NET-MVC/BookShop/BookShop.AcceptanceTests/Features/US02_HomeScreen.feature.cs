@@ -17,19 +17,24 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("US02 - Home Screen", new string[] {
-            "automated"}, Description="\tAs a potential customer\r\n\tI want to see the books with the best price\r\n\tSo that " +
-        "I can save money on buying discounted books.", SourceFile="Features\\US02_HomeScreen.feature", SourceLine=1)]
-    public partial class US02_HomeScreenFeature
+    [Xunit.TraitAttribute("Category", "automated")]
+    public partial class US02_HomeScreenFeature : Xunit.IClassFixture<US02_HomeScreenFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "US02_HomeScreen.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
-        public virtual void FeatureSetup()
+        public US02_HomeScreenFeature(US02_HomeScreenFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US02 - Home Screen", "\tAs a potential customer\r\n\tI want to see the books with the best price\r\n\tSo that " +
@@ -38,8 +43,7 @@ namespace BookShop.AcceptanceTests.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
@@ -49,7 +53,6 @@ namespace BookShop.AcceptanceTests.Features
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +61,7 @@ namespace BookShop.AcceptanceTests.Features
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioStart()
@@ -99,7 +103,14 @@ namespace BookShop.AcceptanceTests.Features
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Cheapest 3 books should be listed on the home screen", SourceLine=14)]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Cheapest 3 books should be listed on the home screen")]
+        [Xunit.TraitAttribute("FeatureTitle", "US02 - Home Screen")]
+        [Xunit.TraitAttribute("Description", "Cheapest 3 books should be listed on the home screen")]
         public virtual void Cheapest3BooksShouldBeListedOnTheHomeScreen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest 3 books should be listed on the home screen", null, ((string[])(null)));
@@ -120,8 +131,10 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Cheapest 3 books should be listed on the home screen (list syntax)", new string[] {
-                "alternative_syntax"}, SourceLine=21)]
+        [Xunit.FactAttribute(DisplayName="Cheapest 3 books should be listed on the home screen (list syntax)")]
+        [Xunit.TraitAttribute("FeatureTitle", "US02 - Home Screen")]
+        [Xunit.TraitAttribute("Description", "Cheapest 3 books should be listed on the home screen (list syntax)")]
+        [Xunit.TraitAttribute("Category", "alternative_syntax")]
         public virtual void Cheapest3BooksShouldBeListedOnTheHomeScreenListSyntax()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest 3 books should be listed on the home screen (list syntax)", null, new string[] {
@@ -140,8 +153,10 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Cheapest 3 books should be listed on the home screen (table syntax)", new string[] {
-                "alternative_syntax"}, SourceLine=26)]
+        [Xunit.FactAttribute(DisplayName="Cheapest 3 books should be listed on the home screen (table syntax)")]
+        [Xunit.TraitAttribute("FeatureTitle", "US02 - Home Screen")]
+        [Xunit.TraitAttribute("Description", "Cheapest 3 books should be listed on the home screen (table syntax)")]
+        [Xunit.TraitAttribute("Category", "alternative_syntax")]
         public virtual void Cheapest3BooksShouldBeListedOnTheHomeScreenTableSyntax()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest 3 books should be listed on the home screen (table syntax)", null, new string[] {
@@ -168,10 +183,20 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
         {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
+            
+            public FixtureData()
+            {
+                US02_HomeScreenFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                US02_HomeScreenFeature.FeatureTearDown();
+            }
         }
     }
 }

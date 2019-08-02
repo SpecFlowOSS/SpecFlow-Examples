@@ -17,18 +17,23 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("US01 - Book Search", Description="\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
-        "t I can easily allocate books by something I remember from them.", SourceFile="Features\\US01_BookSearch.feature", SourceLine=3)]
-    public partial class US01_BookSearchFeature
+    public partial class US01_BookSearchFeature : Xunit.IClassFixture<US01_BookSearchFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "US01_BookSearch.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
-        public virtual void FeatureSetup()
+        public US01_BookSearchFeature(US01_BookSearchFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US01 - Book Search", "\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
@@ -36,8 +41,7 @@ namespace BookShop.AcceptanceTests.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
@@ -47,7 +51,6 @@ namespace BookShop.AcceptanceTests.Features
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -56,6 +59,7 @@ namespace BookShop.AcceptanceTests.Features
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioStart()
@@ -92,7 +96,14 @@ namespace BookShop.AcceptanceTests.Features
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Title should be matched", SourceLine=17)]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Title should be matched")]
+        [Xunit.TraitAttribute("FeatureTitle", "US01 - Book Search")]
+        [Xunit.TraitAttribute("Description", "Title should be matched")]
         public virtual void TitleShouldBeMatched()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Title should be matched", null, ((string[])(null)));
@@ -109,7 +120,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Author should be matched", SourceLine=22)]
+        [Xunit.FactAttribute(DisplayName="Author should be matched")]
+        [Xunit.TraitAttribute("FeatureTitle", "US01 - Book Search")]
+        [Xunit.TraitAttribute("Description", "Author should be matched")]
         public virtual void AuthorShouldBeMatched()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Author should be matched", null, ((string[])(null)));
@@ -126,7 +139,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Space should be treated as multiple OR search", SourceLine=27)]
+        [Xunit.FactAttribute(DisplayName="Space should be treated as multiple OR search")]
+        [Xunit.TraitAttribute("FeatureTitle", "US01 - Book Search")]
+        [Xunit.TraitAttribute("Description", "Space should be treated as multiple OR search")]
         public virtual void SpaceShouldBeTreatedAsMultipleORSearch()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Space should be treated as multiple OR search", null, ((string[])(null)));
@@ -144,7 +159,9 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Search result should be ordered by book title", SourceLine=32)]
+        [Xunit.FactAttribute(DisplayName="Search result should be ordered by book title")]
+        [Xunit.TraitAttribute("FeatureTitle", "US01 - Book Search")]
+        [Xunit.TraitAttribute("Description", "Search result should be ordered by book title")]
         public virtual void SearchResultShouldBeOrderedByBookTitle()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search result should be ordered by book title", null, ((string[])(null)));
@@ -168,6 +185,12 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
+        [Xunit.TheoryAttribute(DisplayName="Simple search (scenario outline syntax)")]
+        [Xunit.TraitAttribute("FeatureTitle", "US01 - Book Search")]
+        [Xunit.TraitAttribute("Description", "Simple search (scenario outline syntax)")]
+        [Xunit.TraitAttribute("Category", "alternative_syntax")]
+        [Xunit.InlineDataAttribute("Domain", "\'Domain Driven Design\'", new string[0])]
+        [Xunit.InlineDataAttribute("Windows Communication", "\'Bridging the Communication Gap\', \'Inside Windows SharePoint Services\'", new string[0])]
         public virtual void SimpleSearchScenarioOutlineSyntax(string searchPhrase, string books, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -190,28 +213,20 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Simple search (scenario outline syntax), Domain", new string[] {
-                "alternative_syntax"}, SourceLine=47)]
-        public virtual void SimpleSearchScenarioOutlineSyntax_Domain()
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
         {
-#line 42
-this.SimpleSearchScenarioOutlineSyntax("Domain", "\'Domain Driven Design\'", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.ScenarioAttribute("Simple search (scenario outline syntax), Windows Communication", new string[] {
-                "alternative_syntax"}, SourceLine=47)]
-        public virtual void SimpleSearchScenarioOutlineSyntax_WindowsCommunication()
-        {
-#line 42
-this.SimpleSearchScenarioOutlineSyntax("Windows Communication", "\'Bridging the Communication Gap\', \'Inside Windows SharePoint Services\'", ((string[])(null)));
-#line hidden
-        }
-        
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
-        {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
+            
+            public FixtureData()
+            {
+                US01_BookSearchFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                US01_BookSearchFeature.FeatureTearDown();
+            }
         }
     }
 }

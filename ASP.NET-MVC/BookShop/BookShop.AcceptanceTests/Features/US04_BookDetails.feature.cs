@@ -17,19 +17,24 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("US04 - Book details", new string[] {
-            "automated"}, Description="\tAs a potential customer\r\n\tI want to see the details of a book\r\n\tSo that I can be" +
-        "tter decide to buy it.", SourceFile="Features\\US04_BookDetails.feature", SourceLine=1)]
-    public partial class US04_BookDetailsFeature
+    [Xunit.TraitAttribute("Category", "automated")]
+    public partial class US04_BookDetailsFeature : Xunit.IClassFixture<US04_BookDetailsFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "US04_BookDetails.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
-        public virtual void FeatureSetup()
+        public US04_BookDetailsFeature(US04_BookDetailsFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US04 - Book details", "\tAs a potential customer\r\n\tI want to see the details of a book\r\n\tSo that I can be" +
@@ -38,8 +43,7 @@ namespace BookShop.AcceptanceTests.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
@@ -49,7 +53,6 @@ namespace BookShop.AcceptanceTests.Features
         {
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +61,7 @@ namespace BookShop.AcceptanceTests.Features
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioStart()
@@ -99,7 +103,14 @@ namespace BookShop.AcceptanceTests.Features
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("The author, the title and the price of a book can be seen", SourceLine=14)]
+        void System.IDisposable.Dispose()
+        {
+            this.ScenarioTearDown();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="The author, the title and the price of a book can be seen")]
+        [Xunit.TraitAttribute("FeatureTitle", "US04 - Book details")]
+        [Xunit.TraitAttribute("Description", "The author, the title and the price of a book can be seen")]
         public virtual void TheAuthorTheTitleAndThePriceOfABookCanBeSeen()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The author, the title and the price of a book can be seen", null, ((string[])(null)));
@@ -125,10 +136,20 @@ this.FeatureBackground();
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.TestRunCleanup()]
-        public virtual void TestRunCleanup()
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
         {
-            TechTalk.SpecFlow.TestRunnerManager.GetTestRunner().OnTestRunEnd();
+            
+            public FixtureData()
+            {
+                US04_BookDetailsFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                US04_BookDetailsFeature.FeatureTearDown();
+            }
         }
     }
 }
