@@ -12,47 +12,44 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
     public class BookDetailsDriver
     {
         private const decimal BookDefaultPrice = 10;
+        private readonly IDatabaseContext _databaseContext;
         private readonly CatalogContext _context;
         private ActionResult _result;
 
-        public BookDetailsDriver(CatalogContext context)
+        public BookDetailsDriver(CatalogContext context, InMemoryDbContext databaseContext)
         {
             _context = context;
+            _databaseContext = databaseContext;
         }
 
         public void AddToDatabase(Table books)
         {
-            using (var db = new DatabaseContext())
+            foreach (var row in books.Rows)
             {
-                foreach (var row in books.Rows)
+                var book = new Book
                 {
-                    var book = new Book
-                    {
-                        Author = row["Author"],
-                        Title = row["Title"],
-                        Price = books.Header.Contains("Price")
-                            ? Convert.ToDecimal(row["Price"])
-                            : BookDefaultPrice
-                    };
+                    Author = row["Author"],
+                    Title = row["Title"],
+                    Price = books.Header.Contains("Price")
+                        ? Convert.ToDecimal(row["Price"])
+                        : BookDefaultPrice
+                };
 
-                    _context.ReferenceBooks.Add(
-                        books.Header.Contains("Id") ? row["Id"] : book.Title,
-                        book);
+                _context.ReferenceBooks.Add(
+                    books.Header.Contains("Id") ? row["Id"] : book.Title,
+                    book);
 
-                    db.Books.Add(book);
-                }
-
-                db.SaveChanges();
+                _databaseContext.Books.Add(book);
             }
+
+            _databaseContext.SaveChanges();
         }
 
         public void OpenBookDetails(string bookId)
         {
             var book = _context.ReferenceBooks.GetById(bookId);
-            using (var controller = new CatalogController())
-            {
-                _result = controller.Details(book.Id);
-            }
+            using var controller = new CatalogController(_databaseContext);
+            _result = controller.Details(book.Id);
         }
 
         public void ShowsBookDetails(Table expectedBookDetails)

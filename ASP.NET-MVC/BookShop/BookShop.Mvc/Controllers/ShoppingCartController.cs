@@ -11,7 +11,13 @@ namespace BookShop.Mvc.Controllers
     public class ShoppingCartController
         : Controller
     {
+        private readonly IDatabaseContext _databaseContext;
         public const string CartSessionKey = "CART";
+
+        public ShoppingCartController(IDatabaseContext databaseContext)
+        {
+            _databaseContext = databaseContext;
+        }
 
         public ActionResult Index()
         {
@@ -21,33 +27,30 @@ namespace BookShop.Mvc.Controllers
 
         public ActionResult Add(int bookId)
         {
-            using (var db = new DatabaseContext())
+            var shoppingCart = GetShoppingCart();
+
+            var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
+            if (existingLine != null)
             {
-                var shoppingCart = GetShoppingCart();
-
-                var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
-                if (existingLine != null)
-                {
-                    existingLine.Quantity++;
-                }
-                else
-                {
-                    var book = db.Books.First(b => b.Id == bookId);
-
-                    var newOrderLine = new OrderLine
-                    {
-                        Book = book,
-                        BookId = bookId,
-                        Quantity = 1
-                    };
-
-                    shoppingCart.AddLineItem(newOrderLine);
-                }
-
-                ViewData.Model = shoppingCart;
-                HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
-                return RedirectToAction(nameof(Index));
+                existingLine.Quantity++;
             }
+            else
+            {
+                var book = _databaseContext.Books.First(b => b.Id == bookId);
+
+                var newOrderLine = new OrderLine
+                {
+                    Book = book,
+                    BookId = bookId,
+                    Quantity = 1
+                };
+
+                shoppingCart.AddLineItem(newOrderLine);
+            }
+
+            ViewData.Model = shoppingCart;
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

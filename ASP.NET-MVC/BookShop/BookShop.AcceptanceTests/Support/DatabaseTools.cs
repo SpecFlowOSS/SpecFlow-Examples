@@ -9,13 +9,13 @@ namespace BookShop.AcceptanceTests.Support
         [BeforeScenario]
         public void CleanDatabase()
         {
-            using (var db = new DatabaseContext())
-            {
-                db.OrderLines.RemoveRange(db.OrderLines);
-                db.Orders.RemoveRange(db.Orders);
-                db.Books.RemoveRange(db.Books);
-                db.SaveChanges();
-            }
+            using var db = new InMemoryDbContext();
+            db.Database.EnsureCreated();
+            
+            db.OrderLines.RemoveRange(db.OrderLines);
+            db.Orders.RemoveRange(db.Orders);
+            db.Books.RemoveRange(db.Books);
+            db.SaveChanges();
         }
     }
 }

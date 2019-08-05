@@ -11,14 +11,18 @@ namespace BookShop.AcceptanceTests.Drivers.Home
 {
     public class HomeDriver
     {
+        private readonly IDatabaseContext _databaseContext;
         private ActionResult _result;
+
+        public HomeDriver(InMemoryDbContext databaseContext)
+        {
+            _databaseContext = databaseContext;
+        }
 
         public void Navigate()
         {
-            using (var controller = new HomeController())
-            {
-                _result = controller.Index();
-            }
+            using var controller = new HomeController(_databaseContext);
+            _result = controller.Index();
         }
 
         public void ShowsBook(string expectedTitle)

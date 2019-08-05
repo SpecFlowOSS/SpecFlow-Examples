@@ -2,6 +2,7 @@
 using System.Linq;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Models;
 using FluentAssertions;
 
 namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
@@ -93,7 +94,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         private static ShoppingCartController GetShoppingCartController()
         {
-            var controller = new ShoppingCartController();
+            var controller = new ShoppingCartController(new InMemoryDbContext());
             HttpContextStub.SetupController(controller);
             return controller;
         }

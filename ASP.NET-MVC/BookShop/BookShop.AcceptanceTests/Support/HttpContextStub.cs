@@ -43,47 +43,48 @@ namespace BookShop.AcceptanceTests.Support
 
         private class StubSession : ISession
         {
-            private readonly Dictionary<string, object> _state = new Dictionary<string, object>();
+            private readonly Dictionary<string, byte[]> _state = new Dictionary<string, byte[]>();
 
-            public object this[string name]
-            {
-                get => !_state.ContainsKey(name) ? null : _state[name];
-                set => _state[name] = value;
-            }
-
+            
             public void Clear()
             {
-                throw new NotImplementedException();
+                _state.Clear();
             }
 
             public Task CommitAsync(CancellationToken cancellationToken = new CancellationToken())
             {
-                throw new NotImplementedException();
+                return Task.CompletedTask;
             }
 
             public Task LoadAsync(CancellationToken cancellationToken = new CancellationToken())
             {
-                throw new NotImplementedException();
+                return Task.CompletedTask;
             }
 
             public void Remove(string key)
             {
-                throw new NotImplementedException();
+                _state.Remove(key);
             }
 
             public void Set(string key, byte[] value)
             {
-                throw new NotImplementedException();
+                if (_state.ContainsKey(key))
+                {
+                    _state[key] = value;
+                    return;
+                }
+                
+                _state.Add(key, value);
             }
 
             public bool TryGetValue(string key, out byte[] value)
             {
-                throw new NotImplementedException();
+                return _state.TryGetValue(key, out value);
             }
 
-            public string Id { get; }
-            public bool IsAvailable { get; }
-            public IEnumerable<string> Keys { get; }
+            public string Id { get; } = Guid.NewGuid().ToString();
+            public bool IsAvailable { get; } = true;
+            public IEnumerable<string> Keys => _state.Keys;
         }
     }
 }

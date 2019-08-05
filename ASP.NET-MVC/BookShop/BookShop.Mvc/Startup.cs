@@ -20,10 +20,8 @@ namespace BookShop.Mvc
         {
             Configuration = configuration;
 
-            using (var client = new DatabaseContext())
-            {
-                client.Database.EnsureCreated();
-            }
+            using var client = new DatabaseContext();
+            client.Database.EnsureCreated();
         }
 
         public IConfiguration Configuration { get; }
@@ -32,9 +30,11 @@ namespace BookShop.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<IDatabaseContext, DatabaseContext>();
             services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            //services.AddDbContext<InMemoryDbContext>(options => options.UseInMemoryDatabase("BookShop"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
