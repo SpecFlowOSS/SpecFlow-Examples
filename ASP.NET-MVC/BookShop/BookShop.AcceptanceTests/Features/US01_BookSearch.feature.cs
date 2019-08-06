@@ -19,12 +19,14 @@ namespace BookShop.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [Xunit.TraitAttribute("Category", "web")]
     public partial class US01_BookSearchFeature : Xunit.IClassFixture<US01_BookSearchFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "web"};
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
@@ -42,7 +44,8 @@ namespace BookShop.AcceptanceTests.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US01 - Book Search", "\tAs a potential customer\r\n\tI want to search for books by a simple phrase\r\n\tSo tha" +
-                    "t I can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "t I can easily allocate books by something I remember from them.", ProgrammingLanguage.CSharp, new string[] {
+                        "web"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
