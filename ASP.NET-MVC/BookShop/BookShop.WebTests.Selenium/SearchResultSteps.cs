@@ -9,18 +9,24 @@ namespace BookShop.WebTests.Selenium
 {
     [Binding, Scope(Tag = "web")]
     public class SearchResultSteps
-        : SeleniumStepsBase
     {
+        private readonly SeleniumController _seleniumController;
+
+        public SearchResultSteps(SeleniumController seleniumController)
+        {
+            _seleniumController = seleniumController;
+        }
+
         [When(@"I sort the search result table by Author")]
         public void WhenISortTheSearchResultTableByAuthor()
         {
-            selenium.FindElements(By.XPath("//table[@id='searchResultTable']/thead/tr/th/em[text()='Author']")).First().Click();
+            _seleniumController.WebDriver.FindElements(By.XPath("//table[@id='searchResultTable']/thead/tr/th/em[text()='Author']")).First().Click();
         }
 
         [When(@"I sort the search result table by Title")]
         public void WhenISortTheSearchResultTableByTitle()
         {
-            selenium.FindElements(By.XPath("//table[@id='searchResultTable']/thead/tr/th/em[text()='Title']")).First().Click();
+            _seleniumController.WebDriver.FindElements(By.XPath("//table[@id='searchResultTable']/thead/tr/th/em[text()='Title']")).First().Click();
         }
 
         [Then(@"the search result list should display the books in the following order")]
@@ -31,7 +37,7 @@ namespace BookShop.WebTests.Selenium
                                 let title = tableRow["Title"]
                                 select new Book { Author = author, Title = title };
 
-            var tableRows = selenium.FindElements(By.XPath("//table[@id='searchResultTable']/tbody/tr"));
+            var tableRows = _seleniumController.WebDriver.FindElements(By.XPath("//table[@id='searchResultTable']/tbody/tr"));
 
             var actualBooks = from tr in tableRows
                               let title = tr.FindElement(By.XPath("//td[1]/h4")).Text

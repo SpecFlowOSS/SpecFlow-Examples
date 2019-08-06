@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -20,8 +19,6 @@ namespace BookShop.WebTests.Selenium.Support
             {
                 return;
             }
-
-            string appUrl = ConfigurationManager.AppSettings["AppUrl"];
 
             ////WebDriver = new FirefoxDriver();
             ////WebDriver = new InternetExplorerDriver();
@@ -74,6 +71,7 @@ namespace BookShop.WebTests.Selenium.Support
             }
 
             WebDriver = null;
+
             Trace("WebDriver stopped");
         }
     }

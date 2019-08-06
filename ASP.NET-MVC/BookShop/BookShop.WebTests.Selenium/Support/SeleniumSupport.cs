@@ -7,29 +7,30 @@ namespace BookShop.WebTests.Selenium.Support
     [Binding]
     public static class SeleniumSupport
     {
+
         private static bool ReuseWebSession
         {
             get { return ConfigurationManager.AppSettings["ReuseWebSession"] == "true"; }
         }
 
         [BeforeScenario("web")]
-        public static void BeforeWebScenario()
+        public static void BeforeWebScenario(SeleniumController seleniumController)
         {
-            SeleniumController.Instance.Start();
+            seleniumController.Start();
         }
 
         [AfterScenario("web")]
-        public static void AfterWebScenario()
+        public static void AfterWebScenario(SeleniumController seleniumController)
         {
             if (!ReuseWebSession)
-                SeleniumController.Instance.Stop();
+                seleniumController.Stop();
         }
 
         //[AfterFeature]
         [AfterTestRun]
-        public static void AfterWebFeature()
+        public static void AfterWebFeature(SeleniumController seleniumController)
         {
-            SeleniumController.Instance.Stop();
+            seleniumController.Stop();
         }
     }
 }

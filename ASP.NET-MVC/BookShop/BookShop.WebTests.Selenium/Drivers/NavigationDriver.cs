@@ -7,18 +7,21 @@ using OpenQA.Selenium;
 
 namespace BookShop.WebTests.Selenium.Drivers
 {
-    class NavigationDriver
+    public class NavigationDriver
     {
         private readonly SeleniumController _seleniumController;
+        private readonly TestAppSettingsDriver _appSettingsDriver;
 
-        public NavigationDriver(SeleniumController seleniumController)
+        public NavigationDriver(SeleniumController seleniumController, TestAppSettingsDriver appSettingsDriver)
         {
             _seleniumController = seleniumController;
+            _appSettingsDriver = appSettingsDriver;
         }
 
         public void NavigateTo(string relativeUrl)
         {
-            _seleniumController.WebDriver.Navigate().GoToUrl(new Uri(new Uri(ConfigurationManager.AppSettings["AppUrl"]), relativeUrl));
+            var baseUrl = _appSettingsDriver.GetValue("AppUrl");
+            _seleniumController.WebDriver.Navigate().GoToUrl(new Uri(new Uri(baseUrl), relativeUrl));
         }
     }
 }

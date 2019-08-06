@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -18,7 +19,11 @@ namespace BookShop.Mvc.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Filename=BookShop.db");
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            optionsBuilder.UseSqlite(config["ConnectionStrings:BookShop"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
