@@ -17,13 +17,16 @@ namespace BookShop.Mvc.Models
     public class DatabaseContext
         : DbContext, IDatabaseContext
     {
+        private readonly IConfiguration _config;
+
+        public DatabaseContext(IConfiguration config)
+        {
+            _config = config;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .Build();
-
-            optionsBuilder.UseSqlite(config["ConnectionStrings:BookShop"]);
+            optionsBuilder.UseSqlite(_config.GetConnectionString("BookShop"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

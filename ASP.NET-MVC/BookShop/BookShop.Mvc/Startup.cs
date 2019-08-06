@@ -20,7 +20,7 @@ namespace BookShop.Mvc
         {
             Configuration = configuration;
 
-            using var client = new DatabaseContext();
+            using var client = new DatabaseContext(configuration);
             client.Database.EnsureCreated();
         }
 

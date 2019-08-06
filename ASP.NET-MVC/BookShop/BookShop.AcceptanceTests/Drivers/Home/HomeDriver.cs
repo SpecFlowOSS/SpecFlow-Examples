@@ -14,7 +14,7 @@ namespace BookShop.AcceptanceTests.Drivers.Home
         private readonly IDatabaseContext _databaseContext;
         private ActionResult _result;
 
-        public HomeDriver(InMemoryDbContext databaseContext)
+        public HomeDriver(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }

@@ -8,7 +8,7 @@ namespace BookShop.AcceptanceTests.Drivers.Search
         private readonly IDatabaseContext _databaseContext;
         private readonly SearchResultState _state;
 
-        public SearchDriver(SearchResultState state, InMemoryDbContext databaseContext)
+        public SearchDriver(SearchResultState state, DatabaseContext databaseContext)
         {
             _state = state;
             _databaseContext = databaseContext;

@@ -16,7 +16,7 @@ namespace BookShop.AcceptanceTests.Drivers.BookDetails
         private readonly CatalogContext _context;
         private ActionResult _result;
 
-        public BookDetailsDriver(CatalogContext context, InMemoryDbContext databaseContext)
+        public BookDetailsDriver(CatalogContext context, DatabaseContext databaseContext)
         {
             _context = context;
             _databaseContext = databaseContext;
