@@ -1,19 +1,8 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace BookShop.Mvc.Models
 {
-    public interface IDatabaseContext : IDisposable
-    {
-        DbSet<Order> Orders { get; set; }
-        DbSet<Book> Books { get; set; }
-        DbSet<OrderLine> OrderLines { get; set; }
-        DatabaseFacade Database { get; }
-        int SaveChanges();
-    }
-
     public class DatabaseContext
         : DbContext, IDatabaseContext
     {
