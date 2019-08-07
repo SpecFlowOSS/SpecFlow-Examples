@@ -311,3 +311,4 @@ BowlingKata/BowlingKata-SpecFlowJson-*/**/*.feature.cs
 .vscode/
 
 *.db
+*.feature.cs
