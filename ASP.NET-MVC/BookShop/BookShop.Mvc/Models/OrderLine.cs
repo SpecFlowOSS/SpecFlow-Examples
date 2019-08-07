@@ -7,7 +7,6 @@ namespace BookShop.Mvc.Models
     {
         public virtual Book Book { get; set; }
 
-        [Key]
         [Required]
         [ForeignKey(nameof(Models.Book))]
         [Column(Order = 0)]
@@ -15,7 +14,6 @@ namespace BookShop.Mvc.Models
 
         public virtual Order Order { get; set; }
 
-        [Key]
         [Required]
         [ForeignKey(nameof(Models.Order))]
         [Column(Order = 1)]

@@ -2,17 +2,21 @@
 using System.Linq;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Models;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 
 namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 {
     public class ShoppingCartDriver
     {
         private readonly CatalogContext _catalogContext;
+        private readonly IConfiguration _config;
 
-        public ShoppingCartDriver(CatalogContext catalogContext)
+        public ShoppingCartDriver(CatalogContext catalogContext, IConfiguration config)
         {
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
+            _config = config;
         }
 
         public void SetShoppingCart(string bookIds)
@@ -27,7 +31,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
         public void Place(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 controller.Add(book.Id);
             }
@@ -36,7 +40,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
         public void Delete(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 controller.DeleteItem(book.Id);
             }
@@ -45,7 +49,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
         public void SetQuantity(string bookId, int quantity)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 controller.Edit(new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity });
             }
@@ -53,7 +57,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public void ContainsTypesOfItems(int expectedAmount)
         {
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 var actionResult = controller.Index();
                 actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Should().HaveCount(expectedAmount);
@@ -62,7 +66,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public void ContainsTotalItems(int expectedQuantity)
         {
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 var actionResult = controller.Index();
                 actionResult.Model<Mvc.Models.ShoppingCart>().Count.Should().Be(expectedQuantity);
@@ -71,7 +75,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         public void ShowsTotalPriceOf(decimal expectedTotalPrice)
         {
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 var actionResult = controller.Index();
                 actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
@@ -82,7 +86,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
         {
             var expectedBook = _catalogContext.ReferenceBooks.GetById(bookId);
 
-            using (var controller = GetShoppingCartController())
+            using (var controller = GetShoppingCartController(_config))
             {
                 var actionResult = controller.Index();
                 actionResult.Model<Mvc.Models.ShoppingCart>().Lines
@@ -91,9 +95,9 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
             }
         }
 
-        private static ShoppingCartController GetShoppingCartController()
+        private static ShoppingCartController GetShoppingCartController(IConfiguration config)
         {
-            var controller = new ShoppingCartController();
+            var controller = new ShoppingCartController(new DatabaseContext(config));
             HttpContextStub.SetupController(controller);
             return controller;
         }

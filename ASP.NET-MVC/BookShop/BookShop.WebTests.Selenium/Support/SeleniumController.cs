@@ -1,81 +1,78 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-////using OpenQA.Selenium.Firefox;
-////using OpenQA.Selenium.IE;
+////using OpenQA.WebDriver.Firefox;
+////using OpenQA.WebDriver.IE;
 
 namespace BookShop.WebTests.Selenium.Support
 {
     public class SeleniumController : IDisposable
     {
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
-        public static SeleniumController Instance = new SeleniumController();
 
-        public IWebDriver Selenium { get; private set; }
+        public IWebDriver WebDriver { get; private set; }
 
         public void Start()
         {
-            if (!(Selenium is null))
+            if (!(WebDriver is null))
             {
                 return;
             }
 
-            string appUrl = ConfigurationManager.AppSettings["AppUrl"];
+            ////WebDriver = new FirefoxDriver();
+            ////WebDriver = new InternetExplorerDriver();
+            WebDriver = new ChromeDriver();
+            WebDriver.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
 
-            ////Selenium = new FirefoxDriver();
-            ////Selenium = new InternetExplorerDriver();
-            Selenium = new ChromeDriver();
-            Selenium.Manage().Timeouts().ImplicitWait = DefaultTimeout;
-
-            ////Selenium = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);
-            ////Selenium.Start();
-            Trace("Selenium started");
+            ////WebDriver = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);
+            ////WebDriver.Start();
+            Trace("WebDriver started");
         }
 
         public void Stop()
         {
-            if (Selenium is null)
+            if (WebDriver is null)
             {
                 return;
             }
 
             try
             {
-                Selenium.Quit();
-                Selenium.Dispose();
+                WebDriver.Quit();
+                WebDriver.Dispose();
             }
             catch (Exception exc)
             {
-                Debug.WriteLine(exc, "Selenium stop error");
+                Debug.WriteLine(exc, "WebDriver stop error");
             }
 
-            Selenium = null;
-            Trace("Selenium stopped");
+            WebDriver = null;
+            Trace("WebDriver stopped");
         }
 
         private static void Trace(string message) => Console.WriteLine($"-> {message}");
 
         public void Dispose()
         {
-            if (Selenium is null)
+            if (WebDriver is null)
             {
                 return;
             }
 
             try
             {
-                Selenium.Quit();
-                Selenium.Dispose();
+                WebDriver.Quit();
+                WebDriver.Dispose();
             }
             catch (Exception exc)
             {
-                Debug.WriteLine(exc, "Selenium stop error");
+                Debug.WriteLine(exc, "WebDriver stop error");
             }
 
-            Selenium = null;
-            Trace("Selenium stopped");
+            WebDriver = null;
+
+            Trace("WebDriver stopped");
         }
     }
 }

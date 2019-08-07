@@ -1,15 +1,29 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Mvc.Models
 {
     public class DatabaseContext
-        : DbContext
+        : DbContext, IDatabaseContext
     {
-        public DatabaseContext()
-            : base(@"Data Source=(localdb)\v11.0;Initial Catalog=BookShop;Integrated Security=True;MultipleActiveResultSets=True")
+        private readonly IConfiguration _config;
+
+        public DatabaseContext(IConfiguration config)
         {
+            _config = config;
         }
-        
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(_config.GetConnectionString("BookShop"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderLine>()
+                .HasKey(ol => new {ol.BookId, ol.OrderId});
+        }
+
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Book> Books { get; set; }

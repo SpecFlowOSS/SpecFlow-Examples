@@ -1,14 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web.Mvc;
 using BookShop.Mvc.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace BookShop.Mvc.Controllers
 {
     public class ShoppingCartController
         : Controller
     {
+        private readonly IDatabaseContext _databaseContext;
         public const string CartSessionKey = "CART";
+
+        public ShoppingCartController(IDatabaseContext databaseContext)
+        {
+            _databaseContext = databaseContext;
+        }
 
         public ActionResult Index()
         {
@@ -18,31 +27,30 @@ namespace BookShop.Mvc.Controllers
 
         public ActionResult Add(int bookId)
         {
-            using (var db = new DatabaseContext())
+            var shoppingCart = GetShoppingCart();
+
+            var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
+            if (existingLine != null)
             {
-                var shoppingCart = GetShoppingCart();
-
-                var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
-                if (existingLine != null)
-                {
-                    existingLine.Quantity++;
-                }
-                else
-                {
-                    var book = db.Books.First(b => b.Id == bookId);
-
-                    var newOrderLine = new OrderLine
-                    {
-                        Book = book,
-                        Quantity = 1
-                    };
-
-                    shoppingCart.AddLineItem(newOrderLine);
-                }
-
-                ViewData.Model = shoppingCart;
-                return RedirectToAction(nameof(Index));
+                existingLine.Quantity++;
             }
+            else
+            {
+                var book = _databaseContext.Books.First(b => b.Id == bookId);
+
+                var newOrderLine = new OrderLine
+                {
+                    Book = book,
+                    BookId = bookId,
+                    Quantity = 1
+                };
+
+                shoppingCart.AddLineItem(newOrderLine);
+            }
+
+            ViewData.Model = shoppingCart;
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -52,11 +60,12 @@ namespace BookShop.Mvc.Controllers
             shoppingCart.RemoveLineItem(id);
 
             ViewData.Model = shoppingCart;
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        [ValidateInput(true)]
+        //[ValidateInput(true)]
         public ActionResult Edit(EditArguments editArgs)
         {
             if (!ModelState.IsValid)
@@ -78,18 +87,21 @@ namespace BookShop.Mvc.Controllers
                 shoppingCart.RemoveLineItem(bookId);
             }
 
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+
             return RedirectToAction("Index");
         }
 
         private ShoppingCart GetShoppingCart()
         {
-            if (HttpContext.Session[CartSessionKey] is ShoppingCart sc)
+            var sc = HttpContext.Session.GetString(CartSessionKey);
+            if (!string.IsNullOrEmpty(sc))
             {
-                return sc;
+                return JsonConvert.DeserializeObject<ShoppingCart>(sc);
             }
 
             var cart = new ShoppingCart();
-            HttpContext.Session[CartSessionKey] = cart;
+            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(cart));
             return cart;
         }
 
@@ -97,7 +109,7 @@ namespace BookShop.Mvc.Controllers
         {
             public int BookId { get; set; }
 
-            [Range(0, 10)]
+            [Range(1, int.MaxValue)]
             public int Quantity { get; set; }
         }
     }

@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.AcceptanceTests.Support
 {

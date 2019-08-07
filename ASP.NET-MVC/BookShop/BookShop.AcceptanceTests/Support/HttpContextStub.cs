@@ -1,6 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Moq;
 using TechTalk.SpecFlow;
 
@@ -17,9 +24,9 @@ namespace BookShop.AcceptanceTests.Support
             SessionStub = null;
         }
 
-        public static HttpContextBase Get()
+        public static HttpContext Get()
         {
-            var httpContextStub = new Mock<HttpContextBase>();
+            var httpContextStub = new Mock<HttpContext>();
             if (SessionStub == null)
             {
                 SessionStub = new StubSession();
@@ -34,15 +41,50 @@ namespace BookShop.AcceptanceTests.Support
             controller.ControllerContext = new ControllerContext { HttpContext = Get() };
         }
 
-        private class StubSession : HttpSessionStateBase
+        private class StubSession : ISession
         {
-            private readonly Dictionary<string, object> _state = new Dictionary<string, object>();
+            private readonly Dictionary<string, byte[]> _state = new Dictionary<string, byte[]>();
 
-            public override object this[string name]
+            
+            public void Clear()
             {
-                get => !_state.ContainsKey(name) ? null : _state[name];
-                set => _state[name] = value;
+                _state.Clear();
             }
+
+            public Task CommitAsync(CancellationToken cancellationToken = new CancellationToken())
+            {
+                return Task.CompletedTask;
+            }
+
+            public Task LoadAsync(CancellationToken cancellationToken = new CancellationToken())
+            {
+                return Task.CompletedTask;
+            }
+
+            public void Remove(string key)
+            {
+                _state.Remove(key);
+            }
+
+            public void Set(string key, byte[] value)
+            {
+                if (_state.ContainsKey(key))
+                {
+                    _state[key] = value;
+                    return;
+                }
+                
+                _state.Add(key, value);
+            }
+
+            public bool TryGetValue(string key, out byte[] value)
+            {
+                return _state.TryGetValue(key, out value);
+            }
+
+            public string Id { get; } = Guid.NewGuid().ToString();
+            public bool IsAvailable { get; } = true;
+            public IEnumerable<string> Keys => _state.Keys;
         }
     }
 }

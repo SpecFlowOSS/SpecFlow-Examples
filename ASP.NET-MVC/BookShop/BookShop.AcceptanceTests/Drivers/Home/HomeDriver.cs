@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Models;
+using Microsoft.AspNetCore.Mvc;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Home
 {
     public class HomeDriver
     {
+        private readonly IDatabaseContext _databaseContext;
         private ActionResult _result;
+
+        public HomeDriver(DatabaseContext databaseContext)
+        {
+            _databaseContext = databaseContext;
+        }
 
         public void Navigate()
         {
-            using (var controller = new HomeController())
-            {
-                _result = controller.Index();
-            }
+            using var controller = new HomeController(_databaseContext);
+            _result = controller.Index();
         }
 
         public void ShowsBook(string expectedTitle)

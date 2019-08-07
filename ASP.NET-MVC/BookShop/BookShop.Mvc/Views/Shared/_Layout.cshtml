@@ -1,56 +1,49 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Bookshop</title>
-    @Styles.Render("~/Content/css")
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookShop.Mvc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-<div class="container body-content">
     <header>
-        <nav class="navbar navbar-expand-md navbar-light">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="fas fa-bars"></span>
-                <span>Menu</span>
-            </button>
-            @Html.ActionLink("Bookshop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-            <div class="navbar-collapse collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Shopping Cart", "Index", "ShoppingCart", new { @class = "nav-link" })</li>
-                </ul>
-                @using (Html.BeginForm("Search", "Catalog", FormMethod.Get, new { Id = "searchForm", @class = "form-inline" }))
-                {
-                    <div class="form-group">
-                        @Html.Label("searchTerm", "Search", new { @class = "sr-only" })
-                        @Html.TextBox("searchTerm", "", new { @class = "form-control", placeholder = "Enter your search...", type = "search" })
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary form-control">
-                            <span class="fas fa-search"></span>
-                            <span>Search</span>
-                        </button>
-                    </div>
-                }
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookShop.Mvc</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
-    @RenderBody()
-    <hr/>
-    <footer>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-        <p>&copy; @DateTime.Now.Year - TechTalk</p>
-        <p><a href="http://www.specflow.org" target="_blank">SpecFlow</a> - Pragmatic BDD for .NET</p>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - TechTalk</p>
+            <p><a href="http://www.specflow.org" target="_blank">SpecFlow</a> - Pragmatic BDD for .NET</p>
+        </div>
     </footer>
-</div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
