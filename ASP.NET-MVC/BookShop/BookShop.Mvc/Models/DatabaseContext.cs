@@ -27,15 +27,17 @@ namespace BookShop.Mvc.Models
 
 
             //Seed Data
-            var books = new List<string[]>();
-            books.Add(new string[]{ "1", "Gojko Adzic", "Bridging the Communication Gap", "12.20" });
-            books.Add(new string[] { "2", "Gojko Adzic", "Specification By Example", "15.30" });
-            books.Add(new string[] { "3", "Lisa Crispin and Janet Gregory", "Agile Testing", "20.20" });
-            books.Add(new string[] { "4", "Mitch Lacey", "The Scrum Field Guide", "15.31" });
-            books.Add(new string[] { "5", "Martin Fowler","Refactoring", "29.55" });
-            books.Add(new string[] { "6", "Esther Derby and Diana Larsen", "Agile Retrospectives", "16.99" });
-            books.Add(new string[] { "7", "Matt Wynne and Aslak Hellesoy","The Cucumber Book","18.00" });
-            books.Add(new string[] { "8", "David Chelimsky", "The RSpec Book", "17.50" });
+            var books = new List<string[]>
+            {
+                new string[] { "1", "Gojko Adzic", "Bridging the Communication Gap", "12.20" },
+                new string[] { "2", "Gojko Adzic", "Specification By Example", "15.30" },
+                new string[] { "3", "Lisa Crispin and Janet Gregory", "Agile Testing", "20.20" },
+                new string[] { "4", "Mitch Lacey", "The Scrum Field Guide", "15.31" },
+                new string[] { "5", "Martin Fowler", "Refactoring", "29.55" },
+                new string[] { "6", "Esther Derby and Diana Larsen", "Agile Retrospectives", "16.99" },
+                new string[] { "7", "Matt Wynne and Aslak Hellesoy", "The Cucumber Book", "18.00" },
+                new string[] { "8", "David Chelimsky", "The RSpec Book", "17.50" }
+            };
 
             var nfi = new NumberFormatInfo()
             {
