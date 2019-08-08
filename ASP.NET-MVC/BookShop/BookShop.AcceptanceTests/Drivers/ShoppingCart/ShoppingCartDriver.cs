@@ -31,68 +31,54 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
         public void Place(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController(_config))
-            {
-                controller.Add(book.Id);
-            }
+            using var controller = GetShoppingCartController(_config);
+            controller.Add(book.Id);
         }
 
         public void Delete(string bookId)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController(_config))
-            {
-                controller.DeleteItem(book.Id);
-            }
+            using var controller = GetShoppingCartController(_config);
+            controller.DeleteItem(book.Id);
         }
 
         public void SetQuantity(string bookId, int quantity)
         {
             var book = _catalogContext.ReferenceBooks.GetById(bookId);
-            using (var controller = GetShoppingCartController(_config))
-            {
-                controller.Edit(new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity });
-            }
+            using var controller = GetShoppingCartController(_config);
+            controller.Edit(new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity });
         }
 
         public void ContainsTypesOfItems(int expectedAmount)
         {
-            using (var controller = GetShoppingCartController(_config))
-            {
-                var actionResult = controller.Index();
-                actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Should().HaveCount(expectedAmount);
-            }
+            using var controller = GetShoppingCartController(_config);
+            var actionResult = controller.Index();
+            actionResult.Model<Mvc.Models.ShoppingCart>().Lines.Should().HaveCount(expectedAmount);
         }
 
         public void ContainsTotalItems(int expectedQuantity)
         {
-            using (var controller = GetShoppingCartController(_config))
-            {
-                var actionResult = controller.Index();
-                actionResult.Model<Mvc.Models.ShoppingCart>().Count.Should().Be(expectedQuantity);
-            }
+            using var controller = GetShoppingCartController(_config);
+            var actionResult = controller.Index();
+            actionResult.Model<Mvc.Models.ShoppingCart>().Count.Should().Be(expectedQuantity);
         }
 
         public void ShowsTotalPriceOf(decimal expectedTotalPrice)
         {
-            using (var controller = GetShoppingCartController(_config))
-            {
-                var actionResult = controller.Index();
-                actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
-            }
+            using var controller = GetShoppingCartController(_config);
+            var actionResult = controller.Index();
+            actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
         }
 
         public void ContainsCopiesOf(string bookId, int expectedQuantity)
         {
             var expectedBook = _catalogContext.ReferenceBooks.GetById(bookId);
 
-            using (var controller = GetShoppingCartController(_config))
-            {
-                var actionResult = controller.Index();
-                actionResult.Model<Mvc.Models.ShoppingCart>().Lines
-                            .Should().ContainSingle(ol => ol.Book.Id == expectedBook.Id)
-                            .Which.Quantity.Should().Be(expectedQuantity);
-            }
+            using var controller = GetShoppingCartController(_config);
+            var actionResult = controller.Index();
+            actionResult.Model<Mvc.Models.ShoppingCart>().Lines
+                .Should().ContainSingle(ol => ol.Book.Id == expectedBook.Id)
+                .Which.Quantity.Should().Be(expectedQuantity);
         }
 
         private static ShoppingCartController GetShoppingCartController(IConfiguration config)
