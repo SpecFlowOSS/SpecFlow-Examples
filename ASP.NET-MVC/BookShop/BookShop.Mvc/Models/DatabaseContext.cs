@@ -27,33 +27,21 @@ namespace BookShop.Mvc.Models
 
 
             //Seed Data
-            var books = new List<string[]>
+            var books = new List<Book>
             {
-                new string[] { "1", "Gojko Adzic", "Bridging the Communication Gap", "12.20" },
-                new string[] { "2", "Gojko Adzic", "Specification By Example", "15.30" },
-                new string[] { "3", "Lisa Crispin and Janet Gregory", "Agile Testing", "20.20" },
-                new string[] { "4", "Mitch Lacey", "The Scrum Field Guide", "15.31" },
-                new string[] { "5", "Martin Fowler", "Refactoring", "29.55" },
-                new string[] { "6", "Esther Derby and Diana Larsen", "Agile Retrospectives", "16.99" },
-                new string[] { "7", "Matt Wynne and Aslak Hellesoy", "The Cucumber Book", "18.00" },
-                new string[] { "8", "David Chelimsky", "The RSpec Book", "17.50" }
-            };
-
-            var nfi = new NumberFormatInfo()
-            {
-                NumberDecimalSeparator = "."
+                new Book { Id = 1, Author = "Gojko Adzic", Title = "Bridging the Communication Gap", Price = (decimal)12.20 },
+                new Book { Id = 2, Author = "Gojko Adzic", Title = "Specification By Example", Price = (decimal)15.30 },
+                new Book { Id = 3, Author = "Lisa Crispin and Janet Gregory", Title = "Agile Testing", Price = (decimal)20.20 },
+                new Book { Id = 4, Author = "Mitch Lacey", Title = "The Scrum Field Guide", Price = (decimal)15.31 },
+                new Book { Id = 5, Author = "Martin Fowler", Title = "Refactoring", Price = (decimal)29.55 },
+                new Book { Id = 6, Author = "Esther Derby and Diana Larsen", Title = "Agile Retrospectives", Price = (decimal)16.99 },
+                new Book { Id = 7, Author = "Matt Wynne and Aslak Hellesoy", Title = "The Cucumber Book", Price = (decimal)18.00 },
+                new Book { Id = 8, Author = "David Chelimsky", Title = "The RSpec Book", Price = (decimal)17.50 }
             };
 
             foreach (var book in books)
             {
-                modelBuilder.Entity<Book>().HasData(new Book
-                { 
-                    Id = int.Parse(book[0]),
-                    Author = book[1],
-                    Title = book[2],
-                    Price = decimal.Parse(book[3], nfi),
-                    OrderLines = null
-                });
+                modelBuilder.Entity<Book>().HasData(book);
             }
         }
 
