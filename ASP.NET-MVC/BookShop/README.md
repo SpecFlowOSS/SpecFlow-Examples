@@ -103,10 +103,10 @@ driven by the Selenium version used in this example. It might be necessary
 to update Chrome or the Selenium version used in this sample, to make
 the UI automation work.
 
-> __Note:__ You can also use Firefox or Internet Explorer if you change the Driver 
+> *__Note:__ You can also use Firefox or Internet Explorer if you change the Driver 
 > in `SeleniumController.cs` in the `Support` folder of the `BookShop.WebTests.Selenium` project.
 > Just add (uncomment) the right `using`-statement and WebDriver assignment
-> for the browser of your choice (and remove/comment the others).
+> for the browser of your choice (and remove/comment the others).*
 
 As the UI automation relies on a running instance of the application,
 you need to first run the web application, before you run the SpecFlow tests
