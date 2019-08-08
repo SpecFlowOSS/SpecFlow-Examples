@@ -7,16 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\..\.gitignore = ..\..\.gitignore
 		BookShop.vsmdi = BookShop.vsmdi
-		create_db.sql = create_db.sql
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests", "BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj", "{0906D17A-01F0-4761-9ECD-BE5023387943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.AcceptanceTests", "BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj", "{0906D17A-01F0-4761-9ECD-BE5023387943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.WebTests.Selenium", "BookShop.WebTests.Selenium\BookShop.WebTests.Selenium.csproj", "{076B2B3F-B40C-4445-B73B-8847C15E9623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.AcceptanceTests.Common", "BookShop.AcceptanceTests.Common\BookShop.AcceptanceTests.Common.csproj", "{FDC3F86D-A2E8-443F-8665-6A71DA702123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.AcceptanceTests.Common", "BookShop.AcceptanceTests.Common\BookShop.AcceptanceTests.Common.csproj", "{FDC3F86D-A2E8-443F-8665-6A71DA702123}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.Mvc", "BookShop.Mvc\BookShop.Mvc.csproj", "{082BC7D4-F872-4A0A-8234-07BAE9F729B5}"
 EndProject
