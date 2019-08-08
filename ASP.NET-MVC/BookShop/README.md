@@ -1,7 +1,7 @@
-SpecFlow BookShop Sample
+SpecFlow BookShop Example
 ========================
 
-This solution contains an end-to-end sample to show how to use SpecFlow for 
+This solution contains an end-to-end example to show how to use SpecFlow for 
 ASP.NET MVC applications.
 
 You can find more information about SpecFlow at [http://www.specflow.org/](http://www.specflow.org).
@@ -64,7 +64,7 @@ As SpecFlow is not a unit test runner on its own, it can generate unit tests for
 
 > *__Note__: As SpecFlow+ Runner is currently not compatible with .NET Core 3, the example currently uses xUnit as unit test provider. Therefore the following paragraph is currently invalid.*
 
-The sample project is configured to generate unit tests for SpecFlow+ Runner, which is a
+The example project is configured to generate unit tests for SpecFlow+ Runner, which is a
 unit test runner provided by TechTalk which is specialized for running acceptance/integration tests
 (like written in SpecFlow but also without SpecFlow).
 SpecFlow+ Runner is provided as a free evaluation version with this example. The only
@@ -92,7 +92,7 @@ However, sometimes behaviour that should be validated cannot be observed
 on the controller level, but just on the UI. In that case, some kind of
 UI automation has to be implemented.
 
-To demonstrate this, the sample implements an alternative automation for all the
+To demonstrate this, the example implements an alternative automation for all the
 `US01_BookSearch.feature` scenarios using Selenium.
 
 To enable the Selenium UI automation, you need to add (uncomment) the
@@ -100,7 +100,7 @@ To enable the Selenium UI automation, you need to add (uncomment) the
 
 You also need to have the correct version of Chrome installed, that can be
 driven by the Selenium version used in this example. It might be necessary
-to update Chrome or the Selenium version used in this sample, to make
+to update Chrome or the Selenium version used in this example, to make
 the UI automation work.
 
 > *__Note:__ You can also use Firefox or Internet Explorer if you change the Driver 
