@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using BookShop.Mvc.Models;
 using LinqKit;
 using Microsoft.AspNetCore.Mvc;
@@ -19,8 +20,8 @@ namespace BookShop.Mvc.Controllers
             var terms = searchTerm?.Split(' ') ?? new string[0];
             var predicate = terms.Aggregate(
                 PredicateBuilder.New<Book>(string.IsNullOrEmpty(searchTerm)),
-                (acc, term) => acc.Or(b => b.Title.ToLower().Contains(term.ToLower()))
-                                  .Or(b => b.Author.ToLower().Contains(term.ToLower())));
+                (acc, term) => acc.Or(b => b.Title.Contains(term, StringComparison.InvariantCultureIgnoreCase))
+                                  .Or(b => b.Author.Contains(term, StringComparison.InvariantCultureIgnoreCase)));
 
             var books = _databaseContext.Books.AsExpandable()
                 .Where(predicate)
