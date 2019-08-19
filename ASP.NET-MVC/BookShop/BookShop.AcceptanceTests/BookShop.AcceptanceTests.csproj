@@ -35,6 +35,15 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Features\Shopping Cart\Add to.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Shopping Cart\Edit.feature">
+      <Generator></Generator>
+    </None>
+    <None Update="Features\Shopping Cart\Remove from.feature">
+      <Generator></Generator>
+    </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
