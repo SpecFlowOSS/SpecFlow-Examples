@@ -1,5 +1,6 @@
 ﻿@automated
-Feature: US04 - Book details
+@US04
+Feature: Displaying book details
 	As a potential customer
 	I want to see the details of a book
 	So that I can better decide to buy it.

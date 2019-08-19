@@ -1,7 +1,7 @@
 ﻿#add @web tag to run the search tests with Selenium automation
-
 #@web
-Feature: US01 - Book Search
+@US01
+Feature: Searching for books
 	As a potential customer
 	I want to search for books by a simple phrase
 	So that I can easily allocate books by something I remember from them.

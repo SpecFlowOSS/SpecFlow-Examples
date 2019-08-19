@@ -1,5 +1,6 @@
 ﻿@automated
-Feature: US02 - Home Screen
+@US02
+Feature: Displaying Home Screen
 	As a potential customer
 	I want to see the books with the best price
 	So that I can save money on buying discounted books.
