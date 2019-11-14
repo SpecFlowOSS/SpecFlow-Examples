@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,11 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
-    <PackageReference Include="SpecFlow" Version="3.0.220" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.220" />
-    <PackageReference Include="SpecFlow.MsTest" Version="3.0.220" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.0.0-beta2" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0-beta2" />
+    <PackageReference Include="SpecFlow" Version="3.1.62" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.62" />
+    <PackageReference Include="SpecFlow.MsTest" Version="3.1.62" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
   </ItemGroup>
 

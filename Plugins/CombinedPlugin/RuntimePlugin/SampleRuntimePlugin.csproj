@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow" Version="3.0.199" />
+    <PackageReference Include="SpecFlow" Version="3.1.62" />
   </ItemGroup>
 
 </Project>

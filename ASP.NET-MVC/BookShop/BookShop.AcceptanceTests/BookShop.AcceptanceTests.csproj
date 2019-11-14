@@ -16,9 +16,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview7.19362.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview7.19362.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="SpecFlow" Version="3.1.21-beta" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.21-beta" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.1.21-beta" />
+    <PackageReference Include="SpecFlow" Version="3.1.62" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.62" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.1.62" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

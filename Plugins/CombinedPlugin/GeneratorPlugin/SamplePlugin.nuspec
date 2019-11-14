@@ -13,7 +13,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>specflow</tags>
     <dependencies>
-      <dependency id="SpecFlow" version="3.0"/>
+      <group targetFramework="net45">
+        <dependency id="SpecFlow" version="3.1"/>
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="SpecFlow" version="3.1"/>
+      </group>
     </dependencies>
   </metadata>
   <files>
