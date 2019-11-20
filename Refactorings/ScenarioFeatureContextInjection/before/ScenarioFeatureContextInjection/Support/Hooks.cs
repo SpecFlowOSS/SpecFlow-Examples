@@ -6,23 +6,30 @@ namespace ScenarioFeatureContextInjection.Support
     [Binding]
     public class Hooks
     {
+        private readonly ScenarioContext scenarioContext;
 
+        public Hooks(ScenarioContext scenarioContext)
+        {
+            this.scenarioContext = scenarioContext;
+        }
+               
         [BeforeScenario()]
         public void BeforeScenario()
         {
-            Console.WriteLine("Starting " + ScenarioContext.Current.ScenarioInfo.Title);
-        }
 
-        [BeforeFeature()]
-        public static void BeforeFeature()
-        {
-            Console.WriteLine("Starting " + FeatureContext.Current.FeatureInfo.Title);
+            Console.WriteLine("Starting " + scenarioContext.ScenarioInfo.Title);
         }
 
         [AfterScenario()]
         public void AfterScenario()
         {
-            Console.WriteLine("Finished " + ScenarioContext.Current.ScenarioInfo.Title);
+            Console.WriteLine("Finished " + scenarioContext.ScenarioInfo.Title);
+        }
+        
+        [BeforeFeature()]
+        public static void BeforeFeature()
+        {
+            Console.WriteLine("Starting " + FeatureContext.Current.FeatureInfo.Title);
         }
 
         [AfterFeature()]
