@@ -1,0 +1,10 @@
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: SpecFlowPlus@0
+  inputs:
+    projectFilePath: '$(Build.SourcesDirectory)/ASP.NET-MVC/BookShop/BookShop.AcceptanceTests/Features'
+    projectName: 'BookShop'
+    projectLanguage: 'en'
+    workItemPrefix: 'WI'
