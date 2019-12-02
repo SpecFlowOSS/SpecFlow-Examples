@@ -1,5 +1,5 @@
-﻿@automated
-@US02
+@automated
+@WI7
 Feature: Displaying Home Screen
 	As a potential customer
 	I want to see the books with the best price
@@ -13,6 +13,7 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
+@WI8
 Scenario: Cheapest 3 books should be listed on the home screen
 	When I enter the shop
 	Then the home screen should show the book 'Bridging the Communication Gap'
@@ -20,11 +21,13 @@ Scenario: Cheapest 3 books should be listed on the home screen
 	   * the home screen should show the book 'Domain Driven Design'
 
 @alternative_syntax
+@WI8
 Scenario: Cheapest 3 books should be listed on the home screen (list syntax)
 	When I enter the shop
 	Then the home screen should show the books 'Bridging the Communication Gap', 'Inside Windows SharePoint Services', 'Domain Driven Design'
 
 @alternative_syntax
+@WI8
 Scenario: Cheapest 3 books should be listed on the home screen (table syntax)
 	When I enter the shop
 	Then the home screen should show the following books
