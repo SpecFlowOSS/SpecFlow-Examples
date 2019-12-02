@@ -1,5 +1,5 @@
-﻿using TechTalk.SpecFlow;
-using Xunit;
+﻿using NUnit.Framework;
+using TechTalk.SpecFlow;
 
 namespace Bowling.SpecFlow.Drivers
 {
@@ -47,7 +47,7 @@ namespace Bowling.SpecFlow.Drivers
 
         public void CheckScore(int expected)
         {
-            Assert.Equal(expected, _game.Score);
+            Assert.AreEqual(expected, _game.Score);
         }
     }
 }
