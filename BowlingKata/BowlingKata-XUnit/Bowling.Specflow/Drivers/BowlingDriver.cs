@@ -1,7 +1,7 @@
 ﻿using TechTalk.SpecFlow;
 using Xunit;
 
-namespace Bowling.Specflow.Drivers
+namespace Bowling.SpecFlow.Drivers
 {
     public class BowlingDriver
     {
