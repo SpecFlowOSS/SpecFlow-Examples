@@ -1,7 +1,7 @@
-﻿Imports Bowling
+﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports TechTalk.SpecFlow
 
-Namespace Bowling.SpecFlow.Drivers
+Namespace Drivers
     Public Class BowlingDriver
         Private _game As Game
 

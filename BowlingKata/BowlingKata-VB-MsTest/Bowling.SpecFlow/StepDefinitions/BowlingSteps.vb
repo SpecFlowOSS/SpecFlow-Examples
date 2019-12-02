@@ -1,9 +1,7 @@
-﻿Imports Bowling
-Imports Bowling.Specflow.Drivers
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
+﻿Imports Bowling.SpecFlow.Drivers
 Imports TechTalk.SpecFlow
 
-Namespace Bowling.SpecFlow.StepDefinitions
+Namespace StepDefinitions
     <Binding>
     Public Class BowlingSteps
         Private ReadOnly _driver As BowlingDriver

@@ -35,4 +35,3 @@ Scenario: All spares
   When I roll 10 times 1 and 9
   And I roll 1
   Then my total score should be 110
-     
