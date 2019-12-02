@@ -2,7 +2,7 @@
 using Bowling.Specflow.Drivers;
 using TechTalk.SpecFlow;
 
-namespace Bowling.Specflow.StepDefinitions
+namespace Bowling.SpecFlow.StepDefinitions
 {
     [Binding]
     public class BowlingSteps

@@ -1,7 +1,7 @@
-﻿Imports Bowling.Bowling
+﻿Imports Bowling
 Imports TechTalk.SpecFlow
 
-Namespace Drivers
+Namespace Bowling.SpecFlow.Drivers
     Public Class BowlingDriver
         Private _game As Game
 
