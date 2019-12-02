@@ -1,6 +1,6 @@
 # BowlingKata-Fsharp example
 
-This example demonstrates using F# with [SpecFlow](http://specflow.org) 2.2.x.
+This example demonstrates using F# with [SpecFlow](http://specflow.org) 3.x.
 
 Please refer to the [SpecFlow documentation](http://specflow.org/documentation/FSharp-Support/) for a general description of how to create SpecFlow tests with F#.
 
@@ -64,7 +64,6 @@ is handled by SpecFlow in the same way as
 let MyTotalScoreShouldBe score =
     _driver.CheckScore score
 ```
-
 
 ## Bowling.SpecFlow.Bindings
 
