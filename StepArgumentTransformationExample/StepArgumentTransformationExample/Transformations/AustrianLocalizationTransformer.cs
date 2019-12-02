@@ -2,17 +2,17 @@
 using System.Globalization;
 using TechTalk.SpecFlow;
 
-namespace SpecFlow.Example.StepArgumentTransformation.Transformations
+namespace StepArgumentTransformationExample.Transformations
 {
     [Binding]
     public class AustrianLocalizationTransformer
     {
-        [StepArgumentTransformation]
+        [StepArgumentTransformation(@"\d*(,\d*)?")]
         public double TransformDouble(string expr)
         {
             return Convert.ToDouble(expr, CultureInfo.GetCultureInfo("de-AT"));
-        }      
-        
+        }
+
         [StepArgumentTransformation]
         public DateTime TransformDate(string expr)
         {

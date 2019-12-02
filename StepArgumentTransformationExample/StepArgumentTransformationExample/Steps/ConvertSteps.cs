@@ -2,7 +2,7 @@
 using FluentAssertions;
 using TechTalk.SpecFlow;
 
-namespace SpecFlow.Example.StepArgumentTransformation.Steps
+namespace StepArgumentTransformationExample.Steps
 {
     [Binding]
     public class ConvertSteps

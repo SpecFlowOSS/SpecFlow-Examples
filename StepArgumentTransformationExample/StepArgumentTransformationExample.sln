@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlow.Examples.StepArgumentTransformation", "SpecFlow.Examples.StepArgumentTransformation\SpecFlow.Examples.StepArgumentTransformation.csproj", "{10F05D58-2CE4-40EA-BFAF-92F8F6D1F14C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepArgumentTransformationExample", "StepArgumentTransformationExample\StepArgumentTransformationExample.csproj", "{10F05D58-2CE4-40EA-BFAF-92F8F6D1F14C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
