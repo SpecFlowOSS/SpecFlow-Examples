@@ -1,5 +1,5 @@
-﻿@automated
-@US03
+@automated
+@WI11
 Feature: Adding books to the shopping cart
 	As a potential customer
 	I want to collect books in a shopping cart
@@ -13,7 +13,7 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
-
+@WI12
 Scenario: Books can be placed into shopping cart
 	Given I have a shopping cart with: 'Analysis Patterns'
 	When I place 'Domain Driven Design' into the shopping cart
@@ -21,7 +21,7 @@ Scenario: Books can be placed into shopping cart
 	And my shopping cart should contain 1 copy of 'Analysis Patterns'
 	And my shopping cart should contain 1 copy of 'Domain Driven Design'
 
-
+@WI13
 Scenario: Adding the same book to shopping cart again should increase quantity
 	Given I have a shopping cart with: 'Analysis Patterns'
 	When I place 'Analysis Patterns' into the shopping cart
