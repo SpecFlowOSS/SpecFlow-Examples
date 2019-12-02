@@ -18,19 +18,19 @@
                 int frameIndex = 0;
                 for (int frame = 0; frame < 10; frame++)
                 {
-                    if (isStrike(frameIndex))
+                    if (IsStrike(frameIndex))
                     {
-                        score += 10 + strikeBonus(frameIndex);
+                        score += 10 + StrikeBonus(frameIndex);
                         frameIndex++;
                     }
-                    else if (isSpare(frameIndex))
+                    else if (IsSpare(frameIndex))
                     {
-                        score += 10 + spareBonus(frameIndex);
+                        score += 10 + SpareBonus(frameIndex);
                         frameIndex += 2;
                     }
                     else
                     {
-                        score += sumOfBallsInFrame(frameIndex);
+                        score += SumOfBallsInFrame(frameIndex);
                         frameIndex += 2;
                     }
                 }
@@ -38,29 +38,30 @@
             }
         }
 
-        private bool isStrike(int frameIndex)
+        private bool IsStrike(int frameIndex)
         {
             return _rolls[frameIndex] == 10;
         }
 
-        private int sumOfBallsInFrame(int frameIndex)
+        private int SumOfBallsInFrame(int frameIndex)
         {
             return _rolls[frameIndex] + _rolls[frameIndex + 1];
         }
 
-        private int spareBonus(int frameIndex)
+        private int SpareBonus(int frameIndex)
         {
             return _rolls[frameIndex + 2];
         }
 
-        private int strikeBonus(int frameIndex)
+        private int StrikeBonus(int frameIndex)
         {
             return _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
         }
 
-        private bool isSpare(int frameIndex)
+        private bool IsSpare(int frameIndex)
         {
             return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
         }
+
     }
 }

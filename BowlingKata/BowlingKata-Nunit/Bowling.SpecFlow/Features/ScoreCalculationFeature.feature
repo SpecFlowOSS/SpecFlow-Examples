@@ -18,7 +18,7 @@ Scenario: Beginners game
 Scenario: Another beginners game
   Given a new bowling game
   When I roll the following series:	2,7,3,4,1,1,5,1,1,1,1,1,1,1,1,1,1,1,5,1
-  Then my total score should be 40            
+  Then my total score should be 40
   
 Scenario: All Strikes
   Given a new bowling game
@@ -34,5 +34,4 @@ Scenario: All spares
   Given a new bowling game
   When I roll 10 times 1 and 9
   And I roll 1
-  Then my total score should be 110     
-     
+  Then my total score should be 110

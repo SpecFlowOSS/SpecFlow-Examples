@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
+using Xunit;
 
-namespace Bowling.Specflow.Drivers
+namespace Bowling.SpecFlow.Drivers
 {
     public class BowlingDriver
     {
@@ -47,7 +47,7 @@ namespace Bowling.Specflow.Drivers
 
         public void CheckScore(int expected)
         {
-            Assert.AreEqual(expected, _game.Score);
+            Assert.Equal(expected, _game.Score);
         }
     }
 }
