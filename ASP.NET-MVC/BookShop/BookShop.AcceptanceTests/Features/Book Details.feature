@@ -1,5 +1,5 @@
-﻿@automated
-@US04
+@automated
+@WI9
 Feature: Displaying book details
 	As a potential customer
 	I want to see the details of a book
@@ -13,6 +13,7 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
+@WI10
 Scenario: The author, the title and the price of a book can be seen
 	When I open the details of 'Analysis Patterns'
 	Then the book details should show
