@@ -1,5 +1,5 @@
-﻿@automated
-@US03
+@automated
+@WI14
 Feature: Displaying the shopping cart
 	As a potential customer
 	I want to collect books in a shopping cart
@@ -13,7 +13,7 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
-		
+@WI15
 Scenario: Shopping cart should show total number of items and total price
 	Given I have a shopping cart with: 'Analysis Patterns', 'Domain Driven Design'
 	When I place 'Analysis Patterns' into the shopping cart
