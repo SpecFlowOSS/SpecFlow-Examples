@@ -1,5 +1,4 @@
-﻿@automated
-@US03
+@automated
 Feature: Removing books from the shopping cart
 	As a potential customer
 	I want to collect books in a shopping cart
@@ -13,7 +12,7 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
-
+@WI18
 Scenario: A type of book can be entirely removed from the shopping cart
 	Given I have a shopping cart with: 'Analysis Patterns'
 	When I delete 'Analysis Patterns' from the shopping cart
