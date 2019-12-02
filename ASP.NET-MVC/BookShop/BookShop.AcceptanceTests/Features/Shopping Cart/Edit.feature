@@ -1,5 +1,5 @@
-﻿@automated
-@US03
+@automated
+@WI16
 Feature: Editing the shopping cart
 	As a potential customer
 	I want to collect books in a shopping cart
@@ -13,14 +13,14 @@ Background:
 		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
 		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
 
-
+@WI17
 Scenario: Quantity of a book can be changed
 	Given I have a shopping cart with: 'Analysis Patterns'
 	When I change the quantity of 'Analysis Patterns' to 3
 	Then my shopping cart should contain 1 type of item
 	And my shopping cart should contain 3 copies of 'Analysis Patterns'
 
-
+@WI17
 Scenario: Changing quantity of book to 0 should remove book from shopping cart
 	Given I have a shopping cart with: 'Analysis Patterns'
 	When I change the quantity of 'Analysis Patterns' to 0
