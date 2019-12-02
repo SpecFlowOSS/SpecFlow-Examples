@@ -1,7 +1,7 @@
 ﻿Feature: Score Calculation 
+  In order to know my performance
   As a player
   I want the system to calculate my total score
-  So that I know my performance
   
 Scenario: Gutter game
   Given a new bowling game
@@ -35,4 +35,3 @@ Scenario: All spares
   When I roll 10 times 1 and 9
   And I roll 1
   Then my total score should be 110
-     

@@ -1,7 +1,7 @@
 ﻿Feature: Score Calculation (alternative forms)
+  In order to know my performance
   As a player
   I want the system to calculate my total score
-  So that I know my performance
 
   
 Scenario: One single spare
@@ -40,13 +40,3 @@ Scenario: Yet another beginners game
   |	1		|
   |	1		|
   Then my total score should be 43
-  
-Scenario Outline: Score calculation tables
-  Given a new bowling game
-  When I roll the following series:	<rolls>
-  Then my total score should be <total score>
-
-Examples: 
-  | game             | rolls                                   | total score |
-  | beginners game   | 2,7,3,4,1,1,5,1,1,1,1,1,1,1,1,1,1,1,5,1 | 40          |
-  | one single spare | 2,8,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 | 29          |

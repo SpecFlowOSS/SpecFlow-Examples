@@ -2,12 +2,12 @@
 {
     public class Game
     {
-        private int[] rolls = new int[21];
-        private int currentRoll;
+        private readonly int[] _rolls = new int[21];
+        private int _currentRoll;
 
         public void Roll(int pins)
         {
-            rolls[currentRoll++] = pins;
+            _rolls[_currentRoll++] = pins;
         }
 
         public int Score
@@ -18,19 +18,19 @@
                 int frameIndex = 0;
                 for (int frame = 0; frame < 10; frame++)
                 {
-                    if (isStrike(frameIndex))
+                    if (IsStrike(frameIndex))
                     {
-                        score += 10 + strikeBonus(frameIndex);
+                        score += 10 + StrikeBonus(frameIndex);
                         frameIndex++;
                     }
-                    else if (isSpare(frameIndex))
+                    else if (IsSpare(frameIndex))
                     {
-                        score += 10 + spareBonus(frameIndex);
+                        score += 10 + SpareBonus(frameIndex);
                         frameIndex += 2;
                     }
                     else
                     {
-                        score += sumOfBallsInFrame(frameIndex);
+                        score += SumOfBallsInFrame(frameIndex);
                         frameIndex += 2;
                     }
                 }
@@ -38,29 +38,29 @@
             }
         }
 
-        private bool isStrike(int frameIndex)
+        private bool IsStrike(int frameIndex)
         {
-            return rolls[frameIndex] == 10;
+            return _rolls[frameIndex] == 10;
         }
 
-        private int sumOfBallsInFrame(int frameIndex)
+        private int SumOfBallsInFrame(int frameIndex)
         {
-            return rolls[frameIndex] + rolls[frameIndex + 1];
+            return _rolls[frameIndex] + _rolls[frameIndex + 1];
         }
 
-        private int spareBonus(int frameIndex)
+        private int SpareBonus(int frameIndex)
         {
-            return rolls[frameIndex + 2];
+            return _rolls[frameIndex + 2];
         }
 
-        private int strikeBonus(int frameIndex)
+        private int StrikeBonus(int frameIndex)
         {
-            return rolls[frameIndex + 1] + rolls[frameIndex + 2];
+            return _rolls[frameIndex + 1] + _rolls[frameIndex + 2];
         }
 
-        private bool isSpare(int frameIndex)
+        private bool IsSpare(int frameIndex)
         {
-            return rolls[frameIndex] + rolls[frameIndex + 1] == 10;
+            return _rolls[frameIndex] + _rolls[frameIndex + 1] == 10;
         }
 
     }
