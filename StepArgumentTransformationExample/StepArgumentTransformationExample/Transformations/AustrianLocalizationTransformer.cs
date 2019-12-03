@@ -7,7 +7,7 @@ namespace StepArgumentTransformationExample.Transformations
     [Binding]
     public class AustrianLocalizationTransformer
     {
-        [StepArgumentTransformation(@"\d*(,\d*)?")]
+        [StepArgumentTransformation]
         public double TransformDouble(string expr)
         {
             return Convert.ToDouble(expr, CultureInfo.GetCultureInfo("de-AT"));
