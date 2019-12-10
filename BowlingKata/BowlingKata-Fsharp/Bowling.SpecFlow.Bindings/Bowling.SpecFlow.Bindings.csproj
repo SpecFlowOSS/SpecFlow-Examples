@@ -20,12 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="../Bowling/Bowling.fsproj" />
     <ProjectReference Include="../Bowling.SpecFlow/Bowling.SpecFlow.fsproj" />
   </ItemGroup>
