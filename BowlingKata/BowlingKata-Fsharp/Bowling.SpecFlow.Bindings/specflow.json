@@ -1,0 +1,5 @@
+{
+  "stepAssemblies": [
+    { "assembly": "Bowling.SpecFlow" }
+  ]
+}
