@@ -14,7 +14,7 @@ namespace BookShop.AcceptanceTests.Support
             _config = config;
         }
 
-        [BeforeScenario]
+        [BeforeScenario(Order = 100)]
         public void CleanDatabase()
         {
             using var db = new DatabaseContext(_config);

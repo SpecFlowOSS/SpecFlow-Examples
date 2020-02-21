@@ -23,7 +23,7 @@ namespace BookShop.WebTests.Selenium.Support
             ////WebDriver = new FirefoxDriver();
             ////WebDriver = new InternetExplorerDriver();
             WebDriver = new ChromeDriver();
-            WebDriver.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
+            WebDriver.Manage().Timeouts().ImplicitWait = DefaultTimeout;
 
             ////WebDriver = new DefaultSelenium("localhost", 4444, "*chrome", appUrl);
             ////WebDriver.Start();
