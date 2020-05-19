@@ -6,14 +6,14 @@ using BookShop.Mvc.Models;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 
-namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class ShoppingCartDriver
+    public class IntegratedShoppingCartDriver : IShoppingCartDriver
     {
         private readonly CatalogContext _catalogContext;
         private readonly IConfiguration _config;
 
-        public ShoppingCartDriver(CatalogContext catalogContext, IConfiguration config)
+        public IntegratedShoppingCartDriver(CatalogContext catalogContext, IConfiguration config)
         {
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
             _config = config;

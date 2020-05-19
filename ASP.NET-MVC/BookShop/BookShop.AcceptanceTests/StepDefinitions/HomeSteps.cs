@@ -1,17 +1,17 @@
 ﻿using System;
+using BookShop.AcceptanceTests.Drivers;
 using TechTalk.SpecFlow;
-using BookShop.AcceptanceTests.Drivers.Home;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
 {
     [Binding]
     public class HomeSteps
     {
-        private readonly HomeDriver _homeDriver;
+        private readonly IHomeDriver _homeDriver;
 
-        public HomeSteps(HomeDriver driver)
+        public HomeSteps(IHomeDriver driver)
         {
-            _homeDriver = driver ?? throw new ArgumentNullException(nameof(driver));
+            _homeDriver = driver;
         }
 
         [When(@"I enter the shop")]

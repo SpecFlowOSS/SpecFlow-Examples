@@ -1,4 +1,4 @@
-﻿using BookShop.AcceptanceTests.Drivers.ShoppingCart;
+﻿using BookShop.AcceptanceTests.Drivers.Integrated;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
@@ -6,9 +6,9 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class ShoppingCartSteps
     {
-        private readonly ShoppingCartDriver _driver;
+        private readonly IntegratedShoppingCartDriver _driver;
 
-        public ShoppingCartSteps(ShoppingCartDriver driver)
+        public ShoppingCartSteps(IntegratedShoppingCartDriver driver)
         {
             _driver = driver;
         }
