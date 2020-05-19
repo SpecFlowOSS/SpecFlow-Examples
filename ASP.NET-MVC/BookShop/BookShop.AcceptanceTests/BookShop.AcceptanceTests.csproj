@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.10.2" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="1.1.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
@@ -15,10 +15,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="SpecFlow" Version="3.1.82" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.82" />
-    <PackageReference Include="SpecRun.SpecFlow.3-1-0" Version="3.1.48" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="SpecFlow" Version="3.1.97" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.97" />
+    <PackageReference Include="SpecRun.SpecFlow.3-1-0" Version="3.2.31" />
 
   </ItemGroup>
 
