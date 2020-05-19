@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
@@ -12,7 +13,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
     public class IntegratedHomeDriver : IHomeDriver
     {
         private readonly IDatabaseContext _databaseContext;
-        private ActionResult _result;
+        private ActionResult? _result = null;
 
         public IntegratedHomeDriver(DatabaseContext databaseContext)
         {
@@ -27,6 +28,8 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
 
         public void ShowsBook(string expectedTitle)
         {
+            if (_result == null) throw new NullReferenceException(nameof(_result));
+
             var shownBooks = _result.Model<IEnumerable<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitle);
         }
@@ -40,6 +43,8 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
 
         public void ShowsBooks(IEnumerable<string> expectedTitles)
         {
+            if (_result == null) throw new NullReferenceException(nameof(_result));
+
             var shownBooks = _result.Model<IEnumerable<Book>>();
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
         }
