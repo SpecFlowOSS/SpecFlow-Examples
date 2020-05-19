@@ -17,7 +17,7 @@ namespace BookShop.AcceptanceTests.Support
         [BeforeScenario(Order = 100)]
         public void CleanDatabase()
         {
-            using var db = new DatabaseContext(_config);
+            using var db = new DatabaseContext();
             db.Database.EnsureCreated();
             
             db.OrderLines.RemoveRange(db.OrderLines);

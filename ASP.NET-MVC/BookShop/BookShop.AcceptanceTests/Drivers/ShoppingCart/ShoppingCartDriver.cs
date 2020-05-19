@@ -83,7 +83,7 @@ namespace BookShop.AcceptanceTests.Drivers.ShoppingCart
 
         private static ShoppingCartController GetShoppingCartController(IConfiguration config)
         {
-            var controller = new ShoppingCartController(new DatabaseContext(config));
+            var controller = new ShoppingCartController(new DatabaseContext());
             HttpContextStub.SetupController(controller);
             return controller;
         }
