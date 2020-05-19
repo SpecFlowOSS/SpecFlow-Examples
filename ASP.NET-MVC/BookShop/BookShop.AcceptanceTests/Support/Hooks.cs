@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using BoDi;
 using BookShop.AcceptanceTests.Drivers;
 using BookShop.AcceptanceTests.Drivers.Integrated;
@@ -14,12 +13,10 @@ namespace BookShop.AcceptanceTests.Support
     public class Hooks
     {
         private readonly TestRunContext _testRunContext;
-        private readonly ConfigurationDriver _configurationDriver;
-
-        public Hooks(TestRunContext testRunContext, ConfigurationDriver configurationDriver)
+        
+        public Hooks(TestRunContext testRunContext)
         {
             _testRunContext = testRunContext;
-            _configurationDriver = configurationDriver;
         }
 
         [BeforeScenario(Order = 1)]
@@ -31,8 +28,9 @@ namespace BookShop.AcceptanceTests.Support
 
             objectContainer.RegisterInstanceAs(config);
 
+            var configurationDriver = new ConfigurationDriver(config);
 
-            switch (_configurationDriver.Mode)
+            switch (configurationDriver.Mode)
             {
                 case "Integrated":
                     objectContainer.RegisterTypeAs<IntegratedBookDetailsDriver, IBookDetailsDriver>();
@@ -42,6 +40,8 @@ namespace BookShop.AcceptanceTests.Support
                     objectContainer.RegisterTypeAs<IntegratedSearchResultDriver, ISearchResultDriver>();
                     break;
                 case "Chrome":
+                case "Edge":
+                case "Firefox":
                     objectContainer.RegisterTypeAs<SeleniumBookDetailsDriver, IBookDetailsDriver>();
                     objectContainer.RegisterTypeAs<SeleniumHomeDriver, IHomeDriver>();
                     objectContainer.RegisterTypeAs<SeleniumShoppingCartDriver, IShoppingCartDriver>();
@@ -50,21 +50,5 @@ namespace BookShop.AcceptanceTests.Support
                     break;
             }
         }
-    }
-
-
-    public class ConfigurationDriver
-    {
-        private readonly IConfiguration _configuration;
-        private const string SeleniumBaseUrlConfigFieldName = "seleniumBaseUrl";
-        public string Mode => Environment.GetEnvironmentVariable("Mode");
-
-        public ConfigurationDriver(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-
-        public string SeleniumBaseUrl => _configuration[SeleniumBaseUrlConfigFieldName];
     }
 }

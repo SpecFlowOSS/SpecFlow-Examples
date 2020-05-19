@@ -9,18 +9,18 @@ using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class IntegratedBookDetailsDriver : IBookDetailsDriver
+    public class DatabaseDriver
     {
-        private const decimal BookDefaultPrice = 10;
         private readonly IDatabaseContext _databaseContext;
-        private readonly CatalogContext _context;
-        private ActionResult _result;
+        private readonly CatalogContext _catalogContext;
 
-        public IntegratedBookDetailsDriver(CatalogContext context, DatabaseContext databaseContext)
+        public DatabaseDriver(DatabaseContext databaseContext, CatalogContext catalogContext)
         {
-            _context = context;
             _databaseContext = databaseContext;
+            _catalogContext = catalogContext;
         }
+
+        private const decimal BookDefaultPrice = 10;
 
         public void AddToDatabase(Table books)
         {
@@ -35,7 +35,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
                         : BookDefaultPrice
                 };
 
-                _context.ReferenceBooks.Add(
+                _catalogContext.ReferenceBooks.Add(
                     books.Header.Contains("Id") ? row["Id"] : book.Title,
                     book);
 
@@ -44,10 +44,24 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
 
             _databaseContext.SaveChanges();
         }
+    }
+
+    public class IntegratedBookDetailsDriver : IBookDetailsDriver
+    {
+        private readonly CatalogContext _catalogContext;
+        private readonly DatabaseContext _databaseContext;
+        private ActionResult? _result = null;
+
+        public IntegratedBookDetailsDriver(CatalogContext catalogContext, DatabaseContext databaseContext)
+        {
+            _catalogContext = catalogContext;
+            _databaseContext = databaseContext;
+        }
+
 
         public void OpenBookDetails(string bookId)
         {
-            var book = _context.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookId);
             using var controller = new CatalogController(_databaseContext);
             _result = controller.Details(book.Id);
         }
