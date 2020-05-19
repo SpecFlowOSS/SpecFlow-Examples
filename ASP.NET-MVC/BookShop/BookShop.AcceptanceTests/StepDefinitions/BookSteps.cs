@@ -1,14 +1,14 @@
-﻿using TechTalk.SpecFlow;
-using BookShop.AcceptanceTests.Drivers.BookDetails;
+﻿using BookShop.AcceptanceTests.Drivers;
+using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
 {
     [Binding]
     public class BookSteps
     {
-        private readonly BookDetailsDriver _driver;
+        private readonly IBookDetailsDriver _driver;
 
-        public BookSteps(BookDetailsDriver driver)
+        public BookSteps(IBookDetailsDriver driver)
         {
             _driver = driver;
         }

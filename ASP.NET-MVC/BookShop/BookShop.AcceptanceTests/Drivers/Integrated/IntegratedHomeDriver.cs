@@ -7,14 +7,14 @@ using BookShop.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Drivers.Home
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class HomeDriver
+    public class IntegratedHomeDriver : IHomeDriver
     {
         private readonly IDatabaseContext _databaseContext;
         private ActionResult _result;
 
-        public HomeDriver(DatabaseContext databaseContext)
+        public IntegratedHomeDriver(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
         }

@@ -7,16 +7,16 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Drivers.BookDetails
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class BookDetailsDriver
+    public class IntegratedBookDetailsDriver : IBookDetailsDriver
     {
         private const decimal BookDefaultPrice = 10;
         private readonly IDatabaseContext _databaseContext;
         private readonly CatalogContext _context;
         private ActionResult _result;
 
-        public BookDetailsDriver(CatalogContext context, DatabaseContext databaseContext)
+        public IntegratedBookDetailsDriver(CatalogContext context, DatabaseContext databaseContext)
         {
             _context = context;
             _databaseContext = databaseContext;

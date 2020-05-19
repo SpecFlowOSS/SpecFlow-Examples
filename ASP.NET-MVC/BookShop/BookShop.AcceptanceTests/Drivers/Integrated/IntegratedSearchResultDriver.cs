@@ -5,13 +5,13 @@ using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Drivers.Search
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class SearchResultDriver
+    public class IntegratedSearchResultDriver : ISearchResultDriver
     {
         private readonly SearchResultState _state;
 
-        public SearchResultDriver(SearchResultState state)
+        public IntegratedSearchResultDriver(SearchResultState state)
         {
             _state = state;
         }

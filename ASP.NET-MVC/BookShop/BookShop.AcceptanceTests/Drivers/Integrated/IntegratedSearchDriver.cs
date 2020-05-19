@@ -1,14 +1,14 @@
 ﻿using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Models;
 
-namespace BookShop.AcceptanceTests.Drivers.Search
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class SearchDriver
+    public class IntegratedSearchDriver : ISearchDriver
     {
         private readonly IDatabaseContext _databaseContext;
         private readonly SearchResultState _state;
 
-        public SearchDriver(SearchResultState state, DatabaseContext databaseContext)
+        public IntegratedSearchDriver(SearchResultState state, DatabaseContext databaseContext)
         {
             _state = state;
             _databaseContext = databaseContext;

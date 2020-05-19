@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TestProfile xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5">
   <Settings projectName="BookShop.AcceptanceTests" projectId="{88deb3a1-fcc9-4024-8d60-489b612c02cf}" />
-  <Execution stopAfterFailures="3" testThreadCount="1" testSchedulingMode="Sequential" />
-  
+  <Execution stopAfterFailures="0" testThreadCount="1" testSchedulingMode="Sequential" />
+
   <TestAssemblyPaths>
     <TestAssemblyPath>BookShop.AcceptanceTests.dll</TestAssemblyPath>
   </TestAssemblyPaths>
@@ -10,4 +10,16 @@
     <Steps>
     </Steps>
   </DeploymentTransformation>
+  <Targets>
+    <Target name="Integrated">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Mode" value="Integrated"/>
+      </DeploymentTransformationSteps>
+    </Target>
+    <Target name="Chrome">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Mode" value="Chrome"/>
+      </DeploymentTransformationSteps>
+    </Target>
+  </Targets>
 </TestProfile>

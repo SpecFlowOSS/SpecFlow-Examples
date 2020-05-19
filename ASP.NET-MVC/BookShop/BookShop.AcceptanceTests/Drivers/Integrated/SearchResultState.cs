@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BookShop.AcceptanceTests.Drivers.Search
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
     public class SearchResultState
     {
