@@ -23,9 +23,9 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         }
 
         [When(@"I open the details of '(.*)'")]
-        public void WhenIOpenTheDetailsOfBook(string bookId)
+        public void WhenIOpenTheDetailsOfBook(string bookTitle)
         {
-            _driver.OpenBookDetails(bookId);
+            _driver.OpenBookDetails(bookTitle);
         }
 
         [Then(@"the book details should show")]

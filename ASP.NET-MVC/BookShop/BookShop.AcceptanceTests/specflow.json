@@ -1,7 +1,4 @@
 ﻿{
-  "stepAssemblies": [
-    {
-      "assembly": "BookShop.WebTests.Selenium"
-    }
-  ]
+  "language": { "feature": "en" },
+  "bindingCulture":  {"name": "en"} 
 }

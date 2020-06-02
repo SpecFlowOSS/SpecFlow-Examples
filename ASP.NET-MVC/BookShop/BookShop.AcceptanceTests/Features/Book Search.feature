@@ -1,4 +1,3 @@
-
 Feature: Searching for books
 	As a potential customer
 	I want to search for books by a simple phrase
@@ -6,18 +5,17 @@ Feature: Searching for books
 
 Background:
 	Given the following books
-		|Author			|Title								|
-		|Martin Fowler	|Analysis Patterns					|
-		|Eric Evans		|Domain Driven Design				|
-		|Ted Pattison	|Inside Windows SharePoint Services	|
-		|Gojko Adzic	|Bridging the Communication Gap		|
+		| Author        | Title                              |
+		| Martin Fowler | Analysis Patterns                  |
+		| Eric Evans    | Domain Driven Design               |
+		| Ted Pattison  | Inside Windows SharePoint Services |
+		| Gojko Adzic   | Bridging the Communication Gap     |
 
 @WI1
 @WI3
 Scenario: Title should be matched
 	When I search for books by the phrase 'Domain'
 	Then the list of found books should contain only: 'Domain Driven Design'
-
 
 @WI1
 @WI4
@@ -48,6 +46,6 @@ Scenario Outline: Simple search (scenario outline syntax)
 	Then the list of found books should contain only: <books>
 
 	Examples:
-		|search phrase		|books									|
-		|Domain			|'Domain Driven Design'							|
-		|Windows Communication	|'Bridging the Communication Gap', 'Inside Windows SharePoint Services'	|
+		| search phrase         | books                                                                  |
+		| Domain                | 'Domain Driven Design'                                                 |
+		| Windows Communication | 'Bridging the Communication Gap', 'Inside Windows SharePoint Services' |

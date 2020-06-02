@@ -25,7 +25,7 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
 
         public async Task Stop()
         {
-            await _host.StopAsync();
+            if (_host != null) await _host.StopAsync();
         }
 
         private int GeneratePort()

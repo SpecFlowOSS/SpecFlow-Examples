@@ -4,7 +4,7 @@ namespace BookShop.AcceptanceTests.Drivers
 {
     public interface IBookDetailsDriver
     {
-        void OpenBookDetails(string bookId);
+        void OpenBookDetails(string bookTitle);
         void ShowsBookDetails(Table expectedBookDetails);
     }
 }

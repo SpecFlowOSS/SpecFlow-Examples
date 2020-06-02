@@ -9,6 +9,5 @@ namespace BookShop.AcceptanceTests.Drivers
         void ShowsBook(string expectedTitle);
         void ShowsBooks(string expectedTitles);
         void ShowsBooks(Table expectedBooks);
-        void ShowsBooks(IEnumerable<string> expectedTitles);
     }
 }

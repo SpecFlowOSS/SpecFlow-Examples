@@ -5,6 +5,6 @@ namespace BookShop.AcceptanceTests.Drivers
     public interface ISearchResultDriver
     {
         void ShowsBooks(string expectedTitlesString);
-        void ShowsBooks(Table expectedBooks);
+        void AssertBooksInResult(Table expectedBooks);
     }
 }

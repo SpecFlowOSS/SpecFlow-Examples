@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using BookShop.AcceptanceTests.Drivers.RowObjects;
 using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
 using FluentAssertions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace BookShop.AcceptanceTests.Drivers.Selenium
 {
@@ -16,26 +18,26 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
         }
         public void ShowsBooks(string expectedTitlesString)
         {
+            var expectedTitles = from t in expectedTitlesString.Split(',')
+                select t.Trim().Trim('\'');
+
             var searchResultPageObject = new SearchResultPageObject(_browserDriver.Current);
 
-            bool found = false;
+            var actualTitles = searchResultPageObject.SearchResults.Select(i => i.Title);
 
-
-            foreach (var searchResultEntry in searchResultPageObject.SearchResults)
-            {
-                var title = searchResultEntry.Title;
-                if (title == expectedTitlesString)
-                {
-                    found = true;
-                }
-            }
-
-            found.Should().Be(true, $"{expectedTitlesString} is not found in the list {String.Join(";", searchResultPageObject.SearchResults.Select(i => i.Title))}"  );
+            actualTitles.Should().BeEquivalentTo(expectedTitles);
         }
 
-        public void ShowsBooks(Table expectedBooks)
+        public void AssertBooksInResult(Table expectedBooksTable)
         {
-            throw new System.NotImplementedException();
+            var searchResultPageObject = new SearchResultPageObject(_browserDriver.Current);
+
+            var expectedBooks = expectedBooksTable.CreateSet<BookRow>();
+
+            var expectedBookTitles = expectedBooks.Select(i => i.Title).ToList();
+            var actualBookTitles = searchResultPageObject.SearchResults.Select(i => i.Title).ToList();
+
+            actualBookTitles.Should().BeEquivalentTo(actualBookTitles);
         }
     }
 }

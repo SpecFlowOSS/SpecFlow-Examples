@@ -25,7 +25,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
             BookAssertions.HomeScreenShouldShow(shownBooks, expectedTitles);
         }
 
-        public void ShowsBooks(Table expectedBooks)
+        public void AssertBooksInResult(Table expectedBooks)
         {
             var foundBooks = _state.ActionResult.Model<IEnumerable<Book>>();
             var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);

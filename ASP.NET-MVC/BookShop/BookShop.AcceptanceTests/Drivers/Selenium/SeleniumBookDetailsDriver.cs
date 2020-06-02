@@ -1,23 +1,60 @@
 ﻿using System;
+using System.Globalization;
+using BookShop.AcceptanceTests.Drivers.RowObjects;
+using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
+using BookShop.AcceptanceTests.Support;
+using FluentAssertions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace BookShop.AcceptanceTests.Drivers.Selenium
 {
     class SeleniumBookDetailsDriver : IBookDetailsDriver
     {
-        public void AddToDatabase(Table books)
+        private readonly BrowserDriver _browserDriver;
+        private readonly WebServerDriver _webServerDriver;
+        private readonly CatalogContext _catalogContext;
+
+        public SeleniumBookDetailsDriver(BrowserDriver browserDriver, WebServerDriver webServerDriver, CatalogContext catalogContext)
         {
-            throw new NotImplementedException();
+            _browserDriver = browserDriver;
+            _webServerDriver = webServerDriver;
+            _catalogContext = catalogContext;
         }
 
-        public void OpenBookDetails(string bookId)
+        public void OpenBookDetails(string bookTitle)
         {
-            throw new NotImplementedException();
+            var book = _catalogContext.ReferenceBooks.GetById(bookTitle);
+
+            var bookIdUrl = $"{_webServerDriver.Hostname}/Catalog/Details/{book.Id}";
+            _browserDriver.Current.Navigate().GoToUrl(bookIdUrl);
+
+            RetryHelper.WaitFor(() => _browserDriver.Current.Url == bookIdUrl);
         }
 
         public void ShowsBookDetails(Table expectedBookDetails)
         {
-            throw new NotImplementedException();
+            var expectedBook = expectedBookDetails.CreateInstance<BookRow>();
+
+            var bookDetailPageObject = new BookDetailPageObject(_browserDriver.Current);
+
+            if (expectedBook.Title != null)
+            {
+                bookDetailPageObject.Title.Should().Be(expectedBook.Title);
+            }
+
+            if (expectedBook.Author != null)
+            {
+                bookDetailPageObject.Author.Should().Be(expectedBook.Author);
+            }
+
+            if (expectedBook.Price != null)
+            {
+                var actualPrice = decimal.Parse(bookDetailPageObject.Price[2..], CultureInfo.GetCultureInfo("de"));
+                var expectedPrice = Convert.ToDecimal(expectedBook.Price);
+                actualPrice.Should().Be(expectedPrice);
+            }
+
         }
     }
 }

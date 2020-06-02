@@ -41,7 +41,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
         public void ShowsBooks(Table expectedBooks)
             => ShowsBooks(expectedBooks.Rows.Select(r => r["Title"]));
 
-        public void ShowsBooks(IEnumerable<string> expectedTitles)
+        private void ShowsBooks(IEnumerable<string> expectedTitles)
         {
             if (_result == null) throw new NullReferenceException(nameof(_result));
 
