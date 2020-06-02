@@ -11,16 +11,16 @@
 
 <dl class="dl-horizontal">
     <dt>Title</dt>
-    <dd>@Model.Title</dd>
+    <dd id="title">@Model.Title</dd>
 
     <dt>Author(s)</dt>
-    <dd>@Model.Author</dd>
+    <dd id="author">@Model.Author</dd>
 
     <dt>Price</dt>
-    <dd>&euro; @Model.Price.ToString("0.00")</dd>
+    <dd id="price">&euro; @Model.Price.ToString("0.00")</dd>
 
     <dt>Id</dt>
-    <dd>@Model.Id</dd>
+    <dd id="id">@Model.Id</dd>
 </dl>
 
 @Html.ActionLink("Add to cart", "Add", "ShoppingCart", new { bookId = Model.Id }, new { @class = "btn btn-primary" })

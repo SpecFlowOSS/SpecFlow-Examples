@@ -59,9 +59,9 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
         }
 
 
-        public void OpenBookDetails(string bookId)
+        public void OpenBookDetails(string bookTitle)
         {
-            var book = _catalogContext.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookTitle);
             using var controller = new CatalogController(_databaseContext);
             _result = controller.Details(book.Id);
         }

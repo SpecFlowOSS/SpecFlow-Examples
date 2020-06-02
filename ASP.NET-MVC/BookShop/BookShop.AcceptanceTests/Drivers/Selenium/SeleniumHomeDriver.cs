@@ -1,33 +1,59 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using BookShop.AcceptanceTests.Drivers.RowObjects;
+using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
+using FluentAssertions;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace BookShop.AcceptanceTests.Drivers.Selenium
 {
     class SeleniumHomeDriver : IHomeDriver
     {
+        private readonly BrowserDriver _browserDriver;
+        private readonly WebServerDriver _webServerDriver;
+
+        public SeleniumHomeDriver(BrowserDriver browserDriver, WebServerDriver webServerDriver)
+        {
+            _browserDriver = browserDriver;
+            _webServerDriver = webServerDriver;
+        }
         public void Navigate()
         {
-            throw new System.NotImplementedException();
+            _browserDriver.Current.Navigate().GoToUrl(_webServerDriver.Hostname);
         }
 
         public void ShowsBook(string expectedTitle)
         {
-            throw new System.NotImplementedException();
+            var homePageObject = new HomePageObject(_browserDriver.Current);
+
+            homePageObject.CheapestThreeBooks.Should().Contain(i => i.Title == expectedTitle);
         }
 
-        public void ShowsBooks(string expectedTitles)
+        public void ShowsBooks(string expectedTitlesString)
         {
-            throw new System.NotImplementedException();
+            var expectedTitles = from t in expectedTitlesString.Split(',')
+                select t.Trim().Trim('\'');
+
+            var homePageObject = new HomePageObject(_browserDriver.Current);
+
+            var actualTitles = homePageObject.CheapestThreeBooks.Select(i => i.Title);
+
+            actualTitles.Should().BeEquivalentTo(expectedTitles);
         }
 
         public void ShowsBooks(Table expectedBooks)
         {
-            throw new System.NotImplementedException();
+            ShowsBooks(expectedBooks.CreateSet<BookRow>().Select(i => i.Title));
         }
 
-        public void ShowsBooks(IEnumerable<string> expectedTitles)
+        private void ShowsBooks(IEnumerable<string?> expectedTitles)
         {
-            throw new System.NotImplementedException();
+            var homePageObject = new HomePageObject(_browserDriver.Current);
+
+            var actualTitles = homePageObject.CheapestThreeBooks.Select(i => i.Title);
+
+            actualTitles.Should().BeEquivalentTo(expectedTitles);
         }
     }
 }

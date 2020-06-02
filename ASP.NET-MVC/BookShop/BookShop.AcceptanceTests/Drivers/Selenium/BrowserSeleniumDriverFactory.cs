@@ -47,8 +47,6 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
             return new FirefoxDriver(firefoxDriverService)
             {
                 Url = _webServerDriver.Hostname,
-                
-
             };
         }
 

@@ -21,7 +21,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _searchDriver.Search(searchTerm);
         }
 
-        [Then(@"the list of found books should contain only: '(.*)'")]
+        [Then(@"the list of found books should contain only: (.*)")]
         public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
             _searchResultDriver.ShowsBooks(expectedTitleList);    
@@ -30,7 +30,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [Then(@"the list of found books should be:")]
         public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
         {
-            _searchResultDriver.ShowsBooks(expectedBooks);
+            _searchResultDriver.AssertBooksInResult(expectedBooks);
         }
 
     }
