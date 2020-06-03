@@ -17,11 +17,11 @@
         <EnvironmentVariable variable="Mode" value="Integrated"/>
       </DeploymentTransformationSteps>
     </Target>
-    <!--<Target name="Chrome">
+    <Target name="Chrome">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Chrome"/>
       </DeploymentTransformationSteps>
-    </Target>-->
+    </Target>
     <Target name="Firefox">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Firefox"/>

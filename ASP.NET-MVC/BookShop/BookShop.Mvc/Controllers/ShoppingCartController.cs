@@ -70,7 +70,7 @@ namespace BookShop.Mvc.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Index();
+                return RedirectToAction("Index");
             }
 
             var shoppingCart = GetShoppingCart();
@@ -109,7 +109,7 @@ namespace BookShop.Mvc.Controllers
         {
             public int BookId { get; set; }
 
-            [Range(1, int.MaxValue)]
+            [Range(0, int.MaxValue)]
             public int Quantity { get; set; }
         }
     }

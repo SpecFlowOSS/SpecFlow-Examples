@@ -24,7 +24,7 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium.PageObjects
 
         public IEnumerable<IWebElement> TableLines => BookTable.FindElements(By.TagName("tr"));
 
-        public IEnumerable<SearchResultEntry> CheapestThreeBooks => TableLines.Skip(1).Select(r => new SearchResultEntry(r));
+        public IEnumerable<BookListEntry> CheapestThreeBooks => TableLines.Skip(1).Select(r => new BookListEntry(r));
 
         public void Search(string term)
         {

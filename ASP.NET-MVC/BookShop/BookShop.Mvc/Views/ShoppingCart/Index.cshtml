@@ -28,19 +28,19 @@
         @foreach (var orderLine in Model.Lines)
         {
             <tr>
-                <td><h4>@Html.ActionLink(orderLine.Book.Title, "Details", "Catalog", new { id = orderLine.Book.Id }, new { })</h4></td>
-                <td>@orderLine.Book.Author</td>
+                <td class="title"><h4>@Html.ActionLink(orderLine.Book.Title, "Details", "Catalog", new { id = orderLine.Book.Id }, new { })</h4></td>
+                <td class="author">@orderLine.Book.Author</td>
                 <td>
                     @using (Html.BeginForm("Edit", "ShoppingCart", FormMethod.Post))
                     {
 
                         @Html.Hidden("BookId", orderLine.BookId, new { })
-                        <input name="Quantity" type="number" value="@orderLine.Quantity" min="1" max="@int.MaxValue" required/>
+                        <input name="Quantity" type="number" value="@orderLine.Quantity" min="0" max="@int.MaxValue" required/>
 
                         <button type="submit" class="btn btn-success">&#10003;</button>
                     }
                 </td>
-                <td>&euro; @orderLine.Price.ToString("0.00")</td>
+                <td class="price">&euro; @orderLine.Price.ToString("0.00")</td>
                 <td>
                     @Html.ActionLink("X", "DeleteItem", "ShoppingCart", new { id = orderLine.Book.Id }, new { @class = "btn btn-danger" })
                 </td>
@@ -51,8 +51,8 @@
         <tr>
             <th><h4><strong>Total</strong></h4></th>
             <th></th>
-            <th>@Model.Count</th>
-            <th>&euro; @Model.Price.ToString("0.00")</th>
+            <th class="shoppingcart_count">@Model.Count</th>
+            <th class="shoppingcart_total_amount">&euro; @Model.Price.ToString("0.00")</th>
         </tr>
         </tfoot>
     </table>

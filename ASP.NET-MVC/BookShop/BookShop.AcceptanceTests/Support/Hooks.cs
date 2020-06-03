@@ -3,6 +3,7 @@ using BoDi;
 using BookShop.AcceptanceTests.Drivers;
 using BookShop.AcceptanceTests.Drivers.Integrated;
 using BookShop.AcceptanceTests.Drivers.Selenium;
+using BookShop.Mvc.Models;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 using TechTalk.SpecRun;
@@ -22,6 +23,8 @@ namespace BookShop.AcceptanceTests.Support
         [BeforeScenario(Order = 1)]
         public void RegisterDependencies(IObjectContainer objectContainer)
         {
+            objectContainer.RegisterInstanceAs(new DatabaseContext());
+
             IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile(Path.Combine(_testRunContext.TestDirectory, "appsettings.json"), optional: true, reloadOnChange: true)
                 .Build();

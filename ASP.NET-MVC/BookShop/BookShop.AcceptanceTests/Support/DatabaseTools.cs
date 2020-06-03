@@ -1,5 +1,4 @@
 ﻿using BookShop.Mvc.Models;
-using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Support
@@ -7,23 +6,23 @@ namespace BookShop.AcceptanceTests.Support
     [Binding]
     public class DatabaseTools
     {
-        private readonly IConfiguration _config;
+        private readonly DatabaseContext _databaseContext;
 
-        public DatabaseTools(IConfiguration config)
+        public DatabaseTools(DatabaseContext databaseContext)
         {
-            _config = config;
+            _databaseContext = databaseContext;
         }
 
         [BeforeScenario(Order = 100)]
         public void CleanDatabase()
         {
-            using var db = new DatabaseContext();
-            db.Database.EnsureCreated();
-            
-            db.OrderLines.RemoveRange(db.OrderLines);
-            db.Orders.RemoveRange(db.Orders);
-            db.Books.RemoveRange(db.Books);
-            db.SaveChanges();
+            _databaseContext.Database.EnsureCreated();
+
+            _databaseContext.OrderLines.RemoveRange(_databaseContext.OrderLines);
+            _databaseContext.Orders.RemoveRange(_databaseContext.Orders);
+            _databaseContext.Books.RemoveRange(_databaseContext.Books);
+            _databaseContext.SaveChanges();
+
         }
     }
 }
