@@ -7,6 +7,9 @@
   <TestAssemblyPaths>
     <TestAssemblyPath>BookShop.AcceptanceTests.dll</TestAssemblyPath>
   </TestAssemblyPaths>
+  <Report>
+    <Template name="ReportTemplate.cshtml"/>
+  </Report>
   <DeploymentTransformation>
     <Steps>
     </Steps>
