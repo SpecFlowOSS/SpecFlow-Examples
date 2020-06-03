@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -26,7 +27,8 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
             switch (lowerBrowserId)
             {
                 case "IE": return GetInternetExplorerDriver();
-                case "CHROME": return GetChromeDriver();
+                case "CHROME": return GetChromeDriver(false);
+                case "CHROME-HEADLESS": return GetChromeDriver(true);
                 case "FIREFOX": return GetFirefoxDriver();
                 case "EDGE": return GetEdgeDriver();
                 case string browser: throw new NotSupportedException($"{browser} is not a supported browser");
@@ -51,12 +53,23 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
             };
         }
 
-        private IWebDriver GetChromeDriver()
+        private IWebDriver GetChromeDriver(bool isHeadless)
         {
-            return new ChromeDriver(ChromeDriverService.CreateDefaultService(_testRunContext.TestDirectory))
+            var chromeDriverService = ChromeDriverService.CreateDefaultService(_testRunContext.TestDirectory);
+
+            var chromeOptions = new ChromeOptions();
+
+            if (isHeadless)
+            {
+                chromeOptions.AddArgument("headless");
+            }
+
+            var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions)
             {
                 Url = _webServerDriver.Hostname
             };
+
+            return chromeDriver;
         }
 
         private IWebDriver GetInternetExplorerDriver()

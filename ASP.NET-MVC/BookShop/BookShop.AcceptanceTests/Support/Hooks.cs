@@ -43,6 +43,7 @@ namespace BookShop.AcceptanceTests.Support
                     objectContainer.RegisterTypeAs<IntegratedSearchResultDriver, ISearchResultDriver>();
                     break;
                 case "Chrome":
+                case "Chrome-Headless":
                 case "Edge":
                 case "Firefox":
                     objectContainer.RegisterTypeAs<SeleniumBookDetailsDriver, IBookDetailsDriver>();
