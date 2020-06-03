@@ -12,41 +12,48 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
     {
         private readonly CatalogContext _catalogContext;
         private readonly IConfiguration _config;
+        private readonly DatabaseContext _databaseContext;
 
-        public IntegratedShoppingCartDriver(CatalogContext catalogContext, IConfiguration config)
+        public IntegratedShoppingCartDriver(CatalogContext catalogContext, IConfiguration config, DatabaseContext databaseContext)
         {
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
             _config = config;
+            _databaseContext = databaseContext;
         }
 
-        public void SetShoppingCart(string bookIds)
+
+
+        public void SetShoppingCart(string bookTitles)
         {
-            foreach (string bookId in from i in bookIds.Split(',')
+            foreach (string bookId in from i in bookTitles.Split(',')
                                       select i.Trim().Trim('\''))
             {
                 Place(bookId);
             }
         }
 
-        public void Place(string bookId)
+        public void Place(string bookTitle)
         {
-            var book = _catalogContext.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookTitle);
             using var controller = GetShoppingCartController(_config);
             controller.Add(book.Id);
         }
 
-        public void Delete(string bookId)
+        public void Delete(string bookTitle)
         {
-            var book = _catalogContext.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookTitle);
             using var controller = GetShoppingCartController(_config);
             controller.DeleteItem(book.Id);
         }
 
-        public void SetQuantity(string bookId, int quantity)
+        public void SetQuantity(string bookTitle, int quantity)
         {
-            var book = _catalogContext.ReferenceBooks.GetById(bookId);
+            var book = _catalogContext.ReferenceBooks.GetById(bookTitle);
             using var controller = GetShoppingCartController(_config);
-            controller.Edit(new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity });
+            
+            var editArguments = new ShoppingCartController.EditArguments { BookId = book.Id, Quantity = quantity };
+            
+            controller.Edit(editArguments);
         }
 
         public void ContainsTypesOfItems(int expectedAmount)
@@ -70,9 +77,9 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
             actionResult.Model<Mvc.Models.ShoppingCart>().Price.Should().Be(expectedTotalPrice);
         }
 
-        public void ContainsCopiesOf(string bookId, int expectedQuantity)
+        public void ContainsCopiesOf(string bookTitle, int expectedQuantity)
         {
-            var expectedBook = _catalogContext.ReferenceBooks.GetById(bookId);
+            var expectedBook = _catalogContext.ReferenceBooks.GetById(bookTitle);
 
             using var controller = GetShoppingCartController(_config);
             var actionResult = controller.Index();
@@ -81,9 +88,9 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
                 .Which.Quantity.Should().Be(expectedQuantity);
         }
 
-        private static ShoppingCartController GetShoppingCartController(IConfiguration config)
+        private ShoppingCartController GetShoppingCartController(IConfiguration config)
         {
-            var controller = new ShoppingCartController(new DatabaseContext());
+            var controller = new ShoppingCartController(_databaseContext);
             HttpContextStub.SetupController(controller);
             return controller;
         }

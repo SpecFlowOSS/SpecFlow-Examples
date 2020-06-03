@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -35,7 +36,7 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
 
         private IWebDriver GetEdgeDriver()
         {
-            return new EdgeDriver(EdgeDriverService.CreateDefaultService(_testRunContext.TestDirectory))
+            return new EdgeDriver(EdgeDriverService.CreateDefaultService())
             {
                 Url = _webServerDriver.Hostname
             };

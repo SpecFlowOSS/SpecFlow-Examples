@@ -19,6 +19,6 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium.PageObjects
 
         public IEnumerable<IWebElement> TableLines => ResultTable.FindElements(By.TagName("tr"));
 
-        public IEnumerable<SearchResultEntry> SearchResults => TableLines.Skip(1).Select(r => new SearchResultEntry(r));
+        public IEnumerable<BookListEntry> SearchResults => TableLines.Skip(1).Select(r => new BookListEntry(r));
     }
 }

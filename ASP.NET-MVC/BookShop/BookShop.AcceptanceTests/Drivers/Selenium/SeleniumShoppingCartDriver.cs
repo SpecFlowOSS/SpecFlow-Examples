@@ -1,47 +1,100 @@
 ﻿using System;
+using System.Linq;
+using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
+using FluentAssertions;
 
 namespace BookShop.AcceptanceTests.Drivers.Selenium
 {
     class SeleniumShoppingCartDriver : IShoppingCartDriver
     {
-        public void SetShoppingCart(string bookIds)
+        private readonly BrowserDriver _browserDriver;
+        private readonly SeleniumHomeDriver _seleniumHomeDriver;
+
+        public SeleniumShoppingCartDriver(BrowserDriver browserDriver, SeleniumHomeDriver seleniumHomeDriver)
         {
-            throw new NotImplementedException();
+            _browserDriver = browserDriver;
+            _seleniumHomeDriver = seleniumHomeDriver;
         }
 
-        public void Place(string bookId)
+        public void Navigate()
         {
-            throw new NotImplementedException();
+            _browserDriver.Navigate("ShoppingCart");
         }
 
-        public void Delete(string bookId)
+        public void SetShoppingCart(string bookTitles)
         {
-            throw new NotImplementedException();
+            foreach (string bookId in from i in bookTitles.Split(',')
+                select i.Trim().Trim('\''))
+            {
+                Place(bookId);
+            }
         }
 
-        public void SetQuantity(string bookId, int quantity)
+        public void Place(string bookTitle)
         {
-            throw new NotImplementedException();
+            _seleniumHomeDriver.Navigate();
+
+            var homePageObject = new HomePageObject(_browserDriver.Current);
+            homePageObject.Search(bookTitle);
+
+            var searchResultPageObject = new SearchResultPageObject(_browserDriver.Current);
+
+            var bookListEntries = searchResultPageObject.SearchResults.ToList();
+            var entry = bookListEntries.Single(i => i.Title == bookTitle);
+            entry.AddToCart();
+
+            RetryHelper.WaitFor(() => _browserDriver.Current.Url.EndsWith("ShoppingCart"));
+        }
+
+        public void Delete(string bookTitle)
+        {
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+
+            var book = shoppingCartPageObject.Books.Single(i => i.Title == bookTitle);
+
+            book.RemoveFromCart();
+        }
+
+        public void SetQuantity(string bookTitle, int quantity)
+        {
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+
+            var book = shoppingCartPageObject.Books.Single(i => i.Title == bookTitle);
+
+            book.Quantity = quantity;
         }
 
         public void ContainsTypesOfItems(int expectedAmount)
         {
-            throw new NotImplementedException();
+            Navigate();
+
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+            shoppingCartPageObject.Books.Count().Should().Be(expectedAmount);
         }
 
         public void ContainsTotalItems(int expectedQuantity)
         {
-            throw new NotImplementedException();
+            Navigate();
+
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+            shoppingCartPageObject.ShoppingCartCount.Should().Be(expectedQuantity);
         }
 
         public void ShowsTotalPriceOf(decimal expectedTotalPrice)
         {
-            throw new NotImplementedException();
+            Navigate();
+
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+            shoppingCartPageObject.TotalPrice.Should().Be(expectedTotalPrice);
         }
 
-        public void ContainsCopiesOf(string bookId, int expectedQuantity)
+        public void ContainsCopiesOf(string bookTitle, int expectedQuantity)
         {
-            throw new NotImplementedException();
+            var shoppingCartPageObject = new ShoppingCartPageObject(_browserDriver.Current);
+
+            var book = shoppingCartPageObject.Books.Single(i => i.Title == bookTitle);
+
+            book.Quantity.Should().Be(expectedQuantity);
         }
     }
 }

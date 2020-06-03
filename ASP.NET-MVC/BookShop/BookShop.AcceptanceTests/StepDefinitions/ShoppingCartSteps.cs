@@ -1,4 +1,5 @@
-﻿using BookShop.AcceptanceTests.Drivers.Integrated;
+﻿using BookShop.AcceptanceTests.Drivers;
+using BookShop.AcceptanceTests.Drivers.Integrated;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
@@ -6,35 +7,36 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class ShoppingCartSteps
     {
-        private readonly IntegratedShoppingCartDriver _driver;
+        private readonly IShoppingCartDriver _driver;
 
-        public ShoppingCartSteps(IntegratedShoppingCartDriver driver)
+        public ShoppingCartSteps(IShoppingCartDriver driver)
         {
             _driver = driver;
         }
 
         [Given(@"I have a shopping cart with: '(.*)'")]
-        public void GivenIHaveAShoppingCartWith(string bookIds)
+        public void GivenIHaveAShoppingCartWith(string bookTitles)
         {
-            _driver.SetShoppingCart(bookIds);
+            _driver.SetShoppingCart(bookTitles);
         }
 
+
         [When(@"I place '(.*)' into the shopping cart")]
-        public void WhenIPlaceIntoTheShoppingCart(string bookId)
+        public void WhenIPlaceIntoTheShoppingCart(string bookTitle)
         {
-            _driver.Place(bookId);
+            _driver.Place(bookTitle);
         }
 
         [When(@"I delete '(.*)' from the shopping cart")]
-        public void WhenIDeleteFromTheShoppingCart(string bookId)
+        public void WhenIDeleteFromTheShoppingCart(string bookTitle)
         {
-            _driver.Delete(bookId);
+            _driver.Delete(bookTitle);
         }
 
         [When(@"I change the quantity of '(.*)' to (\d+)")]
-        public void WhenIChangeTheQuantityOfTo(string bookId, int quantity)
+        public void WhenIChangeTheQuantityOfTo(string bookTitle, int quantity)
         {
-            _driver.SetQuantity(bookId, quantity);
+            _driver.SetQuantity(bookTitle, quantity);
         }
 
         [Then(@"my shopping cart should be empty")]
@@ -50,9 +52,9 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         }
 
         [Then(@"my shopping cart should contain (\d+) cop(?:y|ies) of '(.*)'")]
-        public void ThenMyShoppingCartShouldContainCopiesOf(int expectedQuantity, string expectedBookId)
+        public void ThenMyShoppingCartShouldContainCopiesOf(int expectedQuantity, string expectedBookTitle)
         {
-            _driver.ContainsCopiesOf(expectedBookId, expectedQuantity);
+            _driver.ContainsCopiesOf(expectedBookTitle, expectedQuantity);
         }
 
         [Then(@"my shopping cart should contain (\d+) items in total")]
