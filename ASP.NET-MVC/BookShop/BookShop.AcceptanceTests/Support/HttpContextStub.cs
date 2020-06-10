@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Session;
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Logging;
 using Moq;
 using TechTalk.SpecFlow;
 

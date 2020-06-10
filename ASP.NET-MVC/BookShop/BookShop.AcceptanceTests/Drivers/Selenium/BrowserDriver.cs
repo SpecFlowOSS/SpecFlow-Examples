@@ -26,8 +26,6 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
 
         public IWebDriver Current => _currentWebDriverLazy.Value;
 
-        public WebDriverWait Wait => _waitLazy.Value;
-
         private WebDriverWait GetWebDriverWait()
         {
             return new WebDriverWait(Current, _waitDuration);

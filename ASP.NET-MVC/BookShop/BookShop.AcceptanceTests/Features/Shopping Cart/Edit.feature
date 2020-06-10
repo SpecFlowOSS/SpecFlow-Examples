@@ -7,11 +7,11 @@ Feature: Editing the shopping cart
 
 Background:
 	Given the following books
-		|Author			|Title								|Price	|
-		|Martin Fowler	|Analysis Patterns					|50.20	|
-		|Eric Evans		|Domain Driven Design				|46.34	|
-		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
-		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
+		| Title                              |
+		| Analysis Patterns                  |
+		| Domain Driven Design               |
+		| Inside Windows SharePoint Services |
+		| Bridging the Communication Gap     |
 
 @WI17
 Scenario: Quantity of a book can be changed
