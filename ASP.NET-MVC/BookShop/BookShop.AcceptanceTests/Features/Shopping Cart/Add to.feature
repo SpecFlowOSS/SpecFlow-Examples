@@ -7,11 +7,11 @@ Feature: Adding books to the shopping cart
 
 Background:
 	Given the following books
-		|Author			|Title								|Price	|
-		|Martin Fowler	|Analysis Patterns					|50.20	|
-		|Eric Evans		|Domain Driven Design				|46.34	|
-		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
-		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
+		| Title                              |
+		| Analysis Patterns                  |
+		| Domain Driven Design               |
+		| Inside Windows SharePoint Services |
+		| Bridging the Communication Gap     |
 
 @WI12
 Scenario: Books can be placed into shopping cart
@@ -27,4 +27,3 @@ Scenario: Adding the same book to shopping cart again should increase quantity
 	When I place 'Analysis Patterns' into the shopping cart
 	Then my shopping cart should contain 1 type of item
 	And my shopping cart should contain 2 copies of 'Analysis Patterns'
-

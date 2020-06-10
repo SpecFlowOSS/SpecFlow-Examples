@@ -15,25 +15,25 @@
     </Steps>
   </DeploymentTransformation>
   <Targets>
-    <Target name="Integrated">
+    <!--<Target name="Integrated">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Integrated"/>
       </DeploymentTransformationSteps>
-    </Target>
+    </Target>-->
     <Target name="Chrome">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Chrome"/>
       </DeploymentTransformationSteps>
     </Target>
-    <Target name="Chrome-Headless">
+    <!--<Target name="Chrome-Headless">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Chrome-Headless"/>
       </DeploymentTransformationSteps>
-    </Target>
-    <Target name="Firefox">
+    </Target>-->
+    <!--<Target name="Firefox">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Firefox"/>
       </DeploymentTransformationSteps>
-    </Target>
+    </Target>-->
   </Targets>
 </TestProfile>

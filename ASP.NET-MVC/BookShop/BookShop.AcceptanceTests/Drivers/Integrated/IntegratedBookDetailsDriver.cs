@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Models;
@@ -9,43 +8,6 @@ using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
-    public class DatabaseDriver
-    {
-        private readonly IDatabaseContext _databaseContext;
-        private readonly CatalogContext _catalogContext;
-
-        public DatabaseDriver(DatabaseContext databaseContext, CatalogContext catalogContext)
-        {
-            _databaseContext = databaseContext;
-            _catalogContext = catalogContext;
-        }
-
-        private const decimal BookDefaultPrice = 10;
-
-        public void AddToDatabase(Table books)
-        {
-            foreach (var row in books.Rows)
-            {
-                var book = new Book
-                {
-                    Author = row["Author"],
-                    Title = row["Title"],
-                    Price = books.Header.Contains("Price")
-                        ? Convert.ToDecimal(row["Price"])
-                        : BookDefaultPrice
-                };
-
-                _catalogContext.ReferenceBooks.Add(
-                    books.Header.Contains("Id") ? row["Id"] : book.Title,
-                    book);
-
-                _databaseContext.Books.Add(book);
-            }
-
-            _databaseContext.SaveChanges();
-        }
-    }
-
     public class IntegratedBookDetailsDriver : IBookDetailsDriver
     {
         private readonly CatalogContext _catalogContext;
