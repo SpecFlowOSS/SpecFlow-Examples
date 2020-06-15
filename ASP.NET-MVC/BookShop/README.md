@@ -65,7 +65,7 @@ As SpecFlow is not a unit test runner on its own, it can generate unit tests for
 > *__Note__: As SpecFlow+ Runner is currently not compatible with .NET Core 3, the example currently uses xUnit as unit test provider. Therefore the following paragraph is currently invalid.*
 
 The example project is configured to generate unit tests for SpecFlow+ Runner, which is a
-unit test runner provided by TechTalk which is specialized for running acceptance/integration tests
+unit test runner provided by the SpecFlow team which is specialized for running acceptance/integration tests
 (like written in SpecFlow but also without SpecFlow).
 SpecFlow+ Runner is provided as a free evaluation version with this example. The only
 limitation of the evaluation is, that your tests will be delayed by an arbitrary

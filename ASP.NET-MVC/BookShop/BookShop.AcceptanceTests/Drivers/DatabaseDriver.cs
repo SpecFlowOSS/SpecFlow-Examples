@@ -1,11 +1,10 @@
-﻿using System;
-using BookShop.AcceptanceTests.Drivers.RowObjects;
+﻿using BookShop.AcceptanceTests.Drivers.RowObjects;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
-namespace BookShop.AcceptanceTests.Drivers.Integrated
+namespace BookShop.AcceptanceTests.Drivers
 {
     public class DatabaseDriver
     {
