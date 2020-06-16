@@ -28,11 +28,11 @@
     <PackageReference Include="SpecRun.SpecFlow.3-1-0" Version="3.2.31" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.4" />
+    <PackageReference Include="Moq" Version="4.14.1" />
 
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookShop.AcceptanceTests.Common\BookShop.AcceptanceTests.Common.csproj" />
     <ProjectReference Include="..\BookShop.Mvc\BookShop.Mvc.csproj" />
   </ItemGroup>
 

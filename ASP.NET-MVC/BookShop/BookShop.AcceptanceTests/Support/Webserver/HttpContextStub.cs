@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Support
+namespace BookShop.AcceptanceTests.Support.Webserver
 {
     [Binding]
     public class HttpContextStub

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;

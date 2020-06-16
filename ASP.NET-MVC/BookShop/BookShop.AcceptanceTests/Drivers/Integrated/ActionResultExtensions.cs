@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookShop.AcceptanceTests.Support
+namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
     public static class ActionResultExtensions
     {

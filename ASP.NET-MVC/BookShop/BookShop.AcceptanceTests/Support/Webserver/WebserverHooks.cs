@@ -2,7 +2,7 @@
 using BookShop.AcceptanceTests.Drivers.Selenium;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Support
+namespace BookShop.AcceptanceTests.Support.Webserver
 {
     [Binding]
     public class WebserverHooks
