@@ -1,7 +1,7 @@
 ﻿using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 
-namespace BookShop.AcceptanceTests.Support
+namespace BookShop.AcceptanceTests.Support.Database
 {
     [Binding]
     public class DatabaseTools

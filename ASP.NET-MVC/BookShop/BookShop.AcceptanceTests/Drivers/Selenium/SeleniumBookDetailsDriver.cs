@@ -3,6 +3,7 @@ using System.Globalization;
 using BookShop.AcceptanceTests.Drivers.RowObjects;
 using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
 using BookShop.AcceptanceTests.Support;
+using BookShop.AcceptanceTests.Support.Database;
 using FluentAssertions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

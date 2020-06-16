@@ -1,5 +1,6 @@
 ﻿using BookShop.AcceptanceTests.Drivers.RowObjects;
 using BookShop.AcceptanceTests.Support;
+using BookShop.AcceptanceTests.Support.Database;
 using BookShop.Mvc.Models;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

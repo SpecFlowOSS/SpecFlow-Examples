@@ -1,4 +1,4 @@
-﻿namespace BookShop.AcceptanceTests.Support
+﻿namespace BookShop.AcceptanceTests.Support.Database
 {
     public class CatalogContext
     {
