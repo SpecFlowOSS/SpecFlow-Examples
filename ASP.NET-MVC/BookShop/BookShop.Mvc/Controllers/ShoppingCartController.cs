@@ -1,6 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,57 +12,39 @@ namespace BookShop.Mvc.Controllers
         : Controller
     {
         private readonly IDatabaseContext _databaseContext;
-        public const string CartSessionKey = "CART";
+        private readonly IShoppingCartLogic _shoppingCartLogic;
 
-        public ShoppingCartController(IDatabaseContext databaseContext)
+
+        public ShoppingCartController(IDatabaseContext databaseContext, IShoppingCartLogic shoppingCartLogic)
         {
             _databaseContext = databaseContext;
+            _shoppingCartLogic = shoppingCartLogic;
         }
 
         public ActionResult Index()
         {
-            var shoppingCart = GetShoppingCart();
+            var shoppingCart = _shoppingCartLogic.GetShoppingCart(HttpContext.Session);
             return View(shoppingCart);
         }
 
         public ActionResult Add(int bookId)
         {
-            var shoppingCart = GetShoppingCart();
+            var shoppingCart = _shoppingCartLogic.GetShoppingCart(HttpContext.Session);
 
-            var existingLine = shoppingCart.Lines.SingleOrDefault(l => l.Book.Id == bookId);
-            if (existingLine != null)
-            {
-                existingLine.Quantity++;
-            }
-            else
-            {
-                var book = _databaseContext.Books.First(b => b.Id == bookId);
-
-                var newOrderLine = new OrderLine
-                {
-                    Book = book,
-                    BookId = bookId,
-                    Quantity = 1
-                };
-
-                shoppingCart.AddLineItem(newOrderLine);
-            }
-
-            ViewData.Model = shoppingCart;
-            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+            ViewData.Model = _shoppingCartLogic.AddBookToCart(HttpContext.Session,bookId, shoppingCart);
             return RedirectToAction(nameof(Index));
         }
+
+       
 
         [HttpGet]
         public ActionResult DeleteItem(int id)
         {
-            var shoppingCart = GetShoppingCart();
-            shoppingCart.RemoveLineItem(id);
-
-            ViewData.Model = shoppingCart;
-            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+            ViewData.Model = _shoppingCartLogic.RemoveBookFromCart(HttpContext.Session, id);
             return RedirectToAction("Index");
         }
+
+        
 
         [HttpPost]
         //[ValidateInput(true)]
@@ -73,44 +55,14 @@ namespace BookShop.Mvc.Controllers
                 return RedirectToAction("Index");
             }
 
-            var shoppingCart = GetShoppingCart();
-            int bookId = editArgs.BookId;
-            int quantity = editArgs.Quantity;
-
-            if (quantity > 0)
-            {
-                var existingLine = shoppingCart.Lines.Single(l => l.Book.Id == bookId);
-                existingLine.Quantity = quantity;
-            }
-            else
-            {
-                shoppingCart.RemoveLineItem(bookId);
-            }
-
-            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(shoppingCart));
+            _shoppingCartLogic.EditBookInCart(HttpContext.Session, editArgs);
 
             return RedirectToAction("Index");
         }
 
-        private ShoppingCart GetShoppingCart()
-        {
-            var sc = HttpContext.Session.GetString(CartSessionKey);
-            if (!string.IsNullOrEmpty(sc))
-            {
-                return JsonConvert.DeserializeObject<ShoppingCart>(sc);
-            }
+        
 
-            var cart = new ShoppingCart();
-            HttpContext.Session.SetString(CartSessionKey, JsonConvert.SerializeObject(cart));
-            return cart;
-        }
 
-        public class EditArguments
-        {
-            public int BookId { get; set; }
-
-            [Range(0, int.MaxValue)]
-            public int Quantity { get; set; }
-        }
+        
     }
 }

@@ -1,22 +1,22 @@
 ﻿using BookShop.Mvc.Controllers;
-using BookShop.Mvc.Models;
+using BookShop.Mvc.Logic;
 
 namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
     public class IntegratedSearchDriver : ISearchDriver
     {
-        private readonly IDatabaseContext _databaseContext;
+        private readonly BookLogic _bookLogic;
         private readonly SearchResultState _state;
 
-        public IntegratedSearchDriver(SearchResultState state, DatabaseContext databaseContext)
+        public IntegratedSearchDriver(SearchResultState state, BookLogic bookLogic)
         {
             _state = state;
-            _databaseContext = databaseContext;
+            _bookLogic = bookLogic;
         }
 
         public void Search(string term)
         {
-            var controller = new CatalogController(_databaseContext);
+            var controller = new CatalogController(_bookLogic);
             _state.ActionResult = controller.Search(term);
         }
     }

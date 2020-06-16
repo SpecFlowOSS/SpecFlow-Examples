@@ -30,10 +30,10 @@
         <EnvironmentVariable variable="Mode" value="Chrome-Headless"/>
       </DeploymentTransformationSteps>
     </Target>-->
-    <Target name="Firefox">
+    <!--<Target name="Firefox">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Firefox"/>
       </DeploymentTransformationSteps>
-    </Target>
+    </Target>-->
   </Targets>
 </TestProfile>

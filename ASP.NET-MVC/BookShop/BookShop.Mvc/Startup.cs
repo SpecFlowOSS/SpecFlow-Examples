@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
+using BookShop.Mvc.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace BookShop.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDatabaseContext, DatabaseContext>();
+            services.AddScoped<IBookLogic, BookLogic>();
+            services.AddScoped<IShoppingCartLogic, ShoppingCartLogic>();
             services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();

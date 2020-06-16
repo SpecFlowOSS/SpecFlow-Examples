@@ -3,6 +3,7 @@ using BoDi;
 using BookShop.AcceptanceTests.Drivers;
 using BookShop.AcceptanceTests.Drivers.Integrated;
 using BookShop.AcceptanceTests.Drivers.Selenium;
+using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
@@ -30,8 +31,11 @@ namespace BookShop.AcceptanceTests.Support
                 .Build();
 
             objectContainer.RegisterInstanceAs(config);
+            objectContainer.RegisterTypeAs<DatabaseContext, IDatabaseContext>();
+            objectContainer.RegisterTypeAs<ShoppingCartLogic, IShoppingCartLogic>();
+            objectContainer.RegisterTypeAs<BookLogic, IBookLogic>();
 
-            var configurationDriver = new ConfigurationDriver(config);
+            var configurationDriver = new ConfigurationDriver();
 
             switch (configurationDriver.Mode)
             {
