@@ -1,40 +1,32 @@
-﻿using System;
-using System.Linq;
-using BookShop.Mvc.Models;
-using LinqKit;
+﻿using BookShop.Mvc.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Mvc.Controllers
 {
     public class CatalogController : Controller
     {
-        private readonly IDatabaseContext _databaseContext;
+        private readonly IBookLogic _bookLogic;
 
-        public CatalogController(IDatabaseContext databaseContext)
+        public CatalogController(IBookLogic bookLogic)
         {
-            _databaseContext = databaseContext;
+            _bookLogic = bookLogic;
         }
 
         public ActionResult Search(string searchTerm)
         {
-            var terms = searchTerm?.Split(' ') ?? new string[0];
-            var predicate = terms.Aggregate(
-                PredicateBuilder.New<Book>(string.IsNullOrEmpty(searchTerm)),
-                (acc, term) => acc.Or(b => b.Title.Contains(term, StringComparison.InvariantCultureIgnoreCase))
-                                  .Or(b => b.Author.Contains(term, StringComparison.InvariantCultureIgnoreCase)));
-
-            var books = _databaseContext.Books.AsExpandable()
-                .Where(predicate)
-                .OrderBy(b => b.Title)
-                .ToArray();
+            var books =  _bookLogic.Search(searchTerm);
 
             return View("List", books);
         }
 
+       
+
         public ActionResult Details(int id)
         {
-            var book = _databaseContext.Books.First(b => b.Id == id);
+            var book = _bookLogic.GetBookById(id);
             return View(book);
         }
+
+        
     }
 }

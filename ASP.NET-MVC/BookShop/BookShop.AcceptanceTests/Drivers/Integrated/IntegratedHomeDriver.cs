@@ -4,6 +4,7 @@ using System.Linq;
 using BookShop.AcceptanceTests.Common;
 using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
+using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using TechTalk.SpecFlow;
@@ -12,17 +13,17 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
     public class IntegratedHomeDriver : IHomeDriver
     {
-        private readonly IDatabaseContext _databaseContext;
+        private readonly IBookLogic _bookLogic;
         private ActionResult? _result = null;
 
-        public IntegratedHomeDriver(DatabaseContext databaseContext)
+        public IntegratedHomeDriver(IBookLogic bookLogic)
         {
-            _databaseContext = databaseContext;
+            _bookLogic = bookLogic;
         }
 
         public void Navigate()
         {
-            using var controller = new HomeController(_databaseContext);
+            using var controller = new HomeController(_bookLogic);
             _result = controller.Index();
         }
 
