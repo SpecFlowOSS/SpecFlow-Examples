@@ -121,7 +121,7 @@ The Bookshop example automates the tests directly through the Controller of the 
 Automating below the skin provides several benefits:
 less brittle tests, less efforts for automation, better performance of the test suite.
 
-####Inside the Controller bindings
+#### Inside the Controller bindings
 Let's examine the scenario in `Book Details.feature` and navigate to the step definitions of the steps (shortcut "F12"). 
 
 The `Given the following books` step is bound to the `GivenTheFollowingBooks` step definition method in the `BookStep` class. The step defintion classes use the *Driver pattern* and *Dependency Injection* to better structure the code into reusable layers and parts. Following the flow of execution to the `DatabaseDriver` the books are inserted into the Entity Framework `DatabaseContext` (using an in-memory database):
@@ -153,7 +153,7 @@ In case of e2e UI automation the Given steps can open a browser with Selenium an
 
 To demonstrate this approach as well, the Bookshop example contains an alternative automation implementation for all scenarios using Selenium.
 
-####Configure the Selenium automation
+#### Configure the Selenium automation
 
 To enable the tests using Selenium UI automation, you need to add (uncomment) the `Chrome` target in the `Default.srprofile` configuration file, while you need to remove (comment) the `Integrated` target.
 ```
@@ -173,7 +173,7 @@ Notice, however, that the execution of the tests takes significantly longer.
 
 > *__Note:__ You can also experiment with headless Chrome or Firefox by uncommenting the corresponding targets in the `Default.srprofile` configuration file. However, while the headless Chrome automation is faster than Chrome, the Firefox automation runs very slowly.*
 
-####Inside the Selenium bindings
+#### Inside the Selenium bindings
 Let's examine the same scenario in `Book Details.feature` again and compare the Selenium automation with the Controller automation. 
 
 We have seen before that the `Given the following books` step is bound to the `GivenTheFollowingBooks` step definition method and at the end the `DatabaseDriver` inserts the books into the database. There is no difference here.
