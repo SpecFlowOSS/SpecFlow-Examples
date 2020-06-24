@@ -15,16 +15,16 @@
     </Steps>
   </DeploymentTransformation>
   <Targets>
-    <!--<Target name="Integrated">
+    <Target name="Integrated">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Integrated"/>
       </DeploymentTransformationSteps>
-    </Target>-->
-    <Target name="Chrome">
+    </Target>
+    <!--<Target name="Chrome">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Chrome"/>
       </DeploymentTransformationSteps>
-    </Target>
+    </Target>-->
     <!--<Target name="Chrome-Headless">
       <DeploymentTransformationSteps>
         <EnvironmentVariable variable="Mode" value="Chrome-Headless"/>
