@@ -1,5 +1,5 @@
 ﻿using System;
-using Bowling.Specflow.Drivers;
+using Bowling.SpecFlow.Drivers;
 using TechTalk.SpecFlow;
 
 namespace Bowling.SpecFlow.StepDefinitions

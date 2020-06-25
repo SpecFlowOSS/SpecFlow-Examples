@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.52-beta" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.1.52-beta" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.3.30" />
     <PackageReference Include="xunit.assert" Version="2.4.1" />
 
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />

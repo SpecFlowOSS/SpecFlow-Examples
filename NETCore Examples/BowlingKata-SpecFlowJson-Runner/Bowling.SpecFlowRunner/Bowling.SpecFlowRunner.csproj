@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -8,11 +8,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow" Version="3.1.62" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.62" />
+    <PackageReference Include="SpecFlow" Version="3.3.30" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
-    <PackageReference Include="SpecRun.Runner" Version="3.1.33" />
-    <PackageReference Include="SpecRun.SpecFlow.3-1-0" Version="3.1.33" />
+    <PackageReference Include="SpecRun.Runner" Version="3.3.14" />
+    <PackageReference Include="SpecRun.SpecFlow.3-3-0" Version="3.3.14" />
   </ItemGroup>
 
   <ItemGroup>
