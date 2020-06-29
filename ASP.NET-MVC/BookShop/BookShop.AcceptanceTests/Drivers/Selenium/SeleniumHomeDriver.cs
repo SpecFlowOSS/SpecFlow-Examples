@@ -47,7 +47,7 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
             ShowsBooks(expectedBooks.CreateSet<BookRow>().Select(i => i.Title));
         }
 
-        private void ShowsBooks(IEnumerable<string?> expectedTitles)
+        private void ShowsBooks(IEnumerable<string> expectedTitles)
         {
             var homePageObject = new HomePageObject(_browserDriver.Current);
 

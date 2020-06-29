@@ -4,6 +4,6 @@
 {
     public class ConfigurationDriver
     {
-        public string? Mode => Environment.GetEnvironmentVariable("Mode");
+        public string Mode => Environment.GetEnvironmentVariable("Mode");
     }
 }

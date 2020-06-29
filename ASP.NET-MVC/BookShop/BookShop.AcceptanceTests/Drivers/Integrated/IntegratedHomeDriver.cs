@@ -13,7 +13,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
     public class IntegratedHomeDriver : IHomeDriver
     {
         private readonly IBookLogic _bookLogic;
-        private ActionResult? _result = null;
+        private ActionResult _result = null;
 
         public IntegratedHomeDriver(IBookLogic bookLogic)
         {

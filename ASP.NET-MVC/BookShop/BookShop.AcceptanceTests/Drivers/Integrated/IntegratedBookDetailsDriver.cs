@@ -14,7 +14,7 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
     {
         private readonly CatalogContext _catalogContext;
         private readonly BookLogic _bookLogic;
-        private ActionResult? _result = null;
+        private ActionResult _result = null;
 
         public IntegratedBookDetailsDriver(CatalogContext catalogContext, BookLogic bookLogic)
         {

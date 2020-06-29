@@ -6,7 +6,7 @@ namespace BookShop.Mvc
 {
     public class KestrelHostBuilder
     {
-        public IHostBuilder CreateHostBuilder(string[] args, string? hostname = null, string? webRoot = null)    
+        public IHostBuilder CreateHostBuilder(string[] args, string hostname = null, string webRoot = null)    
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>

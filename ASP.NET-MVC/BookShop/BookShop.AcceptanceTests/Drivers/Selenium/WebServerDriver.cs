@@ -10,7 +10,7 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium
     public class WebServerDriver
     {
         private IHost _host;
-        public string? Hostname { get; private set; }
+        public string Hostname { get; private set; }
 
         public void Start()
         {
