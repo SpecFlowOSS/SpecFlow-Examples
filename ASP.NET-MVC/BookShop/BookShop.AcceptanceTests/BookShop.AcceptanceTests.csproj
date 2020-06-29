@@ -23,9 +23,9 @@
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.26.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="83.0.4103.3900" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />
-    <PackageReference Include="SpecFlow" Version="3.1.97" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.97" />
-    <PackageReference Include="SpecRun.SpecFlow.3-1-0" Version="3.2.31" />
+    <PackageReference Include="SpecFlow" Version="3.3.30" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.30" />
+    <PackageReference Include="SpecRun.SpecFlow" Version="3.3.17" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.4" />
     <PackageReference Include="Moq" Version="4.14.1" />
