@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using FluentAssertions;

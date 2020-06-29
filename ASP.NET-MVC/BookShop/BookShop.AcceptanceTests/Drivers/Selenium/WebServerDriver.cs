@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using BookShop.Mvc;
 using Microsoft.Extensions.Hosting;
 
-
 namespace BookShop.AcceptanceTests.Drivers.Selenium
 {
     public class WebServerDriver

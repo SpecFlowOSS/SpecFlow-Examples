@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BookShop.AcceptanceTests.Support;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;

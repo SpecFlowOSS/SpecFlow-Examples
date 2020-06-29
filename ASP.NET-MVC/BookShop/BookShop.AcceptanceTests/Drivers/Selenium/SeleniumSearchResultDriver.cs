@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BookShop.AcceptanceTests.Drivers.RowObjects;
 using BookShop.AcceptanceTests.Drivers.Selenium.PageObjects;
 using FluentAssertions;

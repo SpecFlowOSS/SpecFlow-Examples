@@ -1,5 +1,4 @@
 ﻿using BookShop.AcceptanceTests.Drivers;
-using BookShop.AcceptanceTests.Drivers.Integrated;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.StepDefinitions

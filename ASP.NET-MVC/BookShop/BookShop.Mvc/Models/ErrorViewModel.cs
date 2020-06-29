@@ -1,5 +1,3 @@
-using System;
-
 namespace BookShop.Mvc.Models
 {
     public class ErrorViewModel

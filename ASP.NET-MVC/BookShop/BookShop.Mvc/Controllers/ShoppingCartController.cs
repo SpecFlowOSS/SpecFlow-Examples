@@ -1,10 +1,6 @@
-﻿using System;
-using System.Linq;
-using BookShop.Mvc.Logic;
+﻿using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace BookShop.Mvc.Controllers
 {

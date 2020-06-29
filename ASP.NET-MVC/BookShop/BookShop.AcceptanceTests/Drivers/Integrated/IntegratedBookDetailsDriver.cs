@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using BookShop.AcceptanceTests.Support;
 using BookShop.AcceptanceTests.Support.Database;
 using BookShop.Mvc.Controllers;
 using BookShop.Mvc.Logic;
