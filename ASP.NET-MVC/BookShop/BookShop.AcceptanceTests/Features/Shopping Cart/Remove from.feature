@@ -6,11 +6,11 @@ Feature: Removing books from the shopping cart
 
 Background:
 	Given the following books
-		|Author			|Title								|Price	|
-		|Martin Fowler	|Analysis Patterns					|50.20	|
-		|Eric Evans		|Domain Driven Design				|46.34	|
-		|Ted Pattison	|Inside Windows SharePoint Services	|31.49	|
-		|Gojko Adzic	|Bridging the Communication Gap		|24.75	|
+		| Title                              |
+		| Analysis Patterns                  |
+		| Domain Driven Design               |
+		| Inside Windows SharePoint Services |
+		| Bridging the Communication Gap     |
 
 @WI18
 Scenario: A type of book can be entirely removed from the shopping cart

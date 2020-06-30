@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Mvc.Models
@@ -8,16 +6,9 @@ namespace BookShop.Mvc.Models
     public class DatabaseContext
         : DbContext, IDatabaseContext
     {
-        private readonly IConfiguration _config;
-
-        public DatabaseContext(IConfiguration config)
-        {
-            _config = config;
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(_config.GetConnectionString("BookShop"));
+            optionsBuilder.UseInMemoryDatabase("Bookshop");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BookShop.Mvc.Models;
+﻿using BookShop.Mvc.Logic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookShop.Mvc.Controllers
@@ -7,21 +6,17 @@ namespace BookShop.Mvc.Controllers
     public class HomeController
         : Controller
     {
-        private readonly IDatabaseContext _databaseContext;
+        private readonly IBookLogic _bookLogic;
 
-        public HomeController(IDatabaseContext databaseContext)
+        public HomeController(IBookLogic bookLogic)
         {
-            _databaseContext = databaseContext;
+            _bookLogic = bookLogic;
         }
 
         public ActionResult Index()
         {
-            var cheapBooks = _databaseContext.Books.OrderBy(b => b.Price)
-                             .Take(3)
-                             .OrderBy(b => b.Title)
-                             .ToArray();
+            var cheapBooks = _bookLogic.FindCheapBooks(3);
             return View(cheapBooks);
-        
         }
 
         public ActionResult Privacy()

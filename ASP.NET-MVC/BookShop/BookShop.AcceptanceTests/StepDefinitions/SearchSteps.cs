@@ -1,4 +1,4 @@
-﻿using BookShop.AcceptanceTests.Drivers.Search;
+﻿using BookShop.AcceptanceTests.Drivers;
 using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.StepDefinitions
@@ -6,10 +6,10 @@ namespace BookShop.AcceptanceTests.StepDefinitions
     [Binding]
     public class SearchSteps
     {
-        private readonly SearchDriver _searchDriver;
-        private readonly SearchResultDriver _searchResultDriver;
+        private readonly ISearchDriver _searchDriver;
+        private readonly ISearchResultDriver _searchResultDriver;
 
-        public SearchSteps(SearchDriver searchDriver, SearchResultDriver searchResultDriver)
+        public SearchSteps(ISearchDriver searchDriver, ISearchResultDriver searchResultDriver)
         {
             _searchDriver = searchDriver;
             _searchResultDriver = searchResultDriver;
@@ -30,7 +30,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [Then(@"the list of found books should be:")]
         public void ThenTheListOfFoundBooksShouldBe(Table expectedBooks)
         {
-            _searchResultDriver.ShowsBooks(expectedBooks);
+            _searchResultDriver.AssertBooksInResult(expectedBooks);
         }
 
     }
