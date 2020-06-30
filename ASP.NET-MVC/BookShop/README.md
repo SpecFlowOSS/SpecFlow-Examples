@@ -145,7 +145,7 @@ Note that the reason why these test run relatively fast is that the automation s
 
 
 UI level automation with Selenium
-=================================
+---------------------------------
 
 Sometimes the behaviour that should be validated cannot be observed on the controller level, but only on the UI. This might range from client side javascript behavior up to server side middleware that is not executed when calling the action methods of the controller classes directly. In those cases the automation of the user interface might be a solution.
 
@@ -192,3 +192,78 @@ The `Then the book details should show` step is also routed to the  `SeleniumBoo
 ```
 
 Notice that the phrasing of the scenarios didn't have to be changed, in order to automate on a different layer. This is a good practice, as SpecFlow scenarios shouldn't express technical details of the automation, but the intention and behaviour to be validated.
+
+Executing tests from the command line
+=====================================
+While Visual Studio provides several convenience features when working with SpecFlow (syntax coloring, navigation, integration with the Test Explorer, etc.), you can easily run the automated tests from the command line too.
+
+* Open a command line terminal where you can execute [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/) commands
+* Set the current directory to the root directory of the Bookshop example, where the `BookShop.sln` solution file is located:
+    * `cd SpecFlow-Examples\ASP.NET-MVC\BookShop`
+* Build the solution
+    * `dotnet build` 
+* Run all tests in the solution
+    * `dotnet test`
+
+> *__Note:__ You can also skip the `dotnet build` step and run the tests immediately with `dotnet test`, because this command also (re-)builds the project. However it hides the details of the build output. We outlined the build as a separate step here as a best practice when examining a new project, because separating the steps makes the understanding of the output and potential troubleshooting easier.*
+
+![Running tests from the command line](docs/BookshopCommandLine.gif)
+
+Note that if you run `dotnet test` for the entire Bookshop solution then both the unit tests and the acceptance tests are executed.
+
+The SpecFlow+ Runner execution reports and logs are generated in the "results directory" of the `dotnet test` command. The default is the `TestResults` folder in the directory of the solution/project, but it can be overridden with the `-r|--results-directory <PATH>` option of `dotnet test`.
+
+Please consult the documentation of the [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test) command for further details.
+
+
+Further `dotnet test` examples
+----------------------------
+The following examples guide you through some typical questions/scenarios when running the Bookshop acceptance tests from the command line using `dotnet test`. Feel free to experiment with other combinations of parameters and consult the documentation of [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test).
+
+###Run the acceptance test
+* Run only the acceptance tests (and ignore the unit tests) from the root folder of the Bookshop sample
+    * `dotnet test BookShop.AcceptanceTests`
+        * The default `TestResults` test results directory of `dotnet test` is relative to the project, hence in this case the reports and logs are generated into the `BookShop.AccteptanceTests\TestResults` folder.
+        * Alternatively you can run `dotnet test --filter BookShop.AcceptanceTests` on the entire solution and use the filter to include the acceptance tests only. However, in this case `dotnet test` still discovers both the unit test and acceptance test projects separately and emits a warning for the unit tests that "*no test matches the given testcase filter*".
+*  Run acceptance tests without re-building the project (assuming the project was built succesfully already)
+    * `dotnet test BookShop.AcceptanceTests --no-build`
+        * This speeds up the test execution command as the build step is skipped
+        * This is also useful to limit the output of the command to the test execution details
+
+###Set output details
+
+* Run with more detailed output (similar detail level like the Visual Studio output)
+    * `dotnet test BookShop.AcceptanceTests --no-build -v n`
+        * Note: if you omit the `--no-build` option the output will also contain the detailed output of the build.
+
+* Save the execution report and logs to a different folder
+    * `dotnet test BookShop.AcceptanceTests -r C:\CentralTestResults\Bookshop`
+
+###Filter tests
+Please consult the documentation of [filter options](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#filter-option-details) of the `dotnet test` command for more details.  Here are some practical examples using the Bookshop acceptance tests:
+* Run the "automated" scenarios (tagged as @automated)
+  * `dotnet test BookShop.AcceptanceTests --filter TestCategory=automated`
+      * See the `@automated` tag in the feature files
+* Run scenarios associated with work item 11 (tagged as @WI11)
+  * `dotnet test BookShop.AcceptanceTests --filter TestCategory=WI11`
+      * See the `@WI11` tag on the feature in `Features\Shopping Cart\Add to.feature`
+* Run scenarios associated with work item 12 or 13 (tagged as @WI12 or @WI13)
+  * `dotnet test BookShop.AcceptanceTests --filter "TestCategory=WI12|TestCategory=WI13"`
+      * See the tags on the scenarios in `Features\Shopping Cart\Add to.feature`
+* Run all scenarios related to the "shopping cart"
+  * `dotnet test BookShop.AcceptanceTests --filter Name~"shopping cart"`
+      * This command runs all scenarios where the feature or the scenario title contains the term "shopping cart".
+      * Note: you can list the name of the discovered scenarios with `dotnet test -t`. This can help to construct the appropriate name filter.
+      * Note: you can also try to filter for the FullyQualifiedName `--filter FullyQualifiedName~"shopping cart"` which is equivalent with the shorthand form of `--filter "shopping cart"` as explained in the [documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#filter-option-details). However, the FullyQualifiedName has a more complex structure and it is unfortunately not possible to get the list of FullyQualifiedNames from `dotnet test`.
+
+* Run a single scenario "Author should be matched" in the "Searching for books" feature
+  * Filter by scenario title
+      * `dotnet test BookShop.AcceptanceTests --filter Name~"Author should be matched"`
+      * Typically filtering for the title of the scenario is enough. Usually the scenario names are unique.
+  * Filter by scenario AND feature title 
+      * `dotnet test BookShop.AcceptanceTests --filter Name~"Author should be matched in Searching for books"` 
+      * Note the `in` between the scenario and feature title in the name of the test
+  * Filter by scenario AND feature title AND target
+      * `dotnet test BookShop.AcceptanceTests --filter Name="Author should be matched in Searching for books \(target: Integrated\)"` 
+      * When using the targets feature of SpecFlow+ Runner the same scenario can be executed on different targets, hence the target will be also included in the name of the test. 
+      * You can perform an exact match using the `=` operator instead of the `~` 
