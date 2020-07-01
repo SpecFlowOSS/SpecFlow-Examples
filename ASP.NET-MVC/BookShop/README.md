@@ -209,7 +209,7 @@ The `Then the book details should show` step is also routed to the  `SeleniumBoo
 Notice that the phrasing of the scenarios didn't have to be changed, in order to automate on a different layer. This is a good practice, as SpecFlow scenarios shouldn't express technical details of the automation, but the intention and behaviour to be validated.
 
 #### Extended report with screenshots from the UI
-The Bookshop example extends the SpecFlow+ Runner execution report with screenshots taken from the user interface during the UI automation. This is especially useful if a UI automated scenario breaks, because the screenshot might provide an immediate clue about the root cause of the failure.
+The Bookshop example extends the SpecFlow+ Runner execution report with screenshots from the user interface taken during the UI automation. This is especially useful if a UI automated scenario breaks, because the screenshot might provide an immediate clue about the root cause of the failure.
 
 ![Runner report with screenshots](docs/RunnerReportWithScreenshots.png)
 
@@ -249,6 +249,8 @@ The following examples guide you through some typical questions/scenarios when r
     * `dotnet test BookShop.AcceptanceTests`
         * The default `TestResults` test results directory of `dotnet test` is relative to the project, hence in this case the reports and logs are generated into the `BookShop.AccteptanceTests\TestResults` folder.
         * Alternatively you can run `dotnet test --filter BookShop.AcceptanceTests` on the entire solution and use the filter to include the acceptance tests only. However, in this case `dotnet test` still discovers both the unit test and acceptance test projects separately and emits a warning for the unit tests that "*no test matches the given testcase filter*".
+        * You can also specify the project file explicitly as `dotnet test .\BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj`.
+        * Or you can specify the test assembly (dll) explicitly as `dotnet test .\BookShop.AcceptanceTests\bin\Debug\netcoreapp3.1\BookShop.AcceptanceTests.dll`
 *  Run acceptance tests without re-building the project (assuming the project was built succesfully already)
     * `dotnet test BookShop.AcceptanceTests --no-build`
         * This speeds up the test execution command as the build step is skipped
