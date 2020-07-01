@@ -32,7 +32,7 @@ The implementation focuses on the first steps of the following user journey.
 Feel free to explore the application: try to search for a book, check the details of a selected book, add it to the shopping card, manipulate the quantity.
 
 ### Architecture
-The application is impemented as an ASP.NET MVC web application and uses Entity Framework for the database access.
+The application is impemented as an ASP.NET Core MVC web application and uses Entity Framework Core for the database access.
 
 ![Bookshop Architecture](docs/BookshopArchitectureSimple.png)
 
