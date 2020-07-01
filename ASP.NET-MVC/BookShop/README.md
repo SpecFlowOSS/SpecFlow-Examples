@@ -1,21 +1,21 @@
 SpecFlow BookShop Example
-========================
+=========================
 
 This solution contains an end-to-end example to demonstrate the usage of SpecFlow with an
 [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) MVC application.
+The application is provided for demonstration purposes only. 
 
 You can find more information about SpecFlow at [http://www.specflow.org/](http://www.specflow.org).
 
 Prerequisites to run the application
 ====================================
-
-- [Visual Studio 2019](https://www.visualstudio.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/)
 - [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [Visual Studio 2019](https://www.visualstudio.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/)
 
 If you use Visual Studio 2019, please install the [SpecFlow extension](https://marketplace.visualstudio.com/items?itemName=TechTalkSpecFlowTeam.SpecFlowForVisualStudio) for Visual Studio.
 
 Setup the application
-=================
+=====================
 
 - Open the solution `BookShop.sln` in Visual Studio.
 - Set the `BookShop.Mvc` project as startup project.
@@ -23,11 +23,20 @@ Setup the application
 
 The web application should start, a new browser window should be opened, and you should see a list of books on the start page of the app.
 
-Feel free to explore the application: try to search for a book, check the details of a selected book, add it to the shopping card, manipulate the quantity.
+### Book shop
+The example application is a web application, where users can search and buy BDD books.
+The implementation focuses on the first steps of the following user journey.
 
 ![User Journey](docs/BookshopUserJourney.png)
 
-> Note: To keep the setup simple the Bookshop uses an in-memory database.
+Feel free to explore the application: try to search for a book, check the details of a selected book, add it to the shopping card, manipulate the quantity.
+
+### Architecture
+The application is impemented as an ASP.NET MVC web application and uses Entity Framework for the database access.
+
+![Bookshop Architecture](docs/BookshopArchitectureSimple.png)
+
+> *__Note__: To keep the setup simple the Bookshop application uses an in-memory database.*
 
 Automated SpecFlow Acceptance Tests
 ===================================
@@ -67,7 +76,7 @@ by uninstalling the current test provider NuGet package (`SpecRun.SpecFlow`) and
 Executing SpecFlow+ Runner the first time
 =========================================
 
-In this example we using [SpecFlow+ Runner](https://specflow.org/plus/), but you can use a number of other test execution frameworks, including NUnit, xUnit or MSTest. SpecFlow+ Runner’s advantages include integration with Visual Studio Test Runner and extensive integrated reports available from within Visual Studio.
+In this example we use [SpecFlow+ Runner](https://specflow.org/plus/) to execute the SpecFlow tests, but you can use a number of other test execution frameworks, including NUnit, xUnit or MSTest. SpecFlow+ Runner’s advantages include integration with Visual Studio Test Runner and extensive integrated reports available from within Visual Studio.
 
 SpecFlow+ Runner is available free of charge. Only a quick initial activation is necessary to run your scenarios.
 
@@ -97,7 +106,7 @@ The hyperlink to the HTML execution report should be shown there.
 
 ![Test result with report](docs/RunnerVisualStudioOutputWithReportLink.png)
 
-The report gives information about the overall test results as well as a break down of each individual scenario execution.
+The report contains information about the overall test results as well as a break down of each individual scenario execution.
 
 ![Test result with report](docs/RunnerReport.png)
 
@@ -199,6 +208,15 @@ The `Then the book details should show` step is also routed to the  `SeleniumBoo
 
 Notice that the phrasing of the scenarios didn't have to be changed, in order to automate on a different layer. This is a good practice, as SpecFlow scenarios shouldn't express technical details of the automation, but the intention and behaviour to be validated.
 
+#### Extended report with screenshots from the UI
+The Bookshop example extends the SpecFlow+ Runner execution report with screenshots taken from the user interface during the UI automation. This is especially useful if a UI automated scenario breaks, because the screenshot might provide an immediate clue about the root cause of the failure.
+
+![Runner report with screenshots](docs/RunnerReportWithScreenshots.png)
+
+After each scenario step a screenshot is taken from the browser and saved into the output directory as a new file. For the implementation details see the `Screenshots.MakeScreenshotAfterStep` method with the `[AfterStep]` attribute. The name of the sceenshot file is written into the trace output using `Console.WriteLine`.
+
+The default report template is overridden in the `Default.srprofile` configuration in the `TestProfile/Report/Template` element. The customized `ReportTemplate.cshtml` replaces the screenshot text in the trace output  with the image link.
+
 Executing tests from the command line
 =====================================
 While Visual Studio provides several convenience features when working with SpecFlow (syntax coloring, navigation, integration with the Test Explorer, etc.), you can easily run the automated tests from the command line too.
@@ -276,17 +294,17 @@ Please also consult the documentation of [filter options](https://docs.microsoft
       * `dotnet test BookShop.AcceptanceTests --filter Name~"Author should be matched in Searching for books"` 
       * Note: you have to add the `in` word between the scenario title and feature title. This is how the `Name` property of the test is built.
       * Note: you have to use the `~` (contains) operator to match the `Name` property.
-  * Filter by scenario title AND feature title AND target
+  * Filter by scenario title AND feature title AND target (= the full name)
       * `dotnet test BookShop.AcceptanceTests --filter Name="Author should be matched in Searching for books \(target: Integrated\)"` 
-      * When using the targets feature of SpecFlow+ Runner the same scenario can be executed on different targets, hence the target is also included in the name of the test.
+      * When using the targets feature of SpecFlow+ Runner the same scenario can be executed on different targets, hence the target is also included in the name of the test. 
+      * Note: For this example the `Integrated` target must be enabled in the `Default.srprofile`.
       * Note: here you can filter with exact match using the `=` (equals) operator to match the `Name` property, because you use the full name in the filter.
       * Note: the filter syntax of `dotnet test` recognizes parenthesis to enclose conditional operators. To match the string `(target: Integrated)` in the name we have to escape the parenthesis with a preceeding `\` (backslash) character.
-      * Provided that you enabled also the `Chrome` target in the `Default.srprofile` you can execute the same test with the Chrome UI automation
+      * Provided that you enabled also the `Chrome` target in the `Default.srprofile` you can execute the same test with the Chrome UI automation as:
         *  `dotnet test BookShop.AcceptanceTests --filter Name="Author should be matched in Searching for books \(target: Chrome\)"` 
 * Run all scenarios with the Controller level automation (and skip UI automation targets) to get a quick test result
-  * `dotnet test BookShop.AcceptanceTests --filter Name~"\(target: Integrated\)"`
-    * See the notes for "Filter by scenario title AND feature title AND target" above.
-
+  * `dotnet test BookShop.AcceptanceTests --filter Name~"target: Integrated"`
+      * Note: For this example the `Integrated` target must be enabled in the `Default.srprofile`.
 
 > *__Tip:__ You can list all acceptance tests with the `dotnet test BookShop.AcceptanceTests -t` command. The tests are listed by the `Name` property. This can help to check the naming convention and to construct the desired filter by `Name` (e.g. `--filter Name~"Author should be matched in Searching for books"`).*
 
