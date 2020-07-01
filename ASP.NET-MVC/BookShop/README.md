@@ -1,21 +1,21 @@
 SpecFlow BookShop Example
-========================
+=========================
 
 This solution contains an end-to-end example to demonstrate the usage of SpecFlow with an
 [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) MVC application.
+The application is provided for demonstration purposes only. 
 
 You can find more information about SpecFlow at [http://www.specflow.org/](http://www.specflow.org).
 
 Prerequisites to run the application
 ====================================
-
-- [Visual Studio 2019](https://www.visualstudio.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/)
 - [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [Visual Studio 2019](https://www.visualstudio.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/)
 
 If you use Visual Studio 2019, please install the [SpecFlow extension](https://marketplace.visualstudio.com/items?itemName=TechTalkSpecFlowTeam.SpecFlowForVisualStudio) for Visual Studio.
 
 Setup the application
-=================
+=====================
 
 - Open the solution `BookShop.sln` in Visual Studio.
 - Set the `BookShop.Mvc` project as startup project.
@@ -23,9 +23,20 @@ Setup the application
 
 The web application should start, a new browser window should be opened, and you should see a list of books on the start page of the app.
 
+### Book shop
+The example application is a web application, where users can search and buy BDD books.
+The implementation focuses on the first steps of the following user journey.
+
+![User Journey](docs/BookshopUserJourney.png)
+
 Feel free to explore the application: try to search for a book, check the details of a selected book, add it to the shopping card, manipulate the quantity.
 
-> Note: To keep the setup simple the Bookshop uses an in-memory database.
+### Architecture
+The application is impemented as an ASP.NET Core MVC web application and uses Entity Framework Core for the database access.
+
+![Bookshop Architecture](docs/BookshopArchitectureSimple.png)
+
+> *__Note__: To keep the setup simple the Bookshop application uses an in-memory database.*
 
 Automated SpecFlow Acceptance Tests
 ===================================
@@ -65,7 +76,7 @@ by uninstalling the current test provider NuGet package (`SpecRun.SpecFlow`) and
 Executing SpecFlow+ Runner the first time
 =========================================
 
-In this example we using [SpecFlow+ Runner](https://specflow.org/plus/), but you can use a number of other test execution frameworks, including NUnit, xUnit or MSTest. SpecFlow+ Runner’s advantages include integration with Visual Studio Test Runner and extensive integrated reports available from within Visual Studio.
+In this example we use [SpecFlow+ Runner](https://specflow.org/plus/) to execute the SpecFlow tests, but you can use a number of other test execution frameworks, including NUnit, xUnit or MSTest. SpecFlow+ Runner’s advantages include integration with Visual Studio Test Runner and extensive integrated reports available from within Visual Studio.
 
 SpecFlow+ Runner is available free of charge. Only a quick initial activation is necessary to run your scenarios.
 
@@ -95,7 +106,7 @@ The hyperlink to the HTML execution report should be shown there.
 
 ![Test result with report](docs/RunnerVisualStudioOutputWithReportLink.png)
 
-The report gives information about the overall test results as well as a break down of each individual scenario execution.
+The report contains information about the overall test results as well as a break down of each individual scenario execution.
 
 ![Test result with report](docs/RunnerReport.png)
 
@@ -121,6 +132,8 @@ The Bookshop example automates the tests directly through the Controller of the 
 Automating below the skin provides several benefits:
 less brittle tests, less efforts for automation, better performance of the test suite.
 
+![Controller Automation](docs/BookshopControllerAutomation.png)
+
 #### Inside the Controller bindings
 Let's examine the scenario in `Book Details.feature` and navigate to the step definitions of the steps (shortcut "F12"). 
 
@@ -145,11 +158,13 @@ Note that the reason why these test run relatively fast is that the automation s
 
 
 UI level automation with Selenium
-=================================
+---------------------------------
 
 Sometimes the behaviour that should be validated cannot be observed on the controller level, but only on the UI. This might range from client side javascript behavior up to server side middleware that is not executed when calling the action methods of the controller classes directly. In those cases the automation of the user interface might be a solution.
 
 In case of e2e UI automation the Given steps can open a browser with Selenium and perform the necessary preparation steps. Still, the boundaries of automation are not necessarily strict. Sometimes ensuring all preconditions through the user interface would be very hard, and it is a feasible tradeoff to manipulate the database or other underlying components directly. The When steps typically perform those key user actions on the UI that are in the focus of the scenario. And finally the Then steps can either validate the results on the UI or, again, could look into the database or internal component directly to validate the expected result.
+
+![Selenium Automation](docs/BookshopSeleniumAutomation.png)
 
 To demonstrate this approach as well, the Bookshop example contains an alternative automation implementation for all scenarios using Selenium.
 
@@ -192,3 +207,119 @@ The `Then the book details should show` step is also routed to the  `SeleniumBoo
 ```
 
 Notice that the phrasing of the scenarios didn't have to be changed, in order to automate on a different layer. This is a good practice, as SpecFlow scenarios shouldn't express technical details of the automation, but the intention and behaviour to be validated.
+
+#### Extended report with screenshots from the UI
+The Bookshop example extends the SpecFlow+ Runner execution report with screenshots from the user interface taken during the UI automation. This is especially useful if a UI automated scenario breaks, because the screenshot might provide an immediate clue about the root cause of the failure.
+
+![Runner report with screenshots](docs/RunnerReportWithScreenshots.png)
+
+After each scenario step a screenshot is taken from the browser and saved into the output directory as a new file. For the implementation details see the `Screenshots.MakeScreenshotAfterStep` method with the `[AfterStep]` attribute. The name of the sceenshot file is written into the trace output using `Console.WriteLine`.
+
+The default report template is overridden in the `Default.srprofile` configuration in the `TestProfile/Report/Template` element. The customized `ReportTemplate.cshtml` replaces the screenshot text in the trace output  with the image link.
+
+Executing tests from the command line
+=====================================
+While Visual Studio provides several convenience features when working with SpecFlow (syntax coloring, navigation, integration with the Test Explorer, etc.), you can easily run the automated tests from the command line too.
+
+* Open a command line terminal where you can execute [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/) commands
+* Set the current directory to the root directory of the Bookshop example, where the `BookShop.sln` solution file is located:
+    * `cd SpecFlow-Examples\ASP.NET-MVC\BookShop`
+* Build the solution
+    * `dotnet build` 
+* Run all tests in the solution
+    * `dotnet test`
+
+> *__Note:__ You can also skip the `dotnet build` step and run the tests immediately with `dotnet test`, because this command also (re-)builds the project. However it hides the details of the build output. We outlined the build as a separate step here as a best practice when examining a new project, because separating the steps makes the understanding of the output and potential troubleshooting easier.*
+
+![Running tests from the command line](docs/BookshopCommandLine.gif)
+
+Note that if you run `dotnet test` for the entire Bookshop solution then both the unit tests and the acceptance tests are executed.
+
+The SpecFlow+ Runner execution reports and logs are generated in the "results directory" of the `dotnet test` command. The default is the `TestResults` folder in the directory of the solution/project, but it can be overridden with the `-r|--results-directory <PATH>` option of `dotnet test`.
+
+Please consult the documentation of the [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test) command for further details.
+
+
+Further `dotnet test` examples
+----------------------------
+The following examples guide you through some typical questions/scenarios when running the Bookshop acceptance tests from the command line using `dotnet test`. Feel free to experiment with other combinations of parameters and consult the documentation of [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test).
+
+###Run all acceptance test
+* Run only the acceptance tests (and ignore the unit tests) from the root folder of the Bookshop sample
+    * `dotnet test BookShop.AcceptanceTests`
+        * The default `TestResults` test results directory of `dotnet test` is relative to the project, hence in this case the reports and logs are generated into the `BookShop.AccteptanceTests\TestResults` folder.
+        * Alternatively you can run `dotnet test --filter BookShop.AcceptanceTests` on the entire solution and use the filter to include the acceptance tests only. However, in this case `dotnet test` still discovers both the unit test and acceptance test projects separately and emits a warning for the unit tests that "*no test matches the given testcase filter*".
+        * You can also specify the project file explicitly as `dotnet test .\BookShop.AcceptanceTests\BookShop.AcceptanceTests.csproj`.
+        * Or you can specify the test assembly (dll) explicitly as `dotnet test .\BookShop.AcceptanceTests\bin\Debug\netcoreapp3.1\BookShop.AcceptanceTests.dll`
+*  Run acceptance tests without re-building the project (assuming the project was built succesfully already)
+    * `dotnet test BookShop.AcceptanceTests --no-build`
+        * This speeds up the test execution command as the build step is skipped
+        * This is also useful to limit the output of the command to the test execution details
+
+###Set output details
+
+* Run with more detailed output (similar detail level like the Visual Studio output)
+    * `dotnet test BookShop.AcceptanceTests --no-build -v n`
+        * Note: if you omit the `--no-build` option the output will also contain the detailed output of the build.
+
+* Save the execution report and logs to a different folder
+    * `dotnet test BookShop.AcceptanceTests -r C:\CentralTestResults\Bookshop`
+
+###Filter tests
+Please also consult the documentation of [filter options](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#filter-option-details) of the `dotnet test` command for more insights. With SpecFlow+ Runner the `Name` and `TestCategory` properties can be used to filter the acceptance tests.
+
+* Run the "automated" scenarios (tagged as @automated)
+  * `dotnet test BookShop.AcceptanceTests --filter TestCategory=automated`
+      * See the `@automated` tag in the feature files
+* Run scenarios associated with work item 11 (tagged as @WI11)
+  * `dotnet test BookShop.AcceptanceTests --filter TestCategory=WI11`
+      * See the `@WI11` tag on the feature in `Features\Shopping Cart\Add to.feature`
+* Run scenarios associated with work item 12 or 13 (tagged as @WI12 or @WI13)
+  * `dotnet test BookShop.AcceptanceTests --filter "TestCategory=WI12|TestCategory=WI13"`
+      * See the `@WI12` and `@WI13`tags on the scenarios in `Features\Shopping Cart\Add to.feature`
+      * We combined two filter expressions with the `|` (OR) operator. See the [filter options](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#filter-option-details) documentation of `dotnet test` for the string matching and conditional operators.
+* Run all scenarios related to the "shopping cart"
+  * `dotnet test BookShop.AcceptanceTests --filter Name~"shopping cart"`
+      * This command runs all scenarios where the feature or the scenario title contains the term "shopping cart".
+      * Note: you have to use the `~` (contains) operator to match the `Name` property.
+* Run all scenarios of the feature "Adding books to the shopping card"
+  * `dotnet test BookShop.AcceptanceTests --filter Name~"Adding books to the shopping cart"`
+      * See the feature in `Features\Shopping Cart\Add to.feature`
+      * Note: you have to use the `~` (contains) operator to match the `Name` property.
+      * Note: in practice feature titles and scenario titles are so unique that it is unlikely that another scenario/feature title contains the *whole title* of your selected feature.
+* Run a single scenario "Author should be matched" in the "Searching for books" feature. Let's look at 3 different solutions, as the used matching strategy gets more and more strict:
+  * Filter by scenario title only
+      * `dotnet test BookShop.AcceptanceTests --filter Name~"Author should be matched"`
+      * Note: you have to use the `~` (contains) operator to match the `Name` property.
+      * Note: in practice feature titles and scenario titles are so unique that it is unlikely that another scenario/feature title contains the *whole title* of your selected scenario.
+  * Filter by scenario title AND feature title 
+      * `dotnet test BookShop.AcceptanceTests --filter Name~"Author should be matched in Searching for books"` 
+      * Note: you have to add the `in` word between the scenario title and feature title. This is how the `Name` property of the test is built.
+      * Note: you have to use the `~` (contains) operator to match the `Name` property.
+  * Filter by scenario title AND feature title AND target (= the full name)
+      * `dotnet test BookShop.AcceptanceTests --filter Name="Author should be matched in Searching for books \(target: Integrated\)"` 
+      * When using the targets feature of SpecFlow+ Runner the same scenario can be executed on different targets, hence the target is also included in the name of the test. 
+      * Note: For this example the `Integrated` target must be enabled in the `Default.srprofile`.
+      * Note: here you can filter with exact match using the `=` (equals) operator to match the `Name` property, because you use the full name in the filter.
+      * Note: the filter syntax of `dotnet test` recognizes parenthesis to enclose conditional operators. To match the string `(target: Integrated)` in the name we have to escape the parenthesis with a preceeding `\` (backslash) character.
+      * Provided that you enabled also the `Chrome` target in the `Default.srprofile` you can execute the same test with the Chrome UI automation as:
+        *  `dotnet test BookShop.AcceptanceTests --filter Name="Author should be matched in Searching for books \(target: Chrome\)"` 
+* Run all scenarios with the Controller level automation (and skip UI automation targets) to get a quick test result
+  * `dotnet test BookShop.AcceptanceTests --filter Name~"target: Integrated"`
+      * Note: For this example the `Integrated` target must be enabled in the `Default.srprofile`.
+
+> *__Tip:__ You can list all acceptance tests with the `dotnet test BookShop.AcceptanceTests -t` command. The tests are listed by the `Name` property. This can help to check the naming convention and to construct the desired filter by `Name` (e.g. `--filter Name~"Author should be matched in Searching for books"`).*
+
+> __Note:__ With `dotnet test` it is possible to filter for the `FullyQualifiedName` property as `--filter FullyQualifiedName~"some text"` and this is equivalent with the shorthand form of `--filter "some text"` (when omitting the property name in the filter). 
+>
+> However, the `FullyQualifiedName` property has a more complex naming convetion due to technical requirements and it is unfortunately not possible to list the tests by the `FullyQualifiedName` property with `dotnet test`. Hence in the command line **we recommend to filter by the `Name` property** when running a selected feature or scenario during development **or by the `TestCategory` property** when running a defined sets of scenarios using tags.
+>
+> To demonstrate some of the challenges with `FullyQualifiedName` you could try to filter for the "Author should be matched" scenario (this won't work, because the `FullyQualifiedName` does not literally contain the title of the scenario in this form):
+> > ~~`dotnet test BookShop.AcceptanceTests --filter "Author should be matched"`~~
+>
+> You can fix the filter as follows:
+> > `dotnet test BookShop.AcceptanceTests --filter "Author+should+be+matched"`
+>
+> The following command exactly matches the `FullyQualifiedName` of the scenario to demonstrate the structure of the `FullyQualifiedName` property:
+> > `dotnet test BookShop.AcceptanceTests --filter FullyQualifiedName="BookShop.AcceptanceTests.Searching for books.#\(\)::Target:Integrated/TestAssembly:BookShop.AcceptanceTests/Feature:Searching+for+books/Scenario:Author+should+be+matched"`
+>
