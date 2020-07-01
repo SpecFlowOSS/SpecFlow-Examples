@@ -25,6 +25,8 @@ The web application should start, a new browser window should be opened, and you
 
 Feel free to explore the application: try to search for a book, check the details of a selected book, add it to the shopping card, manipulate the quantity.
 
+![User Journey](docs/BookshopUserJourney.png)
+
 > Note: To keep the setup simple the Bookshop uses an in-memory database.
 
 Automated SpecFlow Acceptance Tests
@@ -121,6 +123,8 @@ The Bookshop example automates the tests directly through the Controller of the 
 Automating below the skin provides several benefits:
 less brittle tests, less efforts for automation, better performance of the test suite.
 
+![Controller Automation](docs/BookshopControllerAutomation.png)
+
 #### Inside the Controller bindings
 Let's examine the scenario in `Book Details.feature` and navigate to the step definitions of the steps (shortcut "F12"). 
 
@@ -150,6 +154,8 @@ UI level automation with Selenium
 Sometimes the behaviour that should be validated cannot be observed on the controller level, but only on the UI. This might range from client side javascript behavior up to server side middleware that is not executed when calling the action methods of the controller classes directly. In those cases the automation of the user interface might be a solution.
 
 In case of e2e UI automation the Given steps can open a browser with Selenium and perform the necessary preparation steps. Still, the boundaries of automation are not necessarily strict. Sometimes ensuring all preconditions through the user interface would be very hard, and it is a feasible tradeoff to manipulate the database or other underlying components directly. The When steps typically perform those key user actions on the UI that are in the focus of the scenario. And finally the Then steps can either validate the results on the UI or, again, could look into the database or internal component directly to validate the expected result.
+
+![Selenium Automation](docs/BookshopSeleniumAutomation.png)
 
 To demonstrate this approach as well, the Bookshop example contains an alternative automation implementation for all scenarios using Selenium.
 
@@ -294,6 +300,6 @@ Please also consult the documentation of [filter options](https://docs.microsoft
 > You can fix the filter as follows:
 > > `dotnet test BookShop.AcceptanceTests --filter "Author+should+be+matched"`
 >
-> The following command exactly matches the `FullyQualifiedName` of the scenario to demonstrates the structure of the `FullyQualifiedName` property:
+> The following command exactly matches the `FullyQualifiedName` of the scenario to demonstrate the structure of the `FullyQualifiedName` property:
 > > `dotnet test BookShop.AcceptanceTests --filter FullyQualifiedName="BookShop.AcceptanceTests.Searching for books.#\(\)::Target:Integrated/TestAssembly:BookShop.AcceptanceTests/Feature:Searching+for+books/Scenario:Author+should+be+matched"`
 >
