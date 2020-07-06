@@ -24,4 +24,10 @@
     <ProjectReference Include="../Bowling.SpecFlow/Bowling.SpecFlow.fsproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="specflow.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
