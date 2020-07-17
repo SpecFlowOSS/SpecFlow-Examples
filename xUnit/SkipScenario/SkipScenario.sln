@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkipScenario", "SkipScenario\SkipScenario.csproj", "{1E1549FC-5E45-485F-9836-B37EF5E7E912}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E1549FC-5E45-485F-9836-B37EF5E7E912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1549FC-5E45-485F-9836-B37EF5E7E912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1549FC-5E45-485F-9836-B37EF5E7E912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1549FC-5E45-485F-9836-B37EF5E7E912}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88FD1D15-A37A-41DC-92F1-F4E77E7D8098}
+	EndGlobalSection
+EndGlobal
