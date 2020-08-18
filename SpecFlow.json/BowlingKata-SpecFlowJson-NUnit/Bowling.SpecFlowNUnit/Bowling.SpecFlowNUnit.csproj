@@ -11,8 +11,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
-    <PackageReference Include="SpecFlow" Version="3.3.57" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.3.57" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.4.3" />
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
   </ItemGroup>
 
