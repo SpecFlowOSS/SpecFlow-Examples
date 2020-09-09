@@ -7,17 +7,20 @@ using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
+using TechTalk.SpecFlow;
 
 namespace BookShop.AcceptanceTests.Drivers.Integrated
 {
     public class IntegratedShoppingCartDriver : IShoppingCartDriver
     {
+        private readonly ScenarioContext _scenarioContext;
         private readonly CatalogContext _catalogContext;
         private readonly IConfiguration _config;
         private readonly DatabaseContext _databaseContext;
 
-        public IntegratedShoppingCartDriver(CatalogContext catalogContext, IConfiguration config, DatabaseContext databaseContext)
+        public IntegratedShoppingCartDriver(ScenarioContext scenarioContext, CatalogContext catalogContext, IConfiguration config, DatabaseContext databaseContext)
         {
+            _scenarioContext = scenarioContext;
             _catalogContext = catalogContext ?? throw new ArgumentNullException(nameof(catalogContext));
             _config = config;
             _databaseContext = databaseContext;
@@ -27,11 +30,14 @@ namespace BookShop.AcceptanceTests.Drivers.Integrated
 
         public void SetShoppingCart(string bookTitles)
         {
-            foreach (string bookId in from i in bookTitles.Split(',')
-                                      select i.Trim().Trim('\''))
-            {
-                Place(bookId);
-            }
+            // Make it pending for demo purpose
+            _scenarioContext.Pending();
+
+            //foreach (string bookId in from i in bookTitles.Split(',')
+            //                          select i.Trim().Trim('\''))
+            //{
+            //    Place(bookId);
+            //}
         }
 
         public void Place(string bookTitle)

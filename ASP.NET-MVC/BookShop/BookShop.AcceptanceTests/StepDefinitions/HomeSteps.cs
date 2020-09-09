@@ -22,7 +22,10 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         [Then(@"the home screen should show the book '(.*)'")]
         public void ThenTheHomeScreenShouldShowTheBook(string expectedTitle)
         {
-            _homeDriver.ShowsBook(expectedTitle);
+            // Make it fail for demo purpose
+            throw new System.NotImplementedException();
+
+            //_homeDriver.ShowsBook(expectedTitle);
         }
 
         [Then(@"the home screen should show the books (.*)")]
