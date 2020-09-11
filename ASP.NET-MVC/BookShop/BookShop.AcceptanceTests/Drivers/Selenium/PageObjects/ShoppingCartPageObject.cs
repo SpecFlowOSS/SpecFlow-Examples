@@ -22,6 +22,6 @@ namespace BookShop.AcceptanceTests.Drivers.Selenium.PageObjects
             Table.FindElements(By.TagName("tr")).Skip(1).SkipLast(1).Select(i => new BookListEntry(i));
 
         public decimal TotalPrice =>
-            decimal.Parse(_webDriver.FindElement(By.ClassName("shoppingcart_total_amount")).Text[2..], CultureInfo.GetCultureInfo("de"));
+            decimal.Parse(_webDriver.FindElement(By.ClassName("shoppingcart_total_amount")).Text[2..], CultureInfo.CurrentUICulture);
     }
 }
