@@ -4,6 +4,9 @@ Feature: Removing books from the shopping cart
 	I want to collect books in a shopping cart
 	So that I can order several books at once.
 
+***Mockup:***
+![Shopping Cart Mockup](./Wireframes/ShoppingCart.png)
+
 Background:
 	Given the following books
 		| Title                              |
