@@ -22,7 +22,7 @@
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.26.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="85.0.4183.8700" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.2" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.167" />
     <PackageReference Include="SpecRun.SpecFlow" Version="3.4.19" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.7" />
