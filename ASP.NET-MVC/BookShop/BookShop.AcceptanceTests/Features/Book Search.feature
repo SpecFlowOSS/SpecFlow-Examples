@@ -3,6 +3,8 @@ Feature: Searching for books
 	I want to search for books by a simple phrase
 	So that I can easily allocate books by something I remember from them.
 
+The search input is located on the [Home Screen](<BookShop.AcceptanceTests/Features/Home Screen.feature>)
+
 Background:
 	Given the following books
 		| Author        | Title                              |
