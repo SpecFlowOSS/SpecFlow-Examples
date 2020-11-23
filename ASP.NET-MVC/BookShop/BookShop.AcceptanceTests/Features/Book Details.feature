@@ -1,6 +1,6 @@
 @automated
 @WI9
-Feature: Displaying book details
+Feature: Book details
 	As a potential customer
 	I want to see the details of a book
 	So that I can better decide to buy it.
