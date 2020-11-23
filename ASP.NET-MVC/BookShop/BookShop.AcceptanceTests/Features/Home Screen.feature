@@ -1,9 +1,7 @@
 @automated
 @WI7
-Feature: Displaying Home Screen
-	As a potential customer
-	I want to see the books with the best price
-	So that I can save money on buying discounted books.
+Feature: Home Screen
+Home Screen is displayed when entering the shop and offers to [search for a book](<BookShop.AcceptanceTests/Features/Book Search.feature>).
 
 Background:
 	Given the following books

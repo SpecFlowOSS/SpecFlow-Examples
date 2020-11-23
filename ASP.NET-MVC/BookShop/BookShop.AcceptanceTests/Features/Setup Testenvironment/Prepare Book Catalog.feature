@@ -1,5 +1,5 @@
 ﻿Feature: Prepare book catalog
-	prepare catalog with a list of books required for manual testing
+	prepare catalog with a list of books for manual testing
 
 
 Scenario: Setup basic example books
