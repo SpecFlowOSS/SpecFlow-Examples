@@ -44,7 +44,19 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         public void ThenTheHomeScreenShouldShowTheFollowingBooks(Table expectedBooks)
         {
             _homeDriver.ShowsBooks(expectedBooks);
-         }
+        }
+
+        [Given("")]
+        public void GivenHomeScreenContainsABookWithTitle(string expectedTitle)
+        {
+            //not used step
+        }
+
+        [Given("")]
+        public void GivenHomeScreenIsEmpty()
+        {
+            //not used step
+        }
 
     }
 }
