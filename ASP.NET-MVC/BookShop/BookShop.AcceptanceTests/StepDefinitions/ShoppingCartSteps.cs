@@ -19,6 +19,11 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _driver.SetShoppingCart(bookTitles);
         }
 
+        [Given(@"the shop is closed")]
+        public void GivenTheShopIsClosed()
+        {
+            //not used
+        }
 
         [When(@"I place '(.*)' into the shopping cart")]
         public void WhenIPlaceIntoTheShoppingCart(string bookTitle)
@@ -27,6 +32,7 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         }
 
         [When(@"I delete '(.*)' from the shopping cart")]
+        [When(@"I remove the book '(.*)' from the shopping cart")] //not used regex
         public void WhenIDeleteFromTheShoppingCart(string bookTitle)
         {
             _driver.Delete(bookTitle);
@@ -67,5 +73,12 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         {
             _driver.ShowsTotalPriceOf(expectedTotalPrice);       
         }
+
+        [StepDefinition(@"I proceed to checkout")]
+        public void StepDefinitionIProceedToCheckout()
+        {
+            //not used step
+        }
+
     }
 }

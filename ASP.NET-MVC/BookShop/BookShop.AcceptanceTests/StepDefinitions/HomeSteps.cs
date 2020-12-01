@@ -28,6 +28,12 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             //_homeDriver.ShowsBook(expectedTitle);
         }
 
+        [Then(@"the home screen should not be empty")]
+        public void ThenTheHomeScreenShouldNotBeEmpty()
+        {
+            //not used step
+        }
+
         [Then(@"the home screen should show the books (.*)")]
         public void ThenTheHomeScreenShouldShowTheBooks(string expectedTitleList)
         {

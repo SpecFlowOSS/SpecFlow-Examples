@@ -21,6 +21,12 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _searchDriver.Search(searchTerm);
         }
 
+        [When(@"I remove the search criteria")]
+        public void WhenIRemoveTheSearchCriteria()
+        {
+            //not used step
+        }
+
         [Then(@"the list of found books should contain only: (.*)")]
         public void ThenTheListOfFoundBooksShouldContainOnly(string expectedTitleList)
         {
