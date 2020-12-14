@@ -14,18 +14,19 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _driver = driver;
         }
 
-        //[Given(@"I have a shopping cart with: '(.*)'")]
-        //public void GivenIHaveAShoppingCartWith(string bookTitles)
-        //{
-        //    _driver.SetShoppingCart(bookTitles);
-        //}
+        [Given(@"I have a shopping cart with: '(.*)'")]
+        public void GivenIHaveAShoppingCartWith(string bookTitles)
+        {
+            _driver.SetShoppingCart(bookTitles);
+        }
 
 
-        //[When(@"I place '(.*)' into the shopping cart")]
-        //public void WhenIPlaceIntoTheShoppingCart(string bookTitle)
-        //{
-        //    _driver.Place(bookTitle);
-        //}
+        [When(@"I place '(.*)' into the shopping cart")]
+        public void WhenIPlaceIntoTheShoppingCart(string bookTitle)
+        {
+            throw new NotImplementedException();
+            _driver.Place(bookTitle);
+        }
 
         //[When(@"I delete '(.*)' from the shopping cart")]
         //public void WhenIDeleteFromTheShoppingCart(string bookTitle)
@@ -39,11 +40,11 @@ namespace BookShop.AcceptanceTests.StepDefinitions
         //    _driver.SetQuantity(bookTitle, quantity);
         //}
 
-        //[Then(@"my shopping cart should be empty")]
-        //public void ThenMyShoppingCartShouldBeEmpty()
-        //{
-        //    _driver.ContainsTypesOfItems(0);
-        //}
+        [Then(@"my shopping cart should be empty")]
+        public void ThenMyShoppingCartShouldBeEmpty()
+        {
+            _driver.ContainsTypesOfItems(0);
+        }
 
         //[Then(@"my shopping cart should contain (\d+) types? of items?")]
         //public void ThenMyShoppingCartShouldContainTypesOfItems(int expectedItemTypeCount)
