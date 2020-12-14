@@ -314,3 +314,4 @@ BowlingKata/BowlingKata-SpecFlowJson-*/**/*.feature.cs
 *.feature.cs
 *.feature.vb
 *.binlog
+LivingDoc.html

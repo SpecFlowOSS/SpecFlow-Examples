@@ -20,9 +20,9 @@
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="85.0.4183.8700" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="87.0.4280.8800" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />
-    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.4.243" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.5.186" />
     <PackageReference Include="SpecRun.SpecFlow" Version="3.5.8" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.8" />
