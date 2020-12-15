@@ -37,7 +37,6 @@ namespace BookShop.Mvc.Controllers
         [HttpGet]
         public ActionResult DeleteItem(int id)
         {
-            throw new NotImplementedException();
             ViewData.Model = _shoppingCartLogic.RemoveBookFromCart(HttpContext.Session, id);
             return RedirectToAction("Index");
         }
@@ -52,16 +51,10 @@ namespace BookShop.Mvc.Controllers
             {
                 return RedirectToAction("Index");
             }
-            throw new NotImplementedException();
 
             _shoppingCartLogic.EditBookInCart(HttpContext.Session, editArgs);
 
             return RedirectToAction("Index");
         }
-
-        
-
-
-        
     }
 }

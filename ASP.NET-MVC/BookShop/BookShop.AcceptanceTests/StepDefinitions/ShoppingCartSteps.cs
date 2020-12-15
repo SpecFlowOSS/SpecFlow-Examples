@@ -45,6 +45,12 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _driver.ContainsTypesOfItems(0);
         }
 
+        [Then(@"my shopping cart is empty")]
+        public void ThenMyShoppingCartIsEmpty()
+        {
+            _driver.ContainsTypesOfItems(0);
+        }
+
         [Then(@"my shopping cart should contain (\d+) types? of items?")]
         public void ThenMyShoppingCartShouldContainTypesOfItems(int expectedItemTypeCount)
         {
