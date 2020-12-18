@@ -5,7 +5,7 @@ Another Feature of SpecFlow+ LivingDoc is that you can additionally **link issue
 When using the Azure DevOps extension SpecFlow+ LivingDoc you can easily link items of your project. 
 When using the SpecFlow+ LivingDoc Generator you can also link external ALM systems. 
 
-Ýou can learn more how to set it up in the [documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/Viewing/Linking.html).
+Ýou can learn more how to configure it [here](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/Viewing/Linking.html).
 
 The following example describes a scenario that is tagged with a Work-Item link. 
 
