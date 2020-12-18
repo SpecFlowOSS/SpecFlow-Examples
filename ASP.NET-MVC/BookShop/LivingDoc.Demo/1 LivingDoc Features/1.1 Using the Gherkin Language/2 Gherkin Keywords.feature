@@ -1,7 +1,6 @@
 ﻿Feature: 2 Gherkin Keywords 
 Gherkin uses a set of special keywords to give structure and meaning to executable specifications. 
 Each keyword is translated to many spoken languages; in this reference we’ll use English. 
-You can read more which langauges are supported [here](<LivingDoc.Demo/1 LivingDoc Features/1.1 Using the Gherkin Language/3 Supported Languages.feature>).
 
 The primary keywords are:
 - Feature
