@@ -1,5 +1,5 @@
 ﻿Feature: 4 Linking Work Items
-As explained in the description of [Gherkin Tags](<LivingDoc.Demo/1 LivingDoc Features/1.1 Using the Gherkin Language/9 Tags.feature>), Features and Scenarios can be tagged with individual tags. 
+As explained in the description of [Gherkin Tags](<LivingDoc.Demo/1 LivingDoc Features/1.1 Using the Gherkin Language/8 Tags.feature>), Features and Scenarios can be tagged with individual tags. 
 Another Feature of SpecFlow+ LivingDoc is that you can additionally **link issues/tickets/work items/etc**.
 
 When using the Azure DevOps extension SpecFlow+ LivingDoc you can easily link items of your project. 
