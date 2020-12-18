@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.AcceptanceTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.Mvc", "BookShop.Mvc\BookShop.Mvc.csproj", "{082BC7D4-F872-4A0A-8234-07BAE9F729B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShop.UnitTests", "BookShop.UnitTests\BookShop.UnitTests.csproj", "{F1BFCAA7-6617-4E15-A727-8AD0BAD7F2C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookShop.UnitTests", "BookShop.UnitTests\BookShop.UnitTests.csproj", "{F1BFCAA7-6617-4E15-A727-8AD0BAD7F2C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

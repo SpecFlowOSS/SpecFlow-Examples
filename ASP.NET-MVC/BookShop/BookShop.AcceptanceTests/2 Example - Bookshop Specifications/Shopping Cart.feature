@@ -1,7 +1,7 @@
 ﻿@automated
 @WI11 @WI14 @WI16 
 Feature: Shopping Cart
-Shopping cart allows to collect books from the [search results](<BookShop.AcceptanceTests/Features/Book Search.feature>)
+Shopping cart allows to collect books from the [search results](<BookShop.AcceptanceTests/2 Example - BookShop Specifications/Book Search.feature>)
 
 ***Mockup:***
 ![Shopping Cart Mockup](./Wireframes/ShoppingCart.png)

@@ -1,7 +1,7 @@
 @automated
 @WI7
 Feature: Home Screen
-Home Screen is displayed when entering the shop and offers to [search for a book](<BookShop.AcceptanceTests/Features/Book Search.feature>).
+Home Screen is displayed when entering the shop and offers to [search for a book](<BookShop.AcceptanceTests/2 Example - BookShop Specifications/Book Search.feature>).
 
 Background:
 	Given the following books
