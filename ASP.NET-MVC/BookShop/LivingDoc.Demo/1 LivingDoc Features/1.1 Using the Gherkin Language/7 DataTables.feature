@@ -1,4 +1,4 @@
-﻿Feature: 8 Data Tables
+﻿Feature: 7 Data Tables
 Data Tables can be used within single steps. 
 The following example demonstrates a scenario with a simple data table. 
 

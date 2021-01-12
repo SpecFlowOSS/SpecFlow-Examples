@@ -1,5 +1,5 @@
 ﻿@TagOnFeature
-Feature: 9 Tags
+Feature: 8 Tags
 Tags are markers that can be assigned to features and scenarios. 
 Assigning a tag to a feature is equivalent to assigning the tag to all scenarios in the feature file.
 This example demonstrates a tagged Feature and a tagged Scenario. 

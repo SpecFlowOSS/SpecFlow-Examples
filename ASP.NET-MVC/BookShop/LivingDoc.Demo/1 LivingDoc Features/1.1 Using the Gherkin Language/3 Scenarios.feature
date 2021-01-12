@@ -1,4 +1,4 @@
-﻿Feature: 4 Scenario
+﻿Feature: 3 Scenario
 The following example describes a simple Scenario (or Example) with simple steps.
 
 Scenario: Add two numbers

@@ -1,4 +1,4 @@
-﻿Feature: 5 Scenario Outline
+﻿Feature: 4 Scenario Outline
 The Scenario Outline keyword can be used to run the same Scenario multiple times with different combinations of values.
 These are defined in the 'Examples' table and replace the < >-delimited parameters of the Scenario Outline.
 

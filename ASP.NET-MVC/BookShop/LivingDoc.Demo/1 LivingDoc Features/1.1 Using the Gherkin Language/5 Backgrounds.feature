@@ -1,4 +1,4 @@
-﻿Feature: 6 Backgrounds
+﻿Feature: 5 Backgrounds
 A Background allows you to add some context to the scenarios that follow it. 
 It can contain one or more Given steps, which are run before each scenario.
 The following example describes a Background executed before a Scenario.
