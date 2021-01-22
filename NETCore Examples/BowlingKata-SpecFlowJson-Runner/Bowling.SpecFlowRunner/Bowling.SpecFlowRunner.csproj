@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
-    <PackageReference Include="SpecRun.SpecFlow" Version="3.5.8" />
+    <PackageReference Include="SpecRun.SpecFlow" Version="3.6.2" />
   </ItemGroup>
 
   <ItemGroup>
