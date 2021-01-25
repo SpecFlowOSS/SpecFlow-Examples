@@ -1,6 +1,7 @@
 ﻿Feature: 3 Test Results
 With SpecFlow+ LivingDoc you have the possibility to see test execution results combined with your living documentation.  
-You can **hide the test results** by using the **'Test Result' toggle button** on the left side below the filter bar, if you don't want to see the them anywhere in your documentation. 
+You can **hide the test results** by using the **'Test Result' toggle button** on the left side below the filter bar, 
+if you don't want to see the them anywhere in your documentation. 
 
 Features, Scenarios, Examples and steps can have the following states
 - Passed

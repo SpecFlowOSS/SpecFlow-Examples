@@ -1,5 +1,6 @@
 ﻿Feature: 3 Host your documentation
-If you used the CLI tool to generate stand alone LivingDoc then keep in mind that the generated HTML is a single page application with no external dependencies, so you can share it as you wish.
+If you used the CLI tool to generate stand alone LivingDoc then keep in mind that the generated HTML is a single page application 
+with no external dependencies, so you can share it as you wish.
 
 The possible sharing options depend on your current infrastructure setup and needs, but here are some ideas:
 

@@ -2,7 +2,8 @@
 The Scenario Outline keyword can be used to run the same Scenario multiple times with different combinations of values.
 These are defined in the 'Examples' table and replace the < >-delimited parameters of the Scenario Outline.
 
-By default the Scenario Outline shows the parameters. You can fill in a specific example by choosing it from the dropdown or by activating the toggle in the example table.
+By default the Scenario Outline shows the parameters. 
+You can fill in a specific example by choosing it from the dropdown or by activating the toggle in the example table.
 
 The following example describes a simple Scenario Outline with two examples.
 
