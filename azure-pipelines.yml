@@ -2,9 +2,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: SpecFlowPlus@0
+- task: PowerShell@2
   inputs:
-    projectFilePath: '$(Build.SourcesDirectory)/ASP.NET-MVC/BookShop/BookShop.AcceptanceTests/Features'
-    projectName: 'BookShop'
-    projectLanguage: 'en'
-    workItemPrefix: 'WI'
+    targetType: 'filePath'
+    filePath: $(System.DefaultWorkingDirectory)\buildandtest.ps1
+    ignoreLASTEXITCODE: false
+  displayName: 'Build Example solutions and run tests'
