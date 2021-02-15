@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B0BD78A-08BA-45FF-8212-CA43F3A32601}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.targets = Directory.Build.targets
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global
