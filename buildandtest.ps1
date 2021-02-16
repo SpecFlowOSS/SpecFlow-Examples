@@ -13,12 +13,19 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 		# dotnet test restores and builds the solution
 		if (!(($skipTestExecution | %{$fullname -like $_}) -contains $true))
 		{
+			# it has a local nuget feed, so build the nuget package first
+			if ($fullname -match 'SampleMethodTagDecorator')
+			{
+				$generatorPlugin = $fullname.Replace('SampleMethodTagDecorator.sln', 'GeneratorPlugin\SampleGeneratorPlugin.csproj')
+				Write-Output $generatorPlugin
+				iex "dotnet build '$generatorPlugin'"
+			}
+			
 			iex "dotnet test '$fullname'"
 			if ($lastexitcode -ne 0)
 			{
-				Write-Output $lastexitcode
 				break;
-			}
+			}	
 		}
 		else 
 		{
