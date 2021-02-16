@@ -12,9 +12,9 @@
     
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>specflow</tags>
-    <dependencies>
-      <dependency id="SpecFlow" version="3.6.23"/>
-    </dependencies>
+    <!--<dependencies>
+      <dependency id="SpecFlow" version="insert specflow version here"/>
+    </dependencies>-->
   </metadata>
   <files>
     <file src="build\**\*" target="build"/>

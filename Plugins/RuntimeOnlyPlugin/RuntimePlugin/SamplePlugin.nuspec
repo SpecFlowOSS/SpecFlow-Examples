@@ -5,20 +5,20 @@
     <title>SpecFlow.SamplePlugin</title>
     <authors>TechTalk</authors>
     <owners>TechTalk</owners>
-    <description>This is a sample Plugin for SpecFlow 3</description>
+    <description>This is a sample Plugin for SpecFlow *</description>
     <summary></summary>
     <language>en-US</language>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>specflow</tags>
-    <dependencies>
+    <!--<dependencies>
       <group targetFramework="net461">
-        <dependency id="SpecFlow" version="3.6.23"/>
+        <dependency id="SpecFlow" version="insert specflow version here"/>
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="SpecFlow" version="3.6.23"/>
+        <dependency id="SpecFlow" version="insert specflow version here"/>
       </group>
-    </dependencies>
+    </dependencies>-->
   </metadata>
   <files>
     <file src="build\**\*" target="build"/>
