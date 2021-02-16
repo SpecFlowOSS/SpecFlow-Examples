@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpecFlow.xUnit" Version="3.6.23" />
+    <PackageReference Include="SpecFlow.xUnit" Version="*" />
     <PackageReference Include="xunit.assert" Version="2.4.1" />
 
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
