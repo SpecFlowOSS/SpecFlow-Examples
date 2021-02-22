@@ -2,7 +2,7 @@
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 
-namespace SpecsNUnit.Steps
+namespace SpecsXUnit.Steps
 {
     [Binding]
     public sealed class Steps
