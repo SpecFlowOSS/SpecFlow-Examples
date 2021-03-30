@@ -18,24 +18,22 @@ namespace CalculatorSelenium.Specs.PageObjects
 
         public void EnterFirstNumber(string number)
         {
-            FirstNumberElement.Clear();
-            FirstNumberElement.SendKeys(number);
+            FirstNumberElement.SetText(number);
         }
 
         public void EnterSecondNumber(string number)
         {
-            SecondNumberElement.Clear();
-            SecondNumberElement.SendKeys(number);
+            SecondNumberElement.SetText(number);
         }
 
-        public void Add()
+        public void ClickAdd()
         {
             AddButtonElement.Click();
         }
 
-        public string GetResult()
+        public string WaitForNonEmptyResult()
         {
-            return ResultElement.GetAttribute("value");
+            return _webDriver.WaitUntilNonEmpty(driver => ResultElement.GetValue());
         }
     }
 }

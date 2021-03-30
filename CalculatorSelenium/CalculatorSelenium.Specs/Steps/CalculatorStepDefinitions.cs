@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using CalculatorSelenium.Specs.Drivers;
+﻿using CalculatorSelenium.Specs.Drivers;
 using CalculatorSelenium.Specs.PageObjects;
 using FluentAssertions;
 using TechTalk.SpecFlow;
@@ -36,17 +35,14 @@ namespace CalculatorSelenium.Specs.Steps
         public void WhenTheTwoNumbersAreAdded()
         {
             var po = new CalculatorPageObject(_browserDriver.Current);
-            po.Add();
+            po.ClickAdd();
         }
 
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(int expectedResult)
         {
             var po = new CalculatorPageObject(_browserDriver.Current);
-
-            Thread.Sleep(2000);
-
-            var actualResult = po.GetResult();
+            var actualResult = po.WaitForNonEmptyResult();
 
             actualResult.Should().Be(expectedResult.ToString());
         }
