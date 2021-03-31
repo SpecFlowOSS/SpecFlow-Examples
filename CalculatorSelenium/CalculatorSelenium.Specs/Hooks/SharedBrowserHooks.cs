@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace CalculatorSelenium.Specs.Hooks
 {
     /// <summary>
-    /// Make all scenarios use the same browser window
+    /// Share the same browser window for all scenarios
     /// </summary>
     /// <remarks>
     /// This makes the sequential execution of scenarios faster (opening a new browser window each time would take more time)

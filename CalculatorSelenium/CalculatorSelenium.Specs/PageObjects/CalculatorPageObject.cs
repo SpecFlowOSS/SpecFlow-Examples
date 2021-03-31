@@ -4,11 +4,18 @@ using OpenQA.Selenium.Support.UI;
 
 namespace CalculatorSelenium.Specs.PageObjects
 {
+    /// <summary>
+    /// Calculator Page Object
+    /// </summary>
     public class CalculatorPageObject
     {
+        //The URL of the calculator to be opened in the browser
         private const string CalculatorUrl = "https://specflowoss.github.io/Calculator-Demo/Calculator.html";
 
+        //The Selenium web driver to automate the browser
         private readonly IWebDriver _webDriver;
+        
+        //The default wait time in seconds for wait.Until
         public const int DefaultWaitInSeconds = 5;
 
         public CalculatorPageObject(IWebDriver webDriver)
@@ -16,12 +23,11 @@ namespace CalculatorSelenium.Specs.PageObjects
             _webDriver = webDriver;
         }
 
-        //Find elements by ID
+        //Finding elements by ID
         private IWebElement FirstNumberElement => _webDriver.FindElement(By.Id("first-number"));
         private IWebElement SecondNumberElement => _webDriver.FindElement(By.Id("second-number"));
         private IWebElement AddButtonElement => _webDriver.FindElement(By.Id("add-button"));
         private IWebElement ResultElement => _webDriver.FindElement(By.Id("result"));
-
         private IWebElement ResetButtonElement => _webDriver.FindElement(By.Id("reset-button"));
 
         public void EnterFirstNumber(string number)
@@ -80,13 +86,20 @@ namespace CalculatorSelenium.Specs.PageObjects
                 result => result == string.Empty);
         }
 
-        private T WaitUntil<T>(Func<T> getResult, Func<T, bool> isResultOk) where T: class
+        /// <summary>
+        /// Helper method to wait until the expected result is available on the UI
+        /// </summary>
+        /// <typeparam name="T">The type of result to retrieve</typeparam>
+        /// <param name="getResult">The function to poll the result from the UI</param>
+        /// <param name="isResultAccepted">The function to decide if the polled result is accepted</param>
+        /// <returns>An accepted result returned from the UI. If the UI does not return an accepted result within the timeout an exception is thrown.</returns>
+        private T WaitUntil<T>(Func<T> getResult, Func<T, bool> isResultAccepted) where T: class
         {
             var wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(DefaultWaitInSeconds));
             return wait.Until(driver =>
             {
                 var result = getResult();
-                if (!isResultOk(result))
+                if (!isResultAccepted(result))
                     return default;
 
                 return result;

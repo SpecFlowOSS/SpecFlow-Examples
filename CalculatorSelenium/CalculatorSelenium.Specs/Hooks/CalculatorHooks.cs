@@ -5,11 +5,14 @@ using TechTalk.SpecFlow;
 namespace CalculatorSelenium.Specs.Hooks
 {
     /// <summary>
-    /// Initialize the Calculator UI
+    /// Calculator related hooks
     /// </summary>
     [Binding]
     public class CalculatorHooks
     {
+        ///<summary>
+        ///  Reset the calculator before each scenario tagged with "Calculator"
+        /// </summary>
         [BeforeScenario("Calculator")]
         public static void BeforeScenario(BrowserDriver browserDriver)
         {
