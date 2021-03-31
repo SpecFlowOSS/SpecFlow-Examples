@@ -11,11 +11,13 @@
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.10" />
 
     
-    <PackageReference Include="SpecRun.SpecFlow" Version="3.7.3" />
-    
 
     
 
+    
+    <PackageReference Include="SpecFlow.NUnit" Version="3.7.13" />
+    <PackageReference Include="nunit" Version="3.13.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     
 
     
@@ -26,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Drivers\" />
     <Folder Include="Hooks\" />
   </ItemGroup>
 

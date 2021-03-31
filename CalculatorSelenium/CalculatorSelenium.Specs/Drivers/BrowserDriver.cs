@@ -1,28 +1,24 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using TechTalk.SpecRun;
 
 namespace CalculatorSelenium.Specs.Drivers
 {
     public class BrowserDriver : IDisposable
     {
-        private readonly TestRunContext _testRunContext;
-
         private readonly Lazy<IWebDriver> _currentWebDriverLazy;
         private bool _isDisposed;
 
-        public BrowserDriver(TestRunContext testRunContext)
+        public BrowserDriver()
         {
             _currentWebDriverLazy = new Lazy<IWebDriver>(GetWebDriver);
-            _testRunContext = testRunContext;
         }
 
         public IWebDriver Current => _currentWebDriverLazy.Value;
 
         private IWebDriver GetWebDriver()
         {
-            var chromeDriverService = ChromeDriverService.CreateDefaultService(_testRunContext.TestDirectory);
+            var chromeDriverService = ChromeDriverService.CreateDefaultService();
 
             var chromeOptions = new ChromeOptions();
 
