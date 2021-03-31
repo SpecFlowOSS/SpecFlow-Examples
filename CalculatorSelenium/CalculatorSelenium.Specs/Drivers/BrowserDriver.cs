@@ -22,10 +22,7 @@ namespace CalculatorSelenium.Specs.Drivers
 
             var chromeOptions = new ChromeOptions();
 
-            var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions)
-            {
-                Url = "https://specflowoss.github.io/Calculator-Demo/Calculator.html"
-            };
+            var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
 
             return chromeDriver;
         }
