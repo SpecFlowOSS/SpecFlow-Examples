@@ -8,41 +8,35 @@ namespace CalculatorSelenium.Specs.Steps
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
-        private readonly ScenarioContext _scenarioContext;
-        private readonly BrowserDriver _browserDriver;
+        private readonly CalculatorPageObject _calculatorPageObject;
 
-        public CalculatorStepDefinitions(ScenarioContext scenarioContext, BrowserDriver browserDriver)
+        public CalculatorStepDefinitions(BrowserDriver browserDriver)
         {
-            _scenarioContext = scenarioContext;
-            _browserDriver = browserDriver;
+            _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
         }
 
         [Given("the first number is (.*)")]
         public void GivenTheFirstNumberIs(int number)
         {
-            var po = new CalculatorPageObject(_browserDriver.Current);
-            po.EnterFirstNumber(number.ToString());
+            _calculatorPageObject.EnterFirstNumber(number.ToString());
         }
 
         [Given("the second number is (.*)")]
         public void GivenTheSecondNumberIs(int number)
         {
-            var po = new CalculatorPageObject(_browserDriver.Current);
-            po.EnterSecondNumber(number.ToString());
+            _calculatorPageObject.EnterSecondNumber(number.ToString());
         }
 
         [When("the two numbers are added")]
         public void WhenTheTwoNumbersAreAdded()
         {
-            var po = new CalculatorPageObject(_browserDriver.Current);
-            po.ClickAdd();
+            _calculatorPageObject.ClickAdd();
         }
 
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(int expectedResult)
         {
-            var po = new CalculatorPageObject(_browserDriver.Current);
-            var actualResult = po.WaitForNonEmptyResult();
+            var actualResult = _calculatorPageObject.WaitForNonEmptyResult();
 
             actualResult.Should().Be(expectedResult.ToString());
         }
