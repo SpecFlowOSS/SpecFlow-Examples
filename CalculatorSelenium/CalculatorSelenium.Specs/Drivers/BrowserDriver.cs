@@ -4,6 +4,9 @@ using OpenQA.Selenium.Chrome;
 
 namespace CalculatorSelenium.Specs.Drivers
 {
+    /// <summary>
+    /// Manages a browser instance using Selenium
+    /// </summary>
     public class BrowserDriver : IDisposable
     {
         private readonly Lazy<IWebDriver> _currentWebDriverLazy;
@@ -11,13 +14,21 @@ namespace CalculatorSelenium.Specs.Drivers
 
         public BrowserDriver()
         {
-            _currentWebDriverLazy = new Lazy<IWebDriver>(GetWebDriver);
+            _currentWebDriverLazy = new Lazy<IWebDriver>(CreateWebDriver);
         }
 
+        /// <summary>
+        /// The Selenium IWebDriver instance
+        /// </summary>
         public IWebDriver Current => _currentWebDriverLazy.Value;
 
-        private IWebDriver GetWebDriver()
+        /// <summary>
+        /// Creates the Selenium web driver (opens a browser)
+        /// </summary>
+        /// <returns></returns>
+        private IWebDriver CreateWebDriver()
         {
+            //We use the Chrome browser
             var chromeDriverService = ChromeDriverService.CreateDefaultService();
 
             var chromeOptions = new ChromeOptions();
@@ -27,6 +38,9 @@ namespace CalculatorSelenium.Specs.Drivers
             return chromeDriver;
         }
 
+        /// <summary>
+        /// Disposes the Selenium web driver (closing the browser)
+        /// </summary>
         public void Dispose()
         {
             if (_isDisposed)
