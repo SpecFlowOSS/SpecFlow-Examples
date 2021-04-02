@@ -19,28 +19,28 @@ namespace CalculatorSelenium.Specs.Steps
         [Given("the first number is (.*)")]
         public void GivenTheFirstNumberIs(int number)
         {
-            //delegate to PO
+            //delegate to Page Object
             _calculatorPageObject.EnterFirstNumber(number.ToString());
         }
 
         [Given("the second number is (.*)")]
         public void GivenTheSecondNumberIs(int number)
         {
-            //delegate to PO
+            //delegate to Page Object
             _calculatorPageObject.EnterSecondNumber(number.ToString());
         }
 
         [When("the two numbers are added")]
         public void WhenTheTwoNumbersAreAdded()
         {
-            //delegate to PO
+            //delegate to Page Object
             _calculatorPageObject.ClickAdd();
         }
 
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(int expectedResult)
         {
-            //delegate to PO
+            //delegate to Page Object
             var actualResult = _calculatorPageObject.WaitForNonEmptyResult();
 
             actualResult.Should().Be(expectedResult.ToString());
