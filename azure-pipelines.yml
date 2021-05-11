@@ -5,6 +5,7 @@ steps:
 - task: SpecFlowPlus@0
   inputs:
     projectFilePath: '$(Build.SourcesDirectory)/ASP.NET-MVC/BookShop/BookShop.AcceptanceTests/Features'
+    generatorSource: FeatureFolder
     projectName: 'BookShop'
     projectLanguage: 'en'
     workItemPrefix: 'WI'
