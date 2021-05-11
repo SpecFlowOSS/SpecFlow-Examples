@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Boa.Constrictor" Version="0.13.1" />
+    <PackageReference Include="Ductus.FluentDocker" Version="2.10.6" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Polly" Version="7.2.2" />
+    <PackageReference Include="Selenium.Support" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="90.0.4430.2400" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.7.38" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+
+
+    <PackageReference Include="SpecFlow.xUnit" Version="3.7.38" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+
+    
+
+    
+
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommunityContentSubmissionPage.Test.Common\CommunityContentSubmissionPage.Test.Common.csproj" />
+    <ProjectReference Include="..\CommunityContentSubmissionPage\CommunityContentSubmissionPage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
