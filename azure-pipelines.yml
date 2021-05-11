@@ -4,7 +4,7 @@ pool:
 steps:
 - task: SpecFlowPlus@0
   inputs:
-    projectFilePath: '$(Build.SourcesDirectory)/ASP.NET-MVC/BookShop/BookShop.AcceptanceTests/Features'
+    projectFilePath: '$(Build.SourcesDirectory)/ASP.NET-MVC/BookShop/LivingDoc.Demo'
     generatorSource: FeatureFolder
     projectName: 'BookShop'
     projectLanguage: 'en'
