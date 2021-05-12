@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Boa.Constrictor.Screenplay;
+﻿using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
 using CommunityContentSubmissionPage.Specs.Pages;
-using CommunityContentSubmissionPage.Specs.Support;
 using CommunityContentSubmissionPage.Specs.Steps;
+using System;
+using System.Collections.Generic;
 
 namespace CommunityContentSubmissionPage.Specs.Interactions
 {
@@ -38,6 +36,16 @@ namespace CommunityContentSubmissionPage.Specs.Interactions
                         break;
                     case "NAME":
                         actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, row.Value));
+                        break;
+                    case "PRIVACY POLICY":
+                        var privacyPolicyIsChecked = actor.AskingFor(SelectedState.Of(SubmissionPage.PrivacyPolicy));
+                        var expectedPrivacyPolicyChecked = row.Value.ToUpper() == "TRUE";
+
+                        if (expectedPrivacyPolicyChecked != privacyPolicyIsChecked)
+                        {
+                            actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
+                        }
+
                         break;
                     default:
                         throw new NotImplementedException();
