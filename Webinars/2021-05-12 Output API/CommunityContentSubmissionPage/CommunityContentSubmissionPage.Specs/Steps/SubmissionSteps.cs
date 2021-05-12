@@ -7,7 +7,6 @@ using CommunityContentSubmissionPage.Specs.Drivers;
 using CommunityContentSubmissionPage.Specs.Interactions;
 using CommunityContentSubmissionPage.Specs.Pages;
 using CommunityContentSubmissionPage.Specs.Support;
-using CommunityContentSubmissionPage.Test.Common;
 using FluentAssertions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
@@ -51,14 +50,6 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                     inputFieldLocator = SubmissionPage.DescriptionInputField;
                     labelLocator = SubmissionPage.DescriptionLabel;
                     break;
-                case "NAME":
-                    inputFieldLocator = SubmissionPage.NameField;
-                    labelLocator = SubmissionPage.NameLabel;
-                    break;
-                case "PRIVACY POLICY":
-                    inputFieldLocator = SubmissionPage.PrivacyPolicy;
-                    labelLocator = SubmissionPage.PrivacyPolicyLabel;
-                    break;
                 default: 
                     throw new NotImplementedException();
             }
@@ -75,7 +66,6 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _actor.AttemptsTo(FillOutSubmissionForm.With(rows));
         }
 
-        [When(@"the form is submitted")]
         [When(@"the submission entry form is submitted")]
         public void WhenTheSubmissionEntryFormIsSubmitted()
         {
@@ -108,7 +98,15 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         }
 
 
-        [Then(@"you can choose from the following types:")]
+        [Then(@"there is a submission entry stored with the following data:")]
+        public void ThenThereIsASubmissionEntryStoredWithTheFollowingData(Table table)
+        {
+            var expectedSubmissionContentEntry = table.CreateInstance<ExpectedSubmissionContentEntry>();
+
+            _submissionDriver.AssertSubmissionEntryData(expectedSubmissionContentEntry);
+        }
+
+        [Then(@"you can choose from the following Types:")]
         public void ThenYouCanChooseFromTheFollowingTypes(Table table)
         {
             var expectedTypenameEntries = table.CreateSet<TypenameEntry>();
@@ -127,8 +125,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                 new SubmissionEntryFormRowObject("Type", "Blog Posts"),
                 new SubmissionEntryFormRowObject("Email", "someone@example.org"),
                 new SubmissionEntryFormRowObject("Description", "something really cool"),
-                new SubmissionEntryFormRowObject("Name", "Jane Doe"),
-                new SubmissionEntryFormRowObject("Privacy Policy", "true")
+                new SubmissionEntryFormRowObject("Name", "Jane Doe")
             };
             
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
@@ -156,7 +153,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _actor.AttemptsTo(Click.On(SubmissionPage.CancelButton));
         }
 
-        [Then(@"every input is set to its default value")]
+        [Then(@"every input is set to its default values")]
         public void ThenEveryInputIsSetToItsDefaultValues()
         {
             _actor.AsksFor(Text.Of(SubmissionPage.UrlInputField)).Should().BeEmpty();
@@ -192,21 +189,5 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         {
             _actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, string.Empty));
         }
-
-        [Given(@"the content suggestion page is opened and filled with")]
-        public void GivenTheContentSuggestionPageIsOpenedAndFilledWith(Table table)
-        {
-            _actor.AttemptsTo(Navigate.ToUrl(ConfigurationProvider.BaseAddress));
-            GivenTheFilledOutSubmissionEntryForm(table);
-        }
-
-        [Given(@"a filled content suggestion page is opened")]
-        public void GivenAFilledContentSuggestionPageIsOpened()
-        {
-            _actor.AttemptsTo(Navigate.ToUrl(ConfigurationProvider.BaseAddress));
-            GivenTheSubmissionEntryFormIsFilled();
-        }
-
-
     }
 }

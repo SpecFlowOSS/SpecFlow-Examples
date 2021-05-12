@@ -17,8 +17,8 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _actor = actor;
         }
 
-        [Given(@"the submission page is opened")]
-        [When(@"the submission page is opened")]
+        [Given(@"the submission page is open")]
+        [When(@"the submission page is open")]
         public void WhenTheSubmissionPageIsOpen()
         {
             _actor.AttemptsTo(Navigate.ToUrl(ConfigurationProvider.BaseAddress));
