@@ -4,9 +4,11 @@ using System.Text;
 using CommunityContentSubmissionPage.API.Specs.Drivers;
 using CommunityContentSubmissionPage.API.Specs.Support;
 using FluentAssertions;
+using Newtonsoft.Json;
 using RestSharp;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace CommunityContentSubmissionPage.API.Specs.Steps
 {
@@ -14,12 +16,14 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
     public class SubmitSteps
     {
         private readonly RestClient _restClient;
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly Submission _submission = new Submission();
         private IRestResponse _submitFormResponse;
 
-        public SubmitSteps(RestClient restClient)
+        public SubmitSteps(RestClient restClient, ISpecFlowOutputHelper specFlowOutputHelper)
         {
             _restClient = restClient;
+            _specFlowOutputHelper = specFlowOutputHelper;
         }
 
         [Given(@"the following submission entry")]
@@ -81,6 +85,8 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
             
             var restRequest = new JsonRequest<Submission, string>("api/Submit", _submission);
 
+            _specFlowOutputHelper.WriteLine($"Request body: {JsonConvert.SerializeObject(_submission)}"); 
+            
             _submitFormResponse = _restClient.Post(restRequest);
         }
 

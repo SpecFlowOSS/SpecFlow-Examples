@@ -2,7 +2,9 @@
 using CommunityContentSubmissionPage.Test.Common;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 using ConfigurationProvider = CommunityContentSubmissionPage.Test.Common.ConfigurationProvider;
+using System.Linq;
 
 namespace CommunityContentSubmissionPage.API.Specs.Hooks
 {
@@ -10,10 +12,12 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
     public class Hooks
     {
         private readonly ScenarioContext _scenarioContext;
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
 
-        public Hooks(ScenarioContext scenarioContext)
+        public Hooks(ScenarioContext scenarioContext, ISpecFlowOutputHelper specFlowOutputHelper)
         {
             _scenarioContext = scenarioContext;
+            _specFlowOutputHelper = specFlowOutputHelper;
         }
 
         [BeforeTestRun]

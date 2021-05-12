@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
@@ -10,6 +11,7 @@ using CommunityContentSubmissionPage.Test.Common;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 using Microsoft.Extensions.Configuration;
+using TechTalk.SpecFlow.Infrastructure;
 using ConfigurationProvider = CommunityContentSubmissionPage.Test.Common.ConfigurationProvider;
 
 namespace CommunityContentSubmissionPage.Specs.Hooks
@@ -19,10 +21,12 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
     {
   
         private readonly ScenarioContext _scenarioContext;
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
 
-        public Hooks(ScenarioContext scenarioContext)
+        public Hooks(ScenarioContext scenarioContext, ISpecFlowOutputHelper specFlowOutputHelper)
         {
             _scenarioContext = scenarioContext;
+            _specFlowOutputHelper = specFlowOutputHelper;
         }
 
         [BeforeTestRun]
@@ -68,7 +72,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
             databaseContext.SaveChanges();
         }
 
-        private static DatabaseContext GetDatabaseContext()
+        public static DatabaseContext GetDatabaseContext()
         {
             var config = ConfigurationProvider.LoadConfiguration();
             var connectionString = config.GetConnectionString("db");
