@@ -57,6 +57,8 @@ namespace LivingDoc.Demo.Drivers.Selenium
 
             var chromeOptions = new ChromeOptions();
 
+            chromeOptions.AddArgument("--window-size=1920,1080");
+
             if (isHeadless)
             {
                 chromeOptions.AddArgument("headless");

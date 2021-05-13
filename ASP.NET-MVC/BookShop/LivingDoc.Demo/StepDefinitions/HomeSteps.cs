@@ -1,5 +1,7 @@
 ﻿using LivingDoc.Demo.Drivers;
+using LivingDoc.Demo.Support.Database;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace LivingDoc.Demo.StepDefinitions
 {
@@ -7,16 +9,21 @@ namespace LivingDoc.Demo.StepDefinitions
     public class HomeSteps
     {
         private readonly IHomeDriver _homeDriver;
+        private readonly CatalogContext _catalogContext;
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
 
-        public HomeSteps(IHomeDriver driver)
+        public HomeSteps(IHomeDriver driver, CatalogContext catalogContext, ISpecFlowOutputHelper specFlowOutputHelper)
         {
             _homeDriver = driver;
+            _catalogContext = catalogContext;
+            _specFlowOutputHelper = specFlowOutputHelper;
         }
 
         [When(@"I enter the shop")]
         public void WhenIEnterTheShop()
         {
             _homeDriver.Navigate();
+            _specFlowOutputHelper.WriteLine("Current catalog size: {0}", _catalogContext.ReferenceBooks.Count);
         }
 
         [Then(@"the home screen should show the book '(.*)'")]

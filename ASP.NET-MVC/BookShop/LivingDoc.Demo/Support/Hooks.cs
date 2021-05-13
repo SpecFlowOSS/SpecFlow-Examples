@@ -7,6 +7,7 @@ using BookShop.Mvc.Logic;
 using BookShop.Mvc.Models;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 using TechTalk.SpecRun;
 
 namespace LivingDoc.Demo.Support
@@ -15,10 +16,14 @@ namespace LivingDoc.Demo.Support
     public class Hooks
     {
         private readonly TestRunContext _testRunContext;
-        
-        public Hooks(TestRunContext testRunContext)
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
+        private readonly ScenarioContext _scenarioContext;
+
+        public Hooks(TestRunContext testRunContext, ISpecFlowOutputHelper specFlowOutputHelper, ScenarioContext scenarioContext)
         {
             _testRunContext = testRunContext;
+            _specFlowOutputHelper = specFlowOutputHelper;
+            _scenarioContext = scenarioContext;
         }
 
         [BeforeScenario(Order = 1)]
@@ -27,7 +32,8 @@ namespace LivingDoc.Demo.Support
             objectContainer.RegisterInstanceAs(new DatabaseContext());
 
             IConfiguration config = new ConfigurationBuilder()
-                .AddJsonFile(Path.Combine(_testRunContext.TestDirectory, "appsettings.json"), optional: true, reloadOnChange: true)
+                .AddJsonFile(Path.Combine(_testRunContext.TestDirectory, "appsettings.json"), optional: true,
+                    reloadOnChange: true)
                 .Build();
 
             objectContainer.RegisterInstanceAs(config);
@@ -56,6 +62,21 @@ namespace LivingDoc.Demo.Support
                     objectContainer.RegisterTypeAs<SeleniumSearchDriver, ISearchDriver>();
                     objectContainer.RegisterTypeAs<SeleniumSearchResultDriver, ISearchResultDriver>();
                     break;
+            }
+        }
+
+        [BeforeScenario, Scope(Scenario = "Cheapest 3 book should be listed on the home screen (failed)")]
+        public void DisplayOutput()
+        {
+            _specFlowOutputHelper.WriteLine($"Initializing: {_scenarioContext.ScenarioInfo.Title}");
+        }
+
+        [AfterStep]
+        public void DisplayErrorOutput()
+        {
+            if (_scenarioContext.StepContext.Status == ScenarioExecutionStatus.TestError)
+            {
+                _specFlowOutputHelper.WriteLine($"Additional information about the error: " + _scenarioContext.TestError.StackTrace[0..500]);
             }
         }
     }

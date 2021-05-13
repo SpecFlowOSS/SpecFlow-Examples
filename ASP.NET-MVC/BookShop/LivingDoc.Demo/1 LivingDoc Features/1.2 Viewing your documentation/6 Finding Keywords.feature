@@ -1,4 +1,4 @@
-﻿Feature: 5 Finding keywords
+﻿Feature: 6 Finding keywords
 The number of scenarios in a project can grow very quickly, so finding the data you are looking for is important. 
 SpecFlow+ LivingDoc allows you to find keywords in folder names, tags, titles (features, scenarios, scenario outlines), 
 descriptions and steps.

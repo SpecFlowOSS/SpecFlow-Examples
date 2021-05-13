@@ -1,4 +1,4 @@
-﻿Feature: 4 Analytics
+﻿Feature: 5 Analytics
 The second tab on SpecFlow’s LivingDoc '**Analytics**' gives you an overall **overview of all test execution results**.
 The [test result](<LivingDoc.Demo/1 LivingDoc Features/1.2 Viewing your documentation/3 Test Results.feature>) of your features, scenarios and steps are summarized and combined in each chart.
 
