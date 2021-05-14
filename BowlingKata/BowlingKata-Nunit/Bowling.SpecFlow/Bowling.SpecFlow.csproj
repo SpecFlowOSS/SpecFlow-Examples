@@ -10,7 +10,7 @@
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="SpecFlow.NUnit" Version="*" />
-    <PackageReference Include="NUnit" Version="3.13.0" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
