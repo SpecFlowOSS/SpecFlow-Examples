@@ -14,6 +14,9 @@ namespace CommunityContentSubmissionPage.Test.Common
 
         public static void DockerComposeUp()
         {
+            if (_compositeService != null)
+                return;
+
             var dockerComposeFileName = FindDockerComposeFile();
 
             _compositeService = new Builder()

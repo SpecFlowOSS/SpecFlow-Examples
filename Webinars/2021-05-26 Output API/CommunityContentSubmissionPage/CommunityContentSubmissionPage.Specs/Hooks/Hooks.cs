@@ -30,7 +30,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
             _specFlowOutputHelper = specFlowOutputHelper;
         }
 
-        [BeforeTestRun]
+        [BeforeScenario(Order = 0)]
         public static void DockerComposeUp()
         {
             DockerHandling.DockerComposeUp();
@@ -47,7 +47,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
         }
 
 
-        [BeforeScenario(Order = 0)]
+        [BeforeScenario(Order = 10)]
         public void RegisterDI()
         {
             _scenarioContext.ScenarioContainer.RegisterInstanceAs<IDatabaseContext>(GetDatabaseContext());
