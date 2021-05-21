@@ -1,11 +1,12 @@
 $skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln')
 
+
 ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 {
 	$fullname = $file.fullname
 	
 	# MSBuild contains old specflow versions, do not touch it
-	if (!($fullname -match 'MSBuild'))
+	if (!($fullname -match 'MSBuild') -Or !($fullname -match 'Webinars'))
 	{		
 		Write-Output "File name: $file"
 		Write-Output "Fullpath: $fullname"	
