@@ -6,18 +6,18 @@ steps:
   displayName: 'Use .NET Core sdk'
   inputs:
     packageType: sdk
-    version: 5.*
+    version: 5.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
-    projects: **\*.csproj
+    projects: '**/*.csproj'
 
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
-    projects: **\*.csproj
+    projects: '**/*.csproj'
