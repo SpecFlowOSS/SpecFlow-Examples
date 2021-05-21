@@ -1,0 +1,49 @@
+﻿@using CommunityContentSubmissionPage.Controllers.API
+@model SubmissionModel
+
+<form method="post" asp-controller="Home" asp-action="Index">
+
+    <div class="form-group" id="url">
+        <label asp-for="Url"></label>
+        <input type="text" asp-for="Url" id="txtUrl" class="form-control" />
+        <span asp-validation-for="Url" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" id="type">
+        <label asp-for="Type"></label>
+        <select id="txtType" name="Type" class="form-control">
+        </select>
+    </div>
+    
+    <div class="form-group" id="name">
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+    <div class="form-group" id="email">
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" id="description">
+        <label asp-for="Description"></label>
+        <input type="text" asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group form-check" id="privacypolicy">
+        <input type="checkbox" asp-for="AcceptPrivacyPolicy" class="form-check-input" id="chkPrivacyPolicy" />
+        <label asp-for="AcceptPrivacyPolicy">You need to accept our <a href='https://specflow.org/privacy-policy/'>privacy policy</a> to be able to submit an entry</label>
+        <span asp-validation-for="AcceptPrivacyPolicy" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Reset</button>
+</form>
+
+<script>
+
+
+</script>
