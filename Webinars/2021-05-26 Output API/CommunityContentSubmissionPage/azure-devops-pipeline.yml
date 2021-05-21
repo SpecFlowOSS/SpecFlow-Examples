@@ -20,4 +20,4 @@ steps:
   inputs:
     command: 'test'
     workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
-    projects: 'Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/**/*.csproj'
+    projects: 'Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/**/CommunityContentSubmissionPage.API.Specs.csproj'
