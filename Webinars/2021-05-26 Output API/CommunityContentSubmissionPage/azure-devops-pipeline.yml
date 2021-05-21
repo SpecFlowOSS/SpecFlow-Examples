@@ -1,11 +1,14 @@
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
+
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
+    workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
