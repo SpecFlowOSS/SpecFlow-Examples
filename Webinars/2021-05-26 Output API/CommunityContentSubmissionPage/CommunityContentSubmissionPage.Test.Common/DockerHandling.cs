@@ -57,7 +57,7 @@ namespace CommunityContentSubmissionPage.Test.Common
             var restClient = RestClientProvider.GetRestClient();
 
             var policy = Policy.HandleResult<bool>(r => !r)
-                .WaitAndRetry(10, _ => TimeSpan.FromSeconds(10));
+                .WaitAndRetry(20, _ => TimeSpan.FromSeconds(10));
 
             policy.Execute(() =>
             {
