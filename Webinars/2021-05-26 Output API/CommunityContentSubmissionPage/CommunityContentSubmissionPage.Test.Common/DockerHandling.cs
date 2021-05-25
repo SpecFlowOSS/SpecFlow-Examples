@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Services;
+using NUnit.Framework;
 using Polly;
 using RestSharp;
 
@@ -14,22 +15,41 @@ namespace CommunityContentSubmissionPage.Test.Common
 
         public static void DockerComposeUp()
         {
-            if (_compositeService != null)
-                return;
+            try
+            {
+                if (_compositeService != null)
+                    return;
 
-            var dockerComposeFileName = FindDockerComposeFile();
+                var dockerComposeFileName = FindDockerComposeFile();
 
-            _compositeService = new Builder()
-                .UseContainer()
-                .UseCompose()
-                .FromFile(dockerComposeFileName)
-                .RemoveAllImages()
-                .ForceRecreate()
-                .RemoveOrphans()
-                .Build()
-                .Start();
+                WriteLine("Starting Docker");
+                _compositeService = new Builder()
+                    .UseContainer()
+                    .UseCompose()
+                    .FromFile(dockerComposeFileName)
+                    .RemoveAllImages()
+                    .ForceRecreate()
+                    .RemoveOrphans()
+                    .Build()
+                    .Start();
 
-            WaitForWebServer();
+                WriteLine("Docker started; waiting for application");
+
+                WaitForWebServer();
+
+                WriteLine("Application started or timed out");
+            }
+            catch (Exception e)
+            {
+                WriteLine(e.ToString());
+                throw;
+            }
+        }
+
+        private static void WriteLine(string message)
+        {
+            Console.WriteLine(message);
+            TestContext.WriteLine(message);
         }
 
         private static void WaitForWebServer()

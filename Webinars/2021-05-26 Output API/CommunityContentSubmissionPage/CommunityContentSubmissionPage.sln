@@ -9,8 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityContentSubmissionP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5D04F219-2152-4448-A071-0C4D73B49A8D}"
 	ProjectSection(SolutionItems) = preProject
-		..\communitycontributionsubmission-ci.yml = ..\communitycontributionsubmission-ci.yml
-		..\communitycontributionsubmission-livingdoc.yml = ..\communitycontributionsubmission-livingdoc.yml
+		azure-devops-pipeline.yml = azure-devops-pipeline.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityContentSubmissionPage.API.Specs", "CommunityContentSubmissionPage.API.Specs\CommunityContentSubmissionPage.API.Specs.csproj", "{2516610D-6636-4896-9EF0-3A1B3F18FE9F}"
@@ -21,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityContentSubmissionP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{188E05FB-1550-4E1E-8795-40DFBC730E60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityContentSubmissionPage.Test.Common", "CommunityContentSubmissionPage.Test.Common\CommunityContentSubmissionPage.Test.Common.csproj", "{1669B2AC-F907-4FA4-B95E-950771E887AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityContentSubmissionPage.Test.Common", "CommunityContentSubmissionPage.Test.Common\CommunityContentSubmissionPage.Test.Common.csproj", "{1669B2AC-F907-4FA4-B95E-950771E887AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

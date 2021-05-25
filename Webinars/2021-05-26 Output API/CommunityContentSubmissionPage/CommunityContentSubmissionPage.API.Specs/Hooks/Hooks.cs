@@ -1,10 +1,12 @@
-﻿using CommunityContentSubmissionPage.Database;
+﻿using System;
+using CommunityContentSubmissionPage.Database;
 using CommunityContentSubmissionPage.Test.Common;
 using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 using ConfigurationProvider = CommunityContentSubmissionPage.Test.Common.ConfigurationProvider;
 using System.Linq;
+using NUnit.Framework;
 
 namespace CommunityContentSubmissionPage.API.Specs.Hooks
 {
@@ -20,10 +22,12 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
             _specFlowOutputHelper = specFlowOutputHelper;
         }
 
-        [BeforeTestRun]
+        [BeforeScenario(Order = 0)]
         public static void DockerComposeUp()
         {
             DockerHandling.DockerComposeUp();
+            TestContext.WriteLine("Docker is up");
+            Console.WriteLine("Docker is up");
         }
 
         [AfterTestRun]
