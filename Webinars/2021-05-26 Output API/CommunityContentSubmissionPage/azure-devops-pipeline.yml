@@ -9,6 +9,12 @@ steps:
     version: 5.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
+- task: DockerInstaller@0
+  displayName: Docker Installer
+  inputs:
+    dockerVersion: 20.10.6
+    releaseType: stable
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
