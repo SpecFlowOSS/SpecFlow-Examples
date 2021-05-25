@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Boa.Constrictor" Version="0.13.1" />
+    <PackageReference Include="Boa.Constrictor" Version="1.0.0" />
     <PackageReference Include="Ductus.FluentDocker" Version="2.10.6" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
@@ -15,12 +15,12 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="90.0.4430.2400" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.8.35" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.7" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.8.14" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
 
 
-    <PackageReference Include="SpecFlow.NUnit" Version="3.8.7" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.8.14" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     
   </ItemGroup>
