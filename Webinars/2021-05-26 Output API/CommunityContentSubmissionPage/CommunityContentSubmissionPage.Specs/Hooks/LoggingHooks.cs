@@ -26,7 +26,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
 
             _specFlowOutputHelper.WriteLine($"Current URL: {_actor.AsksFor(CurrentUrl.FromBrowser())}"); 
 
-            _specFlowOutputHelper.AddAttachment($"bin/Debug/net5.0/{screenshotLocation}");
+            _specFlowOutputHelper.AddAttachment(screenshotLocation));
         }
 
 
