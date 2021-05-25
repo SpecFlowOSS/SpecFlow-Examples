@@ -27,7 +27,6 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
         {
             DockerHandling.DockerComposeUp();
             TestContext.WriteLine("Docker is up");
-            Console.WriteLine("Docker is up");
         }
 
         [AfterTestRun]

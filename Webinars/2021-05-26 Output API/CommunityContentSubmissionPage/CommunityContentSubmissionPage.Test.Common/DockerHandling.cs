@@ -65,6 +65,8 @@ namespace CommunityContentSubmissionPage.Test.Common
 
                 var restResponse = restClient.Get(restRequest);
 
+                WriteLine($"Check if App is online: {restResponse.IsSuccessful}");
+
                 return restResponse.IsSuccessful;
             });
 
