@@ -28,6 +28,11 @@ steps:
     Dockerfile: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/CommunityContentSubmissionPage/Dockerfile
     buildContext: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/
 
+- task: Bash@3
+  inputs:
+    script: docker-compose up
+    workingDirectory: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
