@@ -19,8 +19,8 @@ steps:
   displayName: DockerBuild
   inputs:
     command: build
-    Dockerfile: CommunityContentSubmissionPage/Dockerfile
-    buildContext: .
+    Dockerfile: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/CommunityContentSubmissionPage/Dockerfile
+    buildContext: Webinars/2021-05-26 Output API/CommunityContentSubmissionPage/
 
 - task: DotNetCoreCLI@2
   inputs:
