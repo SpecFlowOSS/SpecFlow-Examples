@@ -48,8 +48,7 @@ namespace CommunityContentSubmissionPage.Test.Common
 
         private static void WriteLine(string message)
         {
-            Console.WriteLine(message);
-            TestContext.WriteLine(message);
+            
         }
 
         private static void WaitForWebServer()

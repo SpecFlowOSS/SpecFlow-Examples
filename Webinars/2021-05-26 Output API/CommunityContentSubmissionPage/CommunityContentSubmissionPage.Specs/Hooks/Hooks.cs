@@ -34,16 +34,12 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
         public static void DockerComposeUp()
         {
             DockerHandling.DockerComposeUp();
-            TestContext.WriteLine("Docker is up");
-            Console.WriteLine("Docker is up");
         }
 
         [AfterTestRun]
         public static void DockerComposeDown()
         {
             DockerHandling.DockerComposeDown();
-            TestContext.WriteLine("Docker is down");
-            Console.WriteLine("Docker is down");
         }
 
 
@@ -52,7 +48,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
         {
             _scenarioContext.ScenarioContainer.RegisterInstanceAs<IDatabaseContext>(GetDatabaseContext());
 
-            var actor = new Actor("Chrome", new ConsoleLogger());
+            var actor = new Actor("Chrome", new NoOpLogger());
             actor.Can(BrowseTheWeb.With(new ChromeDriver()));
 
             
