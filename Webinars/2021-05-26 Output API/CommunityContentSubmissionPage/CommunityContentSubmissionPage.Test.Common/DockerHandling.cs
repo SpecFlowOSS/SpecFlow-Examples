@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Ductus.FluentDocker.Builders;
 using Ductus.FluentDocker.Services;
+using NUnit.Framework;
 using Polly;
 using RestSharp;
 
@@ -14,19 +15,41 @@ namespace CommunityContentSubmissionPage.Test.Common
 
         public static void DockerComposeUp()
         {
-            var dockerComposeFileName = FindDockerComposeFile();
+            try
+            {
+                if (_compositeService != null)
+                    return;
 
-            _compositeService = new Builder()
-                .UseContainer()
-                .UseCompose()
-                .FromFile(dockerComposeFileName)
-                .RemoveAllImages()
-                .ForceRecreate()
-                .RemoveOrphans()
-                .Build()
-                .Start();
+                var dockerComposeFileName = FindDockerComposeFile();
 
-            WaitForWebServer();
+                WriteLine("Starting Docker");
+                _compositeService = new Builder()
+                    .UseContainer()
+                    .UseCompose()
+                    .FromFile(dockerComposeFileName)
+                    .RemoveAllImages()
+                    .ForceRecreate()
+                    .RemoveOrphans()
+                    .Build()
+                    .Start();
+
+                WriteLine("Docker started; waiting for application");
+
+                WaitForWebServer();
+
+                WriteLine("Application started or timed out");
+            }
+            catch (Exception e)
+            {
+                WriteLine(e.ToString());
+                throw;
+            }
+        }
+
+        private static void WriteLine(string message)
+        {
+            Console.WriteLine(message);
+            TestContext.WriteLine(message);
         }
 
         private static void WaitForWebServer()
@@ -41,6 +64,8 @@ namespace CommunityContentSubmissionPage.Test.Common
                 var restRequest = new RestRequest("/api/AvailableTypes", DataFormat.Json);
 
                 var restResponse = restClient.Get(restRequest);
+
+                WriteLine($"Check if App is online: {restResponse.IsSuccessful}");
 
                 return restResponse.IsSuccessful;
             });

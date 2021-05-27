@@ -11,6 +11,7 @@ using CommunityContentSubmissionPage.Test.Common;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using TechTalk.SpecFlow.Infrastructure;
 using ConfigurationProvider = CommunityContentSubmissionPage.Test.Common.ConfigurationProvider;
 
@@ -29,20 +30,24 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
             _specFlowOutputHelper = specFlowOutputHelper;
         }
 
-        [BeforeTestRun]
+        [BeforeScenario(Order = 0)]
         public static void DockerComposeUp()
         {
             DockerHandling.DockerComposeUp();
+            TestContext.WriteLine("Docker is up");
+            Console.WriteLine("Docker is up");
         }
 
         [AfterTestRun]
         public static void DockerComposeDown()
         {
             DockerHandling.DockerComposeDown();
+            TestContext.WriteLine("Docker is down");
+            Console.WriteLine("Docker is down");
         }
 
 
-        [BeforeScenario(Order = 0)]
+        [BeforeScenario(Order = 10)]
         public void RegisterDI()
         {
             _scenarioContext.ScenarioContainer.RegisterInstanceAs<IDatabaseContext>(GetDatabaseContext());
