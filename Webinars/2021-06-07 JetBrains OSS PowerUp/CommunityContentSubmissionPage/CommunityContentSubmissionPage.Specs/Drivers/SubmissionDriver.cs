@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using CommunityContentSubmissionPage.Business.Infrastructure;
 using CommunityContentSubmissionPage.Database;
+using CommunityContentSubmissionPage.Database.Model;
 using CommunityContentSubmissionPage.Specs.Steps;
 using FluentAssertions;
 
@@ -41,5 +42,27 @@ namespace CommunityContentSubmissionPage.Specs.Drivers
             if (expectedSubmissionContentEntry.Description is not null)
                 actualEntry.Description.Should().Be(expectedSubmissionContentEntry.Description);
         }
+
+        public void CreateSubmissionEntry(ExpectedSubmissionContentEntry expectedSubmissionContentEntry)
+        {
+            var submissionEntry = new SubmissionEntry()
+            {
+                Description = expectedSubmissionContentEntry.Description,
+                Email = expectedSubmissionContentEntry.Email,
+                Name = expectedSubmissionContentEntry.Name,
+                Type = expectedSubmissionContentEntry.Type,
+                Url = expectedSubmissionContentEntry.Url
+            };
+
+            _databaseContext.SubmissionEntries.Add(submissionEntry);
+            _databaseContext.SaveChangesAsync();
+        }
+
+        public void AssertDatabaseIsEmpty() 
+        {
+            _databaseContext.SubmissionEntries.Should().BeEmpty();
+        }
     }
+    
+    
 }

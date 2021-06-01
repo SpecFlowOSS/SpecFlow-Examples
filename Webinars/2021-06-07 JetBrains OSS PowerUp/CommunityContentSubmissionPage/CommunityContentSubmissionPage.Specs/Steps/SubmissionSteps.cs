@@ -20,7 +20,8 @@ namespace CommunityContentSubmissionPage.Specs.Steps
     {
         private readonly Actor _actor;
         private readonly SubmissionDriver _submissionDriver;
-        
+        private EnteredData _dataBeforeAction;
+
         public SubmissionSteps(SubmissionDriver submissionDriver, Actor actor)
         {
             _submissionDriver = submissionDriver;
@@ -59,7 +60,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                     inputFieldLocator = SubmissionPage.PrivacyPolicy;
                     labelLocator = SubmissionPage.PrivacyPolicyLabel;
                     break;
-                default: 
+                default:
                     throw new NotImplementedException();
             }
 
@@ -71,7 +72,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void GivenTheFilledOutSubmissionEntryForm(Table table)
         {
             var rows = table.CreateSet<SubmissionEntryFormRowObject>();
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(rows));
         }
 
@@ -79,6 +80,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         [When(@"the submission entry form is submitted")]
         public void WhenTheSubmissionEntryFormIsSubmitted()
         {
+            _dataBeforeAction = GetCurrentEnteredData();
             _actor.AttemptsTo(Click.On(SubmissionPage.SubmitButton));
         }
 
@@ -97,14 +99,15 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         [Then(@"the submitting of data was possible")]
         public void ThenTheSubmittingOfDataWasPossible()
         {
-            
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should().EndWith("Success", "because the success page should be displayed");
+            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
+                .EndWith("Success", "because the success page should be displayed");
         }
 
         [Then(@"the submitting of data was not possible")]
         public void ThenTheSubmittingOfDataWasNotPossible()
         {
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should().NotEndWith("Success", "the input form page should be displayed again");
+            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
+                .NotEndWith("Success", "the input form page should be displayed again");
         }
 
 
@@ -112,10 +115,10 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void ThenYouCanChooseFromTheFollowingTypes(Table table)
         {
             var expectedTypenameEntries = table.CreateSet<TypenameEntry>();
-            var actualTypes = _actor.AsksFor(SelectOptionsAvailable.For(SubmissionPage.TypeSelect)).Select(i => new TypenameEntry(i));
+            var actualTypes = _actor.AsksFor(SelectOptionsAvailable.For(SubmissionPage.TypeSelect))
+                .Select(i => new TypenameEntry(i));
 
             actualTypes.Should().BeEquivalentTo(expectedTypenameEntries);
-
         }
 
         [Given(@"the submission entry form is filled")]
@@ -130,7 +133,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                 new SubmissionEntryFormRowObject("Name", "Jane Doe"),
                 new SubmissionEntryFormRowObject("Privacy Policy", "true")
             };
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
         }
 
@@ -153,6 +156,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         [When(@"the form is reset")]
         public void WhenTheFormIsReset()
         {
+            _dataBeforeAction = GetCurrentEnteredData();
             _actor.AttemptsTo(Click.On(SubmissionPage.CancelButton));
         }
 
@@ -176,7 +180,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                 new SubmissionEntryFormRowObject("Email", "someone@example.org"),
                 new SubmissionEntryFormRowObject("Description", "something really cool")
             };
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
             _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
         }
@@ -207,6 +211,113 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             GivenTheSubmissionEntryFormIsFilled();
         }
 
+        [Then(@"every input is set to")]
+        public void ThenEveryInputIsSetTo(Table table)
+        {
+            var input = table.CreateSet<SubmissionEntryFormRowObject>();
 
+            foreach (var inputRow in input)
+            {
+                switch (inputRow.Label.ToUpper())
+                {
+                    case "URL":
+                        _actor.AsksFor(Text.Of(SubmissionPage.UrlInputField)).Should().Be(inputRow.Value);
+                        break;
+                    case "TYPE":
+                        _actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeSelect)).Should().Be(inputRow.Value);
+                        break;
+                    case "EMAIL":
+                        _actor.AsksFor(Text.Of(SubmissionPage.EmailInputField)).Should().Be(inputRow.Value);
+                        break;
+                    case "DESCRIPTION":
+                        _actor.AsksFor(Text.Of(SubmissionPage.DescriptionInputField)).Should().Be(inputRow.Value);
+                        break;
+                    case "NAME":
+                        _actor.AsksFor(Text.Of(SubmissionPage.NameField)).Should().Be(inputRow.Value);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+        }
+
+        [Then(@"the privacy policy is not accepted")]
+        public void ThenThePrivacyPolicyIsNotAccepted()
+        {
+            _actor.AsksFor(SelectedState.Of(SubmissionPage.PrivacyPolicy)).Should().BeFalse();
+        }
+
+
+        [Given(@"'(.*)' is left out")]
+        public void GivenNameIsLeftOut(string fieldName)
+        {
+            switch (fieldName.ToUpper())
+            {
+                case "NAME":
+                    _actor.AttemptsTo(Clear.On(SubmissionPage.NameField));
+                    break;
+                case "PRIVACY POLICY":
+                    GivenThePrivacyPolicyIsNotAccepted();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            _actor.AttemptsTo(Clear.On(SubmissionPage.NameField));
+        }
+
+        [Then(@"the content suggestion form is still filled")]
+        public void ThenTheContentSuggestionFormIsStillFilled()
+        {
+            var currentData = GetCurrentEnteredData();
+            
+            _dataBeforeAction.Should().BeEquivalentTo(currentData);
+        }
+
+        public EnteredData GetCurrentEnteredData()
+        {
+            return new EnteredData(_actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeSelect)),
+                _actor.AsksFor(Text.Of(SubmissionPage.UrlInputField)),
+                _actor.AsksFor(Text.Of(SubmissionPage.EmailInputField)),
+                _actor.AsksFor(Text.Of(SubmissionPage.DescriptionInputField)),
+                _actor.AsksFor(Text.Of(SubmissionPage.NameField)),
+                _actor.AsksFor(SelectedState.Of(SubmissionPage.PrivacyPolicy))
+            );
+        }
+
+        [Then(@"the following error '(.*)' is shown for field '(.*)'")]
+        public void ThenTheFollowingErrorIsShownForField(string expectedErrorMessage, string field)
+        {
+            string actualErrorMessage;
+            
+            switch (field.ToUpper())
+            {
+                case "URL":
+                    actualErrorMessage = _actor.AsksFor(Text.Of(SubmissionPage.UrlError));
+                    break;
+                case "TYPE":
+                    actualErrorMessage = _actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeError));
+                    break;
+                case "EMAIL":
+                    actualErrorMessage = _actor.AsksFor(Text.Of(SubmissionPage.EmailSpan));
+                    break;
+                case "DESCRIPTION":
+                    actualErrorMessage = _actor.AsksFor(Text.Of(SubmissionPage.DescriptionError));
+                    break;
+                case "NAME":
+                    actualErrorMessage = _actor.AsksFor(Text.Of(SubmissionPage.NameError));
+                    break;
+                case "PRIVACY POLICY":
+                    actualErrorMessage = _actor.AsksFor(Text.Of(SubmissionPage.PrivacyPolicyError));
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            actualErrorMessage.Should().Be(expectedErrorMessage);
+        }
     }
+
+    public record EnteredData(string? Type, string? Url, string? Email, string? Description, string? Name,
+        bool? PricacyPolicy);
 }

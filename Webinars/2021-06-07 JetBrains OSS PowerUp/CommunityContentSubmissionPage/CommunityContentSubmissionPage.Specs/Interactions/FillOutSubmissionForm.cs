@@ -39,7 +39,7 @@ namespace CommunityContentSubmissionPage.Specs.Interactions
                         break;
                     case "PRIVACY POLICY":
                         var privacyPolicyIsChecked = actor.AskingFor(SelectedState.Of(SubmissionPage.PrivacyPolicy));
-                        var expectedPrivacyPolicyChecked = row.Value.ToUpper() == "TRUE";
+                        var expectedPrivacyPolicyChecked = row.Value.ToUpper() == "ACCEPTED";
 
                         if (expectedPrivacyPolicyChecked != privacyPolicyIsChecked)
                         {

@@ -1,45 +1,42 @@
 ﻿Feature: Submitting Content Suggestions with Privacy Policy
 
-Scenario: Content Suggestion is saved when submitting with accepted privacy policy
+    Scenario: Content Suggestion is saved when submitting with accepted privacy policy
 
-    Given the following content suggestions exist
-        | Url | Type | Email | Description |
-        
-    And the content suggestion page is opened and filled with
-        | Label          | Value                    |
-        | Url            | https://www.specflow.org |
-        | Type           | Blog Posts               |
-        | Email          | example@example.org      |
-        | Description    | foo                      |
-        | Name           | Jane Doe                 |
-        | Privacy Policy | Accepted                 |
+        Given the following content suggestions exist
+          | Url | Type | Email | Description |
 
-    When the form is submitted
+        And the content suggestion page is opened and filled with
+          | Label          | Value                    |
+          | Url            | https://www.specflow.org |
+          | Type           | Blog Posts               |
+          | Email          | youremail@example.org    |
+          | Description    | Test Input               |
+          | Name           | Jane Doe                 |
+          | Privacy Policy | Accepted                 |
 
-    Then the following content suggestions exist
-        | Url                      | Type       | Email                 | Description |
-        | https://www.specflow.org | Blog Posts | youremail@example.org | Test Input  |
-      
+        When the form is submitted
 
-Scenario Outline: Error when mandatory fields for submitting content are missing
-        
-    Given the following content suggestions exist
-        | Url | Type | Email | Description |
+        Then the following content suggestions exist
+          | Url                      | Type       | Email                 | Description |
+          | https://www.specflow.org | Blog Posts | youremail@example.org | Test Input  |
 
-    And a filled content suggestion page is opened
-    But <input> is left out
+    Scenario Outline: Error when mandatory fields for submitting content are missing
 
-    When the form is submitted
+        Given the following content suggestions exist
+          | Url | Type | Email | Description |
 
-    Then the following saved content suggestion exist
-        | Url | Type | Email | Description |
-    
-    And the content suggestion form is still filled (unchanged)
-    And the following error "....." is shown for field '<input>'
+        And a filled content suggestion page is opened
+        But '<Field>' is left out
 
-        
+        When the form is submitted
 
-Examples: 
-    | input          |
-    | Name           |
-    | Privacy Policy |
+        Then the following saved content suggestion exist
+          | Url | Type | Email | Description |
+
+        And the content suggestion form is still filled
+        And the following error '<Error Message>' is shown for field '<Field>'
+
+        Examples:
+          | Field          | Error Message                       |
+          | Name           | The Name field is required.         |
+          | Privacy Policy | You must accept the privacy policy! |
