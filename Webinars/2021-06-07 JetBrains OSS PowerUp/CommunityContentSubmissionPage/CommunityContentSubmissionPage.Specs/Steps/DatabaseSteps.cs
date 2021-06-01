@@ -21,9 +21,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             var expectedSubmissionContentEntries = table.CreateSet<ExpectedSubmissionContentEntry>();
 
             foreach (var expectedSubmissionContentEntry in expectedSubmissionContentEntries)
-            {
                 _submissionDriver.CreateSubmissionEntry(expectedSubmissionContentEntry);
-            }
         }
 
         [Then(@"there is a submission entry stored with the following data:")]
@@ -34,17 +32,9 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             var expectedSubmissionContentEntries = table.CreateSet<ExpectedSubmissionContentEntry>();
 
             if (expectedSubmissionContentEntries.Any())
-            {
-                _submissionDriver.AssertSubmissionEntryData(expectedSubmissionContentEntries.Single());    
-            }
+                _submissionDriver.AssertSubmissionEntryData(expectedSubmissionContentEntries.Single());
             else
-            {
                 _submissionDriver.AssertDatabaseIsEmpty();
-            }
-            
-            
         }
-
-
     }
 }

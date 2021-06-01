@@ -8,7 +8,7 @@ namespace CommunityContentSubmissionPage.Controllers.API
     [ApiController]
     public class AvailableTypesController : ControllerBase
     {
-        private readonly List<string> _types = new List<string>()
+        private readonly List<string> _types = new()
         {
             "Blog Posts",
             "Books",
@@ -21,7 +21,7 @@ namespace CommunityContentSubmissionPage.Controllers.API
         [HttpGet]
         public AvailableTypesModel Get()
         {
-            var model = new AvailableTypesModel()
+            var model = new AvailableTypesModel
             {
                 Types = _types,
                 SelectedType = "Blog Posts"

@@ -1,5 +1,3 @@
-using System;
-
 namespace CommunityContentSubmissionPage.Models
 {
     public class ErrorViewModel

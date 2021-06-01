@@ -29,27 +29,25 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
         }
 
 
-        [BeforeScenario()]
+        [BeforeScenario]
         public void RegisterRestClient()
         {
             _scenarioContext.ScenarioContainer.RegisterInstanceAs(RestClientProvider.GetRestClient());
         }
 
 
-        [BeforeScenario()]
-        [AfterScenario()]
+        [BeforeScenario]
+        [AfterScenario]
         public void ResetDatabase()
         {
             var config = ConfigurationProvider.LoadConfiguration();
             var connectionString = config.GetConnectionString("db");
 
-            var databaseContext = new DatabaseContext(){ConnectionString = connectionString};
+            var databaseContext = new DatabaseContext {ConnectionString = connectionString};
 
 
             databaseContext.RemoveRange(databaseContext.SubmissionEntries);
             databaseContext.SaveChanges();
         }
-
-        
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CommunityContentSubmissionPage.API.Specs.Drivers;
 using FluentAssertions;
 using RestSharp;
 using TechTalk.SpecFlow;
@@ -24,7 +22,7 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
         {
             var typenameEntries = table.CreateSet<TypenameEntry>();
 
-            
+
             var restRequest = new RestRequest("api/AvailableTypes", DataFormat.Json);
             var restResponse = _restClient.Get<AvailableTypesResponse>(restRequest);
 
@@ -38,8 +36,8 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
 
         public class AvailableTypesResponse
         {
-            public List<string> Types { get; set; } = new List<string>();
-            public string SelectedType { get; set; } = String.Empty;
+            public List<string> Types { get; set; } = new();
+            public string SelectedType { get; set; } = string.Empty;
         }
     }
 }

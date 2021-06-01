@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace CommunityContentSubmissionPage.Specs.Support.StepArgumentTransformations
 {

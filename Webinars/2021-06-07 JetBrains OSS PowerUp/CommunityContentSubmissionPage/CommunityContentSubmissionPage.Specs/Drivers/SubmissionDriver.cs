@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using CommunityContentSubmissionPage.Business.Infrastructure;
 using CommunityContentSubmissionPage.Database;
 using CommunityContentSubmissionPage.Database.Model;
 using CommunityContentSubmissionPage.Specs.Steps;
@@ -45,7 +44,7 @@ namespace CommunityContentSubmissionPage.Specs.Drivers
 
         public void CreateSubmissionEntry(ExpectedSubmissionContentEntry expectedSubmissionContentEntry)
         {
-            var submissionEntry = new SubmissionEntry()
+            var submissionEntry = new SubmissionEntry
             {
                 Description = expectedSubmissionContentEntry.Description,
                 Email = expectedSubmissionContentEntry.Email,
@@ -58,11 +57,9 @@ namespace CommunityContentSubmissionPage.Specs.Drivers
             _databaseContext.SaveChangesAsync();
         }
 
-        public void AssertDatabaseIsEmpty() 
+        public void AssertDatabaseIsEmpty()
         {
             _databaseContext.SubmissionEntries.Should().BeEmpty();
         }
     }
-    
-    
 }

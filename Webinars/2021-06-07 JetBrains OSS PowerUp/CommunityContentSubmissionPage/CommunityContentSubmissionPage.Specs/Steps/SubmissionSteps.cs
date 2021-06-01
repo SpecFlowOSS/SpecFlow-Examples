@@ -6,10 +6,8 @@ using Boa.Constrictor.WebDriver;
 using CommunityContentSubmissionPage.Specs.Drivers;
 using CommunityContentSubmissionPage.Specs.Interactions;
 using CommunityContentSubmissionPage.Specs.Pages;
-using CommunityContentSubmissionPage.Specs.Support;
 using CommunityContentSubmissionPage.Test.Common;
 using FluentAssertions;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -126,12 +124,12 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         {
             var submissionEntryFormRowObjects = new List<SubmissionEntryFormRowObject>
             {
-                new SubmissionEntryFormRowObject("Url", "https://example.org"),
-                new SubmissionEntryFormRowObject("Type", "Blog Posts"),
-                new SubmissionEntryFormRowObject("Email", "someone@example.org"),
-                new SubmissionEntryFormRowObject("Description", "something really cool"),
-                new SubmissionEntryFormRowObject("Name", "Jane Doe"),
-                new SubmissionEntryFormRowObject("Privacy Policy", "true")
+                new("Url", "https://example.org"),
+                new("Type", "Blog Posts"),
+                new("Email", "someone@example.org"),
+                new("Description", "something really cool"),
+                new("Name", "Jane Doe"),
+                new("Privacy Policy", "true")
             };
 
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
@@ -141,10 +139,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void GivenThePrivacyPolicyIsNotAccepted()
         {
             var privacyPolicyIsChecked = _actor.AskingFor(SelectedState.Of(SubmissionPage.PrivacyPolicy));
-            if (privacyPolicyIsChecked)
-            {
-                _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
-            }
+            if (privacyPolicyIsChecked) _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
         }
 
         [Given(@"the privacy policy is accepted")]
@@ -175,10 +170,10 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         {
             var submissionEntryFormRowObjects = new List<SubmissionEntryFormRowObject>
             {
-                new SubmissionEntryFormRowObject("Url", "https://example.org"),
-                new SubmissionEntryFormRowObject("Type", "Blog Posts"),
-                new SubmissionEntryFormRowObject("Email", "someone@example.org"),
-                new SubmissionEntryFormRowObject("Description", "something really cool")
+                new("Url", "https://example.org"),
+                new("Type", "Blog Posts"),
+                new("Email", "someone@example.org"),
+                new("Description", "something really cool")
             };
 
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
@@ -217,7 +212,6 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             var input = table.CreateSet<SubmissionEntryFormRowObject>();
 
             foreach (var inputRow in input)
-            {
                 switch (inputRow.Label.ToUpper())
                 {
                     case "URL":
@@ -238,7 +232,6 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                     default:
                         throw new NotImplementedException();
                 }
-            }
         }
 
         [Then(@"the privacy policy is not accepted")]
@@ -270,13 +263,13 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void ThenTheContentSuggestionFormIsStillFilled()
         {
             var currentData = GetCurrentEnteredData();
-            
+
             _dataBeforeAction.Should().BeEquivalentTo(currentData);
         }
 
         public EnteredData GetCurrentEnteredData()
         {
-            return new EnteredData(_actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeSelect)),
+            return new(_actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeSelect)),
                 _actor.AsksFor(Text.Of(SubmissionPage.UrlInputField)),
                 _actor.AsksFor(Text.Of(SubmissionPage.EmailInputField)),
                 _actor.AsksFor(Text.Of(SubmissionPage.DescriptionInputField)),
@@ -289,7 +282,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void ThenTheFollowingErrorIsShownForField(string expectedErrorMessage, string field)
         {
             string actualErrorMessage;
-            
+
             switch (field.ToUpper())
             {
                 case "URL":
@@ -318,6 +311,5 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         }
     }
 
-    public record EnteredData(string? Type, string? Url, string? Email, string? Description, string? Name,
-        bool? PricacyPolicy);
+    public record EnteredData(string? Type, string? Url, string? Email, string? Description, string? Name, bool? PricacyPolicy);
 }

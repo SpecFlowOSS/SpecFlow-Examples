@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CommunityContentSubmissionPage.Business.Infrastructure;
 using CommunityContentSubmissionPage.Business.Logic;
 using CommunityContentSubmissionPage.Database;
 using CommunityContentSubmissionPage.Database.Model;
 using CommunityContentSubmissionPage.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,8 +13,8 @@ namespace CommunityContentSubmissionPage.Controllers.API
     [ApiController]
     public class SubmitController : ControllerBase
     {
-        private readonly ISubmissionSaver _submissionSaver;
         private readonly IDatabaseContext _databaseContext;
+        private readonly ISubmissionSaver _submissionSaver;
 
         public SubmitController(ISubmissionSaver submissionSaver, IDatabaseContext databaseContext)
         {
@@ -29,12 +25,9 @@ namespace CommunityContentSubmissionPage.Controllers.API
         [HttpPost]
         public async Task<IActionResult> Post(SubmissionModel submissionModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var submission = new SubmissionEntry()
+            var submission = new SubmissionEntry
             {
                 Url = submissionModel.Url,
                 Type = submissionModel.Type,
