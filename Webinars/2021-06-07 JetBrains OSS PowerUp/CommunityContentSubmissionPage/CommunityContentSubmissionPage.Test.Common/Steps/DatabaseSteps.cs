@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using CommunityContentSubmissionPage.Specs.Drivers;
+using CommunityContentSubmissionPage.Test.Common;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -8,9 +8,9 @@ namespace CommunityContentSubmissionPage.Specs.Steps
     [Binding]
     public class DatabaseSteps
     {
-        private readonly SubmissionDriver _submissionDriver;
+        private readonly SubmissionDatabaseDriver _submissionDriver;
 
-        public DatabaseSteps(SubmissionDriver submissionDriver)
+        public DatabaseSteps(SubmissionDatabaseDriver submissionDriver)
         {
             _submissionDriver = submissionDriver;
         }

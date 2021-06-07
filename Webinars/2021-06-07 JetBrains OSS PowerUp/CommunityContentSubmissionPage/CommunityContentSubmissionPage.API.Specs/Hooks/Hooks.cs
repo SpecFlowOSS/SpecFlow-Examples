@@ -30,8 +30,9 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
 
 
         [BeforeScenario]
-        public void RegisterRestClient()
+        public void RegisterDI()
         {
+            _scenarioContext.ScenarioContainer.RegisterInstanceAs<IDatabaseContext>(GetDatabaseContext());
             _scenarioContext.ScenarioContainer.RegisterInstanceAs(RestClientProvider.GetRestClient());
         }
 
@@ -40,14 +41,19 @@ namespace CommunityContentSubmissionPage.API.Specs.Hooks
         [AfterScenario]
         public void ResetDatabase()
         {
+            var databaseContext = GetDatabaseContext();
+
+            databaseContext.RemoveRange(databaseContext.SubmissionEntries);
+            databaseContext.SaveChanges();
+        }
+
+        private static DatabaseContext GetDatabaseContext()
+        {
             var config = ConfigurationProvider.LoadConfiguration();
             var connectionString = config.GetConnectionString("db");
 
             var databaseContext = new DatabaseContext {ConnectionString = connectionString};
-
-
-            databaseContext.RemoveRange(databaseContext.SubmissionEntries);
-            databaseContext.SaveChanges();
+            return databaseContext;
         }
     }
 }

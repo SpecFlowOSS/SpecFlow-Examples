@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
-using CommunityContentSubmissionPage.Specs.Drivers;
 using CommunityContentSubmissionPage.Specs.Interactions;
 using CommunityContentSubmissionPage.Specs.Pages;
 using CommunityContentSubmissionPage.Test.Common;
@@ -17,10 +16,10 @@ namespace CommunityContentSubmissionPage.Specs.Steps
     public class SubmissionSteps
     {
         private readonly Actor _actor;
-        private readonly SubmissionDriver _submissionDriver;
+        private readonly SubmissionDatabaseDriver _submissionDriver;
         private EnteredData _dataBeforeAction;
 
-        public SubmissionSteps(SubmissionDriver submissionDriver, Actor actor)
+        public SubmissionSteps(SubmissionDatabaseDriver submissionDriver, Actor actor)
         {
             _submissionDriver = submissionDriver;
             _actor = actor;
@@ -82,33 +81,6 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _actor.AttemptsTo(Click.On(SubmissionPage.SubmitButton));
         }
 
-        [Then(@"there is one submission entry stored")]
-        public void ThenThereIsOneSubmissionEntryStored()
-        {
-            _submissionDriver.AssertOneSubmissionEntryExists();
-        }
-
-        [Then(@"there is '(.*)' submission entry stored")]
-        public void ThenThereIsSubmissionEntryStored(int expectedCountOfStoredEntries)
-        {
-            _submissionDriver.AssertNumberOfEntriesStored(expectedCountOfStoredEntries);
-        }
-
-        [Then(@"the submitting of data was possible")]
-        public void ThenTheSubmittingOfDataWasPossible()
-        {
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
-                .EndWith("Success", "because the success page should be displayed");
-        }
-
-        [Then(@"the submitting of data was not possible")]
-        public void ThenTheSubmittingOfDataWasNotPossible()
-        {
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
-                .NotEndWith("Success", "the input form page should be displayed again");
-        }
-
-
         [Then(@"you can choose from the following types:")]
         public void ThenYouCanChooseFromTheFollowingTypes(Table table)
         {
@@ -154,44 +126,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _dataBeforeAction = GetCurrentEnteredData();
             _actor.AttemptsTo(Click.On(SubmissionPage.CancelButton));
         }
-
-        [Then(@"every input is set to its default value")]
-        public void ThenEveryInputIsSetToItsDefaultValues()
-        {
-            _actor.AsksFor(Text.Of(SubmissionPage.UrlInputField)).Should().BeEmpty();
-            _actor.AsksFor(SelectedOptionText.Of(SubmissionPage.TypeSelect)).Should().Be("Blog Posts");
-            _actor.AsksFor(Text.Of(SubmissionPage.EmailInputField)).Should().BeEmpty();
-            _actor.AsksFor(Text.Of(SubmissionPage.DescriptionInputField)).Should().BeEmpty();
-            _actor.AsksFor(SelectedState.Of(SubmissionPage.PrivacyPolicy)).Should().BeFalse();
-        }
-
-        [Given(@"all necessary fields except the name are filled out")]
-        public void GivenAllNecessaryFieldsExceptTheNameAreFilledOut()
-        {
-            var submissionEntryFormRowObjects = new List<SubmissionEntryFormRowObject>
-            {
-                new("Url", "https://example.org"),
-                new("Type", "Blog Posts"),
-                new("Email", "someone@example.org"),
-                new("Description", "something really cool")
-            };
-
-            _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
-            _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
-        }
-
-        [When(@"the name '(.*)' is provided")]
-        public void WhenTheNameIsProvided(string name)
-        {
-            _actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, name));
-        }
-
-        [When(@"the name stays empty")]
-        public void WhenTheNameStaysEmpty()
-        {
-            _actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, string.Empty));
-        }
-
+        
         [Given(@"the content suggestion page is opened and filled with")]
         public void GivenTheContentSuggestionPageIsOpenedAndFilledWith(Table table)
         {

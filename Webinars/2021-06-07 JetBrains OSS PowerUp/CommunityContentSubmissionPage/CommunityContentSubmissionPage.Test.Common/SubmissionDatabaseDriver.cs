@@ -1,28 +1,17 @@
-﻿using System.Linq;
-using CommunityContentSubmissionPage.Database;
+﻿using CommunityContentSubmissionPage.Database;
+using System.Linq;
 using CommunityContentSubmissionPage.Database.Model;
-using CommunityContentSubmissionPage.Specs.Steps;
 using FluentAssertions;
 
-namespace CommunityContentSubmissionPage.Specs.Drivers
+namespace CommunityContentSubmissionPage.Test.Common
 {
-    public class SubmissionDriver
+    public class SubmissionDatabaseDriver
     {
         private readonly IDatabaseContext _databaseContext;
 
-        public SubmissionDriver(IDatabaseContext databaseContext)
+        public SubmissionDatabaseDriver(IDatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
-        }
-
-        public void AssertOneSubmissionEntryExists()
-        {
-            _databaseContext.SubmissionEntries.Count().Should().BeGreaterThan(0);
-        }
-
-        public void AssertNumberOfEntriesStored(int expectedCountOfStoredEntries)
-        {
-            _databaseContext.SubmissionEntries.Count().Should().Be(expectedCountOfStoredEntries);
         }
 
         public void AssertSubmissionEntryData(ExpectedSubmissionContentEntry expectedSubmissionContentEntry)
