@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Configuration;
+using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using TechTalk.SpecFlow;
 using TechTalk.SpecRun;
 
 namespace CalculatorSelenium.Specs.Drivers
@@ -14,13 +17,18 @@ namespace CalculatorSelenium.Specs.Drivers
     {
         private readonly TestRunContext _testRunContext;
         private readonly LambdaTestCredentials _lambdaTestCredentials;
+        private readonly TargetConfiguration _targetConfiguration;
+        private readonly ScenarioContext _scenarioContext;
         private readonly Lazy<IWebDriver> _currentWebDriverLazy;
         private bool _isDisposed;
 
-        public BrowserDriver(TestRunContext testRunContext, LambdaTestCredentials lambdaTestCredentials)
+        public BrowserDriver(TestRunContext testRunContext, LambdaTestCredentials lambdaTestCredentials, TargetConfiguration targetConfiguration,
+            ScenarioContext scenarioContext)
         {
             _testRunContext = testRunContext;
             _lambdaTestCredentials = lambdaTestCredentials;
+            _targetConfiguration = targetConfiguration;
+            _scenarioContext = scenarioContext;
             _currentWebDriverLazy = new Lazy<IWebDriver>(CreateWebDriver);
         }
 
@@ -35,30 +43,43 @@ namespace CalculatorSelenium.Specs.Drivers
         /// <returns></returns>
         private IWebDriver CreateWebDriver()
         {
-            ////We use the Chrome browser
-            //var chromeDriverService = ChromeDriverService.CreateDefaultService(_testRunContext.TestDirectory);
+            if (String.IsNullOrWhiteSpace(_targetConfiguration.Browser))
+            {
+                var chromeDriverService = ChromeDriverService.CreateDefaultService(_testRunContext.TestDirectory);
 
-            //var chromeOptions = new ChromeOptions();
+                var chromeOptions = new ChromeOptions();
 
 
-            //var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
+                var chromeDriver = new ChromeDriver(chromeDriverService, chromeOptions);
 
-            //return chromeDriver;
+                return chromeDriver;
+            }
+
 
             DesiredCapabilities capability = new DesiredCapabilities();
-            
-
-            
 
             capability.SetCapability("username", _lambdaTestCredentials.Username);
             capability.SetCapability("accesskey", _lambdaTestCredentials.Accesskey);
-            capability.SetCapability("build", "Calculator");
-            capability.SetCapability("name", "Calculator");
+            capability.SetCapability("build", "Calculator " + _targetConfiguration.Name);
+            var testName = _scenarioContext.ScenarioInfo.Title;
+
+            if (_scenarioContext.ScenarioInfo.Arguments.Count > 0)
+            {
+                testName += ": ";
+            }
+
+            foreach (DictionaryEntry argument in _scenarioContext.ScenarioInfo.Arguments)
+            {
+                testName += argument.Key + ":" + argument.Value + "; ";
+            }
+
+            testName = testName.Trim();
+
+            capability.SetCapability("name", testName);
             capability.SetCapability("idleTimeout", "270");
 
-            capability.SetCapability("browserName", "Chrome");
-            capability.SetCapability("browserVersion", "87.0");
-            capability.SetCapability("platformName", "Windows 10");
+            capability.SetCapability("browserName", _targetConfiguration.Browser);
+            capability.SetCapability("platformName", _targetConfiguration.OperatingSystem);
 
 
             var remoteAddress = new Uri("http://" + _lambdaTestCredentials.Username + ":" + _lambdaTestCredentials.Accesskey + "@hub.lambdatest.com" + "/wd/hub/");

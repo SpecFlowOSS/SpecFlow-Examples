@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using CalculatorSelenium.Specs.Drivers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -14,13 +16,16 @@ namespace CalculatorSelenium.Specs.Hooks
         private readonly BrowserDriver _browserDriver;
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly LambdaTestCredentials _lambdaTestCredentials;
+        private readonly TargetConfiguration _targetConfiguration;
 
-        public LambdaTestHooks(ScenarioContext scenarioContext, BrowserDriver browserDriver, ISpecFlowOutputHelper specFlowOutputHelper, LambdaTestCredentials lambdaTestCredentials)
+        public LambdaTestHooks(ScenarioContext scenarioContext, BrowserDriver browserDriver, ISpecFlowOutputHelper specFlowOutputHelper, LambdaTestCredentials lambdaTestCredentials,
+            TargetConfiguration targetConfiguration)
         {
             _scenarioContext = scenarioContext;
             _browserDriver = browserDriver;
             _specFlowOutputHelper = specFlowOutputHelper;
             _lambdaTestCredentials = lambdaTestCredentials;
+            _targetConfiguration = targetConfiguration;
         }
 
         [AfterScenario()]
@@ -35,23 +40,13 @@ namespace CalculatorSelenium.Specs.Hooks
         [AfterScenario()]
         public void LinkToVideo()
         {
-            var remoteWebDriver = _browserDriver.Current as RemoteWebDriver;
-            var authToken = Convert.ToBase64String(new System.Security.Cryptography.MD5CryptoServiceProvider().ComputeHash(System.Text.Encoding.UTF8.GetBytes($"{_lambdaTestCredentials.Username}:{_lambdaTestCredentials.Accesskey}")));
-
-            //var linkToVideo =  $"https://automation.lambdatest.com/public/video?testID={remoteWebDriver.SessionId}&auth={authToken}";
-            var linkToVideo =  $"https://automation.lambdatest.com/logs/?testID={remoteWebDriver.SessionId}";
-
-
-            _specFlowOutputHelper.AddAttachment(linkToVideo);
-        }
-
-        [AfterStep()]
-        public void MakeScreenshot()
-        {
-            if (_browserDriver.Current is ITakesScreenshot screenshotTaker)
+            if (_browserDriver.Current is RemoteWebDriver remoteWebDriver && !string.IsNullOrWhiteSpace(_targetConfiguration.Name))
             {
-                var screenshot = screenshotTaker.GetScreenshot();
+                var linkToVideo = $"https://automation.lambdatest.com/logs/?testID={remoteWebDriver.SessionId}";
+
+                _specFlowOutputHelper.AddAttachment(linkToVideo);
             }
         }
+        
     }
 }
