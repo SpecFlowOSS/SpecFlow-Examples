@@ -1,5 +1,6 @@
 ﻿Feature: Submitting Content Suggestions with Privacy Policy
 
+    
 Scenario: Content Suggestion is saved when submitting with accepted privacy policy
 
     Given the following content suggestions exist

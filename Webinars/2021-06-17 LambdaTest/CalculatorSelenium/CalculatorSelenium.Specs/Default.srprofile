@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestProfile xmlns="http://www.specflow.org/schemas/plus/TestProfile/1.5">
+  <Settings projectName="CalculatorSelenium.Specs" />
+  <Execution stopAfterFailures="0" testThreadCount="5" testSchedulingMode="Sequential"  retryFor="None"/>
+  <Environment testThreadIsolation="AppDomain" />
+  <TestAssemblyPaths>
+    <TestAssemblyPath>CalculatorSelenium.Specs.dll</TestAssemblyPath>
+  </TestAssemblyPaths>
+  <Targets>
+    <Target name="Chrome-Win10">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Test_Name" value="Chrome-Win10" />
+        <EnvironmentVariable variable="Test_Browser" value="Chrome" />
+        <EnvironmentVariable variable="Test_OS" value="Windows 10" />
+      </DeploymentTransformationSteps>
+    </Target>
+    <Target name="Firefox-Win10">
+      <DeploymentTransformationSteps>
+        <EnvironmentVariable variable="Test_Name" value="Firefox-Win10" />
+        <EnvironmentVariable variable="Test_Browser" value="Firefox" />
+        <EnvironmentVariable variable="Test_OS" value="Windows 10" />
+      </DeploymentTransformationSteps>
+    </Target>
+  </Targets>
+</TestProfile>
