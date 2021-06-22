@@ -10,6 +10,12 @@ namespace CalculatorSelenium.Specs.Hooks
     [Binding]
     public class CalculatorHooks
     {
+        [BeforeTestRun]
+        public static void BeforeTestRun(BlobLogger blobLogger)
+        {
+            blobLogger.CreateContainer().Wait();
+        }
+
         ///<summary>
         ///  Reset the calculator before each scenario tagged with "Calculator"
         /// </summary>

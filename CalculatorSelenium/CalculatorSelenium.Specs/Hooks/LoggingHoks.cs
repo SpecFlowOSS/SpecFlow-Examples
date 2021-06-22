@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using CalculatorSelenium.Specs.Drivers;
+﻿using CalculatorSelenium.Specs.Drivers;
 using OpenQA.Selenium.Support.Extensions;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
@@ -15,25 +10,24 @@ namespace CalculatorSelenium.Specs.Hooks
     {
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly BrowserDriver _browserDriver;
+        private readonly BlobLogger _blobLogger;
 
-        public LoggingHooks(ISpecFlowOutputHelper specFlowOutputHelper, BrowserDriver browserDriver)
+        public LoggingHooks(ISpecFlowOutputHelper specFlowOutputHelper, 
+            BrowserDriver browserDriver,
+            BlobLogger blobLogger)
         {
             _specFlowOutputHelper = specFlowOutputHelper;
             _browserDriver = browserDriver;
+            _blobLogger = blobLogger;
         }
 
-        [AfterStep()]
+        [AfterStep]
         public void BeforeScenario()
         {
             var screenshot = _browserDriver.Current.TakeScreenshot();
-            var imagePath = Path.GetTempFileName();
-            screenshot.SaveAsFile(imagePath);
-            _specFlowOutputHelper.AddAttachment(imagePath);
-        }
-
-        [AfterScenario]
-        public void AfterScenario()
-        {
+            var uri = _blobLogger.LogImage(screenshot.AsByteArray).Result;
+            if (uri != null)
+                _specFlowOutputHelper.AddAttachment(uri.ToString());
         }
     }
 }
