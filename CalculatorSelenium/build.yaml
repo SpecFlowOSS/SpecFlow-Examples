@@ -1,0 +1,27 @@
+pool:
+  vmImage: 'windows-latest'
+  demands: vstest
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    workingDirectory: CalculatorSelenium
+
+- task: VSTest@2
+  displayName: 'VsTest - testAssemblies'
+  inputs:
+    testAssemblyVer2: |
+     **\*Specs*.dll
+     !**\*TestAdapter.dll
+     !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)\CalculatorSelenium'
+  env:
+    AZURE_STORAGE_CONNECTION_STRING: $(AZURE.STORAGE.CONNECTION.STRING)
+
+- task: SpecFlowPlus@0
+  displayName: 'SpecFlow+ build step.'
+  inputs:
+    generatorSource: TestAssembly
+    testAssemblyFilePath: 'CalculatorSelenium\**\bin\**\CalculatorSelenium.Specs.dll'
+    testExecutionJson: 'CalculatorSelenium\**\bin\**\TestExecution.json'
