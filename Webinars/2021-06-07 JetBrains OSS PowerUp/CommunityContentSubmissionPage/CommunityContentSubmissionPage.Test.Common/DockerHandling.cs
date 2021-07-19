@@ -44,7 +44,6 @@ namespace CommunityContentSubmissionPage.Test.Common
 
                 return restResponse.IsSuccessful;
             });
-
         }
 
         public static void DockerComposeDown()
@@ -60,7 +59,5 @@ namespace CommunityContentSubmissionPage.Test.Common
 
             return Directory.EnumerateFiles(root, "docker-compose.yml", SearchOption.AllDirectories).First();
         }
-
-
     }
 }

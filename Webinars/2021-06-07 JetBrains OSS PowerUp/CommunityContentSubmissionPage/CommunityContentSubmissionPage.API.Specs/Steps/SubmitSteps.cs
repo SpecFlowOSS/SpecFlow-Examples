@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CommunityContentSubmissionPage.API.Specs.Drivers;
-using CommunityContentSubmissionPage.API.Specs.Support;
 using FluentAssertions;
 using RestSharp;
 using TechTalk.SpecFlow;
@@ -14,7 +10,7 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
     public class SubmitSteps
     {
         private readonly RestClient _restClient;
-        private readonly Submission _submission = new Submission();
+        private readonly Submission _submission = new();
         private IRestResponse _submitFormResponse;
 
         public SubmitSteps(RestClient restClient)
@@ -28,7 +24,6 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
             var submissionEntryFormRowObjects = table.CreateSet<SubmissionEntryFormRowObject>();
 
             foreach (var rowObject in submissionEntryFormRowObjects)
-            {
                 switch (rowObject.Label.ToUpper())
                 {
                     case "URL":
@@ -49,7 +44,6 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
                     default:
                         throw new NotImplementedException();
                 }
-            }
         }
 
         [Given(@"the privacy policy is accepted")]
@@ -78,7 +72,6 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
         [When(@"the submission entry is submitted")]
         public void WhenTheSubmissionEntryIsSubmitted()
         {
-            
             var restRequest = new JsonRequest<Submission, string>("api/Submit", _submission);
 
             _submitFormResponse = _restClient.Post(restRequest);
@@ -115,7 +108,7 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
         [When(@"the name stays empty")]
         public void WhenTheNameStaysEmpty()
         {
-            _submission.Name = String.Empty;
+            _submission.Name = string.Empty;
         }
     }
 }

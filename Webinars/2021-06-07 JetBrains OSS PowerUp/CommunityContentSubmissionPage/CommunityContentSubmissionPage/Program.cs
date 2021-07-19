@@ -1,4 +1,3 @@
-using CommunityContentSubmissionPage.Business.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
 namespace CommunityContentSubmissionPage
@@ -8,7 +7,7 @@ namespace CommunityContentSubmissionPage
         public static void Main(string[] args)
         {
             new KestrelHostBuilder().CreateHostBuilder(args)
-                .Build()                                 
+                .Build()
                 .Run();
         }
     }

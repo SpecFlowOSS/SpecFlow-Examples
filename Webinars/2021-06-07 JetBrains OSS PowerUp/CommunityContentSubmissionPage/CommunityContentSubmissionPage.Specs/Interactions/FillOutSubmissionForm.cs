@@ -1,9 +1,9 @@
-﻿using Boa.Constrictor.Screenplay;
+﻿using System;
+using System.Collections.Generic;
+using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
 using CommunityContentSubmissionPage.Specs.Pages;
 using CommunityContentSubmissionPage.Specs.Steps;
-using System;
-using System.Collections.Generic;
 
 namespace CommunityContentSubmissionPage.Specs.Interactions
 {
@@ -19,7 +19,6 @@ namespace CommunityContentSubmissionPage.Specs.Interactions
         public void PerformAs(IActor actor)
         {
             foreach (var row in _rows)
-            {
                 switch (row.Label.ToUpper())
                 {
                     case "URL":
@@ -42,15 +41,12 @@ namespace CommunityContentSubmissionPage.Specs.Interactions
                         var expectedPrivacyPolicyChecked = row.Value.ToUpper() == "TRUE";
 
                         if (expectedPrivacyPolicyChecked != privacyPolicyIsChecked)
-                        {
                             actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
-                        }
 
                         break;
                     default:
                         throw new NotImplementedException();
                 }
-            }
         }
 
         public static ITask With(IEnumerable<SubmissionEntryFormRowObject> rows)

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Boa.Constrictor.Logging;
+﻿using Boa.Constrictor.Logging;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
-using CommunityContentSubmissionPage.Business.Infrastructure;
 using CommunityContentSubmissionPage.Database;
 using CommunityContentSubmissionPage.Test.Common;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
-using Microsoft.Extensions.Configuration;
 using ConfigurationProvider = CommunityContentSubmissionPage.Test.Common.ConfigurationProvider;
 
 namespace CommunityContentSubmissionPage.Specs.Hooks
@@ -17,7 +13,6 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
     [Binding]
     public class Hooks
     {
-  
         private readonly ScenarioContext _scenarioContext;
 
         public Hooks(ScenarioContext scenarioContext)
@@ -46,19 +41,19 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
             var actor = new Actor("Chrome", new ConsoleLogger());
             actor.Can(BrowseTheWeb.With(new ChromeDriver()));
 
-            
+
             _scenarioContext.ScenarioContainer.RegisterInstanceAs(actor);
         }
 
-        [AfterScenario()]
+        [AfterScenario]
         public void Cleanup()
         {
             var actor = _scenarioContext.ScenarioContainer.Resolve<Actor>();
             actor.AttemptsTo(QuitWebDriver.ForBrowser());
         }
 
-        [BeforeScenario()]
-        [AfterScenario()]
+        [BeforeScenario]
+        [AfterScenario]
         public void ResetDatabase()
         {
             var databaseContext = GetDatabaseContext();
@@ -73,7 +68,7 @@ namespace CommunityContentSubmissionPage.Specs.Hooks
             var config = ConfigurationProvider.LoadConfiguration();
             var connectionString = config.GetConnectionString("db");
 
-            var databaseContext = new DatabaseContext() {ConnectionString = connectionString};
+            var databaseContext = new DatabaseContext { ConnectionString = connectionString };
             return databaseContext;
         }
     }

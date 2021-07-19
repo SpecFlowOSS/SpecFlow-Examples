@@ -1,6 +1,5 @@
 ﻿using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.WebDriver;
-using CommunityContentSubmissionPage.Specs.Drivers;
 using CommunityContentSubmissionPage.Test.Common;
 using FluentAssertions;
 using TechTalk.SpecFlow;

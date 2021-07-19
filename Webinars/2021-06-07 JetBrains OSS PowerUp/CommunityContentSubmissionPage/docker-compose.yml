@@ -22,7 +22,7 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   db:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
-    ports: 
+    ports:
       - "42068:1433"
     environment:
       SA_PASSWORD: Password123%

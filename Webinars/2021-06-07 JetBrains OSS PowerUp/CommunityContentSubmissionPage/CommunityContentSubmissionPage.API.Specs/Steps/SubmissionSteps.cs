@@ -8,7 +8,7 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
     public class SubmissionSteps
     {
         private readonly SubmissionDriver _submissionDriver;
-        
+
         public SubmissionSteps(SubmissionDriver submissionDriver)
         {
             _submissionDriver = submissionDriver;
@@ -26,7 +26,7 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
             _submissionDriver.AssertNumberOfEntriesStored(expectedCountOfStoredEntries);
         }
 
-        
+
         [Then(@"there is a submission entry stored with the following data:")]
         public void ThenThereIsASubmissionEntryStoredWithTheFollowingData(Table table)
         {
@@ -34,6 +34,5 @@ namespace CommunityContentSubmissionPage.API.Specs.Steps
 
             _submissionDriver.AssertSubmissionEntryData(expectedSubmissionContentEntry);
         }
-
     }
 }

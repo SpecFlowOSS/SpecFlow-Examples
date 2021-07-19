@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using CommunityContentSubmissionPage.Business.Infrastructure;
 using CommunityContentSubmissionPage.Business.Logic;
 using CommunityContentSubmissionPage.Database.Model;
-using Microsoft.AspNetCore.Mvc;
 using CommunityContentSubmissionPage.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityContentSubmissionPage.Controllers
 {
@@ -29,12 +25,9 @@ namespace CommunityContentSubmissionPage.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(SubmissionModel submissionModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(submissionModel);
-            }
+            if (!ModelState.IsValid) return View(submissionModel);
 
-            var submission = new SubmissionEntry()
+            var submission = new SubmissionEntry
             {
                 Url = submissionModel.Url,
                 Type = submissionModel.Type,

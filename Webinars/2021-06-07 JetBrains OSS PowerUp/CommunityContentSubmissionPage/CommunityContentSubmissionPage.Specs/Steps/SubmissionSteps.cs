@@ -6,10 +6,8 @@ using Boa.Constrictor.WebDriver;
 using CommunityContentSubmissionPage.Specs.Drivers;
 using CommunityContentSubmissionPage.Specs.Interactions;
 using CommunityContentSubmissionPage.Specs.Pages;
-using CommunityContentSubmissionPage.Specs.Support;
 using CommunityContentSubmissionPage.Test.Common;
 using FluentAssertions;
-using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -20,7 +18,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
     {
         private readonly Actor _actor;
         private readonly SubmissionDriver _submissionDriver;
-        
+
         public SubmissionSteps(SubmissionDriver submissionDriver, Actor actor)
         {
             _submissionDriver = submissionDriver;
@@ -59,7 +57,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
                     inputFieldLocator = SubmissionPage.PrivacyPolicy;
                     labelLocator = SubmissionPage.PrivacyPolicyLabel;
                     break;
-                default: 
+                default:
                     throw new NotImplementedException();
             }
 
@@ -71,7 +69,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void GivenTheFilledOutSubmissionEntryForm(Table table)
         {
             var rows = table.CreateSet<SubmissionEntryFormRowObject>();
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(rows));
         }
 
@@ -97,14 +95,15 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         [Then(@"the submitting of data was possible")]
         public void ThenTheSubmittingOfDataWasPossible()
         {
-            
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should().EndWith("Success", "because the success page should be displayed");
+            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
+                .EndWith("Success", "because the success page should be displayed");
         }
 
         [Then(@"the submitting of data was not possible")]
         public void ThenTheSubmittingOfDataWasNotPossible()
         {
-            _actor.AsksFor(CurrentUrl.FromBrowser()).Should().NotEndWith("Success", "the input form page should be displayed again");
+            _actor.AsksFor(CurrentUrl.FromBrowser()).Should()
+                .NotEndWith("Success", "the input form page should be displayed again");
         }
 
 
@@ -112,10 +111,10 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void ThenYouCanChooseFromTheFollowingTypes(Table table)
         {
             var expectedTypenameEntries = table.CreateSet<TypenameEntry>();
-            var actualTypes = _actor.AsksFor(SelectOptionsAvailable.For(SubmissionPage.TypeSelect)).Select(i => new TypenameEntry(i));
+            var actualTypes = _actor.AsksFor(SelectOptionsAvailable.For(SubmissionPage.TypeSelect))
+                .Select(i => new TypenameEntry(i));
 
             actualTypes.Should().BeEquivalentTo(expectedTypenameEntries);
-
         }
 
         [Given(@"the submission entry form is filled")]
@@ -123,14 +122,14 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         {
             var submissionEntryFormRowObjects = new List<SubmissionEntryFormRowObject>
             {
-                new SubmissionEntryFormRowObject("Url", "https://example.org"),
-                new SubmissionEntryFormRowObject("Type", "Blog Posts"),
-                new SubmissionEntryFormRowObject("Email", "someone@example.org"),
-                new SubmissionEntryFormRowObject("Description", "something really cool"),
-                new SubmissionEntryFormRowObject("Name", "Jane Doe"),
-                new SubmissionEntryFormRowObject("Privacy Policy", "true")
+                new("Url", "https://example.org"),
+                new("Type", "Blog Posts"),
+                new("Email", "someone@example.org"),
+                new("Description", "something really cool"),
+                new("Name", "Jane Doe"),
+                new("Privacy Policy", "true")
             };
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
         }
 
@@ -138,10 +137,7 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         public void GivenThePrivacyPolicyIsNotAccepted()
         {
             var privacyPolicyIsChecked = _actor.AskingFor(SelectedState.Of(SubmissionPage.PrivacyPolicy));
-            if (privacyPolicyIsChecked)
-            {
-                _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
-            }
+            if (privacyPolicyIsChecked) _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
         }
 
         [Given(@"the privacy policy is accepted")]
@@ -171,12 +167,12 @@ namespace CommunityContentSubmissionPage.Specs.Steps
         {
             var submissionEntryFormRowObjects = new List<SubmissionEntryFormRowObject>
             {
-                new SubmissionEntryFormRowObject("Url", "https://example.org"),
-                new SubmissionEntryFormRowObject("Type", "Blog Posts"),
-                new SubmissionEntryFormRowObject("Email", "someone@example.org"),
-                new SubmissionEntryFormRowObject("Description", "something really cool")
+                new("Url", "https://example.org"),
+                new("Type", "Blog Posts"),
+                new("Email", "someone@example.org"),
+                new("Description", "something really cool")
             };
-            
+
             _actor.AttemptsTo(FillOutSubmissionForm.With(submissionEntryFormRowObjects));
             _actor.AttemptsTo(Click.On(SubmissionPage.PrivacyPolicy));
         }
@@ -206,7 +202,5 @@ namespace CommunityContentSubmissionPage.Specs.Steps
             _actor.AttemptsTo(Navigate.ToUrl(ConfigurationProvider.BaseAddress));
             GivenTheSubmissionEntryFormIsFilled();
         }
-
-
     }
 }
