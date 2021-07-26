@@ -37,7 +37,7 @@ namespace CommunityContentSubmissionPage.Specs.Interactions
                         actor.AttemptsTo(SendKeys.To(SubmissionPage.DescriptionInputField, row.Value));
                         break;
                     case "NAME":
-                        //actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, row.Value));
+                        actor.AttemptsTo(SendKeys.To(SubmissionPage.NameField, row.Value));
                         break;
                     default:
                         throw new NotImplementedException();

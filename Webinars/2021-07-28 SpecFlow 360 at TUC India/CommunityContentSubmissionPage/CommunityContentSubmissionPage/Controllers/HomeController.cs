@@ -40,7 +40,7 @@ namespace CommunityContentSubmissionPage.Controllers
                 Type = submissionModel.Type,
                 Email = submissionModel.Email,
                 Description = submissionModel.Description,
-                //Name = submissionModel.Name
+                Name = submissionModel.Name
             };
 
             await _submissionSaver.Save(submission);
