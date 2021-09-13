@@ -4,4 +4,4 @@ This folder contains a library of examples of how you can use SpecFlow with .NET
 
 ## Projects
 
-- [Class library](https://github.com/SpecFlowOSS/SpecFlow-Examples/tree/master/.NET%206/ClassLibrary)
+- [Class library](.\ClassLibrary\README.md)
