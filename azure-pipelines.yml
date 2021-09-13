@@ -1,7 +1,7 @@
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022'
 
-steps:
+steps:    
 - task: PowerShell@2
   inputs:
     targetType: 'filePath'
