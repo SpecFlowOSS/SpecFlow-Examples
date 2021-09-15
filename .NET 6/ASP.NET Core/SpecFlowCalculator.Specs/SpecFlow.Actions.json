@@ -1,0 +1,5 @@
+{
+  "selenium": {
+    "browser": "chrome"
+  }
+}
