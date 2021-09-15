@@ -1,23 +1,23 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.Diagnostics;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Specs.Hooks
 {
     [Binding]
     public sealed class EnvironmentSetupHooks
     {
-        public EnvironmentSetupHooks()
+        private static Process _webApp;
+
+        [BeforeTestRun]
+        public static void BeforeScenario()
         {
-            
+            _webApp = Process.Start(@"C:\Users\jorwe\source\repos\SpecFlow-Examples\.NET 6\ASP.NET Core\SpecFlowCalculator\bin\Debug\net6.0\SpecFlowCalculator.exe");
         }
 
-        [BeforeScenario(Order = 0)]
-        public void BeforeScenario()
+        [AfterTestRun]
+        public static void AfterScenario()
         {
-        }
-
-        [AfterScenario(Order = 0)]
-        public void AfterScenario()
-        {
+            _webApp.Dispose();
         }
     }
 }

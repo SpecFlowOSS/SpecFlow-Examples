@@ -7,7 +7,7 @@ namespace SpecFlowCalculator.Specs.PageObjects
     {
         private readonly IBrowserInteractions _browserInteractions;
 
-        private const string PageUrl = "https://localhost:44311/";
+        private const string PageUrl = "https://localhost:5001/";
 
         private IWebElement FirstNumber => _browserInteractions.WaitAndReturnElement(By.Id("firstNumber"));
 
