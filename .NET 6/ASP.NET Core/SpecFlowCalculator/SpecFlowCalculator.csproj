@@ -6,12 +6,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Logo 640.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Update="Views\Home\Index.cshtml">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\Logo 640.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
 
