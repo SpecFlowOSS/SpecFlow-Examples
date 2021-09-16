@@ -29,3 +29,9 @@ Scenario: Divide two numbers
 	And the second number is 2
 	When the two numbers are divided
 	Then the result should be 25
+
+Scenario: Divide by 0
+	Given the first number is 0
+	And the second number is 2
+	When the two numbers are divided
+	Then the result should be 0
