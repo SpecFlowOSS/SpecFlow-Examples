@@ -12,7 +12,7 @@ namespace SpecFlowCalculator.Specs.Hooks
         [BeforeTestRun]
         public static void BeforeScenario()
         {
-            Directory.SetCurrentDirectory("../../../../SpecFlowCalculator/bin/Debug/net6.0/");
+            Directory.SetCurrentDirectory("../../../../SpecFlowCalculator/bin/Debug/net6.0");
 
             _process = Process.Start("SpecFlowCalculator.exe");
         }
