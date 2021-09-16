@@ -14,7 +14,7 @@ namespace SpecFlowCalculator.Specs.Hooks
         {
             // _process = Process.Start("../../../../SpecFlowCalculator/bin/Debug/net6.0/SpecFlowCalculator.exe");
 
-            _process = Process.Start(@"D:\a\1\s\.NET 6\ASP.NET Core\SpecFlowCalculator.Specs\obj\Debug\net6.0\SpecFlowCalculator.exe");
+            _process = Process.Start(@"D:\a\1\s\.NET 6\ASP.NET Core\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.exe");
         }
 
         [AfterTestRun]
