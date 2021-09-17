@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.IO;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Specs.Hooks
@@ -13,10 +12,6 @@ namespace SpecFlowCalculator.Specs.Hooks
         public static void BeforeTestRun()
         {
             _process = Process.Start("../../../../SpecFlowCalculator/bin/Debug/net6.0/SpecFlowCalculator.exe");
-
-            // Directory.SetCurrentDirectory(@"D:\a\1\s\.NET 6\ASP.NET Core\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.exe");
-
-            // _process = Process.Start(@"D:\a\1\s\.NET 6\ASP.NET Core\SpecFlowCalculator\obj\Debug\net6.0\SpecFlowCalculator.exe");
         }
 
         [AfterTestRun]

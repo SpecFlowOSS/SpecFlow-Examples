@@ -1,18 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpecFlowCalculator.Models;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
 
 namespace SpecFlowCalculator.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly Calculator _calculator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
             _calculator = new Calculator();
         }
 
