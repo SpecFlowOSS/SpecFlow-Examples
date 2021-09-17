@@ -1,5 +1,7 @@
 {
   "selenium": {
-    "browser": "chrome"
+    "browser": "chrome",
+    "defaultTimeout": 60,
+    "pollingInterval": 5
   }
 }
