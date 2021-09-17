@@ -2,7 +2,7 @@
   "selenium": {
     "browser": "chrome",
     "arguments": [
-      "no-sandbox"
+      "--no-sandbox"
     ]
   }
 }
