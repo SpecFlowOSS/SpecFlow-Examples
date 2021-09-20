@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Specs.Hooks
@@ -18,6 +20,9 @@ namespace SpecFlowCalculator.Specs.Hooks
             _host = Program.CreateHostBuilder(null).UseContentRoot(contentRoot).Build();
 
             _host.Start();
+
+            var logger = _host.Services.GetRequiredService<ILogger<Program>>();
+            logger.LogInformation("Content root: {contentRoot}", contentRoot);
         }
 
         [AfterTestRun]
