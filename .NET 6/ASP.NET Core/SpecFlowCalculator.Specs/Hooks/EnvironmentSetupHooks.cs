@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.IO;
+using Microsoft.Extensions.Hosting;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Specs.Hooks
@@ -6,19 +8,22 @@ namespace SpecFlowCalculator.Specs.Hooks
     [Binding]
     public sealed class EnvironmentSetupHooks
     {
-        private static Process _process;
-
+        private static IHost _host;
+        
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            _process = Process.Start("../../../../SpecFlowCalculator/bin/Debug/net6.0/SpecFlowCalculator.exe");
+            var contentRoot = Path.Combine(Environment.CurrentDirectory, "../../../../SpecFlowCalculator");
+
+            _host = Program.CreateHostBuilder(null).UseContentRoot(contentRoot).Build();
+
+            _host.Start();
         }
 
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            // Close() or Dispose() do not stop the process
-            _process.Kill();
+            _host.StopAsync().Wait();
         }
     }
 }
