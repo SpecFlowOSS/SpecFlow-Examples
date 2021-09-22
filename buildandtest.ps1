@@ -2,11 +2,7 @@ $skipTestExecution =
 (
 	'*ExternalDataSample\Specs.sln',
 	'*GherkinFormattingExamples\GherkinFormattingExamples.sln',
-	'*Webinars\2021-04-28 SpecFlow 360\CommunityContentSubmissionPage\CommunityContentSubmissionPage.sln',
-	'*Webinars\2021-05-26 Output API\CommunityContentSubmissionPage\CommunityContentSubmissionPage.sln',
-	'*Webinars\2021-06-07 JetBrains OSS PowerUp\CommunityContentSubmissionPage\CommunityContentSubmissionPage.sln',
-	'*Webinars\2021-06-17 LambdaTest\CalculatorSelenium\CalculatorSelenium.sln',
-	'*Webinars\2021-07-28 SpecFlow 360 at TUC India\CommunityContentSubmissionPage\CommunityContentSubmissionPage.sln'
+	'*CommunityContentSubmissionPage\CommunityContentSubmissionPage.sln'
 )
 
 
