@@ -1,7 +1,11 @@
 pool:
   vmImage: 'windows-2022'
 
-steps:    
+steps:
+- task: CmdLine@2
+  inputs:
+    script: 'dotnet dev-certs https --trust'
+    
 - task: PowerShell@2
   inputs:
     targetType: 'filePath'
