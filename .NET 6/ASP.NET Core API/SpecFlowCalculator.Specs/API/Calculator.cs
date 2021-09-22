@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using RestSharp;
 
 namespace SpecFlowCalculator.Specs.API
@@ -14,6 +15,9 @@ namespace SpecFlowCalculator.Specs.API
         public Calculator()
         {
             _client = new RestClient("https://localhost:5001");
+
+            ServicePointManager.ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
         }
 
         public async Task<int> AddAsync()
@@ -54,7 +58,7 @@ namespace SpecFlowCalculator.Specs.API
     }
 
     internal sealed class CalculatorResponse
-    {
+    { 
         public int Result { get; set; }
     }
 }
