@@ -1,5 +1,8 @@
 {
   "selenium": {
-    "browser": "chrome"
+    "browser": "chrome",
+    "Arguments": [
+      "--disable-web-security"
+    ] 
   }
 }
