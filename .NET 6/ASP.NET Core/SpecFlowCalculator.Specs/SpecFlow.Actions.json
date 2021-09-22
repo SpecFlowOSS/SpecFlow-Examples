@@ -1,8 +1,0 @@
-{
-  "selenium": {
-    "browser": "chrome",
-    "arguments": [
-      "--no-sandbox"
-    ]
-  }
-}

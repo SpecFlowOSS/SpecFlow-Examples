@@ -9,13 +9,11 @@ namespace SpecFlowCalculator.Specs.Hooks
     public sealed class EnvironmentSetupHooks
     {
         private static IHost _host;
-        
+
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            var contentRoot = Path.Combine(Environment.CurrentDirectory, "../../../../SpecFlowCalculator");
-
-            _host = Program.CreateHostBuilder(null).UseContentRoot(contentRoot).Build();
+            _host = Program.CreateHostBuilder(null).UseContentRoot(Path.Combine(Environment.CurrentDirectory, "../../../../SpecFlowCalculator")).Build();
 
             _host.Start();
         }

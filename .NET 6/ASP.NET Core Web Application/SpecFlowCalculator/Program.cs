@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace SpecFlowCalculator
 {
@@ -17,9 +16,6 @@ namespace SpecFlowCalculator
                 {
                     webBuilder.UseContentRoot(@"../../..");
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureLogging(logger =>
-                {
-                    logger.AddConsole();
                 });
     }
 }

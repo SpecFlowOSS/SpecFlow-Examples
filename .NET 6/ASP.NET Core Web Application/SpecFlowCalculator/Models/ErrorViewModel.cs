@@ -1,3 +1,5 @@
+using System;
+
 namespace SpecFlowCalculator.Models
 {
     public class ErrorViewModel
