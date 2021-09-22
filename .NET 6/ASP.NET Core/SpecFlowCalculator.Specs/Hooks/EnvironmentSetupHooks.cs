@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using Microsoft.Extensions.DependencyInjection;
+using System.Net;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowCalculator.Specs.Hooks
@@ -15,14 +14,14 @@ namespace SpecFlowCalculator.Specs.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
+            ServicePointManager.ServerCertificateValidationCallback +=
+                (sender, cert, chain, sslPolicyErrors) => true;
+
             var contentRoot = Path.Combine(Environment.CurrentDirectory, "../../../../SpecFlowCalculator");
 
             _host = Program.CreateHostBuilder(null).UseContentRoot(contentRoot).Build();
 
             _host.Start();
-
-            var logger = _host.Services.GetRequiredService<ILogger<Program>>();
-            logger.LogInformation("Content root: {contentRoot}", contentRoot);
         }
 
         [AfterTestRun]
