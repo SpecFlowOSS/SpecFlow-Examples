@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using Microsoft.Extensions.Hosting;
 using TechTalk.SpecFlow;
 
@@ -14,9 +13,6 @@ namespace SpecFlowCalculator.Specs.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            ServicePointManager.ServerCertificateValidationCallback +=
-                (sender, cert, chain, sslPolicyErrors) => true;
-
             var contentRoot = Path.Combine(Environment.CurrentDirectory, "../../../../SpecFlowCalculator");
 
             _host = Program.CreateHostBuilder(null).UseContentRoot(contentRoot).Build();
