@@ -1,8 +1,7 @@
 $skipTestExecution = 
 (
 	'*ExternalDataSample\Specs.sln',
-	'*GherkinFormattingExamples\GherkinFormattingExamples.sln',
-	'*CommunityContentSubmissionPage.sln'
+	'*GherkinFormattingExamples\GherkinFormattingExamples.sln'
 )
 
 
