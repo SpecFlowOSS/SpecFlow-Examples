@@ -16,8 +16,4 @@
 
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Hooks\" />
-	</ItemGroup>
-
 </Project>
