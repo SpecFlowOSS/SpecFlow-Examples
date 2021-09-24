@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace SpecFlowCalculator
 {
-    public partial class Form1 : Form
+    public partial class CalculatorForm : Form
     {
         private readonly Calculator _calculator;
 
-        public Form1()
+        public CalculatorForm()
         {
             InitializeComponent();
 
