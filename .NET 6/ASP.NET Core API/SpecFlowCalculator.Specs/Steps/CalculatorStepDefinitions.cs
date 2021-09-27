@@ -8,10 +8,10 @@ namespace SpecFlowCalculator.Specs.Steps
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
-        private readonly Calculator _calculator;
+        private readonly CalculatorApi _calculator;
         private int _result;
 
-        public CalculatorStepDefinitions(Calculator calculator)
+        public CalculatorStepDefinitions(CalculatorApi calculator)
         {
             _calculator = calculator;
         }

@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace SpecFlowCalculator.Specs.API
 {
-    public class Calculator
+    public class CalculatorApi
     {
         public int FirstNumber { get; set; }
 
@@ -12,7 +12,7 @@ namespace SpecFlowCalculator.Specs.API
 
         private readonly RestClient _client;
 
-        public Calculator()
+        public CalculatorApi()
         {
             _client = new RestClient("https://localhost:5001");
 
