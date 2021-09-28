@@ -1,0 +1,36 @@
+﻿@model CalculatorViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="font-family: roboto" align="center">
+    <div style="margin: 50px">
+        <img src="\Logo 640.png" alt="specFlowLogo" />
+        <h1>Calculator</h1>
+    </div>
+
+    <form>
+        <div class="form-group form-inline" style="width:fit-content">
+            <label style="margin-inline-end: 5px" for="firstNumber">First Number</label>
+            <input type="number" class="form-control" id="firstNumber" value="@Model.FirstNumber" name="FirstNumber">
+        </div>
+
+        <div class="form-group form-inline" style="width:fit-content">
+            <label style="margin-inline-end: 5px" for="secondNumber">Second Number</label>
+            <input type="number" class="form-control" id="secondNumber" value="@Model.SecondNumber" name="SecondNumber">
+        </div>
+
+        <div class="form-group form-inline" style="width:fit-content">
+            <button asp-action="Add" formmethod="post" aspac class="btn btn-outline-primary" id="add" style="margin-inline-end: 5px" type="submit">Add</button>
+            <button asp-action="Subtract" formmethod="post" class="btn btn-outline-primary" id="subtract" style="margin-inline-end: 5px" type="submit">Subtract</button>
+            <button asp-action="Multiply" formmethod="post" class="btn btn-outline-primary" id="multiply" style="margin-inline-end: 5px" type="submit">Multiply</button>
+            <button asp-action="Divide" formmethod="post" class="btn btn-outline-primary" id="divide" type="submit">Divide</button>
+        </div>
+
+        <div class="form-group form-inline" style="width:fit-content">
+            <label style="margin-inline-end: 5px" for="secondNumber">Result</label>
+            <input class="form-control" type="number" id="result" value="@Model.Result" readonly>
+        </div>
+    </form>
+</div>

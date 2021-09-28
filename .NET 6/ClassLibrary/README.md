@@ -4,7 +4,7 @@ This project contains a working example of how to test a class library using Spe
 
 ## Projects
 
-### SpecFlowCalculator.sln
+### SpecFlowCalculator
 
 A class library containing one class, [Calculator.cs](./SpecFlowCalculator/Calculator.cs), which is the subject under test.
 
