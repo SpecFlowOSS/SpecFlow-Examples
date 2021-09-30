@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SpecFlowCalculator"
         mc:Ignorable="d"
         Title="SpecFlow Calculator" Height="330" Width="320" FontFamily="Roboto">
     <Grid>
@@ -36,9 +35,10 @@
             </Grid.ColumnDefinitions>
 
             <Label VerticalAlignment="Center">First Number</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10"></TextBox>
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Second Number</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10"></TextBox>
+            <TextBox Name="FirstNumber" Grid.Row="0" Grid.Column="1" Margin="10"></TextBox>
+            <TextBox Name="SecondNumber" Grid.Row="1" Grid.Column="1" Margin="10"></TextBox>
+
 
             <Grid Grid.Row="2" ColumnSpan="2" Grid.Column="0">
                 <Grid.ColumnDefinitions>
@@ -50,10 +50,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Button Margin="10">Add</Button>
-                <Button Grid.Row="0" Grid.Column="1" Margin="10">Subtract</Button>
-                <Button Grid.Row="1" Grid.Column="0" Margin="10">Multiply</Button>
-                <Button Grid.Row="1" Grid.Column="1" Margin="10">Divide</Button>
+                <Button Name="Add" Margin="10" Click="Add_Click">Add</Button>
+                <Button Name="Subtract" Grid.Row="0" Grid.Column="1" Margin="10" Click="Subtract_Click">Subtract</Button>
+                <Button Name="Multiply" Grid.Row="1" Grid.Column="0" Margin="10" Click="Multiply_Click">Multiply</Button>
+                <Button Name="Divide" Grid.Row="1" Grid.Column="1" Margin="10" Click="Divide_Click">Divide</Button>
             </Grid>
 
         </Grid>
@@ -65,7 +65,7 @@
             </Grid.ColumnDefinitions>
 
             <Label VerticalAlignment="Center">Result</Label>
-            <TextBox Grid.Column="1" Margin="10" IsEnabled="False"></TextBox>
+            <TextBox Name="Result" Grid.Column="1" Margin="10" IsEnabled="False"></TextBox>
         </Grid>
 
     </Grid>
