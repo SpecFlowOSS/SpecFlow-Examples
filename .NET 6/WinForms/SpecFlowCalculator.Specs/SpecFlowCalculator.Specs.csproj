@@ -6,14 +6,29 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Appium.WebDriver" Version="4.3.1" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-		<PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.5" />
-		<PackageReference Include="SpecFlow.NUnit" Version="3.9.8" />
-		<PackageReference Include="nunit" Version="3.13.1" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-		<PackageReference Include="FluentAssertions" Version="5.10.3" />
+	  <None Remove="specflow.actions.json" />
+	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Include="specflow.actions.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Appium.WebDriver" Version="4.3.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+		<PackageReference Include="SpecFlow.Actions.WindowsAppDriver" Version="0.1.136" />
+		<PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
+		<PackageReference Include="nunit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+		<PackageReference Include="FluentAssertions" Version="6.1.0" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Hooks\" />
 	</ItemGroup>
 
 </Project>

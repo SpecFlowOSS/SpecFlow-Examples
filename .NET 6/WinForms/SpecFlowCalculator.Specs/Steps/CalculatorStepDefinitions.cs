@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.IO;
+using FluentAssertions;
 using SpecFlowCalculator.Specs.CalculatorApp;
 using TechTalk.SpecFlow;
 

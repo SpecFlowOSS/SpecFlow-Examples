@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium.Appium.Windows;
-using SpecFlowCalculator.Specs.Drivers;
+using SpecFlow.Actions.WindowsAppDriver;
 
 namespace SpecFlowCalculator.Specs.CalculatorApp
 {
