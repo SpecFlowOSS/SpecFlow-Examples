@@ -36,8 +36,8 @@
 
             <Label VerticalAlignment="Center">First Number</Label>
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Second Number</Label>
-            <TextBox Name="FirstNumber" Grid.Row="0" Grid.Column="1" Margin="10"></TextBox>
-            <TextBox Name="SecondNumber" Grid.Row="1" Grid.Column="1" Margin="10"></TextBox>
+            <TextBox Name="FirstNumber" Grid.Row="0" Grid.Column="1" Margin="10" AutomationProperties.AutomationId="textBox_firstNumber"></TextBox>
+            <TextBox Name="SecondNumber" Grid.Row="1" Grid.Column="1" Margin="10" AutomationProperties.AutomationId="textBox_secondNumber"></TextBox>
 
 
             <Grid Grid.Row="2" ColumnSpan="2" Grid.Column="0">
@@ -50,10 +50,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Button Name="Add" Margin="10" Click="Add_Click">Add</Button>
-                <Button Name="Subtract" Grid.Row="0" Grid.Column="1" Margin="10" Click="Subtract_Click">Subtract</Button>
-                <Button Name="Multiply" Grid.Row="1" Grid.Column="0" Margin="10" Click="Multiply_Click">Multiply</Button>
-                <Button Name="Divide" Grid.Row="1" Grid.Column="1" Margin="10" Click="Divide_Click">Divide</Button>
+                <Button Name="Add" Margin="10" Click="Add_Click" AutomationProperties.AutomationId="button_add">Add</Button>
+                <Button Name="Subtract" Grid.Row="0" Grid.Column="1" Margin="10" Click="Subtract_Click" AutomationProperties.AutomationId="button_subtract">Subtract</Button>
+                <Button Name="Multiply" Grid.Row="1" Grid.Column="0" Margin="10" Click="Multiply_Click" AutomationProperties.AutomationId="button_multiply">Multiply</Button>
+                <Button Name="Divide" Grid.Row="1" Grid.Column="1" Margin="10" Click="Divide_Click" AutomationProperties.AutomationId="button_divide">Divide</Button>
             </Grid>
 
         </Grid>
@@ -65,7 +65,7 @@
             </Grid.ColumnDefinitions>
 
             <Label VerticalAlignment="Center">Result</Label>
-            <TextBox Name="Result" Grid.Column="1" Margin="10" IsEnabled="False"></TextBox>
+            <TextBox Name="Result" Grid.Column="1" Margin="10" IsEnabled="False" AutomationProperties.AutomationId="textBox_result"></TextBox>
         </Grid>
 
     </Grid>
