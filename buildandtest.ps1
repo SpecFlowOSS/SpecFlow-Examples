@@ -1,4 +1,4 @@
-$skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln')
+$skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln', '*WinForms\WinForms.sln', '*WPF\WPF.sln')
 
 
 ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
