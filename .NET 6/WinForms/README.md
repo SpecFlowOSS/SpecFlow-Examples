@@ -1,4 +1,4 @@
-# Testing a class library using .NET 6
+# Testing a Winforms application using .NET 6
 
 This project contains a working example of how to test a WinForms application using SpecFlow and .NET 6.
 
