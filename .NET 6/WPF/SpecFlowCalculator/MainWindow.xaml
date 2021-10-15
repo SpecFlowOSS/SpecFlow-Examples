@@ -1,0 +1,72 @@
+﻿<Window x:Class="SpecFlowCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SpecFlow Calculator" Height="330" Width="320" FontFamily="Roboto">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Source="Logo 1280 (1).png"></Image>
+            <Label Grid.Row="1" FontSize="16" HorizontalContentAlignment="Center">Calculator</Label>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label VerticalAlignment="Center">First Number</Label>
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Second Number</Label>
+            <TextBox Name="FirstNumber" Grid.Row="0" Grid.Column="1" Margin="10" AutomationProperties.AutomationId="textBox_firstNumber"></TextBox>
+            <TextBox Name="SecondNumber" Grid.Row="1" Grid.Column="1" Margin="10" AutomationProperties.AutomationId="textBox_secondNumber"></TextBox>
+
+
+            <Grid Grid.Row="2" ColumnSpan="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Name="Add" Margin="10" Click="Add_Click" AutomationProperties.AutomationId="button_add">Add</Button>
+                <Button Name="Subtract" Grid.Row="0" Grid.Column="1" Margin="10" Click="Subtract_Click" AutomationProperties.AutomationId="button_subtract">Subtract</Button>
+                <Button Name="Multiply" Grid.Row="1" Grid.Column="0" Margin="10" Click="Multiply_Click" AutomationProperties.AutomationId="button_multiply">Multiply</Button>
+                <Button Name="Divide" Grid.Row="1" Grid.Column="1" Margin="10" Click="Divide_Click" AutomationProperties.AutomationId="button_divide">Divide</Button>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label VerticalAlignment="Center">Result</Label>
+            <TextBox Name="Result" Grid.Column="1" Margin="10" IsEnabled="False" AutomationProperties.AutomationId="textBox_result"></TextBox>
+        </Grid>
+
+    </Grid>
+</Window>

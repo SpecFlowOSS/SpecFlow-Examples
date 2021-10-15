@@ -7,4 +7,5 @@ This folder contains a library of examples of how you can use SpecFlow with .NET
 - [Class library](./ClassLibrary)
 - [ASP.NET Core Web Application](./ASP.NET%20Core%20Web%20Application)
 - [ASP.NET Core API](./ASP.NET%20Core%20API)
-- [ASP.NET Core API](./WinForms)
+- [WinForms](./WinForms)
+- [WPF](./WPF)

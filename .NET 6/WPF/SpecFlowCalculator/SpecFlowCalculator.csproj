@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Logo 1280 %281%29.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Logo 1280 (1).png" />
+	</ItemGroup>
+
+</Project>
