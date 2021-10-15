@@ -1,0 +1,8 @@
+{
+  "windowsAppDriver": {
+    "capabilities": {
+      "app": "../../../../SpecFlowCalculator/bin/Debug/net6.0-windows/SpecFlowCalculator.exe"
+    },
+    "WindowsAppDriverPath": "C:/Program Files/Windows Application Driver/WinAppDriver.exe"
+  }
+}
