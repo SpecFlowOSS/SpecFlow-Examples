@@ -7,33 +7,44 @@ using TechTalk.SpecFlow.TestFramework;
 
 namespace SpecFlowCalculator.Specs.Drivers
 {
-    public class AppDriver
+    public class AppDriver : IDisposable
     {
-        private readonly ITestRunContext _testRunContext;
-        private AppiumOptions _appiumOptions;
+        private readonly Lazy<AndroidDriver<AndroidElement>> _lazyAndroidDriver;
         private AppiumLocalService _appiumLocalService;
-
-        private Lazy<AndroidDriver<AndroidElement>> _lazyAndroidDriver;
 
         public AndroidDriver<AndroidElement> Current => _lazyAndroidDriver.Value;
 
         public AppDriver(ITestRunContext testRunContext)
         {
-            _testRunContext = testRunContext;
-            _appiumOptions = new AppiumOptions();
+            var appiumOptions = new AppiumOptions();
 
-            _appiumOptions.AddAdditionalCapability("automationName", "Appium");
-            _appiumOptions.AddAdditionalCapability("platformName", "Android");
-            _appiumOptions.AddAdditionalCapability("deviceName", "Android Emulator");
-            _appiumOptions.AddAdditionalCapability("app", Path.Combine(_testRunContext.GetTestDirectory(), "SpecFlowCalculator/bin/Debug/com.companyname.specflowcalculator.apk"));
+            appiumOptions.AddAdditionalCapability("automationName", "UiAutomator2");
+            appiumOptions.AddAdditionalCapability("platformName", "Android");
+            appiumOptions.AddAdditionalCapability("platformVersion", "11.0");
+            appiumOptions.AddAdditionalCapability("deviceName", "Pixel XL");
+            appiumOptions.AddAdditionalCapability("app", "C:/Users/jorwe/source/repos/SpecFlow-Examples/.NET 6/Android Mobile App/SpecFlowCalculator/bin/Debug/com.companyname.specflowcalculator.apk");
+            appiumOptions.AddAdditionalCapability("avd", "pixel_3a_xl_r_11_0_-_api_30");
 
 
-            _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().Build();
+            //_appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().Build();
 
-            _appiumLocalService.Start();
+            //_appiumLocalService.Start();
 
             _lazyAndroidDriver =
-                new Lazy<AndroidDriver<AndroidElement>>(new AndroidDriver<AndroidElement>(_appiumLocalService, _appiumOptions));
+                new Lazy<AndroidDriver<AndroidElement>>(new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/wd/hub"), appiumOptions));
+        }
+
+        public void Dispose()
+        {
+            if (_appiumLocalService.IsRunning)
+            {
+                _appiumLocalService.Dispose();
+            }
+
+            if (_lazyAndroidDriver.IsValueCreated)
+            {
+                Current.Close();
+            }
         }
     }
 }
