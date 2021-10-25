@@ -2,6 +2,7 @@
 using System.IO;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service;
 using TechTalk.SpecFlow.TestFramework;
 
@@ -18,12 +19,10 @@ namespace SpecFlowCalculator.Specs.Drivers
         {
             var appiumOptions = new AppiumOptions();
 
-            appiumOptions.AddAdditionalCapability("automationName", "UiAutomator2");
-            appiumOptions.AddAdditionalCapability("platformName", "Android");
-            appiumOptions.AddAdditionalCapability("platformVersion", "11.0");
-            appiumOptions.AddAdditionalCapability("deviceName", "Pixel XL");
-            appiumOptions.AddAdditionalCapability("app", "C:/Users/jorwe/source/repos/SpecFlow-Examples/.NET 6/Android Mobile App/SpecFlowCalculator/bin/Debug/com.companyname.specflowcalculator.apk");
-            appiumOptions.AddAdditionalCapability("avd", "pixel_3a_xl_r_11_0_-_api_30");
+            appiumOptions.AddAdditionalCapability(MobileCapabilityType.AutomationName, "UiAutomator2");
+            appiumOptions.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "11.0");
+            appiumOptions.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.companyname.specflowcalculator");
+            appiumOptions.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc6451aad8f0eac5360f.MainActivity");
 
 
             //_appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().Build();
@@ -31,7 +30,7 @@ namespace SpecFlowCalculator.Specs.Drivers
             //_appiumLocalService.Start();
 
             _lazyAndroidDriver =
-                new Lazy<AndroidDriver<AndroidElement>>(new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/wd/hub"), appiumOptions));
+                new Lazy<AndroidDriver<AndroidElement>>(new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), appiumOptions, TimeSpan.FromSeconds(60)));
         }
 
         public void Dispose()
