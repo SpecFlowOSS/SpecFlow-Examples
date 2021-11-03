@@ -1,15 +1,11 @@
 ﻿using OpenQA.Selenium.Appium.Android;
-using SpecFlowCalculator.Specs.Drivers;
 
 namespace SpecFlowCalculator.Specs.App
 {
     public class CalculatorForm
     {
-        private readonly AppDriver _appDriver;
-
-        public CalculatorForm(AppDriver appDriver)
+        public CalculatorForm()
         {
-            _appDriver = appDriver;
         }
 
         public AndroidElement FirstNumberTextBox =>

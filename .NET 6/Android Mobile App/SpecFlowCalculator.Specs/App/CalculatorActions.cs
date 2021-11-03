@@ -1,14 +1,9 @@
-﻿using SpecFlowCalculator.Specs.Drivers;
-
-namespace SpecFlowCalculator.Specs.App
+﻿namespace SpecFlowCalculator.Specs.App
 {
     public class CalculatorActions : CalculatorForm
     {
-        private readonly AppDriver _appDriver;
-
-        public CalculatorActions(AppDriver appDriver) : base(appDriver)
+        public CalculatorActions() : base()
         {
-            _appDriver = appDriver;
         }
 
         public void EnterFirstNumber(string number)
