@@ -1,9 +1,14 @@
-﻿namespace SpecFlowCalculator.Specs.App
+﻿using SpecFlow.Actions.Android.Driver;
+
+namespace SpecFlowCalculator.Specs.App
 {
     public class CalculatorActions : CalculatorForm
     {
-        public CalculatorActions() : base()
+        private readonly AndroidAppDriver _androidAppDriver;
+
+        public CalculatorActions(AndroidAppDriver androidAppDriver) : base(androidAppDriver)
         {
+            _androidAppDriver = androidAppDriver;
         }
 
         public void EnterFirstNumber(string number)
