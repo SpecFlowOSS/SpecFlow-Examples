@@ -21,8 +21,16 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 				Write-Output $generatorPlugin
 				iex "dotnet build '$generatorPlugin'"
 			}
-			
-			iex "dotnet test '$fullname'"
+
+			if ($fullname -match 'Android Mobile App.sln') 
+			{
+				iex "msbuild.exe '$fullname'"
+			}
+			else 
+			{
+				iex "dotnet test '$fullname'"
+			}
+
 			if ($lastexitcode -ne 0)
 			{
 				break;
