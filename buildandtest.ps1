@@ -22,14 +22,7 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 				iex "dotnet build '$generatorPlugin'"
 			}
 
-			if ($fullname -match 'Android Mobile App.sln') 
-			{
-				iex "msbuild.exe '$fullname'"
-			}
-			else 
-			{
-				iex "dotnet test '$fullname'"
-			}
+		    iex "dotnet test '$fullname'"
 
 			if ($lastexitcode -ne 0)
 			{
@@ -40,7 +33,15 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 		{
 			Write-Output "Test execution of '$fullname' was skipped because it contains failing tests. Building solution."
 			
-			iex "dotnet build '$fullname'"
+			if ($fullname -match 'Android Mobile App.sln') 
+			{
+				iex "msbuild.exe '$fullname'"
+			}
+			else 
+			{
+				iex "dotnet test '$fullname'"
+			}
+
 			if ($lastexitcode -ne 0)
 			{
 				break;
