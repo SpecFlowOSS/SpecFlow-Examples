@@ -1,5 +1,28 @@
 $skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln', '*WinForms\WinForms.sln', '*WPF\WPF.sln', '*Android Mobile App\Android Mobile App.sln')
 
+function Get-MSBuild
+{
+    If ($vsWhere = Get-Command "vswhere.exe" -ErrorAction SilentlyContinue) 
+    {
+        $vsWhere = $vsWhere.Path
+    } 
+    ElseIf (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe") 
+    {
+        $vsWhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+    }
+    Else 
+    {
+        Write-Error "vswhere not found. Aborting." -ErrorAction Stop
+    }
+
+    Write-Host "vswhere found at: $vsWhere" -ForegroundColor Yellow
+
+    $path = &$vsWhere -prerelease -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
+
+    Write-Host "MSBuild found at: $path" -ForegroundColor Yellow
+
+    return $path
+}Invoke-Expression "dotnet restore 'C:\Users\jorwe\source\repos\SpecFlow-Examples\.NET 6\Android Mobile App\Android Mobile App.sln'"
 
 ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 {
@@ -35,7 +58,10 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 			
 			if ($fullname -match 'Android Mobile App.sln') 
 			{
-				iex "msbuild.exe '$fullname'"
+				Invoke-Expression "dotnet restore '$fullname'"
+				$msbuild = Get-MSBuild
+				$expression = "& '$msbuild' '$fullname'"
+				Invoke-Expression $expression
 			}
 			else 
 			{
