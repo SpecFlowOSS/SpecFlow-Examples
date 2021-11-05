@@ -14,7 +14,7 @@
 
 
 	<PackageReference Include="Selenium.Support" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="93.0.4577.1500" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.5401" />
   </ItemGroup>
 
   <ItemGroup>
