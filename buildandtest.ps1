@@ -22,7 +22,7 @@ function Get-MSBuild
     Write-Host "MSBuild found at: $path" -ForegroundColor Yellow
 
     return $path
-}Invoke-Expression "dotnet restore 'C:\Users\jorwe\source\repos\SpecFlow-Examples\.NET 6\Android Mobile App\Android Mobile App.sln'"
+}
 
 ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 {
@@ -64,7 +64,7 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 			}
 			else 
 			{
-				iex "dotnet test '$fullname'"
+				iex "dotnet build '$fullname'"
 			}
 
 			if ($lastexitcode -ne 0)
