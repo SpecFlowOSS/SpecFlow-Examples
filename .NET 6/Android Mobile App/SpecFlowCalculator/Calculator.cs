@@ -1,6 +1,6 @@
 ﻿namespace SpecFlowCalculator
 {
-    public class Calculator
+    internal class Calculator
     {
         public int FirstNumber { get; set; }
 
