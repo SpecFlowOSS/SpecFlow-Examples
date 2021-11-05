@@ -60,7 +60,7 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 			{
 				Invoke-Expression "dotnet restore '$fullname'"
 				$msbuild = Get-MSBuild
-				$expression = "& '$msbuild' '$fullname'"
+				$expression = "& '$msbuild' -restore '$fullname'"
 				Invoke-Expression $expression
 			}
 			else 
