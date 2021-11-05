@@ -1,5 +1,28 @@
-$skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln', '*WinForms\WinForms.sln', '*WPF\WPF.sln')
+$skipTestExecution = ('*ExternalDataSample\Specs.sln', '*GherkinFormattingExamples\GherkinFormattingExamples.sln', '*WinForms\WinForms.sln', '*WPF\WPF.sln', '*Android Mobile App\Android Mobile App.sln')
 
+function Get-MSBuild
+{
+    If ($vsWhere = Get-Command "vswhere.exe" -ErrorAction SilentlyContinue) 
+    {
+        $vsWhere = $vsWhere.Path
+    } 
+    ElseIf (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe") 
+    {
+        $vsWhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+    }
+    Else 
+    {
+        Write-Error "vswhere not found. Aborting." -ErrorAction Stop
+    }
+
+    Write-Host "vswhere found at: $vsWhere" -ForegroundColor Yellow
+
+    $path = &$vsWhere -prerelease -latest -products * -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
+
+    Write-Host "MSBuild found at: $path" -ForegroundColor Yellow
+
+    return $path
+}
 
 ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 {
@@ -21,8 +44,9 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 				Write-Output $generatorPlugin
 				iex "dotnet build '$generatorPlugin'"
 			}
-			
-			iex "dotnet test '$fullname'"
+
+		    iex "dotnet test '$fullname'"
+
 			if ($lastexitcode -ne 0)
 			{
 				break;
@@ -32,7 +56,17 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 		{
 			Write-Output "Test execution of '$fullname' was skipped because it contains failing tests. Building solution."
 			
-			iex "dotnet build '$fullname'"
+			if ($fullname -match 'Android Mobile App.sln') 
+			{
+				$msbuild = Get-MSBuild
+				$expression = "& '$msbuild' -restore '$fullname'"
+				Invoke-Expression $expression
+			}
+			else 
+			{
+				iex "dotnet build '$fullname'"
+			}
+
 			if ($lastexitcode -ne 0)
 			{
 				break;

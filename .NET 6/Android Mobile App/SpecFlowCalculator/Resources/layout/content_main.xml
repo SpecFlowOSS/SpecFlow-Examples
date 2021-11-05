@@ -1,0 +1,141 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="20.0dp">
+
+    <ImageView
+        android:src="@drawable/logo"
+        android:id="@+id/LogoImage"
+        android:layout_height="80.0dp"
+        android:layout_width="match_parent"/>
+
+    <TextView
+        android:text="Calculator"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calculatorLabel"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="50.0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:text="First number"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="105.0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstNumberLabel" />
+            <EditText
+                android:inputType="number"
+                android:layout_width="50.0dp"
+                android:layout_height="50.0dp"
+                android:id="@+id/firstNumberTextBox" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:text="Second number"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="128.5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/secondNumberLabel" />
+
+            <EditText
+                android:inputType="number"
+                android:layout_width="50.0dp"
+                android:layout_height="50.0dp"
+                android:id="@+id/secondNumberTextBox" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:id="@+id/addButton"
+                android:layout_margin="10.0dp"
+                android:onClick="Add"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtract"
+                android:id="@+id/subtractButton"
+                android:onClick="Subtract"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Multiply"
+                android:id="@+id/multiplyButton"
+                android:layout_margin="10.0dp"
+                android:onClick="Multiply"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Divide"
+                android:id="@+id/divideButton"
+                android:onClick="Divide"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:text="Result"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="57.0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/resultLabel" />
+
+            <EditText
+                android:inputType="number"
+                android:layout_width="50.0dp"
+                android:layout_height="50.0dp"
+                android:editable="false"
+                android:id="@+id/resultTextBox" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
