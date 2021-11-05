@@ -58,7 +58,6 @@ ForEach ($file in get-childitem . -recurse | where {$_.extension -like "*sln"})
 			
 			if ($fullname -match 'Android Mobile App.sln') 
 			{
-				Invoke-Expression "dotnet restore '$fullname'"
 				$msbuild = Get-MSBuild
 				$expression = "& '$msbuild' -restore '$fullname'"
 				Invoke-Expression $expression
