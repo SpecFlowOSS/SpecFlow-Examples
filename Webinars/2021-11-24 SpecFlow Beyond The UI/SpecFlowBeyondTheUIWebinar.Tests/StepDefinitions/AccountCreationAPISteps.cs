@@ -15,7 +15,7 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
         private RestClient client = default!;
 
         private string newAccountType = default!;
-        private string customerId = default!;
+        private Customer customerJohn = default!;
         private string fromAccountId = default!;
 
         private int newAccountNumber;
@@ -30,7 +30,11 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
         [Given(@"user (.*) is ready to open a new account")]
         public void UserIsReadyToOpenANewAccount(string firstName)
         {
-            customerId = "12212";
+            customerJohn = new Customer
+            {
+                FirstName = firstName,
+                Id = 12212
+            };
             fromAccountId = "12345";
         }
 
@@ -41,7 +45,7 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
 
             RestRequest request = new RestRequest("/createAccount", Method.POST);
 
-            request.AddQueryParameter("customerId", customerId);
+            request.AddQueryParameter("customerId", customerJohn.Id.ToString());
             request.AddQueryParameter("newAccountType", newAccountType);
             request.AddQueryParameter("fromAccountId", fromAccountId);
 
@@ -56,7 +60,7 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
         [Then(@"the new account is included in their list of accounts")]
         public void TheNewAccountIsIncludedInTheirListOfAccounts()
         {
-            RestRequest request = new RestRequest($"/customers/{customerId}/accounts", Method.GET);
+            RestRequest request = new RestRequest($"/customers/{customerJohn.Id}/accounts", Method.GET);
 
             IRestResponse response = client.Execute(request);
 

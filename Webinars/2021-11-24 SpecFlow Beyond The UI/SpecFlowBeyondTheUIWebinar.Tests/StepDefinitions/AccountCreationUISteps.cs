@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SpecFlowBeyondTheUIWebinar.Models;
 using SpecFlowBeyondTheUIWebinar.Tests.PageObjects;
 using TechTalk.SpecFlow;
 
@@ -11,6 +12,16 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
     {
         private IWebDriver driver;
         private string newAccountNumber = default!;
+
+        private Customer customerJohn = new Customer
+        {
+            FirstName = "John",
+            LastName = "Smith",
+            UserName = "john",
+            Password = "demo",
+            Id = 12212
+        };
+
         public AccountCreationUISteps() => driver = new ChromeDriver();
 
         [BeforeScenario]
@@ -23,7 +34,7 @@ namespace SpecFlowBeyondTheUIWebinar.Tests.StepDefinitions
         public void UserIsReadyToOpenANewAccount(string firstName)
         {
             new LoginPage(driver)
-                .LoginAs("john", "demo");
+                .LoginAs(customerJohn.UserName, customerJohn.Password);
 
             new AccountsOverviewPage(driver)
                 .SelectMenuItem("Open New Account");
