@@ -1,24 +1,25 @@
-﻿using DemoWebShop.Framework;
+﻿using DemoWebShop.Framework.DependencyResolution;
+using DemoWebShop.Framework.TestData;
 using DemoWebShop.Specs.Pages.Register;
 using DemoWebShop.Specs.Pages.RegistrationResult;
 
-namespace DemoWebShop.Specs.Hooks
+namespace DemoWebShop.Specs.Hooks;
+
+[Binding]
+public sealed class DependencyHooks
 {
-    [Binding]
-    public sealed class DependencyHooks
+    private IDependencyResolver dependencyResolver;
+
+    public DependencyHooks(DependencyResolver dependencyResolver)
     {
-        private IDependencyResolver dependencyResolver;
+        this.dependencyResolver = dependencyResolver;
+    }
 
-        public DependencyHooks(DependencyResolver dependencyResolver)
-        {
-            this.dependencyResolver = dependencyResolver;
-        }
-
-        [BeforeScenario(Order = 0)]
-        public void ResolveTypes() 
-        {
-            this.dependencyResolver.RegisterTypeAs<RegisterPage, IRegisterPage>();
-            this.dependencyResolver.RegisterTypeAs<RegistrationResultPage, IRegistrationResultPage>();
-        }
+    [BeforeScenario(Order = 0)]
+    public void ResolveTypes()
+    {
+        this.dependencyResolver.RegisterTypeAs<RegisterPage, IRegisterPage>();
+        this.dependencyResolver.RegisterTypeAs<RegistrationResultPage, IRegistrationResultPage>();
+        this.dependencyResolver.RegisterTypeAs<TestDataProvider, ITestDataProvider>();
     }
 }

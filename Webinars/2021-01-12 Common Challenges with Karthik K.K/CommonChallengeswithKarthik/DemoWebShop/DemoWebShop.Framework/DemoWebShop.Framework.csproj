@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="BoDi" Version="1.5.0" />
+    <PackageReference Include="Faker.Net" Version="1.5.150" />
   </ItemGroup>
 
 </Project>

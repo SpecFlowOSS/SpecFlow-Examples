@@ -1,6 +1,6 @@
 ﻿using BoDi;
 
-namespace DemoWebShop.Framework
+namespace DemoWebShop.Framework.DependencyResolution
 {
     public class DependencyResolver : IDependencyResolver
     {
@@ -13,7 +13,7 @@ namespace DemoWebShop.Framework
 
         public void RegisterTypeAs<TType, TInterface>(string? name = null) where TType : class, TInterface
         {
-            this.objectContainer.RegisterTypeAs<TType, TInterface>(name);
+            objectContainer.RegisterTypeAs<TType, TInterface>(name);
         }
     }
 }

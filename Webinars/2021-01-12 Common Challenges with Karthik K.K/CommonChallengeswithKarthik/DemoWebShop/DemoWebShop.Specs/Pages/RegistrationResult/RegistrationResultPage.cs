@@ -1,16 +1,15 @@
 ﻿using SpecFlow.Actions.Selenium;
 
-namespace DemoWebShop.Specs.Pages.RegistrationResult
-{
-    internal class RegistrationResultPage : RegistrationResultPageElements, IRegistrationResultPage
-    {
-        public RegistrationResultPage(BrowserDriver browserDriver) : base(browserDriver)
-        {
-        }
+namespace DemoWebShop.Specs.Pages.RegistrationResult;
 
-        public bool RegistrationIsSuccess()
-        {
-            return this.RegistrationSuccessLabel.Displayed;
-        }
+internal class RegistrationResultPage : RegistrationResultPageElements, IRegistrationResultPage
+{
+    public RegistrationResultPage(BrowserDriver browserDriver) : base(browserDriver)
+    {
+    }
+
+    public bool RegistrationIsSuccess()
+    {
+        return this.RegistrationSuccessLabel.Displayed;
     }
 }

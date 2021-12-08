@@ -20,7 +20,7 @@ public class RegistrationModel
 
     public string LastName { get; }
 
-    public string Email { get; }
+    public string Email { get; set; }
 
     public string Password { get; }
 

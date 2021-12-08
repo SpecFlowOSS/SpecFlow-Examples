@@ -1,7 +1,6 @@
-﻿namespace DemoWebShop.Specs.Pages.RegistrationResult
+﻿namespace DemoWebShop.Specs.Pages.RegistrationResult;
+
+public interface IRegistrationResultPage
 {
-    public interface IRegistrationResultPage
-    {
-        bool RegistrationIsSuccess();
-    }
+    bool RegistrationIsSuccess();
 }
