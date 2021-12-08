@@ -1,11 +1,11 @@
 ﻿Feature: Register
 
-A user can register
+A user can register to purchase products from the site
 
 Scenario: User can register
 	Given my details are valid
-		| Gender | First name | Last name | Email                            | Password   | Confirm password |
-		| Male   | Jerry      | Smith     | TotallyRandomEmail123@cheese.net | @JSmith123 | @JSmith123       |
+		| Gender | First name | Last name | Email       | Password   | Confirm password |
+		| Male   | Jerry      | Smith     | (Generated) | @JSmith123 | @JSmith123       |
 	When I register
 	Then I should be registered
 

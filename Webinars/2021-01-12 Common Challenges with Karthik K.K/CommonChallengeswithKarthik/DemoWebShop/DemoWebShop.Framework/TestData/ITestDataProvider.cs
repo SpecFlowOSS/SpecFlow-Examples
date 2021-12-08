@@ -1,7 +1,6 @@
-﻿namespace DemoWebShop.Framework.TestData
+﻿namespace DemoWebShop.Framework.TestData;
+
+public interface ITestDataProvider
 {
-    public interface ITestDataProvider
-    {
-        string GetRandomEmailAddress();
-    }
+    string GetRandomEmailAddress();
 }
