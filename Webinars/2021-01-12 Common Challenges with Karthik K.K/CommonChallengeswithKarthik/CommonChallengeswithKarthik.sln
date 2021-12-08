@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonChallengeswithKarthik", "CommonChallengeswithKarthik\CommonChallengeswithKarthik.csproj", "{16719219-649E-464C-A0D1-1FB7AA8A7B1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16719219-649E-464C-A0D1-1FB7AA8A7B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16719219-649E-464C-A0D1-1FB7AA8A7B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16719219-649E-464C-A0D1-1FB7AA8A7B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16719219-649E-464C-A0D1-1FB7AA8A7B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0D440C4-362C-44E9-BA31-524B7C10A992}
+	EndGlobalSection
+EndGlobal
