@@ -1,0 +1,66 @@
+﻿@model DemoWebApp.Models.UserModel
+
+@{
+    ViewData["Title"] = "Landing page";
+}
+
+<div class="container">
+    <div class="col">
+
+        <div class="row mx-auto" style="width:500px;padding-bottom:20px">
+            <img src="https://specflow.org/wp-content/uploads/2021/04/specflow-logo-new.svg" />
+        </div>
+
+        <div class="row mx-auto" style="text-align:center">
+            @if (@Model.Username != null)
+            {
+                <h1>welcome, @Model.Username</h1>
+            }
+            else
+            {
+                <h1>Welcome</h1>
+            }
+        </div>
+
+        <div class="row mx-auto" style="text-align:center">
+            <h4>On this page, you can see our upcoming webinars. Scroll through them below and click 'read more' to see how to attend.</h4>
+        </div>
+
+        <div class="row mx-auto">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="https://specflow.org/wp-content/uploads/2021/11/SpecFlow-Masterclass-Lesson-6-1.png" alt="First slide">
+                        <div class="row mx-auto" style="width:200px">
+                            <a type="button" target="_blank" class="btn btn-primary" href="https://specflow.org/webinar/bdd-masterclass/">Read more</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://specflow.org/wp-content/uploads/2021/11/Group-30.png" alt="Second slide">
+                        <div class="row mx-auto" style="width:200px">
+                            <a type="button" target="_blank" class="btn btn-primary" href="https://specflow.org/webinar/onboarding-webinar-7/">Read more</a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://specflow.org/wp-content/uploads/2021/11/Webinar-with-KP-LinkedIn-4.png" alt="Third slide">
+                        <div class="row mx-auto" style="width:200px">
+                            <a type="button" target="_blank" class="btn btn-primary" href="https://specflow.org/webinar/a-bdd-experience-with-ken-pugh/">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
