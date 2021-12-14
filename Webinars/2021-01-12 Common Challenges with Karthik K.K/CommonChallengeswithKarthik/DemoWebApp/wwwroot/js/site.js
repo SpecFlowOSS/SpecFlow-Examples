@@ -2,3 +2,9 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+$(window).on('load', function () {
+    setTimeout(function () {
+        $("#exampleModalCenter").modal('show');
+    }, 2000);
+});
