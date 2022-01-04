@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using DemoWebApp.Specs.Configuration;
+using Microsoft.Extensions.Hosting;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace DemoWebApp.Specs.Hooks
 {
@@ -8,15 +10,21 @@ namespace DemoWebApp.Specs.Hooks
         private static IHost? _host;
 
         [BeforeTestRun(Order = 0)]
-        public static void BeforeTestRunAsync()
+        public static void LogTestInfo(ISpecFlowOutputHelper _specFlowOutputHelper)
         {
-            _host = Program.CreateHostBuilder(null).UseContentRoot(Path.Combine(Environment.CurrentDirectory, "../../../../DemoWebApp")).Build();
+            _specFlowOutputHelper.WriteLine($"Test execution started for environment {TestConfiguration.Settings.TestEnvironment}");
+        }
+
+        [BeforeTestRun(Order = 1)]
+        public static void StartHost()
+        {
+            _host = Program.CreateHostBuilder(Array.Empty<string>()).UseContentRoot(Path.Combine(Environment.CurrentDirectory, "../../../../DemoWebApp")).Build();
 
             _host.Start();
         }
 
         [AfterTestRun]
-        public static void AfterTestRun()
+        public static void StopHost()
         {
             _host?.StopAsync().Wait();
         }

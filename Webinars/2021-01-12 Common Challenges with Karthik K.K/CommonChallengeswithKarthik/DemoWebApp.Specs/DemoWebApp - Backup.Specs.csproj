@@ -11,8 +11,8 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 		<PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.8">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="96.0.4664.4500" />
 		<PackageReference Include="SpecFlow.Actions.Selenium" Version="0.1.188" />
@@ -28,20 +28,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<None Update="testsettings.json">
-		  <TransformOnBuild>true</TransformOnBuild>
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 		<None Update="specflow.actions.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="testsettings.Staging.json">
-		  <IsTransformFile>true</IsTransformFile>
-		  <DependentUpon>testsettings.json</DependentUpon>
-		</None>
-		<None Update="testsettings.Sys.json">
-		  <IsTransformFile>true</IsTransformFile>
-		  <DependentUpon>testsettings.json</DependentUpon>
 		</None>
 	</ItemGroup>
 
