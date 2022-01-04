@@ -1,8 +1,13 @@
-﻿using DemoWebApp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SpecFlowDemoWebApp.Models;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DemoWebApp.Controllers
+namespace SpecFlowDemoWebApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,21 +23,9 @@ namespace DemoWebApp.Controllers
             return View();
         }
 
-        public IActionResult Login(UserModel userModel)
+        public IActionResult Privacy()
         {
-            UserCache.UserModel = userModel;
-
-            if (!ModelState.IsValid)
-            {
-                return View("Index", UserCache.UserModel);
-            }
-
-            return RedirectToAction("LandingPage");
-        }
-
-        public IActionResult LandingPage() 
-        {
-            return this.View(UserCache.UserModel);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
