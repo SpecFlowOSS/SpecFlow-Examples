@@ -1,12 +1,12 @@
-﻿using DemoWebApp.Specs.Pages;
+﻿using DemoWebApp.Specs.Pages.LoginPage;
 
 namespace DemoWebApp.Specs.Hooks
 {
     [Binding]
     public sealed class TestHooks
     {
-        [BeforeScenario()]
-        public void BeforeScenario(LoginPage loginPage)
+        [BeforeScenario("UITest")]
+        public void BeforeScenario(ILoginPage loginPage)
         {
             loginPage.GoTo();
         }

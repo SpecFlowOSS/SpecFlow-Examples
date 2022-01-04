@@ -10,5 +10,11 @@ namespace DemoWebApp.Specs.Support
         {
             return table.CreateSet<DomainTerm>();
         }
+
+        [StepArgumentTransformation(@"I have a ?(invalid|valid) username")]
+        public UserCredentials TransformTableToUserCredentials(Table table)
+        {
+            return table.CreateInstance<UserCredentials>();
+        }
     }
 }
