@@ -6,10 +6,13 @@ namespace DemoWebApp.Specs.Pages.LoginPage
     public class LoginPage : LoginPageElements, ILoginPage
     {
         public string Url => TestConfiguration.Settings.Domain + "/Home/Login";
+
+        private readonly BrowserDriver _browserDriver;
         private readonly IBrowserInteractions _browserInteractions;
 
-        public LoginPage(IBrowserInteractions browserInteractions) : base(browserInteractions)
+        public LoginPage(BrowserDriver browserDriver, IBrowserInteractions browserInteractions) : base(browserInteractions)
         {
+            _browserDriver = browserDriver;
             _browserInteractions = browserInteractions;
         }
 
@@ -22,6 +25,7 @@ namespace DemoWebApp.Specs.Pages.LoginPage
         {
             UsernameField.SendKeys(username);
             PasswordField.SendKeys(password);
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             SubmitButton.Click();
         }
     }
