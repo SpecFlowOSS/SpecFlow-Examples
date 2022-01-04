@@ -1,0 +1,31 @@
+﻿@model DemoWebApp.Models.UserModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="col">
+        <div class="row mx-auto" style="width:500px;padding-bottom:20px">
+            <img src="https://specflow.org/wp-content/uploads/2021/04/specflow-logo-new.svg" width="479" height="126"/>
+
+            <h1 class="display-4" style="text-align:center">Login</h1>
+
+            <form id="Form" method="post" asp-action="Login" asp-controller="Home">
+                <div class="form-group" style="margin-top:20px">
+                    @Html.LabelFor(model => model.Username)
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @data_qa_textbox = "username" } )
+                    @Html.ValidationMessageFor(model => model.Username )
+                </div>
+                <div class="form-group" style="margin-top:20px">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password )
+                </div>
+                <div class="form-group" style="margin-top:20px">
+                    <button type="submit" id="Submit" disabled="disabled" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
