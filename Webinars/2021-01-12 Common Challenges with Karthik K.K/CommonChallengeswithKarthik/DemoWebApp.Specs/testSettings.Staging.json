@@ -1,4 +1,4 @@
 ﻿{
   "TestEnvironment": "Staging",
-  "Domain": "http://localhost:5000"
+  "Domain": "https://localhost:5001"
 }
