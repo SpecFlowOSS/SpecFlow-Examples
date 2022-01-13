@@ -31,7 +31,7 @@ namespace DemoWebApp.Specs.Pages.LoginPage
             // ---- Hard wait ------
             // Useful if you cannot leverage the other waits, i.e. there is no DOM state change or randomness in async execution delays
 
-            // Thread.Sleep(TimeSpan.FromSeconds(2));
+            //Thread.Sleep(TimeSpan.FromSeconds(3));
             // ---------------------
 
             // ---- Implicit wait ----

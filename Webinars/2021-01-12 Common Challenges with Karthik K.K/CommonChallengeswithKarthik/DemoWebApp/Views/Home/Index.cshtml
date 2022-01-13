@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group" style="margin-top:20px">
                     @Html.LabelFor(model => model.Password)
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @data_qa_textbox = "password" })
                     @Html.ValidationMessageFor(model => model.Password )
                 </div>
                 <div class="form-group" style="margin-top:20px">

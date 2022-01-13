@@ -5,7 +5,7 @@ using TechTalk.SpecFlow.Infrastructure;
 namespace DemoWebApp.Specs.Hooks
 {
     [Binding]
-    public sealed class AppHooks
+    public sealed class EnvironmentSetup
     {
         private static IHost? _host;
 
@@ -20,7 +20,7 @@ namespace DemoWebApp.Specs.Hooks
         [BeforeScenario()]
         public static void LogTestInfo(ISpecFlowOutputHelper _specFlowOutputHelper)
         {
-            _specFlowOutputHelper.WriteLine($"Test execution started for environment: {TestConfiguration.Settings.TestEnvironment}");
+            _specFlowOutputHelper.WriteLine($"Test execution started for environment: {TestConfiguration.Settings.TestEnvironment}, Domain: {TestConfiguration.Settings.Domain}");
         }
 
         [AfterTestRun]

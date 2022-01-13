@@ -8,7 +8,7 @@ namespace DemoWebApp.Specs.Hooks
     public sealed class DependencyHooks
     {
         [BeforeScenario(Order = 0)]
-        public void RegisterDependencies(IObjectContainer objectContainer) 
+        public void RegisterDependencies(IObjectContainer objectContainer)
         {
             objectContainer.RegisterTypeAs<LoginPage, ILoginPage>();
             objectContainer.RegisterTypeAs<LandingPage, ILandingPage>();

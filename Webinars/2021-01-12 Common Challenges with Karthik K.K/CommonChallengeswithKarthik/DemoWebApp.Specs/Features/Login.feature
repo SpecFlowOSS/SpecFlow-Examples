@@ -2,6 +2,22 @@
 
 A user can login
 
+#@UITest
+#Scenario: Log in with invalid username
+#	Given I go to the login page
+#	And I have an invalid username
+#	And I submit my details
+#	When I click login
+#	Then I am not logged in
+#
+#@UITest
+#Scenario: Log in with valid username
+#	Given I go to the login page
+#	And I have an valid username
+#	And I submit my details
+#	When I click login
+#	Then I am not logged in
+
 @UITest
 Scenario: Log in with invalid username
 	Given I have an invalid username
