@@ -8,10 +8,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
-    <PackageReference Include="SpecFlow.Actions.Configuration" Version="0.1.256" />
-    <PackageReference Include="SpecFlow.Actions.Selenium" Version="0.1.250" />
+    <PackageReference Include="SpecFlow.Actions.Selenium" Version="0.1.264" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.*" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.*" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.9.50" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -21,7 +20,7 @@
     <PackageReference Include="FluentAssertions" Version="6.4.0" />
 
 
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="97.0.4692.7100" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="98.0.4758.8000" />
   </ItemGroup>
 
 
