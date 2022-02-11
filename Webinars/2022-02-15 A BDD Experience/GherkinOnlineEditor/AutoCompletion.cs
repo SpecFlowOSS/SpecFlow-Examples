@@ -28,12 +28,15 @@ namespace GherkinOnlineEditor
 
                 foreach (var step in steps)
                 {
-                    if (step.ScenarioBlock != keyword)
+                    if (keyword != null)
                     {
-                        continue;
+                        if (step.ScenarioBlock != keyword)
+                        {
+                            continue;
+                        }
                     }
-                    
-                    if (step.Text.Contains(stepText))
+
+                    if (step.Text.ContainsAll(stepText))
                     {
                         yield return step.Text;
                     }
@@ -42,11 +45,33 @@ namespace GherkinOnlineEditor
         }
 
 
-        private (ScenarioBlock keyword, string step) GetKeywordAndStep(string enteredText)
+        private (ScenarioBlock? keyword, string[] steps) GetKeywordAndStep(string enteredText)
         {
-            var split = enteredText.Split(new string[]{" "},StringSplitOptions.None);
+            var split = enteredText.Split(new string[] { " " }, StringSplitOptions.None);
 
-            return (Enum.Parse<ScenarioBlock>(split[0].Trim()), string.Join(' ', split[1..]));
+            if (Enum.TryParse<ScenarioBlock>(split[0], out var block))
+            {
+                return (block, split[1..]);
+            }
+
+            return (null, split);
+        }
+    }
+
+
+    public static class StringExtensions
+    {
+        public static bool ContainsAll(this string text, string[] parts)
+        {
+            foreach (var part in parts)
+            {
+                if (!text.Contains(part))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

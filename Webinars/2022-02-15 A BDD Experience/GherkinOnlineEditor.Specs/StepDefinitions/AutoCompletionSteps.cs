@@ -12,7 +12,7 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
     {
         private readonly FileManager _fileManager;
         private readonly AutoCompletion _autoCompletion;
-        private List<string> _automcompletionResult;
+        private List<string> _automcompletionResult = new List<string>();
 
         public AutoCompletionSteps(FileManager fileManager, AutoCompletion autoCompletion)
         {
@@ -61,12 +61,26 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
             throw new PendingStepException();
         }
 
-
+        record TypingMatchesStepRow(string Typing, string StepText, string Match);
 
         [Given(@"Typing Matches Step")]
         public void GivenTypingMatchesStep(Table table)
         {
-            throw new PendingStepException();
+            var rows = table.CreateSet<TypingMatchesStepRow>();
+
+            foreach (var row in rows)
+            {
+                var automcompletionForFile = _autoCompletion.GetAutomcompletionForFile(row.Typing);
+
+                if (row.Match == "Yes")
+                {
+                    automcompletionForFile.Should().Contain(row.StepText);
+                }
+                else
+                {
+                    automcompletionForFile.Should().NotContain(row.StepText);
+                }
+            }
         }
 
         [Given(@"suggestions are:")]
@@ -89,5 +103,5 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
 
     }
 
-    public record AutoCompleteSuggestion(string Suggestion);
+    
 }
