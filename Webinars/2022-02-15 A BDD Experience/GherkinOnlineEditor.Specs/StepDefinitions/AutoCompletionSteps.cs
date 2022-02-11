@@ -32,6 +32,7 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
             _automcompletionResult = _autoCompletion.GetAutomcompletionForFile(enteredText).ToList();
         }
 
+
         [Then(@"suggestions are presented:")]
         public void ThenSuggestionsArePresented(Table table)
         {
@@ -40,25 +41,16 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
             _automcompletionResult.Should().BeEquivalentTo(expectedSuggestions);
         }
 
-
-
-
-        [Given(@"these suggestions are presented")]
-        public void GivenTheseSuggestionsArePresented(Table table)
-        {
-            throw new PendingStepException();
-        }
-
         [When(@"I select")]
         public void WhenISelect(Table table)
         {
-            throw new PendingStepException();
+            
         }
 
         [Then(@"the step text after the keyword is replaced with")]
         public void ThenTheStepTextAfterTheKeywordIsReplacedWith(string multilineText)
         {
-            throw new PendingStepException();
+            
         }
 
         record TypingMatchesStepRow(string Typing, string StepText, string Match);
@@ -83,22 +75,28 @@ namespace GherkinOnlineEditor.Specs.StepDefinitions
             }
         }
 
+        [Given(@"these suggestions are presented")]
         [Given(@"suggestions are:")]
         public void GivenSuggestionsAre(Table table)
         {
-            throw new PendingStepException();
+            foreach (var row in table.Rows)
+            {
+                _autoCompletion.AddSuggestion(row["Suggestion"]);
+            }
         }
 
         [When(@"displayed on screen")]
         public void WhenDisplayedOnScreen()
         {
-            throw new PendingStepException();
+            _automcompletionResult = _autoCompletion.GetAutomcompletionForFile(string.Empty).ToList();
         }
 
         [Then(@"the order is")]
         public void ThenTheOrderIs(Table table)
         {
-            throw new PendingStepException();
+            var expectedSuggestions = table.Rows.Select(r => r["Suggestion"]).ToList();
+
+            _automcompletionResult.Should().Equal(expectedSuggestions);
         }
 
     }

@@ -117,6 +117,7 @@ Given suggestions are:
 | I have entered <Second> into the calculator  |
 When displayed on screen
 Then the order is
+| Suggestion                                   |
 | I have entered <First> in the calculator     |
 | I have entered <Second> into the calculator  |
 | I have entered 50 into the calculator        |
