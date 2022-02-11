@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GherkinOnlineEditor.Specs", "GherkinOnlineEditor.Specs\GherkinOnlineEditor.Specs.csproj", "{265BF83D-DA61-40ED-84E5-BEB04A8F3DF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GherkinOnlineEditor", "GherkinOnlineEditor\GherkinOnlineEditor.csproj", "{2CBF7078-8071-4ED8-9A09-3C4EC67433BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{265BF83D-DA61-40ED-84E5-BEB04A8F3DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{265BF83D-DA61-40ED-84E5-BEB04A8F3DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{265BF83D-DA61-40ED-84E5-BEB04A8F3DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{265BF83D-DA61-40ED-84E5-BEB04A8F3DF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBF7078-8071-4ED8-9A09-3C4EC67433BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBF7078-8071-4ED8-9A09-3C4EC67433BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBF7078-8071-4ED8-9A09-3C4EC67433BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBF7078-8071-4ED8-9A09-3C4EC67433BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52C1185D-2A49-40C2-9D81-35AA4AF7A04E}
+	EndGlobalSection
+EndGlobal
