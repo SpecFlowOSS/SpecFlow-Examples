@@ -1,5 +1,4 @@
-﻿@Calculator
-Feature: Calculator
+﻿Feature: Calculator
 ![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
 Simple calculator for adding **two** numbers
 Link to a feature: [Calculator](CalculatorPlaywright.Specs/Features/Calculator.feature)

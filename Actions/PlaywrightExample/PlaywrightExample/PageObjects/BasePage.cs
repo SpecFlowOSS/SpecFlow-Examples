@@ -1,34 +1,18 @@
-﻿using Microsoft.Playwright;
+﻿using System.Threading.Tasks;
+using Microsoft.Playwright;
 using SpecFlow.Actions.Playwright;
-using System.Threading.Tasks;
 
-namespace Example.PageObjects
+namespace PlaywrightExample.PageObjects
 {
     public class BasePage
     {
-        public readonly Task<IBrowserContext> _browserContext;
-        private readonly Task<ITracing> _tracing;
-        public readonly Task<IPage> _page;
-
-        public Task<ITracing> Tracing => _tracing;
+        private readonly IPage _page;
         
-        public BasePage(BrowserDriver browserDriver)
+        public BasePage(IPage page)
         {
-            _browserContext = CreateBrowserContextAsync(browserDriver.Current);
-            _tracing = _browserContext.ContinueWith(t => t.Result.Tracing);
-            _page = CreatePageAsync(_browserContext);
-            
+            _page = page;
         }
 
-        private async Task<IBrowserContext> CreateBrowserContextAsync(Task<IBrowser> browser)
-        {
-            return await (await browser).NewContextAsync();
-        }
-
-        private async Task<IPage> CreatePageAsync(Task<IBrowserContext> browserContext)
-        {
-            return await (await browserContext).NewPageAsync();
-        }
-
+        public IPage Page => _page;
     }
 }

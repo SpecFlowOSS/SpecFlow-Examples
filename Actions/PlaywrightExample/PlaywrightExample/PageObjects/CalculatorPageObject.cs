@@ -1,5 +1,7 @@
 ﻿using SpecFlow.Actions.Playwright;
 using System.Threading.Tasks;
+using Microsoft.Playwright;
+using PlaywrightExample.PageObjects;
 
 namespace Example.PageObjects
 {
@@ -18,43 +20,41 @@ namespace Example.PageObjects
         private static string ResultLabelSelector => "#result";
         private static string ResetButtonSelector => "#reset-button";
 
-        private Interactions _interactions;
+        
+        
 
-        public CalculatorPageObject(BrowserDriver browserDriver) : base(browserDriver)
-        {
-            _interactions = new Interactions(_page);
-        }
 
         public async Task EnterFirstNumberAsync(string number)
         {
             //Enter text
-            await _interactions.SendTextAsync(FirstNumberFieldSelector, number);
+            await Page.FillAsync(FirstNumberFieldSelector, number);
         }
 
         public async Task EnterSecondNumberAsync(string number)
         {
             //Enter text
-            await _interactions.SendTextAsync(SecondNumberFieldSelector, number);
+            await Page.FillAsync(SecondNumberFieldSelector, number);
         }
 
         public async Task ClickAddAsync()
         {
             //Click the add button
-            await _interactions.ClickAsync(AddButtonSelector);
+            await Page.ClickAsync(AddButtonSelector);
         }
 
         public async Task EnsureCalculatorIsOpenAndResetAsync()
         {
+            
             //Open the calculator page in the browser if not opened yet
-            if ((await _page).Url != CalculatorUrl)
+            if (Page.Url != CalculatorUrl)
             {
-                await _interactions.GoToUrl(CalculatorUrl);
+                await Page.GotoAsync(CalculatorUrl);
             }
             //Otherwise reset the calculator by clicking the reset button
             else
             {
                 //Click the rest button
-                await _interactions.ClickAsync(ResetButtonSelector);
+                await Page.ClickAsync(ResetButtonSelector);
 
                 //Wait until the result is empty again
                 await WaitForEmptyResultAsync();
@@ -64,16 +64,36 @@ namespace Example.PageObjects
         public async Task<string?> WaitForNonEmptyResultAsync()
         {
             // Waits for the ResultLabelSelector value to be !== ""
-            await _interactions.WaitForNonEmptyValue(ResultLabelSelector);
+            await WaitForNonEmptyValue(ResultLabelSelector);
 
             // Gets the value attribute of the ResultLabelSelector
-            return await _interactions.GetValueAttributeAsync(ResultLabelSelector);
+            return await GetValueAttributeAsync(ResultLabelSelector);
         }
 
         public async Task WaitForEmptyResultAsync()
         {
             // Waits for the ResultLabelSelector value to be === ""
-            await _interactions.WaitForEmptyValue(ResultLabelSelector);
+            await WaitForEmptyValue(ResultLabelSelector);
+        }
+
+
+        public async Task WaitForNonEmptyValue(string selector)
+        {
+            await Page.WaitForFunctionAsync($"document.querySelector(\"{selector}\").value !== \"\"");
+        }
+
+        public async Task WaitForEmptyValue(string selector)
+        {
+            await Page.WaitForFunctionAsync($"document.querySelector(\"{selector}\").value === \"\"");
+        }
+
+        public async Task<string?> GetValueAttributeAsync(string selector, PageInputValueOptions? pageInputValueOptions = null)
+        {
+            return await Page.InputValueAsync(selector, pageInputValueOptions);
+        }
+
+        public CalculatorPageObject(IPage page) : base(page)
+        {
         }
     }
 }
