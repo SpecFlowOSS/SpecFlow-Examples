@@ -1,0 +1,17 @@
+{
+  "selenium": {
+    "browser": "Chrome",
+    "capabilities": {
+      "os": "OS X",
+      "os_version": "Sierra",
+      "resolution": "1920x1080",
+      "build": "OS_X_Sierra.Chrome",
+      "browserstack.local": "true"
+    },
+    "browserstack": {
+      "localcapabilities": {
+        "forcelocal": "true"
+      }
+    }
+  }
+}

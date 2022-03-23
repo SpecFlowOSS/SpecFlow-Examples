@@ -1,0 +1,12 @@
+{
+  "selenium": {
+    "browser": "Safari",
+    "capabilities": {
+      "os": "OS X",
+      "os_version": "Monterey",
+      "resolution": "1920x1080",
+      "build": "OS_X_Monterey.Safari",
+      "browserstack.local": "true"
+    }
+  }
+}
