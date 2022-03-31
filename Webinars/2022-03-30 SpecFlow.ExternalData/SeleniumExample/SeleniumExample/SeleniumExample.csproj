@@ -8,10 +8,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
-    <PackageReference Include="SpecFlow.Actions.Selenium" Version="0.1.266" />
-    <PackageReference Include="SpecFlow.ExternalData" Version="3.9.52" />
+    <PackageReference Include="SpecFlow.Actions.Selenium" Version="0.1.290" />
+    <PackageReference Include="SpecFlow.ExternalData" Version="3.9.58" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.*" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.9.52" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.9.58" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
