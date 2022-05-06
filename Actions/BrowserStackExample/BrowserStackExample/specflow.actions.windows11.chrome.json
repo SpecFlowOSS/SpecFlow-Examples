@@ -5,13 +5,7 @@
       "os": "Windows",
       "os_version": "11",
       "resolution": "1920x1080",
-      "build": "Windows_11.Chrome",
-      "browserstack.local": "true"
-    },
-    "browserstack": {
-      "localcapabilities": {
-        "forcelocal": "true"
-      }
+      "build": "Windows_11.Chrome"
     }
   }
 }

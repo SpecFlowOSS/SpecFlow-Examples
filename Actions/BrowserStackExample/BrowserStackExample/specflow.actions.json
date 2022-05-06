@@ -4,7 +4,7 @@
     "pollingInterval": 5,
     "browserstack": {
       "localcapabilities": {
-        "forcelocal": "true"
+        "forcelocal": "false"
       }
     }
   }
