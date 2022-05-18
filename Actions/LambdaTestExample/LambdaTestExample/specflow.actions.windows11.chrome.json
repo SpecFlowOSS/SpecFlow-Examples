@@ -1,0 +1,9 @@
+{
+  "selenium": {
+    "browser": "Chrome",
+    "capabilities": {
+      "platform": "Windows 11",
+      "build": "Windows 11 - Chrome"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "selenium": {
+    "browser": "Chrome",
+    "capabilities": {
+      "platform": "macOS Sierra",
+      "build": "macOS Sierra - Chrome"
+    }
+  }
+}

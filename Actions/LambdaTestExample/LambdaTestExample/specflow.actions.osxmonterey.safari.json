@@ -1,0 +1,9 @@
+{
+  "selenium": {
+    "browser": "Safari",
+    "capabilities": {
+      "platform": "macOS Monterey",
+      "build": "macOS Monterey - Safari"
+    }
+  }
+}

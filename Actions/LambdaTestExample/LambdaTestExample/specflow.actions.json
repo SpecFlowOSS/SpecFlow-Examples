@@ -1,0 +1,6 @@
+{
+  "selenium": {
+    "defaultTimeout": 60,
+    "pollingInterval": 5
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "selenium": {
+    "browser": "firefox",
+    "capabilities": {
+      "platform": "Windows 10",
+      "build":  "Windows 10 - Firefox" 
+    }
+  }
+}
