@@ -2,6 +2,9 @@
   "selenium": {
     "defaultTimeout": 60,
     "pollingInterval": 5,
+    "capabilities": {
+      "resolution": "1920x1080"
+    },
     "browserstack": {
       "localcapabilities": {
         "forcelocal": "false"
