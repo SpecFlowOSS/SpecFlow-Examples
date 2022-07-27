@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecA", "SpecA\SpecA.csproj", "{CBFD50E9-F02E-47ED-B5F4-FEE87F753B73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecB", "SpecB\SpecB.csproj", "{6A4FE9C5-1310-49FB-A140-0EAA41132ED8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBFD50E9-F02E-47ED-B5F4-FEE87F753B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFD50E9-F02E-47ED-B5F4-FEE87F753B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFD50E9-F02E-47ED-B5F4-FEE87F753B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFD50E9-F02E-47ED-B5F4-FEE87F753B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A4FE9C5-1310-49FB-A140-0EAA41132ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A4FE9C5-1310-49FB-A140-0EAA41132ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A4FE9C5-1310-49FB-A140-0EAA41132ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A4FE9C5-1310-49FB-A140-0EAA41132ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C194BB8D-2F35-4B6E-94EB-4CDA7C1EE6FC}
+	EndGlobalSection
+EndGlobal

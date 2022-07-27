@@ -1,0 +1,160 @@
+{
+	"Nodes": [
+		{
+			"Versions": {
+				"BuildToolVersion": "V1",
+				"JSONSchemaVersion": "V3"
+			},
+			"Prefix": null,
+			"WorkItemUrlTemplate": null,
+			"Title": "SpecA",
+			"Folders": [
+				{
+					"Title": "Features",
+					"Folders": [],
+					"Features": [
+						{
+							"Id": "88c220b0-bfb0-4ddf-852e-897f28a65056",
+							"ScenarioDefinitions": [
+								{
+									"Id": "2bebeffc-6379-42bb-b43d-a095a1e1928b",
+									"Steps": [
+										{
+											"Keyword": "Given",
+											"StepKeyword": "Given",
+											"GherkinKeyword": "Given",
+											"Text": "the first number is 50",
+											"MultiLineString": null,
+											"DataTable": {
+												"Header": {
+													"Cells": []
+												},
+												"TableRows": []
+											},
+											"NodeType": "Step"
+										},
+										{
+											"Keyword": "And",
+											"StepKeyword": "Given",
+											"GherkinKeyword": "And",
+											"Text": "the second number is 70",
+											"MultiLineString": null,
+											"DataTable": {
+												"Header": {
+													"Cells": []
+												},
+												"TableRows": []
+											},
+											"NodeType": "Step"
+										},
+										{
+											"Keyword": "When",
+											"StepKeyword": "When",
+											"GherkinKeyword": "When",
+											"Text": "the two numbers are added",
+											"MultiLineString": null,
+											"DataTable": {
+												"Header": {
+													"Cells": []
+												},
+												"TableRows": []
+											},
+											"NodeType": "Step"
+										},
+										{
+											"Keyword": "Then",
+											"StepKeyword": "Then",
+											"GherkinKeyword": "Then",
+											"Text": "the result should be 120",
+											"MultiLineString": null,
+											"DataTable": {
+												"Header": {
+													"Cells": []
+												},
+												"TableRows": []
+											},
+											"NodeType": "Step"
+										}
+									],
+									"Examples": null,
+									"Keyword": "Scenario",
+									"NodeType": "Scenario",
+									"Title": "Add two numbers",
+									"Description": null,
+									"Tags": [
+										"@mytag"
+									],
+									"TitleHash": "ac8da5c09bceac3ad5073bcfa1b5367b"
+								}
+							],
+							"BackGround": {
+								"Keyword": null,
+								"NodeType": "Background",
+								"Description": null,
+								"Steps": []
+							},
+							"FilePath": null,
+							"RepositoryPath": null,
+							"FileName": "Calculator.feature",
+							"Keyword": "Feature",
+							"NodeType": "Feature",
+							"Title": "Calculator",
+							"Description": "![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)\r\nSimple calculator for adding **two** numbers\r\n\r\nLink to a feature: [Calculator](SpecA/Features/Calculator.feature)\r\n***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**",
+							"Tags": [],
+							"TitleHash": "2f329543307ebfc1cc54eb5ac1024658"
+						}
+					],
+					"NodeType": "Folder"
+				}
+			],
+			"Features": []
+		}
+	],
+	"ExecutionTime": "2022-07-27T07:14:20.3435675Z",
+	"GenerationTime": "2022-07-27T07:16:45.1504539Z",
+	"PluginUserSpecFlowId": "bd2995fe-1097-46f4-84bf-4233275d75db",
+	"CLIUserSpecFlowId": null,
+	"ExecutionResults": [
+		{
+			"ContextType": "Scenario",
+			"FeatureFolderPath": "Features",
+			"FeatureTitle": "Calculator",
+			"ScenarioTitle": "Add two numbers",
+			"ScenarioArguments": [],
+			"Status": "TestError",
+			"StepResults": [
+				{
+					"Duration": "00:00:00.0004755",
+					"Status": "OK",
+					"Error": null,
+					"Outputs": null
+				},
+				{
+					"Duration": "00:00:00.0000922",
+					"Status": "OK",
+					"Error": null,
+					"Outputs": null
+				},
+				{
+					"Duration": "00:00:00.0000427",
+					"Status": "OK",
+					"Error": null,
+					"Outputs": null
+				},
+				{
+					"Duration": "00:00:00.0101657",
+					"Status": "TestError",
+					"Error": "Calulcation error",
+					"Outputs": null
+				}
+			],
+			"Outputs": null
+		}
+	],
+	"StepReports": {
+		"UnusedStepDefinitionReport": {
+			"StepDefinitionDiscoveryResult": "NoStepDefinitionsFound",
+			"UnusedStepDefinitions": []
+		}
+	}
+}
