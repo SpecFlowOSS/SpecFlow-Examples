@@ -1,0 +1,5 @@
+packages/
+SpecFlow.BrowserStack/bin/
+SpecFlow.BrowserStack/obj/
+*.user
+*.suo
