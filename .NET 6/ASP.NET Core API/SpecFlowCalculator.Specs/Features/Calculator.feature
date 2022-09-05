@@ -27,7 +27,7 @@ Scenario: Divide two numbers
 	Then the result should be 50
 
 @Divide
-Scenario: Divide by 0 returns 0
+Scenario: Dividing 0 by positive number returns 0
 	Given the first number is 0
 	And the second number is 70
 	When the two numbers are divided
